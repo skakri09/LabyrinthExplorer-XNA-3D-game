@@ -40,50 +40,55 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\brick_color_map.dds">
+    <Compile Include="Textures\brick_color_map.dds">
       <Name>brick_color_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\brick_height_map.dds">
+    <Compile Include="Textures\brick_height_map.dds">
       <Name>brick_height_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\brick_normal_map.dds">
+    <Compile Include="Textures\brick_normal_map.dds">
       <Name>brick_normal_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\stone_color_map.dds">
+    <Compile Include="Textures\stone_color_map.dds">
       <Name>stone_color_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\stone_height_map.dds">
+    <Compile Include="Textures\stone_height_map.dds">
       <Name>stone_height_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\stone_normal_map.dds">
+    <Compile Include="Textures\stone_normal_map.dds">
       <Name>stone_normal_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\wood_color_map.dds">
+    <Compile Include="Textures\wood_color_map.dds">
       <Name>wood_color_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\wood_height_map.dds">
+    <Compile Include="Textures\wood_height_map.dds">
       <Name>wood_height_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\dds\wood_normal_map.dds">
+    <Compile Include="Textures\wood_normal_map.dds">
       <Name>wood_normal_map</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Chiller.spritefont">
+      <Name>Chiller</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
     <None Include="Textures\dungeon_walls_1.jpg">
       <Name>dungeon_walls_1</Name>

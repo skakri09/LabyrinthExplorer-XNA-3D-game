@@ -44,10 +44,6 @@ namespace LabyrinthExplorer
             
             mousePos.X = mouseState.X;
             mousePos.Y = mouseState.Y;
-
-            //Setting mouse pointer to be invisible when left
-            //mouse button is pressed
-            SetMouseVisible(!LeftMouseDown());
         }
 
         /// <summary>
@@ -248,15 +244,8 @@ namespace LabyrinthExplorer
 
         public Point MousePos { get { return mousePos; } }
 
-        public int GetMouseX()
-        {
-            return mousePos.X;
-        }
-
-        public int GetMouseY()
-        {
-            return mousePos.Y;
-        }
+        public int MouseX { get { return mousePos.X; } }
+        public int MouseY { get { return mousePos.Y; } }
 
         public void SetMouseVisible(bool mouseVisible)
         {

@@ -108,10 +108,9 @@ namespace LabyrinthExplorer
         private Vector2[] mouseSmoothingCache;
         private Vector2 smoothedMouseMovement;
         private MouseState currentMouseState;
-        private MouseState previousMouseState;
-        private KeyboardState currentKeyboardState;
-        private KeyboardState previousKeyboardState;
         private Dictionary<Actions, Keys> actionKeys;
+
+        private InputManager input;
 
     #region Public Methods
 
@@ -120,6 +119,7 @@ namespace LabyrinthExplorer
         {
             UpdateOrder = 1;
 
+            input = (InputManager)game.Services.GetService(typeof(IInputService));
             // Initialize camera state.
             fovx = DEFAULT_FOVX;
             znear = DEFAULT_ZNEAR;
@@ -165,8 +165,6 @@ namespace LabyrinthExplorer
             actionKeys.Add(Actions.StrafeLeft, Keys.A);
             actionKeys.Add(Actions.Run, Keys.LeftShift);
             
-            // Get initial keyboard and mouse states.
-            currentKeyboardState = Keyboard.GetState();
             currentMouseState = Mouse.GetState();
 
             // Setup perspective projection matrix.
@@ -422,7 +420,7 @@ namespace LabyrinthExplorer
             direction.Y = 0.0f;
             direction.Z = 0.0f;
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.MoveForwards]))
+            if (input.IsKeyDown(actionKeys[Actions.MoveForwards]))
             {
                 if (!forwardsPressed)
                 {
@@ -437,7 +435,7 @@ namespace LabyrinthExplorer
                 forwardsPressed = false;
             }
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.MoveBackwards]))
+            if (input.IsKeyDown(actionKeys[Actions.MoveBackwards]))
             {
                 if (!backwardsPressed)
                 {
@@ -452,7 +450,7 @@ namespace LabyrinthExplorer
                 backwardsPressed = false;
             }
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.StrafeRight]))
+            if (input.IsKeyDown(actionKeys[Actions.StrafeRight]))
             {
                 if (!strafeRightPressed)
                 {
@@ -467,7 +465,7 @@ namespace LabyrinthExplorer
                 strafeRightPressed = false;
             }
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.StrafeLeft]))
+            if (input.IsKeyDown(actionKeys[Actions.StrafeLeft]))
             {
                 if (!strafeLeftPressed)
                 {
@@ -482,7 +480,7 @@ namespace LabyrinthExplorer
                 strafeLeftPressed = false;
             }
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.Crouch]))
+            if (input.IsKeyDown(actionKeys[Actions.Crouch]))
             {
                 switch (posture)
                 {
@@ -524,8 +522,7 @@ namespace LabyrinthExplorer
                 }
             }
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.Jump]) &&
-                previousKeyboardState.IsKeyUp(actionKeys[Actions.Jump]))
+            if (input.IsKeyDownOnce(actionKeys[Actions.Jump]))
             {
                 switch (posture)
                 {
@@ -633,7 +630,7 @@ namespace LabyrinthExplorer
             float elapsedTimeSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector3 direction = new Vector3();
 
-            if (currentKeyboardState.IsKeyDown(actionKeys[Actions.Run]))
+            if (input.IsKeyDown(actionKeys[Actions.Run]))
                 velocity = velocityRunning;
             else
                 velocity = velocityWalking;
@@ -646,10 +643,6 @@ namespace LabyrinthExplorer
 
         private void UpdateInput()
         {
-            previousKeyboardState = currentKeyboardState;
-            currentKeyboardState = Keyboard.GetState();
-
-            previousMouseState = currentMouseState;
             currentMouseState = Mouse.GetState();
 
             Rectangle clientBounds = Game.Window.ClientBounds;
