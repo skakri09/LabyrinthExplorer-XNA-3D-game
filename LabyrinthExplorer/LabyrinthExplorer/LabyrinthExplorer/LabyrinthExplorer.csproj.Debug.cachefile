@@ -1,3 +1,13 @@
 Content\Models\Wall.xnb
-Content\Textures\dungeon_walls_1.xnb
 Content\Textures\dungeon_walls_1_0.xnb
+Content\Models\LightStick.xnb
+Content\Effects\parallax_normal_mapping.xnb
+Content\Textures\dds\brick_color_map.xnb
+Content\Textures\dds\brick_height_map.xnb
+Content\Textures\dds\brick_normal_map.xnb
+Content\Textures\dds\stone_color_map.xnb
+Content\Textures\dds\stone_height_map.xnb
+Content\Textures\dds\stone_normal_map.xnb
+Content\Textures\dds\wood_color_map.xnb
+Content\Textures\dds\wood_height_map.xnb
+Content\Textures\dds\wood_normal_map.xnb
