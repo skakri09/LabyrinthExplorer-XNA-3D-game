@@ -358,6 +358,36 @@ namespace LabyrinthExplorer
 
             camera.Perspective(CAMERA_FOVX, aspectRatio, CAMERA_ZNEAR, CAMERA_ZFAR);
         }
+        
+        /// <summary>
+        /// Very simple camera collision detection logic to prevent the camera
+        /// from moving below the floor and from moving outside the bounds of
+        /// the room. This is basically the player collision detection
+        /// </summary>
+        private void PerformCameraCollisionDetection()
+        {
+            Vector3 newPos = camera.Position;
+
+            if (camera.Position.X > CAMERA_BOUNDS_MAX_X)
+                newPos.X = CAMERA_BOUNDS_MAX_X;
+
+            if (camera.Position.X < CAMERA_BOUNDS_MIN_X)
+                newPos.X = CAMERA_BOUNDS_MIN_X;
+
+            if (camera.Position.Y > CAMERA_BOUNDS_MAX_Y)
+                newPos.Y = CAMERA_BOUNDS_MAX_Y;
+
+            if (camera.Position.Y < CAMERA_BOUNDS_MIN_Y)
+                newPos.Y = CAMERA_BOUNDS_MIN_Y;
+
+            if (camera.Position.Z > CAMERA_BOUNDS_MAX_Z)
+                newPos.Z = CAMERA_BOUNDS_MAX_Z;
+
+            if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
+                newPos.Z = CAMERA_BOUNDS_MIN_Z;
+
+            camera.Position = newPos;
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -370,16 +400,17 @@ namespace LabyrinthExplorer
             if (!this.IsActive)
                 return;
 
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //// Allows the game to exit
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            //    this.Exit();
+            //float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
 
             light.Position = camera.Position;
 
             input.Update();
             HandleInput();
+            PerformCameraCollisionDetection();
             UpdateWeapon();
             UpdateEffect();
             UpdateFrameRate(gameTime);
