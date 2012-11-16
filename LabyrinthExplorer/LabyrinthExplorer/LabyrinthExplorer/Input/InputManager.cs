@@ -2,26 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Microsoft.Xna.Framework.Input;
+
+
+using Microsoft.Xna.Framework;
 
 namespace LabyrinthExplorer
 {
-    class InputManager
+    class InputManager : IInputService
     {
-        KeyboardState keyState;
-        KeyboardState prevKeyState;
-        MouseState mouseState;
-        MouseState prevMouseState;
+        private KeyboardState keyState;
+        private KeyboardState prevKeyState;
+        private MouseState mouseState;
+        private MouseState prevMouseState;
 
-        public InputManager()
+        private Point mousePos;
+
+        private Game game;
+
+        public InputManager(Game game)
         {
+            this.game = game;
+
             keyState = Keyboard.GetState();
             prevKeyState = keyState;
             
             mouseState = Mouse.GetState();
+            prevMouseState = mouseState;
+
+            mousePos.X = mouseState.X;
+            mousePos.Y = mouseState.Y;
+        }
+
+        public void Update()
+        {
+            prevKeyState = keyState;
+            keyState = Keyboard.GetState();
 
             prevMouseState = mouseState;
+            mouseState = Mouse.GetState();
+            
+            mousePos.X = mouseState.X;
+            mousePos.Y = mouseState.Y;
+
+            //Setting mouse pointer to be invisible when left
+            //mouse button is pressed
+            SetMouseVisible(!LeftMouseDown());
         }
 
         /// <summary>
@@ -155,7 +181,8 @@ namespace LabyrinthExplorer
         public bool LeftMouseDownOnce()
         {
             if (mouseState.LeftButton == ButtonState.Pressed)
-                return true;
+                if(prevMouseState.LeftButton == ButtonState.Released)
+                    return true;
             return false;
         }
 
@@ -166,7 +193,8 @@ namespace LabyrinthExplorer
         public bool MiddleMouseDownOnce()
         {
             if (mouseState.MiddleButton == ButtonState.Pressed)
-                return true;
+                if (prevMouseState.MiddleButton == ButtonState.Released)
+                    return true;
             return false;
         }
 
@@ -177,7 +205,8 @@ namespace LabyrinthExplorer
         public bool RightMouseDownOnce()
         {
             if (mouseState.RightButton == ButtonState.Pressed)
-                return true;
+                if (prevMouseState.RightButton == ButtonState.Released)
+                    return true;
             return false;
         }
 
@@ -188,7 +217,8 @@ namespace LabyrinthExplorer
         public bool LeftMouseUpOnce()
         {
             if (mouseState.LeftButton == ButtonState.Released)
-                return true;
+                if (prevMouseState.LeftButton == ButtonState.Pressed)
+                    return true;
             return false;
         }
 
@@ -199,7 +229,8 @@ namespace LabyrinthExplorer
         public bool MiddleMouseUpOnce()
         {
             if (mouseState.MiddleButton == ButtonState.Released)
-                return true;
+                if (prevMouseState.MiddleButton == ButtonState.Pressed)
+                    return true;
             return false;
         }
 
@@ -210,8 +241,26 @@ namespace LabyrinthExplorer
         public bool RightMouseUpOnce()
         {
             if (mouseState.RightButton == ButtonState.Released)
-                return true;
+                if (prevMouseState.RightButton == ButtonState.Pressed)
+                    return true;
             return false;
+        }
+
+        public Point MousePos { get { return mousePos; } }
+
+        public int GetMouseX()
+        {
+            return mousePos.X;
+        }
+
+        public int GetMouseY()
+        {
+            return mousePos.Y;
+        }
+
+        public void SetMouseVisible(bool mouseVisible)
+        {
+            game.IsMouseVisible = mouseVisible;
         }
     }
 }
