@@ -72,7 +72,7 @@ namespace LabyrinthExplorer
         protected override void Initialize()
         {
             base.Initialize();
-
+            
              // Setup frame buffer.
             graphics.SynchronizeWithVerticalRetrace = false;
             graphics.PreferredBackBufferWidth = GameConstants.windowWidth;
@@ -125,6 +125,8 @@ namespace LabyrinthExplorer
             spriteFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
             
             weapon = Content.Load<Model>(@"Models\LightStick");
+
+            SoundManager.LoadContent(Content);
         }
 
         /// <summary>

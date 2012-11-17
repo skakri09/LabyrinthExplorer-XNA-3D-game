@@ -75,6 +75,7 @@
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
+    <Compile Include="Environment\EasyWalls.cs" />
     <Compile Include="Environment\NormalMappedCeiling.cs" />
     <Compile Include="Environment\NormalMappedFloor.cs" />
     <Compile Include="Environment\NormalMappedVertex.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Skybox.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>

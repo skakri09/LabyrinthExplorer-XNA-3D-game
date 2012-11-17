@@ -178,6 +178,7 @@ namespace LabyrinthExplorer
             Perspective(fovx, aspect, znear, zfar);
 
             playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING, this);
+            Position = GameConstants.PLAYER_START_POS*GameConstants.MAP_SCALE;
         }
 
         public override void Initialize()

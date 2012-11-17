@@ -26,7 +26,7 @@ namespace LabyrinthExplorer
         public NormalMappedCeiling(GraphicsDevice graphicsDevice, Vector3 corner1, Vector3 corner2,
                     Vector3 corner3, Vector3 corner4, Vector3 normal)
         {
-            GenerateCeiling(graphicsDevice, corner1, corner2, corner3, corner4, normal);
+            GenerateCeiling(graphicsDevice, corner1 * GameConstants.MAP_SCALE, corner2 * GameConstants.MAP_SCALE, corner3 * GameConstants.MAP_SCALE, corner4 * GameConstants.MAP_SCALE, normal);
         }
 
         /// <summary>

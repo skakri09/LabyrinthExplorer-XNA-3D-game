@@ -20,18 +20,18 @@ namespace LabyrinthExplorer
         {
             sides = new NormalMappedWall[4];
             //+Z wall
-            sides[0] = new NormalMappedWall(graphicsDevice, btmFrontRight, btmFrontLeft, Vector3.Backward, height);
+            sides[0] = new NormalMappedWall(graphicsDevice, btmFrontRight * GameConstants.MAP_SCALE, btmFrontLeft * GameConstants.MAP_SCALE, Vector3.Backward, height * GameConstants.MAP_SCALE);
 
             //-Z wall
-            sides[1] = new NormalMappedWall(graphicsDevice, btmBackLeft, btmBackRight, Vector3.Forward, height);
+            sides[1] = new NormalMappedWall(graphicsDevice, btmBackLeft * GameConstants.MAP_SCALE, btmBackRight * GameConstants.MAP_SCALE, Vector3.Forward, height * GameConstants.MAP_SCALE);
 
             //-X wall
-            sides[2] = new NormalMappedWall(graphicsDevice, btmFrontLeft, btmBackLeft, Vector3.Left, height);
+            sides[2] = new NormalMappedWall(graphicsDevice, btmFrontLeft * GameConstants.MAP_SCALE, btmBackLeft * GameConstants.MAP_SCALE, Vector3.Left, height * GameConstants.MAP_SCALE);
 
             //+X wall
-            sides[3] = new NormalMappedWall(graphicsDevice, btmBackRight, btmFrontRight, Vector3.Right, height);
+            sides[3] = new NormalMappedWall(graphicsDevice, btmBackRight * GameConstants.MAP_SCALE, btmFrontRight * GameConstants.MAP_SCALE, Vector3.Right, height * GameConstants.MAP_SCALE);
 
-            aabb = new AABB(btmFrontLeft, btmFrontRight, btmBackRight, btmBackLeft, height);
+            aabb = new AABB(btmFrontLeft * GameConstants.MAP_SCALE, btmFrontRight * GameConstants.MAP_SCALE, btmBackRight * GameConstants.MAP_SCALE, btmBackLeft * GameConstants.MAP_SCALE, height * GameConstants.MAP_SCALE);
         }
 
         //Allows creating wall in 2d, as Y is 0 anyway. Using the 2d Y as Z
@@ -47,18 +47,18 @@ namespace LabyrinthExplorer
 
             sides = new NormalMappedWall[4];
             //+Z wall
-            sides[0] = new NormalMappedWall(graphicsDevice, btmFrontRight, btmFrontLeft, Vector3.Backward, height);
+            sides[0] = new NormalMappedWall(graphicsDevice, btmFrontRight * GameConstants.MAP_SCALE, btmFrontLeft * GameConstants.MAP_SCALE, Vector3.Backward, height * GameConstants.MAP_SCALE);
 
             //-Z wall
-            sides[1] = new NormalMappedWall(graphicsDevice, btmBackLeft, btmBackRight, Vector3.Forward, height);
+            sides[1] = new NormalMappedWall(graphicsDevice, btmBackLeft * GameConstants.MAP_SCALE, btmBackRight * GameConstants.MAP_SCALE, Vector3.Forward, height * GameConstants.MAP_SCALE);
 
             //-X wall
-            sides[2] = new NormalMappedWall(graphicsDevice, btmFrontLeft, btmBackLeft, Vector3.Left, height);
+            sides[2] = new NormalMappedWall(graphicsDevice, btmFrontLeft * GameConstants.MAP_SCALE, btmBackLeft * GameConstants.MAP_SCALE, Vector3.Left, height * GameConstants.MAP_SCALE);
 
             //+X wall
-            sides[3] = new NormalMappedWall(graphicsDevice, btmBackRight, btmFrontRight, Vector3.Right, height);
+            sides[3] = new NormalMappedWall(graphicsDevice, btmBackRight * GameConstants.MAP_SCALE, btmFrontRight * GameConstants.MAP_SCALE, Vector3.Right, height * GameConstants.MAP_SCALE);
 
-            aabb = new AABB(btmFrontLeft, btmFrontRight, btmBackRight, btmBackLeft, height);
+            aabb = new AABB(btmFrontLeft * GameConstants.MAP_SCALE, btmFrontRight * GameConstants.MAP_SCALE, btmBackRight * GameConstants.MAP_SCALE, btmBackLeft * GameConstants.MAP_SCALE, height * GameConstants.MAP_SCALE);
         }
 
         public void Draw(GraphicsDevice graphicsDevice, Effect effect,
@@ -78,4 +78,4 @@ namespace LabyrinthExplorer
             get { return aabb; }
         }
     }
-}
+}   
