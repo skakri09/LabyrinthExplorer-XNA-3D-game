@@ -31,7 +31,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace LabyrinthExplorer
 {
-    class Camera : GameComponent
+    public class Camera : GameComponent
     {
         public enum Actions
         {

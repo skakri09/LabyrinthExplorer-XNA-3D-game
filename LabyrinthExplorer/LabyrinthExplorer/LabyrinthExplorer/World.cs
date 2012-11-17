@@ -29,19 +29,63 @@ namespace LabyrinthExplorer
         private List<SolidWall> walls;
         private List<NormalMappedCeiling> ceilings;
         private List<NormalMappedFloor> floors;
+        private List<Light> lights;
 
+        private Light light;
+
+        private Material material;
+        private Color globalAmbient;
+        private Vector2 scaleBias;
         #endregion
 
-        public World()
+        private bool enableParallax;
+        private Camera camera;
+
+        public World(Camera camera)
         {
+            this.camera = camera;
+            enableParallax = true;
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();
+            lights = new List<Light>();
         }
 
         public void Update(float deltaTime)
         {
+            light.Position = camera.Position;
+            UpdateEffect();
+        }
 
+        public void UpdateEffect()
+        {
+            if (enableParallax)
+                effect.CurrentTechnique = effect.Techniques["ParallaxNormalMappingPointLighting"];
+            else
+                effect.CurrentTechnique = effect.Techniques["NormalMappingPointLighting"];
+
+            effect.Parameters["worldMatrix"].SetValue(Matrix.Identity);
+            effect.Parameters["worldInverseTransposeMatrix"].SetValue(Matrix.Identity);
+            effect.Parameters["worldViewProjectionMatrix"].SetValue(camera.ViewMatrix * camera.ProjectionMatrix);
+
+            effect.Parameters["cameraPos"].SetValue(camera.Position);
+            effect.Parameters["globalAmbient"].SetValue(globalAmbient.ToVector4());
+            effect.Parameters["scaleBias"].SetValue(scaleBias);
+
+            effect.Parameters["light"].StructureMembers["dir"].SetValue(light.Direction);
+            effect.Parameters["light"].StructureMembers["pos"].SetValue(light.Position);
+            effect.Parameters["light"].StructureMembers["ambient"].SetValue(light.Ambient.ToVector4());
+            effect.Parameters["light"].StructureMembers["diffuse"].SetValue(light.Diffuse.ToVector4());
+            effect.Parameters["light"].StructureMembers["specular"].SetValue(light.Specular.ToVector4());
+            effect.Parameters["light"].StructureMembers["spotInnerCone"].SetValue(light.SpotInnerConeRadians);
+            effect.Parameters["light"].StructureMembers["spotOuterCone"].SetValue(light.SpotOuterConeRadians);
+            effect.Parameters["light"].StructureMembers["radius"].SetValue(light.Radius);
+
+            effect.Parameters["material"].StructureMembers["ambient"].SetValue(material.Ambient.ToVector4());
+            effect.Parameters["material"].StructureMembers["diffuse"].SetValue(material.Diffuse.ToVector4());
+            effect.Parameters["material"].StructureMembers["emissive"].SetValue(material.Emissive.ToVector4());
+            effect.Parameters["material"].StructureMembers["specular"].SetValue(material.Specular.ToVector4());
+            effect.Parameters["material"].StructureMembers["shininess"].SetValue(material.Shininess);
         }
 
         public void LoadContent(GraphicsDevice device, ContentManager contentMan)
@@ -60,6 +104,8 @@ namespace LabyrinthExplorer
             woodColorMap = contentMan.Load<Texture2D>(@"Textures\wood_color_map");
             woodNormalMap = contentMan.Load<Texture2D>(@"Textures\wood_normal_map");
             woodHeightMap = contentMan.Load<Texture2D>(@"Textures\wood_height_map");
+
+            scaleBias = new Vector2(0.04f, -0.03f);
 
             GenerateWorld(device); ;
         }
@@ -104,11 +150,40 @@ namespace LabyrinthExplorer
             ceilings.Add(new NormalMappedCeiling(device,
                 new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
                 new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down));
+
+            light.Type = LightType.DirectionalLight;
+            light.Direction = camera.ViewDirection;
+            light.Position = new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
+            light.Ambient = GameConstants.ambient;
+            light.Diffuse = GameConstants.diffuse;
+            light.Specular = GameConstants.specular;
+            light.SpotInnerConeRadians = GameConstants.SpotInnerConeRadians;
+            light.SpotOuterConeRadians = GameConstants.SpotOuterConeRadians;
+            light.Radius = GameConstants.Radius;
+
+            material.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
+            material.Diffuse = new Color(new Vector4(0.8f, 0.8f, 0.8f, 1.0f));
+            material.Emissive = Color.Black;
+            material.Specular = Color.White;
+            material.Shininess = 0.0f;
+
+            globalAmbient = GameConstants.GlobalAmbientGame;
         }
 
+        private void UpdatePlayerLight()
+        {
+
+        }
+        
         public List<SolidWall> Walls
         {
             get { return walls; }
+        }
+
+        public bool EnableParallax
+        {
+            get { return enableParallax; }
+            set { enableParallax = value; }
         }
     }
 }
