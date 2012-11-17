@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Environment\NormalMappedCeiling.cs" />
+    <Compile Include="Environment\NormalMappedFloor.cs" />
     <Compile Include="Environment\NormalMappedVertex.cs" />
     <Compile Include="Environment\NormalMappedWall.cs" />
     <Compile Include="GameConstants.cs" />

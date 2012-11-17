@@ -45,27 +45,18 @@ namespace LabyrinthExplorer
         private int ceilingIndex;
         private int wallsIndex;
 
-        public NormalMappedRoom(GraphicsDevice graphicsDevice,
-                                float size,
-                                float height,
-                                float floorTileFactor,
-                                float ceilingTileFactor,
-                                float wallTileFactorX,
-                                float wallTileFactorY)
+        public NormalMappedRoom(GraphicsDevice graphicsDevice,float size,float height,
+                                float floorTileFactor,float ceilingTileFactor,
+                                float wallTileFactorX,float wallTileFactorY)
         {
             GenerateRoom(graphicsDevice, size, height, floorTileFactor, ceilingTileFactor, wallTileFactorX, wallTileFactorY);
         }
 
-        public void Draw(GraphicsDevice graphicsDevice,
-                         Effect effect,
-                         string colorMapParamName,
-                         string normalMapParamName,
-                         Texture2D wallColorMap,
-                         Texture2D wallNormalMap,
-                         Texture2D floorColorMap,
-                         Texture2D floorNormalMap,
-                         Texture2D ceilingColorMap,
-                         Texture2D ceilingNormalMap)
+        public void Draw(GraphicsDevice graphicsDevice,Effect effect,
+                         string colorMapParamName,string normalMapParamName,
+                         Texture2D wallColorMap,Texture2D wallNormalMap,
+                         Texture2D floorColorMap,Texture2D floorNormalMap,
+                         Texture2D ceilingColorMap,Texture2D ceilingNormalMap)
         {
             // Draw the scene geometry.
             graphicsDevice.SetVertexBuffer(vertexBuffer);
@@ -104,20 +95,13 @@ namespace LabyrinthExplorer
             }
         }
 
-        public void Draw(GraphicsDevice graphicsDevice,
-                         Effect effect,
-                         string colorMapParamName,
-                         string normalMapParamName,
-                         string heightMapParamName,
-                         Texture2D wallColorMap,
-                         Texture2D wallNormalMap,
-                         Texture2D wallHeightMap,
-                         Texture2D floorColorMap,
-                         Texture2D floorNormalMap,
-                         Texture2D floorHeightMap,
-                         Texture2D ceilingColorMap,
-                         Texture2D ceilingNormalMap,
-                         Texture2D ceilingHeightMap)
+        public void Draw(GraphicsDevice graphicsDevice,Effect effect,
+                         string colorMapParamName,string normalMapParamName,
+                         string heightMapParamName,Texture2D wallColorMap,
+                         Texture2D wallNormalMap,Texture2D wallHeightMap,
+                         Texture2D floorColorMap,Texture2D floorNormalMap,
+                         Texture2D floorHeightMap,Texture2D ceilingColorMap,
+                        Texture2D ceilingNormalMap,Texture2D ceilingHeightMap)
         {
             // Draw the scene geometry. 
 
@@ -159,12 +143,9 @@ namespace LabyrinthExplorer
             }
         }
 
-        private void GenerateRoomGeometry(float floorSize,
-                                          float wallHeight,
-                                          float floorTileFactor,
-                                          float ceilingTileFactor,
-                                          float wallTileFactorX,
-                                          float wallTileFactorY)
+        private void GenerateRoomGeometry(float floorSize,float wallHeight,
+                                          float floorTileFactor,float ceilingTileFactor,
+                                          float wallTileFactorX,float wallTileFactorY)
         {
 #region wrapyourbrainarroundthis
             /* 5--------6
@@ -188,7 +169,7 @@ namespace LabyrinthExplorer
 
             int offset = 0;
             float halfSize = floorSize * 0.5f;
-
+           #region vertexcoords
             Vector3[] corners =
             {
                 new Vector3(-halfSize, 0.0f, -halfSize),            // 0
@@ -225,7 +206,7 @@ namespace LabyrinthExplorer
                 new Vector2(ceilingTileFactor, ceilingTileFactor),  // bottom right corner
                 new Vector2(0.0f, ceilingTileFactor)                // bottom left corner
             };
-
+            #endregion
             wallsIndex = offset;
 
             // -z wall: 4730 tri1: 473 tri2: 304
@@ -269,7 +250,7 @@ namespace LabyrinthExplorer
             vertices[offset++] = new NormalMappedVertex(corners[4], ceilingTexCoords[3], Vector3.Down, Vector4.Zero);
             vertices[offset++] = new NormalMappedVertex(corners[5], ceilingTexCoords[0], Vector3.Down, Vector4.Zero);
 
-            // -y floor: 0321 tri1: 032 tri2: 210
+            //// -y floor: 0321 tri1: 032 tri2: 210
             floorIndex = offset;
             vertices[offset++] = new NormalMappedVertex(corners[0], floorTexCoords[0], Vector3.Up, Vector4.Zero);
             vertices[offset++] = new NormalMappedVertex(corners[3], floorTexCoords[1], Vector3.Up, Vector4.Zero);
@@ -320,7 +301,8 @@ namespace LabyrinthExplorer
 
             // Create and fill the vertex buffer with the room geometry.
 
-            vertexBuffer = new VertexBuffer(graphicsDevice, typeof(NormalMappedVertex), vertices.Length, BufferUsage.WriteOnly);
+            vertexBuffer = new VertexBuffer(graphicsDevice, typeof(NormalMappedVertex), 
+                vertices.Length, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);
         }
     }

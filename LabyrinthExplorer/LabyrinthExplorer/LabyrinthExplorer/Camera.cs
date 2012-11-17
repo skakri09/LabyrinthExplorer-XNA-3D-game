@@ -67,7 +67,7 @@ namespace LabyrinthExplorer
         private const float DEFAULT_VELOCITY_Z = 1.0f;
         private const float DEFAULT_RUNNING_MULTIPLIER = 2.0f;
         private const float DEFAULT_MOUSE_SMOOTHING_SENSITIVITY = 0.5f;
-        private const float DEFAULT_SPEED_ROTATION = 0.2f;
+        private const float DEFAULT_SPEED_ROTATION = 0.05f;
         private const float HEIGHT_MULTIPLIER_CROUCHING = 0.5f;
         private const int MOUSE_SMOOTHING_CACHE_SIZE = 10;
 

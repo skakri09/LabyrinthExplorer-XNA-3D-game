@@ -22,39 +22,6 @@ namespace LabyrinthExplorer
         InputManager input;
 
 #region startup
-        private const float CEILING_TILE_FACTOR = 8.0f;
-        private const float FLOOR_PLANE_SIZE = 2024.0f;
-        private const float FLOOR_TILE_FACTOR = 8.0f;
-        private const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
-        private const float WALL_HEIGHT = 256.0f;
-        private const float WALL_TILE_FACTOR_X = 8.0f;
-        private const float WALL_TILE_FACTOR_Y = 2.0f;
-
-        private const float WEAPON_SCALE = 0.5f;
-        private const float WEAPON_X_OFFSET = 0.45f;
-        private const float WEAPON_Y_OFFSET = -0.30f;
-        private const float WEAPON_Z_OFFSET = 1.65f;
-
-        private const float CAMERA_FOVX = 85.0f;
-        private const float CAMERA_ZNEAR = 0.01f;
-        private const float CAMERA_ZFAR = FLOOR_PLANE_SIZE * 2.0f;
-        private const float CAMERA_PLAYER_EYE_HEIGHT = 110.0f;
-        private const float CAMERA_ACCELERATION_X = 800.0f;
-        private const float CAMERA_ACCELERATION_Y = 800.0f;
-        private const float CAMERA_ACCELERATION_Z = 800.0f;
-        private const float CAMERA_VELOCITY_X = 200.0f;
-        private const float CAMERA_VELOCITY_Y = 200.0f;
-        private const float CAMERA_VELOCITY_Z = 200.0f;
-        private const float CAMERA_RUNNING_MULTIPLIER = 2.0f;
-        private const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.5f;
-        private const float CAMERA_BOUNDS_PADDING = 30.0f;
-        private const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAMERA_BOUNDS_PADDING;
-        private const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAMERA_BOUNDS_PADDING;
-        private const float CAMERA_BOUNDS_MIN_Y = 0.0f;
-        private const float CAMERA_BOUNDS_MAX_Y = WALL_HEIGHT;
-        private const float CAMERA_BOUNDS_MIN_Z = -FLOOR_PLANE_SIZE / 2.0f + CAMERA_BOUNDS_PADDING;
-        private const float CAMERA_BOUNDS_MAX_Z = FLOOR_PLANE_SIZE / 2.0f - CAMERA_BOUNDS_PADDING;
-
         private Texture2D nullTexture;
         private Texture2D brickColorMap;
         private Texture2D brickNormalMap;
@@ -71,8 +38,6 @@ namespace LabyrinthExplorer
         private SpriteFont spriteFont;
         private Effect effect;
         private Camera camera;
-        private NormalMappedRoom room;
-        private NormalMappedRoom room2;
         private Model weapon;
         private Matrix[] weaponTransforms;
         private Matrix weaponWorldMatrix;
@@ -90,7 +55,13 @@ namespace LabyrinthExplorer
 
         Skybox skybox;
 
+        private NormalMappedRoom room;
+        private NormalMappedWall room2;
+        private NormalMappedFloor floor;
+        private NormalMappedCeiling ceiling;
+
 #endregion  
+
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -142,16 +113,16 @@ namespace LabyrinthExplorer
             scaleBias = new Vector2(0.04f, -0.03f);
 
             // Initialize point lighting for the scene.
-            globalAmbient = new Color(new Vector4(0.03f, 0.03f, 0.03f, 0.01f));
+            globalAmbient = GameConstants.GlobalAmbientGame;
             light.Type = LightType.DirectionalLight;
             light.Direction = camera.ViewDirection;
-            light.Position = new Vector3(0.0f, WALL_HEIGHT - (0.25f * WALL_HEIGHT), 0.0f);
-            light.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
-            light.Diffuse = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
-            light.Specular = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
-            light.SpotInnerConeRadians = MathHelper.ToRadians(10.0f);
-            light.SpotOuterConeRadians = MathHelper.ToRadians(40.0f);
-            light.Radius = 800;
+            light.Position = new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
+            light.Ambient = GameConstants.ambient;
+            light.Diffuse = GameConstants.diffuse;
+            light.Specular = GameConstants.specular;
+            light.SpotInnerConeRadians = GameConstants.SpotInnerConeRadians;
+            light.SpotOuterConeRadians = GameConstants.SpotOuterConeRadians;
+            light.Radius = GameConstants.Radius;
 
             // Initialize material settings. Just a plain lambert material.
             material.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
@@ -162,30 +133,34 @@ namespace LabyrinthExplorer
 
             // Create the room.
             room = new NormalMappedRoom(GraphicsDevice,
-                    FLOOR_PLANE_SIZE, WALL_HEIGHT, FLOOR_TILE_FACTOR,
-                    CEILING_TILE_FACTOR, WALL_TILE_FACTOR_X, WALL_TILE_FACTOR_Y);
-            room2 = new NormalMappedRoom(GraphicsDevice,
-                FLOOR_PLANE_SIZE, WALL_HEIGHT, FLOOR_TILE_FACTOR,
-               CEILING_TILE_FACTOR, WALL_TILE_FACTOR_X, WALL_TILE_FACTOR_Y);
+                    GameConstants.FLOOR_PLANE_SIZE, GameConstants.WALL_HEIGHT, GameConstants.FLOOR_TILE_FACTOR_NORMAL,
+                    GameConstants.CEILING_TILE_FACTOR, GameConstants.WallTileFactorNormalX, GameConstants.WallTileFactorNormalY);
 
+            room2 = new NormalMappedWall(GraphicsDevice, new Vector3(1000, 0, -200), new Vector3(-200, 0, -200), Vector3.Backward, 256);
+            floor = new NormalMappedFloor(GraphicsDevice,
+                new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
+                new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up);
+            ceiling = new NormalMappedCeiling(GraphicsDevice,
+                new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down); 
             // Setup the camera.
-            camera.EyeHeightStanding = CAMERA_PLAYER_EYE_HEIGHT;
+            camera.EyeHeightStanding = GameConstants.CAMERA_PLAYER_EYE_HEIGHT;
             camera.Acceleration = new Vector3(
-                CAMERA_ACCELERATION_X,
-                CAMERA_ACCELERATION_Y,
-                CAMERA_ACCELERATION_Z);
+                GameConstants.CAMERA_ACCELERATION_X,
+                GameConstants.CAMERA_ACCELERATION_Y,
+                GameConstants.CAMERA_ACCELERATION_Z);
             camera.VelocityWalking = new Vector3(
-                CAMERA_VELOCITY_X,
-                CAMERA_VELOCITY_Y,
-                CAMERA_VELOCITY_Z);
+                GameConstants.CAMERA_VELOCITY_X,
+                GameConstants.CAMERA_VELOCITY_Y,
+                GameConstants.CAMERA_VELOCITY_Z);
             camera.VelocityRunning = new Vector3(
-                camera.VelocityWalking.X * CAMERA_RUNNING_MULTIPLIER,
-                camera.VelocityWalking.Y * CAMERA_RUNNING_JUMP_MULTIPLIER,
-                camera.VelocityWalking.Z * CAMERA_RUNNING_MULTIPLIER);
+                camera.VelocityWalking.X * GameConstants.CAMERA_RUNNING_MULTIPLIER,
+                camera.VelocityWalking.Y * GameConstants.CAMERA_RUNNING_JUMP_MULTIPLIER,
+                camera.VelocityWalking.Z * GameConstants.CAMERA_RUNNING_MULTIPLIER);
             camera.Perspective(
-                CAMERA_FOVX,
+                GameConstants.CAMERA_FOVX,
                 (float)GameConstants.windowWidth / (float)GameConstants.windowHeight,
-                CAMERA_ZNEAR, CAMERA_ZFAR);
+                GameConstants.CAMERA_ZNEAR, GameConstants.CAMERA_ZFAR);
 
             // Initialize the weapon matrices.
             weaponTransforms = new Matrix[weapon.Bones.Count];
@@ -334,8 +309,8 @@ namespace LabyrinthExplorer
         {
             weapon.CopyAbsoluteBoneTransformsTo(weaponTransforms);
 
-            weaponWorldMatrix = camera.WeaponWorldMatrix(WEAPON_X_OFFSET,
-                WEAPON_Y_OFFSET, WEAPON_Z_OFFSET, WEAPON_SCALE);
+            weaponWorldMatrix = camera.WeaponWorldMatrix(GameConstants.CANDLE_X_OFFSET,
+                GameConstants.CANDLE_Y_OFFSET, GameConstants.CANDLE_Z_OFFSET, GameConstants.CANDLE_SCALE);
         }
 
         private void ToggleFullScreen()
@@ -363,7 +338,7 @@ namespace LabyrinthExplorer
 
             float aspectRatio = (float)newWidth / (float)newHeight;
 
-            camera.Perspective(CAMERA_FOVX, aspectRatio, CAMERA_ZNEAR, CAMERA_ZFAR);
+            camera.Perspective(GameConstants.CAMERA_FOVX, aspectRatio, GameConstants.CAMERA_ZNEAR, GameConstants.CAMERA_ZFAR);
         }
         
         /// <summary>
@@ -387,11 +362,11 @@ namespace LabyrinthExplorer
             //if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
             //    newPos.Z = CAMERA_BOUNDS_MIN_Z;
 
-            if (camera.Position.Y > CAMERA_BOUNDS_MAX_Y)
-                newPos.Y = CAMERA_BOUNDS_MAX_Y;
+            if (camera.Position.Y > GameConstants.CAMERA_BOUNDS_MAX_Y)
+                newPos.Y = GameConstants.CAMERA_BOUNDS_MAX_Y;
 
-            if (camera.Position.Y < CAMERA_BOUNDS_MIN_Y)
-                newPos.Y = CAMERA_BOUNDS_MIN_Y;
+            if (camera.Position.Y < GameConstants.CAMERA_BOUNDS_MIN_Y)
+                newPos.Y = GameConstants.CAMERA_BOUNDS_MIN_Y;
 
             camera.Position = newPos;
         }
@@ -491,24 +466,21 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
 
-            // Draw the room.
-            if (enableColorMap)
-            {
-                room.Draw(GraphicsDevice, effect,
-                    "colorMapTexture", "normalMapTexture", "heightMapTexture",
-                    brickColorMap, brickNormalMap, brickHeightMap,
-                    stoneColorMap, stoneNormalMap, stoneHeightMap,
-                    woodColorMap, woodNormalMap, woodHeightMap);
-            }
-            else
-            {
-                room.Draw(GraphicsDevice, effect,
-                    "colorMapTexture", "normalMapTexture", "heightMapTexture",
-                    nullTexture, brickNormalMap, brickHeightMap,
-                    nullTexture, stoneNormalMap, stoneHeightMap,
-                    nullTexture, woodNormalMap, woodHeightMap);
-            }
+            //"colorMapTexture", "normalMapTexture", "heightMapTexture",
+            //brickColorMap, brickNormalMap, brickHeightMap,
+            //stoneColorMap, stoneNormalMap, stoneHeightMap,
+            //woodColorMap, woodNormalMap, woodHeightMap);
+            floor.Draw(GraphicsDevice, effect, "colorMapTexture",
+                        "normalMapTexture", "heightMapTexture",
+                    stoneColorMap, stoneNormalMap, stoneHeightMap);
 
+            room2.Draw(GraphicsDevice, effect, "colorMapTexture",
+                        "normalMapTexture", "heightMapTexture",
+                    stoneColorMap, stoneNormalMap, stoneHeightMap);
+            ceiling.Draw(GraphicsDevice, effect, "colorMapTexture",
+                        "normalMapTexture", "heightMapTexture",
+                    woodColorMap, woodNormalMap, woodHeightMap);
+            
             //Draw the weapon.
             foreach (ModelMesh m in weapon.Meshes)
             {
