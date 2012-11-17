@@ -70,10 +70,9 @@ namespace LabyrinthExplorer
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
         private Effect effect;
-        private KeyboardState currentKeyboardState;
-        private KeyboardState prevKeyboardState;
         private Camera camera;
         private NormalMappedRoom room;
+        private NormalMappedRoom room2;
         private Model weapon;
         private Matrix[] weaponTransforms;
         private Matrix weaponWorldMatrix;
@@ -88,6 +87,8 @@ namespace LabyrinthExplorer
         private bool enableColorMap;
         private bool enableParallax;
         private bool displayHelp;
+
+        Skybox skybox;
 
 #endregion  
         public Game()
@@ -163,6 +164,9 @@ namespace LabyrinthExplorer
             room = new NormalMappedRoom(GraphicsDevice,
                     FLOOR_PLANE_SIZE, WALL_HEIGHT, FLOOR_TILE_FACTOR,
                     CEILING_TILE_FACTOR, WALL_TILE_FACTOR_X, WALL_TILE_FACTOR_Y);
+            room2 = new NormalMappedRoom(GraphicsDevice,
+                FLOOR_PLANE_SIZE, WALL_HEIGHT, FLOOR_TILE_FACTOR,
+               CEILING_TILE_FACTOR, WALL_TILE_FACTOR_X, WALL_TILE_FACTOR_Y);
 
             // Setup the camera.
             camera.EyeHeightStanding = CAMERA_PLAYER_EYE_HEIGHT;
@@ -215,6 +219,9 @@ namespace LabyrinthExplorer
             woodHeightMap = Content.Load<Texture2D>(@"Textures\wood_height_map");
 
             weapon = Content.Load<Model>(@"Models\LightStick");
+
+            //skybox = new Skybox();
+            //skybox.LoadContent(Content, GraphicsDevice);
 
             // Create an empty white texture. This will be bound to the
             // colorMapTexture shader parameter when the user wants to
@@ -368,23 +375,23 @@ namespace LabyrinthExplorer
         {
             Vector3 newPos = camera.Position;
 
-            if (camera.Position.X > CAMERA_BOUNDS_MAX_X)
-                newPos.X = CAMERA_BOUNDS_MAX_X;
+            //if (camera.Position.X > CAMERA_BOUNDS_MAX_X)
+            //    newPos.X = CAMERA_BOUNDS_MAX_X;
 
-            if (camera.Position.X < CAMERA_BOUNDS_MIN_X)
-                newPos.X = CAMERA_BOUNDS_MIN_X;
+            //if (camera.Position.X < CAMERA_BOUNDS_MIN_X)
+            //    newPos.X = CAMERA_BOUNDS_MIN_X;
+
+            //if (camera.Position.Z > CAMERA_BOUNDS_MAX_Z)
+            //    newPos.Z = CAMERA_BOUNDS_MAX_Z;
+
+            //if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
+            //    newPos.Z = CAMERA_BOUNDS_MIN_Z;
 
             if (camera.Position.Y > CAMERA_BOUNDS_MAX_Y)
                 newPos.Y = CAMERA_BOUNDS_MAX_Y;
 
             if (camera.Position.Y < CAMERA_BOUNDS_MIN_Y)
                 newPos.Y = CAMERA_BOUNDS_MIN_Y;
-
-            if (camera.Position.Z > CAMERA_BOUNDS_MAX_Z)
-                newPos.Z = CAMERA_BOUNDS_MAX_Z;
-
-            if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
-                newPos.Z = CAMERA_BOUNDS_MIN_Z;
 
             camera.Position = newPos;
         }
@@ -502,7 +509,7 @@ namespace LabyrinthExplorer
                     nullTexture, woodNormalMap, woodHeightMap);
             }
 
-            // Draw the weapon.
+            //Draw the weapon.
             foreach (ModelMesh m in weapon.Meshes)
             {
                 foreach (BasicEffect e in m.Effects)
@@ -518,6 +525,8 @@ namespace LabyrinthExplorer
             }
 
             DrawText();
+            //skybox.DrawSkybox(camera.ViewMatrix, camera.ProjectionMatrix,
+            //    Matrix.CreateTranslation(camera.Position), GraphicsDevice);
             base.Draw(gameTime);
             IncrementFrameCounter();
         }
