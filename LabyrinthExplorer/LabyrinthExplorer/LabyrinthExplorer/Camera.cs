@@ -28,6 +28,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace LabyrinthExplorer
 {
@@ -52,6 +53,7 @@ namespace LabyrinthExplorer
             Jumping
         };
 
+        #region lots of shit
         public const float DEFAULT_FOVX = 90.0f;
         public const float DEFAULT_ZNEAR = 0.1f;
         public const float DEFAULT_ZFAR = 1000.0f;
@@ -109,6 +111,7 @@ namespace LabyrinthExplorer
         private Vector2 smoothedMouseMovement;
         private MouseState currentMouseState;
         private Dictionary<Actions, Keys> actionKeys;
+        #endregion
 
         private InputManager input;
 
@@ -120,7 +123,7 @@ namespace LabyrinthExplorer
             : base(game)
         {
             UpdateOrder = 1;
-
+            
             input = (InputManager)game.Services.GetService(typeof(IInputService));
             // Initialize camera state.
             fovx = DEFAULT_FOVX;
@@ -174,7 +177,7 @@ namespace LabyrinthExplorer
             float aspect = (float)clientBounds.Width / (float)clientBounds.Height;
             Perspective(fovx, aspect, znear, zfar);
 
-            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING);
+            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING, this);
         }
 
         public override void Initialize()
@@ -358,7 +361,7 @@ namespace LabyrinthExplorer
         {
             base.Update(gameTime);
             UpdateInput();
-            UpdateCamera(gameTime);
+            UpdateCamera(gameTime, (World)Game.Services.GetService(typeof(World)));
             playerAABB.UpdateAABB(Position);
         }
 
@@ -630,7 +633,7 @@ namespace LabyrinthExplorer
             Rotate(headingDegrees, pitchDegrees);
         }
 
-        private void UpdateCamera(GameTime gameTime)
+        private void UpdateCamera(GameTime gameTime, World world)
         {
             float elapsedTimeSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector3 direction = new Vector3();
@@ -641,9 +644,21 @@ namespace LabyrinthExplorer
                 velocity = velocityWalking;
 
             GetMovementDirection(out direction);
-                                    
+
+
+
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
             UpdatePosition(ref direction, elapsedTimeSec);
+            foreach (SolidWall wall in world.Walls)
+            {
+                Vector3 collision = PlayerAABB.CheckCollision(wall.Aabb);
+
+                if (collision != Vector3.Zero)
+                {
+                    //Debug.WriteLine("Some sort of collision occurred!");
+                    Position += collision;
+                }
+            }
         }
 
         private void UpdateInput()

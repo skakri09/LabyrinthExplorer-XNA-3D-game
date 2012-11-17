@@ -54,6 +54,7 @@ namespace LabyrinthExplorer
         public void Update(float deltaTime)
         {
             light.Position = camera.Position;
+
             UpdateEffect();
         }
 
@@ -139,10 +140,54 @@ namespace LabyrinthExplorer
 
         private void GenerateWorld(GraphicsDevice device)
         {
-            walls.Add(new SolidWall(device,
-                new Vector3(200, 0, 0), new Vector3(250, 0, 0),
-                new Vector3(250, 0, -500), new Vector3(200, 0, -500), 256));
+            GenerateWalls(device);
 
+            GenerateFloorAndCeiling(device);
+
+            GenerateLights();
+
+            GenerateMaterials();
+
+            globalAmbient = GameConstants.GlobalAmbientDebug;
+        }
+
+        private void GenerateWalls(GraphicsDevice device)
+        {
+            #region outer wall
+            //+Z outer wall
+            walls.Add(new SolidWall(device,
+                new Vector2(-5000, 5050), new Vector2(5000, 5050),
+                new Vector2(5000, 5000), new Vector2(-5000, 5000), 256));
+
+            //-Z outer wall
+            walls.Add(new SolidWall(device,
+                 new Vector2(-5000, -5000), new Vector2(5000, -5000),
+                 new Vector2(5000, -5050), new Vector2(-5000, -5050), 256));
+            
+            //+X outer wall
+
+            walls.Add(new SolidWall(device,
+                new Vector2(5000, 5000), new Vector2(5050, 5000),
+                new Vector2(5050, -5000), new Vector2(5000, -5000), 256));
+            //-X outer wall
+            walls.Add(new SolidWall(device,
+                 new Vector2(-5050, 5000), new Vector2(-5000, 5000),
+                 new Vector2(-5000, -5000), new Vector2(-5050, -5000), 256));
+
+            #endregion
+
+            walls.Add(new SolidWall(device,
+                new Vector2(200, 0), new Vector2(250, 0),
+                new Vector2(250, -5000), new Vector2(200,-5000), 256));
+
+            walls.Add(new SolidWall(device,
+                new Vector2(0, 0), new Vector2(50, 0),
+                new Vector2(50,-5000), new Vector2(0, -5000), 256));
+
+        }
+
+        private void GenerateFloorAndCeiling(GraphicsDevice device)
+        {
             floors.Add(new NormalMappedFloor(device,
                 new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
                 new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up));
@@ -151,6 +196,10 @@ namespace LabyrinthExplorer
                 new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
                 new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down));
 
+        }
+
+        private void GenerateLights()
+        {
             light.Type = LightType.DirectionalLight;
             light.Direction = camera.ViewDirection;
             light.Position = new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
@@ -161,20 +210,17 @@ namespace LabyrinthExplorer
             light.SpotOuterConeRadians = GameConstants.SpotOuterConeRadians;
             light.Radius = GameConstants.Radius;
 
+        }
+       
+        private void GenerateMaterials()
+        {
             material.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
             material.Diffuse = new Color(new Vector4(0.8f, 0.8f, 0.8f, 1.0f));
             material.Emissive = Color.Black;
             material.Specular = Color.White;
             material.Shininess = 0.0f;
-
-            globalAmbient = GameConstants.GlobalAmbientGame;
         }
 
-        private void UpdatePlayerLight()
-        {
-
-        }
-        
         public List<SolidWall> Walls
         {
             get { return walls; }

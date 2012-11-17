@@ -22,17 +22,6 @@ namespace LabyrinthExplorer
         InputManager input;
 
 #region startup
-        //private Texture2D nullTexture;
-        //private Texture2D brickColorMap;
-        //private Texture2D brickNormalMap;
-        //private Texture2D brickHeightMap;
-        //private Texture2D stoneColorMap;
-        //private Texture2D stoneNormalMap;
-        //private Texture2D stoneHeightMap;
-        //private Texture2D woodColorMap;
-        //private Texture2D woodNormalMap;
-        //private Texture2D woodHeightMap;
-
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
@@ -41,25 +30,16 @@ namespace LabyrinthExplorer
         private Model weapon;
         private Matrix[] weaponTransforms;
         private Matrix weaponWorldMatrix;
-        //private Light light;
-        //private Material material;
-        //private Color globalAmbient;
-        //private Vector2 scaleBias;
         private Vector2 fontPos;
         private int frames;
         private int framesPerSecond;
         private TimeSpan elapsedTime = TimeSpan.Zero;
         private bool enableColorMap;
-        //private bool enableParallax;
         private bool displayHelp;
 
         Skybox skybox;
         World world;
-        //private NormalMappedRoom room;
-        //private NormalMappedWall room2;
-        //private NormalMappedFloor floor;
-        //private NormalMappedCeiling ceiling;
-        //private SolidWall wall;
+
 #endregion  
 
         public Game()
@@ -78,7 +58,7 @@ namespace LabyrinthExplorer
 
             Window.Title = "Labyrinth Survival. You can make it!";
             Window.Title = Window.Title.PadRight(200);
-            Window.Title += "....hahahaha NOT!";
+            Window.Title += "....hahaha not!";
 
             IsFixedTimeStep = GameConstants.verticalSyncOn;                                                          
         }
@@ -103,37 +83,12 @@ namespace LabyrinthExplorer
             // Initially enable the diffuse color map texture.
             enableColorMap = true;
 
-            // Initially enable parallax mapping.
-            //enableParallax = true;
-
             // Initial position for text rendering.
             fontPos = new Vector2(1.0f, 1.0f);
 
-            // Parallax mapping height scale and bias values.
-            //scaleBias = new Vector2(0.04f, -0.03f);
-
-            // Initialize point lighting for the scene.
-            //globalAmbient = GameConstants.GlobalAmbientGame;
-            //light.Type = LightType.DirectionalLight;
-            //light.Direction = camera.ViewDirection;
-            //light.Position = new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
-            //light.Ambient = GameConstants.ambient;
-            //light.Diffuse = GameConstants.diffuse;
-            //light.Specular = GameConstants.specular;
-            //light.SpotInnerConeRadians = GameConstants.SpotInnerConeRadians;
-            //light.SpotOuterConeRadians = GameConstants.SpotOuterConeRadians;
-            //light.Radius = GameConstants.Radius;
-
-            // Initialize material settings. Just a plain lambert material.
-            //material.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            //material.Diffuse = new Color(new Vector4(0.8f, 0.8f, 0.8f, 1.0f));
-            //material.Emissive = Color.Black;
-            //material.Specular = Color.White;
-            //material.Shininess = 0.0f;
-
             world = new World(camera);
             world.LoadContent(GraphicsDevice, Content);
-
+            Services.AddService(typeof(World), world);
             // Setup the camera.
             camera.EyeHeightStanding = GameConstants.CAMERA_PLAYER_EYE_HEIGHT;
             camera.Acceleration = new Vector3(
@@ -169,37 +124,7 @@ namespace LabyrinthExplorer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
             
-            //effect = Content.Load<Effect>(@"Effects\parallax_normal_mapping");
-            //effect.CurrentTechnique = effect.Techniques["ParallaxNormalMappingPointLighting"];
-
-            //brickColorMap = Content.Load<Texture2D>(@"Textures\brick_color_map");
-            //brickNormalMap = Content.Load<Texture2D>(@"Textures\brick_normal_map");
-            //brickHeightMap = Content.Load<Texture2D>(@"Textures\brick_height_map");
-
-            //stoneColorMap = Content.Load<Texture2D>(@"Textures\stone_color_map");
-            //stoneNormalMap = Content.Load<Texture2D>(@"Textures\stone_normal_map");
-            //stoneHeightMap = Content.Load<Texture2D>(@"Textures\stone_height_map");
-
-            //woodColorMap = Content.Load<Texture2D>(@"Textures\wood_color_map");
-            //woodNormalMap = Content.Load<Texture2D>(@"Textures\wood_normal_map");
-            //woodHeightMap = Content.Load<Texture2D>(@"Textures\wood_height_map");
-
             weapon = Content.Load<Model>(@"Models\LightStick");
-
-            //skybox = new Skybox();
-            //skybox.LoadContent(Content, GraphicsDevice);
-
-            // Create an empty white texture. This will be bound to the
-            // colorMapTexture shader parameter when the user wants to
-            // disable the color map texture. This trick will allow the
-            // same shader to be used for when textures are enabled and
-            // disabled.
-
-            //nullTexture = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-
-            //Color[] pixels = { Color.White };
-
-           // nullTexture.SetData(pixels);
         }
 
         /// <summary>
@@ -248,37 +173,6 @@ namespace LabyrinthExplorer
             }
         }
         
-        //private void UpdateEffect()
-        //{
-        //    if (enableParallax)
-        //        effect.CurrentTechnique = effect.Techniques["ParallaxNormalMappingPointLighting"];
-        //    else
-        //        effect.CurrentTechnique = effect.Techniques["NormalMappingPointLighting"];
-
-        //    effect.Parameters["worldMatrix"].SetValue(Matrix.Identity);
-        //    effect.Parameters["worldInverseTransposeMatrix"].SetValue(Matrix.Identity);
-        //    effect.Parameters["worldViewProjectionMatrix"].SetValue(camera.ViewMatrix * camera.ProjectionMatrix);
-
-        //    effect.Parameters["cameraPos"].SetValue(camera.Position);
-        //    effect.Parameters["globalAmbient"].SetValue(globalAmbient.ToVector4());
-        //    effect.Parameters["scaleBias"].SetValue(scaleBias);
-
-        //    effect.Parameters["light"].StructureMembers["dir"].SetValue(light.Direction);
-        //    effect.Parameters["light"].StructureMembers["pos"].SetValue(light.Position);
-        //    effect.Parameters["light"].StructureMembers["ambient"].SetValue(light.Ambient.ToVector4());
-        //    effect.Parameters["light"].StructureMembers["diffuse"].SetValue(light.Diffuse.ToVector4());
-        //    effect.Parameters["light"].StructureMembers["specular"].SetValue(light.Specular.ToVector4());
-        //    effect.Parameters["light"].StructureMembers["spotInnerCone"].SetValue(light.SpotInnerConeRadians);
-        //    effect.Parameters["light"].StructureMembers["spotOuterCone"].SetValue(light.SpotOuterConeRadians);
-        //    effect.Parameters["light"].StructureMembers["radius"].SetValue(light.Radius);
-
-        //    effect.Parameters["material"].StructureMembers["ambient"].SetValue(material.Ambient.ToVector4());
-        //    effect.Parameters["material"].StructureMembers["diffuse"].SetValue(material.Diffuse.ToVector4());
-        //    effect.Parameters["material"].StructureMembers["emissive"].SetValue(material.Emissive.ToVector4());
-        //    effect.Parameters["material"].StructureMembers["specular"].SetValue(material.Specular.ToVector4());
-        //    effect.Parameters["material"].StructureMembers["shininess"].SetValue(material.Shininess);
-        //}
-
         private void IncrementFrameCounter()
         {
             ++frames;
@@ -353,6 +247,18 @@ namespace LabyrinthExplorer
             //if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
             //    newPos.Z = CAMERA_BOUNDS_MIN_Z;
 
+
+            //foreach (SolidWall wall in world.Walls)
+            //{
+            //    Vector3 collision = camera.PlayerAABB.CheckCollision(wall.Aabb);
+
+            //    if (collision != Vector3.Zero)
+            //    {
+            //        Debug.WriteLine("Some sort of collision occured!");
+            //    }
+            //}
+
+
             if (camera.Position.Y > GameConstants.CAMERA_BOUNDS_MAX_Y)
                 newPos.Y = GameConstants.CAMERA_BOUNDS_MAX_Y;
 
@@ -374,20 +280,14 @@ namespace LabyrinthExplorer
             if (!this.IsActive)
                 return;
 
-            //// Allows the game to exit
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-            //    this.Exit();
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
-
-            //light.Position = camera.Position;
 
             input.Update();
             HandleInput();
             PerformCameraCollisionDetection();
             UpdateWeapon();
             world.Update(deltaTime);
-            //UpdateEffect();
             UpdateFrameRate(gameTime);
         }
 
@@ -476,8 +376,7 @@ namespace LabyrinthExplorer
             }
 
             DrawText();
-            //skybox.DrawSkybox(camera.ViewMatrix, camera.ProjectionMatrix,
-            //    Matrix.CreateTranslation(camera.Position), GraphicsDevice);
+
             base.Draw(gameTime);
             IncrementFrameCounter();
         }

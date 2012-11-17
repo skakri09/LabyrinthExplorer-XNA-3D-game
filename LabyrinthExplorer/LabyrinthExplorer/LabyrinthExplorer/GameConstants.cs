@@ -32,7 +32,7 @@ namespace LabyrinthExplorer
         #region Camera
         public const float CAMERA_FOVX = 85.0f;
         public const float CAMERA_ZNEAR = 0.01f;
-        public const float CAMERA_ZFAR = FLOOR_PLANE_SIZE * 2.0f; //change to a static value
+        public const float CAMERA_ZFAR = 15000;//FLOOR_PLANE_SIZE * 2.0f; //change to a static value
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MIN_Y = 0.0f;
@@ -45,12 +45,20 @@ namespace LabyrinthExplorer
         public const float CAM_BOUNDS_PADDING = 30.0f;
 
         public const float CAMERA_PLAYER_EYE_HEIGHT = 110.0f;
+        //public const float CAMERA_ACCELERATION_X = 800.0f;
+        //public const float CAMERA_ACCELERATION_Y = 800.0f;
+        //public const float CAMERA_ACCELERATION_Z = 800.0f;
+        //public const float CAMERA_VELOCITY_X = 150.0f;
+        //public const float CAMERA_VELOCITY_Y = 200.0f;
+        //public const float CAMERA_VELOCITY_Z = 200.0f;
+       
         public const float CAMERA_ACCELERATION_X = 8000.0f;
-        public const float CAMERA_ACCELERATION_Y = 800.0f;
+        public const float CAMERA_ACCELERATION_Y = 5000.0f;
         public const float CAMERA_ACCELERATION_Z = 8000.0f;
-        public const float CAMERA_VELOCITY_X = 500.0f;
-        public const float CAMERA_VELOCITY_Y = 300.0f;
-        public const float CAMERA_VELOCITY_Z = 500.0f;
+        public const float CAMERA_VELOCITY_X = 600.0f;
+        public const float CAMERA_VELOCITY_Y = 600.0f;
+        public const float CAMERA_VELOCITY_Z = 600.0f;
+
         public const float CAMERA_RUNNING_MULTIPLIER = 2.0f;
         public const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.5f;
 
