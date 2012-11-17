@@ -74,10 +74,12 @@
   <ItemGroup>
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Collision\AABB.cs" />
     <Compile Include="Environment\NormalMappedCeiling.cs" />
     <Compile Include="Environment\NormalMappedFloor.cs" />
     <Compile Include="Environment\NormalMappedVertex.cs" />
     <Compile Include="Environment\NormalMappedWall.cs" />
+    <Compile Include="Environment\SolidWall.cs" />
     <Compile Include="GameConstants.cs" />
     <Compile Include="Input\IInputService.cs" />
     <Compile Include="Input\InputManager.cs" />
