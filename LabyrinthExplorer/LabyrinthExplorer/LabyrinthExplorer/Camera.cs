@@ -112,6 +112,8 @@ namespace LabyrinthExplorer
 
         private InputManager input;
 
+        private AABB playerAABB;
+
     #region Public Methods
 
         public Camera(Game game)
@@ -171,6 +173,8 @@ namespace LabyrinthExplorer
             Rectangle clientBounds = game.Window.ClientBounds;
             float aspect = (float)clientBounds.Width / (float)clientBounds.Height;
             Perspective(fovx, aspect, znear, zfar);
+
+            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING);
         }
 
         public override void Initialize()
@@ -355,6 +359,7 @@ namespace LabyrinthExplorer
             base.Update(gameTime);
             UpdateInput();
             UpdateCamera(gameTime);
+            playerAABB.UpdateAABB(Position);
         }
 
         /// <summary>
@@ -871,6 +876,11 @@ namespace LabyrinthExplorer
     #endregion
 
     #region Properties
+
+        public AABB PlayerAABB
+        {
+            get { return playerAABB; }
+        }
 
         public Vector3 Acceleration
         {

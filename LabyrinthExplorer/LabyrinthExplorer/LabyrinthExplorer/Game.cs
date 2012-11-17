@@ -54,12 +54,12 @@ namespace LabyrinthExplorer
         private bool displayHelp;
 
         Skybox skybox;
-
-        private NormalMappedRoom room;
-        private NormalMappedWall room2;
-        private NormalMappedFloor floor;
-        private NormalMappedCeiling ceiling;
-        private SolidWall wall;
+        World world;
+        //private NormalMappedRoom room;
+        //private NormalMappedWall room2;
+        //private NormalMappedFloor floor;
+        //private NormalMappedCeiling ceiling;
+        //private SolidWall wall;
 #endregion  
 
         public Game()
@@ -131,23 +131,26 @@ namespace LabyrinthExplorer
             material.Specular = Color.White;
             material.Shininess = 0.0f;
 
-            wall = new SolidWall(GraphicsDevice,
-                new Vector3(200, 0, 0), new Vector3(250, 0, 0),
-                new Vector3(250, 0, -500), new Vector3(200, 0, -500), 256);
+            world = new World();
+            world.LoadContent(GraphicsDevice, Content);
+            //wall = new SolidWall(GraphicsDevice,
+            //    new Vector3(200, 0, 0), new Vector3(250, 0, 0),
+            //    new Vector3(250, 0, -500), new Vector3(200, 0, -500), 256);
 
-            // Create the room.
-            //room = new NormalMappedRoom(GraphicsDevice,
-            //        GameConstants.FLOOR_PLANE_SIZE, GameConstants.WALL_HEIGHT, GameConstants.FLOOR_TILE_FACTOR_NORMAL,
-            //        GameConstants.CEILING_TILE_FACTOR, GameConstants.WallTileFactorNormalX, GameConstants.WallTileFactorNormalY);
+            //// Create the room.
+            ////room = new NormalMappedRoom(GraphicsDevice,
+            ////        GameConstants.FLOOR_PLANE_SIZE, GameConstants.WALL_HEIGHT, GameConstants.FLOOR_TILE_FACTOR_NORMAL,
+            ////        GameConstants.CEILING_TILE_FACTOR, GameConstants.WallTileFactorNormalX, GameConstants.WallTileFactorNormalY);
 
-            room2 = new NormalMappedWall(GraphicsDevice, new Vector3(-200, 0, -400), new Vector3(-200, 0, 400), Vector3.Right, 256);
+            //room2 = new NormalMappedWall(GraphicsDevice, new Vector3(-200, 0, -400), new Vector3(-200, 0, 400), Vector3.Right, 256);
 
-            floor = new NormalMappedFloor(GraphicsDevice,
-                new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
-                new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up);
-            ceiling = new NormalMappedCeiling(GraphicsDevice,
-                new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
-                new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down); 
+            //floor = new NormalMappedFloor(GraphicsDevice,
+            //    new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
+            //    new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up);
+            //ceiling = new NormalMappedCeiling(GraphicsDevice,
+            //    new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
+            //    new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down); 
+
             // Setup the camera.
             camera.EyeHeightStanding = GameConstants.CAMERA_PLAYER_EYE_HEIGHT;
             camera.Acceleration = new Vector3(
@@ -374,6 +377,7 @@ namespace LabyrinthExplorer
                 newPos.Y = GameConstants.CAMERA_BOUNDS_MIN_Y;
 
             camera.Position = newPos;
+
         }
 
         /// <summary>
@@ -476,20 +480,20 @@ namespace LabyrinthExplorer
             //stoneColorMap, stoneNormalMap, stoneHeightMap,
             //woodColorMap, woodNormalMap, woodHeightMap);
 
-            wall.Draw(GraphicsDevice, effect, "colorMapTexture",
-                        "normalMapTexture", "heightMapTexture",
-                    stoneColorMap, stoneNormalMap, stoneHeightMap);
-            floor.Draw(GraphicsDevice, effect, "colorMapTexture",
-                        "normalMapTexture", "heightMapTexture",
-                    stoneColorMap, stoneNormalMap, stoneHeightMap);
-
-            //room2.Draw(GraphicsDevice, effect, "colorMapTexture",
+            //wall.Draw(GraphicsDevice, effect, "colorMapTexture",
             //            "normalMapTexture", "heightMapTexture",
             //        stoneColorMap, stoneNormalMap, stoneHeightMap);
-            ceiling.Draw(GraphicsDevice, effect, "colorMapTexture",
-                        "normalMapTexture", "heightMapTexture",
-                    woodColorMap, woodNormalMap, woodHeightMap);
-            
+            //floor.Draw(GraphicsDevice, effect, "colorMapTexture",
+            //            "normalMapTexture", "heightMapTexture",
+            //        stoneColorMap, stoneNormalMap, stoneHeightMap);
+
+            ////room2.Draw(GraphicsDevice, effect, "colorMapTexture",
+            ////            "normalMapTexture", "heightMapTexture",
+            ////        stoneColorMap, stoneNormalMap, stoneHeightMap);
+            //ceiling.Draw(GraphicsDevice, effect, "colorMapTexture",
+            //            "normalMapTexture", "heightMapTexture",
+            //        woodColorMap, woodNormalMap, woodHeightMap);
+            world.Draw(GraphicsDevice);
             //Draw the weapon.
             foreach (ModelMesh m in weapon.Meshes)
             {

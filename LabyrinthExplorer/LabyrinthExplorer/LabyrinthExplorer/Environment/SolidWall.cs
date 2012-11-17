@@ -30,6 +30,8 @@ namespace LabyrinthExplorer
 
             //+X wall
             sides[3] = new NormalMappedWall(graphicsDevice, btmBackRight, btmFrontRight, Vector3.Right, height);
+
+            aabb = new AABB(btmFrontLeft, btmFrontRight, btmBackRight, btmBackLeft, height);
         }
 
         public void Draw(GraphicsDevice graphicsDevice, Effect effect,
