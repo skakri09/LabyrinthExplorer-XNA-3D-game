@@ -20,7 +20,12 @@ namespace LabyrinthExplorer
         private Vector3 position;
         private Vector3 rotation;
         private float modelScale = 50;
-        
+
+        public Matrix[] boneTransforms;
+        public Matrix[] worldTransforms;
+        public Matrix[] skinTransforms;
+        public Matrix[] originalBonesMatrix;
+
         public Enemy(string modelName)
         {
             this.modelName = modelName;
@@ -30,7 +35,20 @@ namespace LabyrinthExplorer
         {
             model = content.Load<Model>(@"Models\"+modelName);
             modelTransforms = new Matrix[model.Bones.Count];
-            SkinningData skinningData = model.Tag as SkinningData;
+
+            //SkinningData skinningData = model.Tag as SkinningData;
+            //if (skinningData != null)
+            //{
+            //    originalBonesMatrix = new Matrix[skinningData.BindPose.Count];
+            //    int curBone = 0;
+            //    while (curBone < skinningData.BindPose.Count)
+            //    {
+            //        originalBonesMatrix[curBone] = skinningData.BindPose[curBone];
+            //        curBone++;
+            //    }
+            //}
+            //else throw new InvalidOperationException
+            //            ("Model does not contain a SkinningData tag.");
         }
 
         public void Update(float deltaTime)

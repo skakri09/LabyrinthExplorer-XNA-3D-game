@@ -1,4 +1,4 @@
-﻿#region File Description
+#region File Description
 //-----------------------------------------------------------------------------
 // AnimationClip.cs
 //
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 #endregion
 
-namespace LabyrinthExplorer
+namespace SkinnedModel
 {
     /// <summary>
     /// An animation clip is the runtime equivalent of the

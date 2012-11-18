@@ -1,4 +1,4 @@
-﻿#region File Description
+#region File Description
 //-----------------------------------------------------------------------------
 // SkinningData.cs
 //
@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 #endregion
 
-namespace LabyrinthExplorer
+namespace SkinnedModel
 {
     /// <summary>
     /// Combines all the data needed to render and animate a skinned object.

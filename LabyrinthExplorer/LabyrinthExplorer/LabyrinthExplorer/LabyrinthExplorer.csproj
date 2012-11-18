@@ -72,9 +72,6 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animation\KeyFrame.cs" />
-    <Compile Include="Animation\SkinnedModel.cs" />
-    <Compile Include="Animation\SkinningData.cs" />
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
@@ -105,6 +102,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SkinnedModel\SkinnedModel.csproj">
+      <Project>{2622C63F-E5B4-4FDB-8A03-3295DE2F85CF}</Project>
+      <Name>SkinnedModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LabyrinthExplorerContent\LabyrinthExplorerContent.contentproj">
       <Name>LabyrinthExplorerContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

@@ -1,4 +1,4 @@
-﻿#region File Description
+#region File Description
 //-----------------------------------------------------------------------------
 // Keyframe.cs
 //
@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 #endregion
 
-namespace LabyrinthExplorer
+namespace SkinnedModel
 {
     /// <summary>
     /// Describes the position of a single bone at a single point in time.
