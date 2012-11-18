@@ -273,11 +273,11 @@ namespace LabyrinthExplorer
             PerformCameraCollisionDetection();
             UpdateWeapon();
             spider.Update(deltaTime);
-            spider.Position = new Vector3(0, 0, 0);
+            spider.Position = new Vector3(500, 0, 0);
             world.Update(deltaTime);
             UpdateFrameRate(gameTime);
         }
-
+        
         private void DrawText()
         {
             StringBuilder buffer = new StringBuilder();
@@ -345,7 +345,7 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
 
-            //world.Draw(GraphicsDevice);
+            world.Draw(GraphicsDevice);
 
             //Draw the weapon.
             foreach (ModelMesh m in weapon.Meshes)

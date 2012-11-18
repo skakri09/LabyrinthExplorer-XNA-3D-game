@@ -14,11 +14,12 @@ namespace LabyrinthExplorer
         private Model model;
         private string modelName;
 
+        Matrix[] modelTransforms;
+
         private Matrix transformation;
-
-       
-
         private Vector3 position;
+        private Vector3 rotation;
+        private float modelScale = 50;
         
         public Enemy(string modelName)
         {
@@ -28,37 +29,36 @@ namespace LabyrinthExplorer
         public void LoadContent(ContentManager content)
         {
             model = content.Load<Model>(@"Models\"+modelName);
+            modelTransforms = new Matrix[model.Bones.Count];
+            SkinningData skinningData = model.Tag as SkinningData;
         }
 
         public void Update(float deltaTime)
         {
             
             transformation.Translation = position;
+            
+            model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+            //rotation.Y += 10 * deltaTime;
         }
 
         public void Draw(Camera camera)
         {
-            Matrix[] modelTransforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(modelTransforms);
-
             foreach (ModelMesh m in model.Meshes)
             {
                 foreach (BasicEffect e in m.Effects)
                 {
                     e.EnableDefaultLighting();
                     e.World = modelTransforms[m.ParentBone.Index]
-                        //* Matrix.CreateTranslation(camera.Position);
-                        // Matrix.CreateRotationY(0)
-                        *Matrix.Identity
-                    *Matrix.CreateScale(10);
-                        //* Matrix.CreateTranslation(position);
-                        //*Matrix.CreateTranslation(camera.Position);
-                    e.View = camera.ViewMatrix*Matrix.CreateTranslation(position);
-                    //e.View = Matrix.CreateLookAt(camera.Position, Vector3.Zero, Vector3.Up);
+                        * Matrix.Identity
+                        * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
+                        * Matrix.CreateRotationZ(MathHelper.ToRadians(rotation.Z))
+                        * Matrix.CreateScale(modelScale)
+                        * Matrix.CreateTranslation(position);
+                       
+                    e.View = camera.ViewMatrix;
                     e.Projection = camera.ProjectionMatrix;
-                    //e.Projection = Matrix.CreatePerspectiveFieldOfView(
-                    //    MathHelper.ToRadians(45.0f), aspectRatio,
-                    //    1.0f, 10000.0f);
                 }
 
                 m.Draw();
@@ -68,7 +68,7 @@ namespace LabyrinthExplorer
         public Vector3 Position
         {
             get { return position; }
-            set { value = position; }
+            set { position = value ; }
         }
         public Matrix Transformation
         {

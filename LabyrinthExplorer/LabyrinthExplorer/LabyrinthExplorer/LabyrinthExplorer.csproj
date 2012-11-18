@@ -72,6 +72,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\KeyFrame.cs" />
+    <Compile Include="Animation\SkinnedModel.cs" />
+    <Compile Include="Animation\SkinningData.cs" />
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
