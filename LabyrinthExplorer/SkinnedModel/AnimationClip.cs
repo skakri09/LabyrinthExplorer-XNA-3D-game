@@ -44,7 +44,7 @@ namespace SkinnedModel
         /// Gets the total length of the animation.
         /// </summary>
         [ContentSerializer]
-        public TimeSpan Duration { get; private set; }
+        public TimeSpan Duration { get; set; }
 
 
         /// <summary>

@@ -1,4 +1,0 @@
-LabyrinthExplorer
-=================
-
-Labyrinth Explorer
