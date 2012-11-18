@@ -21,9 +21,10 @@ namespace LabyrinthExplorer
         public const float MAP_SCALE = 1.0f;
 
         #region light
-        public static Color CurrentAmbientLight = GlobalAmbientDebug;
         public static Color GlobalAmbientGame = new Color(new Vector4(0.03f, 0.03f, 0.03f, 0.01f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
+        public static Color CurrentAmbientLight = GlobalAmbientDebug;
+        
         public static Color ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
         public static Color diffuse = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
         public static Color specular = new Color(new Vector4(0.2f, 0.2f, 0.2f, 0.5f));
@@ -55,7 +56,8 @@ namespace LabyrinthExplorer
         //public const float CAMERA_VELOCITY_Y = 200.0f;
         //public const float CAMERA_VELOCITY_Z = 200.0f;
 
-        public static Vector3 PLAYER_START_POS = new Vector3(4100, 0, 4500);
+        public static Vector3 PLAYER_START_POS = new Vector3(0, 0, 0);
+        //public static Vector3 PLAYER_START_POS = new Vector3(4100, 0, 4500);
         public const float CAMERA_ACCELERATION_X = 8000.0f;
         public const float CAMERA_ACCELERATION_Y = 5000.0f;
         public const float CAMERA_ACCELERATION_Z = 8000.0f;

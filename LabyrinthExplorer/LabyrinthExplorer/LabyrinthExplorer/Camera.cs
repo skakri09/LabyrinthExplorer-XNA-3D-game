@@ -363,7 +363,7 @@ namespace LabyrinthExplorer
             base.Update(gameTime);
             UpdateInput();
             UpdateCamera(gameTime, (World)Game.Services.GetService(typeof(World)));
-            playerAABB.UpdateAABB(Position);
+            //playerAABB.UpdateAABB(Position);
         }
 
         /// <summary>

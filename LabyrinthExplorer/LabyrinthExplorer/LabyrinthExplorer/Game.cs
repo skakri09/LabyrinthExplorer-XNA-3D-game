@@ -132,9 +132,8 @@ namespace LabyrinthExplorer
             weapon = Content.Load<Model>(@"Models\LightStick");
             soundMan.LoadContent();
             //soundMan.PlaySong("LOD",true);
-            spider = new Enemy("Wall");
+            spider = new Enemy("Spider");
             spider.LoadContent(Content);
-            spider.Position = camera.Position;
         }
 
         /// <summary>
@@ -274,8 +273,8 @@ namespace LabyrinthExplorer
             PerformCameraCollisionDetection();
             UpdateWeapon();
             spider.Update(deltaTime);
-            spider.Position = new Vector3(3800, 0, 4400);
-           // world.Update(deltaTime);
+            spider.Position = new Vector3(0, 0, 0);
+            world.Update(deltaTime);
             UpdateFrameRate(gameTime);
         }
 
@@ -346,7 +345,7 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
 
-            world.Draw(GraphicsDevice);
+            //world.Draw(GraphicsDevice);
 
             //Draw the weapon.
             foreach (ModelMesh m in weapon.Meshes)

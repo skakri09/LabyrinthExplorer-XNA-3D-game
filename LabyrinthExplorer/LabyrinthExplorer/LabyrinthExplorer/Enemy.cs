@@ -45,18 +45,20 @@ namespace LabyrinthExplorer
             {
                 foreach (BasicEffect e in m.Effects)
                 {
-                    e.TextureEnabled = true;
-
                     e.EnableDefaultLighting();
-                    e.World = modelTransforms[m.ParentBone.Index] *
-                        Matrix.CreateRotationY(0)
-                        * Matrix.CreateTranslation(position);
-                   // e.View = Matrix.CreateLookAt(camera.Position,
-                     //   Vector3.Zero, Vector3.Up);
+                    e.World = modelTransforms[m.ParentBone.Index]
+                        //* Matrix.CreateTranslation(camera.Position);
+                        // Matrix.CreateRotationY(0)
+                        *Matrix.Identity
+                    *Matrix.CreateScale(10);
+                        //* Matrix.CreateTranslation(position);
+                        //*Matrix.CreateTranslation(camera.Position);
+                    e.View = camera.ViewMatrix*Matrix.CreateTranslation(position);
+                    //e.View = Matrix.CreateLookAt(camera.Position, Vector3.Zero, Vector3.Up);
                     e.Projection = camera.ProjectionMatrix;
-                    //e.World = modelTransforms[m.ParentBone.Index] * transformation;
-                    ////e.View = camera.ViewMatrix;
-                    //e.Projection = camera.ProjectionMatrix;
+                    //e.Projection = Matrix.CreatePerspectiveFieldOfView(
+                    //    MathHelper.ToRadians(45.0f), aspectRatio,
+                    //    1.0f, 10000.0f);
                 }
 
                 m.Draw();
@@ -67,6 +69,10 @@ namespace LabyrinthExplorer
         {
             get { return position; }
             set { value = position; }
+        }
+        public Matrix Transformation
+        {
+            get { return transformation; }
         }
     }
 }
