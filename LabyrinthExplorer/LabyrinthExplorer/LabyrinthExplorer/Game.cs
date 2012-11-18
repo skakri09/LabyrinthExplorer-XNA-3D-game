@@ -40,6 +40,8 @@ namespace LabyrinthExplorer
         Skybox skybox;
         World world;
 
+        private AudioManager soundMan;
+        Enemy spider;
 #endregion  
 
         public Game()
@@ -60,7 +62,10 @@ namespace LabyrinthExplorer
             Window.Title = Window.Title.PadRight(200);
             Window.Title += "....hahaha not!";
 
-            IsFixedTimeStep = GameConstants.verticalSyncOn;                                                          
+            IsFixedTimeStep = GameConstants.verticalSyncOn;
+            
+            soundMan = new AudioManager(this);  
+                                                     
         }
 
         /// <summary>
@@ -125,8 +130,11 @@ namespace LabyrinthExplorer
             spriteFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
             
             weapon = Content.Load<Model>(@"Models\LightStick");
-
-            SoundManager.LoadContent(Content);
+            soundMan.LoadContent();
+            //soundMan.PlaySong("LOD",true);
+            spider = new Enemy("Wall");
+            spider.LoadContent(Content);
+            spider.Position = camera.Position;
         }
 
         /// <summary>
@@ -237,30 +245,6 @@ namespace LabyrinthExplorer
         {
             Vector3 newPos = camera.Position;
 
-            //if (camera.Position.X > CAMERA_BOUNDS_MAX_X)
-            //    newPos.X = CAMERA_BOUNDS_MAX_X;
-
-            //if (camera.Position.X < CAMERA_BOUNDS_MIN_X)
-            //    newPos.X = CAMERA_BOUNDS_MIN_X;
-
-            //if (camera.Position.Z > CAMERA_BOUNDS_MAX_Z)
-            //    newPos.Z = CAMERA_BOUNDS_MAX_Z;
-
-            //if (camera.Position.Z < CAMERA_BOUNDS_MIN_Z)
-            //    newPos.Z = CAMERA_BOUNDS_MIN_Z;
-
-
-            //foreach (SolidWall wall in world.Walls)
-            //{
-            //    Vector3 collision = camera.PlayerAABB.CheckCollision(wall.Aabb);
-
-            //    if (collision != Vector3.Zero)
-            //    {
-            //        Debug.WriteLine("Some sort of collision occured!");
-            //    }
-            //}
-
-
             if (camera.Position.Y > GameConstants.CAMERA_BOUNDS_MAX_Y)
                 newPos.Y = GameConstants.CAMERA_BOUNDS_MAX_Y;
 
@@ -289,7 +273,9 @@ namespace LabyrinthExplorer
             HandleInput();
             PerformCameraCollisionDetection();
             UpdateWeapon();
-            world.Update(deltaTime);
+            spider.Update(deltaTime);
+            spider.Position = new Vector3(3800, 0, 4400);
+           // world.Update(deltaTime);
             UpdateFrameRate(gameTime);
         }
 
@@ -376,7 +362,7 @@ namespace LabyrinthExplorer
 
                 m.Draw();
             }
-
+            spider.Draw(camera);
             DrawText();
 
             base.Draw(gameTime);

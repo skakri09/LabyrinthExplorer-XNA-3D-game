@@ -75,6 +75,7 @@
     <Compile Include="AssetLoader.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Environment\EasyWalls.cs" />
     <Compile Include="Environment\NormalMappedCeiling.cs" />
     <Compile Include="Environment\NormalMappedFloor.cs" />
