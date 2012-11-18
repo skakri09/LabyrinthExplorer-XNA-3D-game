@@ -33,7 +33,8 @@ namespace LabyrinthExplorer
         public Enemy(string modelName)
         {
             this.modelName = modelName;
-            aiStateMachine = new AiStateMachine(this, new EnemyConstState(), new ManWalker());
+            //aiStateMachine = new AiStateMachine(this, new EnemyConstState(), new PatrolX(new Vector3(1100, 0, 3300), new Vector3(4600, 0, 3300)));
+            aiStateMachine = new AiStateMachine(this, new EnemyConstState(), new PatrolZ(new Vector3(4600, 0, 4000), new Vector3(4600, 0, 2000)));
         }
 
         public void LoadContent(ContentManager content)

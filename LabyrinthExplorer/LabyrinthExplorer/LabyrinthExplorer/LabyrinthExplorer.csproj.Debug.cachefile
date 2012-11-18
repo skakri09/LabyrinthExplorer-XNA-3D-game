@@ -1,8 +1,6 @@
 Content\Effects\parallax_normal_mapping.xnb
 Content\Effects\SkyEffect.xnb
 Content\Models\LightStick.xnb
-Content\Models\Spider.xnb
-Content\Models\Wall.xnb
 Content\Models\dude.xnb
 Content\Textures\brick_color_map.xnb
 Content\Textures\brick_height_map.xnb
@@ -16,11 +14,12 @@ Content\Textures\wood_normal_map.xnb
 Content\Textures\Skybox\SkyBoxTex.xnb
 Content\Fonts\Chiller.xnb
 Content\Sound\Music\LOD.xnb
-Content\Textures\CELSPDER_0.xnb
-Content\Textures\dungeon_walls_1_0.xnb
 Content\Models\head_0.xnb
 Content\Models\jacket_0.xnb
 Content\Models\pants_0.xnb
 Content\Models\upBodyC_0.xnb
-Content\Levels\lvl1.xnb
+Content\Textures\spider_01.xnb
+Content\Textures\spider_diffuse.xnb
+Content\Textures\spider_opacity.xnb
+Content\Textures\spider_UV.xnb
 Content\Sound\Music\LOD.wma

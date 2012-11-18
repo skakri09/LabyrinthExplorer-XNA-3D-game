@@ -56,8 +56,8 @@ namespace LabyrinthExplorer
         //public const float CAMERA_VELOCITY_Y = 200.0f;
         //public const float CAMERA_VELOCITY_Z = 200.0f;
 
-        public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
-        //public static Vector3 PLAYER_START_POS = new Vector3(4100, 0, 4500);
+       // public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
+        public static Vector3 PLAYER_START_POS = new Vector3(4100, 0, 4500);
         public const float CAMERA_ACCELERATION_X = 8000.0f;
         public const float CAMERA_ACCELERATION_Y = 5000.0f;
         public const float CAMERA_ACCELERATION_Z = 8000.0f;
