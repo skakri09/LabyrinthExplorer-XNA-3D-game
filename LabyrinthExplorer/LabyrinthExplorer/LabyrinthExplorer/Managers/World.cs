@@ -157,27 +157,27 @@ namespace LabyrinthExplorer
             MapLoader.LoadWalls(@"Levels\lvl1");
 
             #region outer wall
+
             //+Z outer wall
             walls.Add(new SolidWall(device,
-                new Vector2(-5000, 5050), new Vector2(5000, 5050),
-                new Vector2(5000, 5000), new Vector2(-5000, 5000), GameConstants.WALL_HEIGHT));
+                new Vector2(0, 5050), new Vector2(5000, 5050),
+                new Vector2(5000, 5000), new Vector2(0, 5000), GameConstants.WALL_HEIGHT));
 
             //-Z outer wall
             walls.Add(new SolidWall(device,
-                 new Vector2(-5000, -5000), new Vector2(5000, -5000),
-                 new Vector2(5000, -5050), new Vector2(-5000, -5050), GameConstants.WALL_HEIGHT));
-            
+                 new Vector2(0, 0), new Vector2(5000, 0),
+                 new Vector2(5000, -50), new Vector2(0, -50), GameConstants.WALL_HEIGHT));
+
             //+X outer wall
 
             walls.Add(new SolidWall(device,
                 new Vector2(5000, 5000), new Vector2(5050, 5000),
-                new Vector2(5050, -5000), new Vector2(5000, -5000), GameConstants.WALL_HEIGHT));
+                new Vector2(5050, -0), new Vector2(5000, 0), GameConstants.WALL_HEIGHT));
             //-X outer wall
             walls.Add(new SolidWall(device,
-                 new Vector2(-5050, 5000), new Vector2(-5000, 5000),
-                 new Vector2(-5000, -5000), new Vector2(-5050, -5000), GameConstants.WALL_HEIGHT));
-
-            #endregion
+                 new Vector2(-50, 5000), new Vector2(0, 5000),
+                 new Vector2(0, 0), new Vector2(-50, 0), GameConstants.WALL_HEIGHT));
+           
 
             //XWallNegZ = grows out on negative Z
             //XWallPosZ = grows out on positive Z
@@ -186,7 +186,8 @@ namespace LabyrinthExplorer
 
             //Z Walls - ZWallPosX
             //X Walls - XWallNegZAl
-            
+            #endregion
+
             #region area 1
             walls.Add(new ZWallPosX(device, new Vector2(4200, 4600), new Vector2(4200, 4200)));//1
             walls.Add(new ZWallPosX(device, new Vector2(2600, 4600), new Vector2(2600, 3900)));//2
@@ -205,26 +206,80 @@ namespace LabyrinthExplorer
             walls.Add(new XWallPosZ(device, new Vector2(3200, 4200), new Vector2(4200, 4200)));//11
 
             #endregion
+           
 
 
-            //walls.Add(new ZWallNegX(device, new Vector2(200, 0), new Vector2(200, -5000)));
+        #region notinuse
+
+            //walls.Add(new ZWallPosX(device, new Vector2(4200, 9600), new Vector2(4200, 9200)));//1
+            //walls.Add(new ZWallPosX(device, new Vector2(2600, 9600), new Vector2(2600, 8900)));//2
+            //walls.Add(new ZWallPosX(device, new Vector2(2000, 9000), new Vector2(2000, 8500)));//3
+            //walls.Add(new ZWallPosX(device, new Vector2(3200, 9200), new Vector2(3200, 8500)));//4
+
+
+            //walls.Add(new XWallPosZ(device, new Vector2(1500, 9300), new Vector2(2600, 9300)));//5
+            //walls.Add(new XWallPosZ(device, new Vector2(2050, 8500), new Vector2(3200, 8500)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(2600, 9600), new Vector2(4200, 9600)));//7
+            //walls.Add(new XWallPosZ(device, new Vector2(3200, 9200), new Vector2(4200, 9200)));//8
+
+            //walls.Add(new ZWallPosX(device, new Vector2(1500, 9300), new Vector2(1500, 8800)));//9
+            //walls.Add(new ZWallPosX(device, new Vector2(3700, 9200), new Vector2(3700, 8500)));//10
+
+            //walls.Add(new XWallPosZ(device, new Vector2(3200, 9200), new Vector2(4200, 9200)));//11
+            //+Z outer wall
+            //walls.Add(new SolidWall(device,
+            //    new Vector2(0, 10050), new Vector2(10000, 10050),
+            //    new Vector2(10000, 10000), new Vector2(0, 10000), GameConstants.WALL_HEIGHT));
+
+            ////-Z outer wall
+            //walls.Add(new SolidWall(device,
+            //     new Vector2(0, 0), new Vector2(10000, 0),
+            //     new Vector2(10000, -50), new Vector2(0, -50), GameConstants.WALL_HEIGHT));
+
+            ////+X outer wall
 
             //walls.Add(new SolidWall(device,
-            //    new Vector2(0, 0), new Vector2(50, 0),
-            //    new Vector2(50,-5000), new Vector2(0, -5000), 256));
+            //    new Vector2(10000, 10000), new Vector2(10050, 10000),
+            //    new Vector2(10050, -0), new Vector2(10000, 0), GameConstants.WALL_HEIGHT));
+            ////-X outer wall
+            //walls.Add(new SolidWall(device,
+            //     new Vector2(-50, 10000), new Vector2(0, 10000),
+            //     new Vector2(0, 0), new Vector2(-50, 0), GameConstants.WALL_HEIGHT));
+          
+            //walls.Add(new ZWallPosX(device, new Vector2(8500, 9000), new Vector2(8500, 8500)));//1
+            //walls.Add(new ZWallPosX(device, new Vector2(6500, 8500), new Vector2(6500, 7000)));//2
+            //walls.Add(new ZWallPosX(device, new Vector2(5000, 9000), new Vector2(5000, 8000)));//3
+            //walls.Add(new ZWallPosX(device, new Vector2(4000, 8000), new Vector2(4000, 7000)));//4
+            //walls.Add(new ZWallPosX(device, new Vector2(3000, 8500), new Vector2(3000, 7500)));//5
+
+            //walls.Add(new XWallPosZ(device, new Vector2(5000, 9000), new Vector2(8500, 9000)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(6500, 8500), new Vector2(8500, 8500)));//7
+            //walls.Add(new XWallPosZ(device, new Vector2(4000, 7000), new Vector2(7500, 7000)));//8
+            //walls.Add(new XWallPosZ(device, new Vector2(3000, 8500), new Vector2(5000, 8500)));//9
+           
+
+            //walls.Add(new XWallPosZ(device, new Vector2(1500, 9300), new Vector2(2600, 9300)));//5
+            //walls.Add(new XWallPosZ(device, new Vector2(2050, 8500), new Vector2(3200, 8500)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(2600, 9600), new Vector2(4200, 9600)));//7
+            //walls.Add(new XWallPosZ(device, new Vector2(3200, 9200), new Vector2(4200, 9200)));//8
+
+            //walls.Add(new ZWallPosX(device, new Vector2(1500, 9300), new Vector2(1500, 8800)));//9
+            //walls.Add(new ZWallPosX(device, new Vector2(3700, 9200), new Vector2(3700, 8500)));//10
+
+            //walls.Add(new XWallPosZ(device, new Vector2(3200, 9200), new Vector2(4200, 9200)));//11
+        #endregion
 
         }
 
         private void GenerateFloorAndCeiling(GraphicsDevice device)
         {
             floors.Add(new NormalMappedFloor(device,
-                new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
-                new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up));
+       new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
+       new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000), Vector3.Up));
 
             ceilings.Add(new NormalMappedCeiling(device,
                 new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
                 new Vector3(5000, GameConstants.WALL_HEIGHT, -5000), new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000), Vector3.Down));
-
         }
 
         private void GenerateLights()
