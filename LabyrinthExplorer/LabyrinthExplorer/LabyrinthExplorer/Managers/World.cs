@@ -35,8 +35,11 @@ namespace LabyrinthExplorer
         private Material material;
         private Color globalAmbient;
         private Vector2 scaleBias;
+        
         Model ctrlRoom;
         Skybox skybox;
+        Model ironMaiden;
+        
         #endregion
 
         private bool enableParallax;
@@ -106,10 +109,12 @@ namespace LabyrinthExplorer
             woodColorMap = contentMan.Load<Texture2D>(@"Textures\wood_color_map");
             woodNormalMap = contentMan.Load<Texture2D>(@"Textures\wood_normal_map");
             woodHeightMap = contentMan.Load<Texture2D>(@"Textures\wood_height_map");
+           
             ctrlRoom = contentMan.Load<Model>(@"Models\ControlRoom");
             scaleBias = new Vector2(0.04f, -0.03f);
             skybox = new Skybox(contentMan);
             GenerateWorld(device);
+            ironMaiden = contentMan.Load<Model>(@"Models\Environment\ironMaiden");
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
@@ -159,11 +164,31 @@ namespace LabyrinthExplorer
                     effect.View = camera.ViewMatrix;
                     effect.Projection = camera.ProjectionMatrix;
 
-                    
+
                 }
                 mesh.Draw();
             }
-            
+            Matrix[] transformsi = new Matrix[ironMaiden.Bones.Count];
+            ironMaiden.CopyAbsoluteBoneTransformsTo(transformsi);
+
+            foreach (ModelMesh mesh in ironMaiden.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+
+                    effect.World = Matrix.Identity
+                        * transformsi[mesh.ParentBone.Index]
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(180))
+                        * Matrix.CreateScale(75)
+                        * Matrix.CreateTranslation(GameConstants.PLAYER_START_POS);
+                    effect.View = camera.ViewMatrix;
+                    effect.Projection = camera.ProjectionMatrix;
+
+
+                }
+                mesh.Draw();
+            }
         }
 
         private void GenerateWorld(GraphicsDevice device)
