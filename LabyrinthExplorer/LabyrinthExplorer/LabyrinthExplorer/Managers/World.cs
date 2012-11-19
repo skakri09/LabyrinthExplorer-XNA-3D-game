@@ -147,17 +147,19 @@ namespace LabyrinthExplorer
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
+                    effect.EnableDefaultLighting();
+
                     effect.World = Matrix.Identity
                         * transforms[mesh.ParentBone.Index]
                         //* Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))
                         //* Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
                         //* Matrix.CreateRotationZ(MathHelper.ToRadians(rotation.Z))
                         * Matrix.CreateScale(1)
-                        * Matrix.CreateTranslation(new Vector3(-5000, -100, 0));
+                        * Matrix.CreateTranslation(new Vector3(-5355, 30, 0));
                     effect.View = camera.ViewMatrix;
                     effect.Projection = camera.ProjectionMatrix;
 
-                    effect.EnableDefaultLighting();
+                    
                 }
                 mesh.Draw();
             }
