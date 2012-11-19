@@ -35,6 +35,7 @@ namespace LabyrinthExplorer
         private Material material;
         private Color globalAmbient;
         private Vector2 scaleBias;
+        Model ctrlRoom;
         #endregion
 
         private bool enableParallax;
@@ -104,7 +105,7 @@ namespace LabyrinthExplorer
             woodColorMap = contentMan.Load<Texture2D>(@"Textures\wood_color_map");
             woodNormalMap = contentMan.Load<Texture2D>(@"Textures\wood_normal_map");
             woodHeightMap = contentMan.Load<Texture2D>(@"Textures\wood_height_map");
-
+           // ctrlRoom = contentMan.Load<Model>(@"Models\ControlRoom");
             scaleBias = new Vector2(0.04f, -0.03f);
 
             GenerateWorld(device); ;

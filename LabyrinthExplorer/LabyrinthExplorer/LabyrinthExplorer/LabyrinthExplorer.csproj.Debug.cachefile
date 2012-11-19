@@ -22,4 +22,14 @@ Content\Textures\spider_01.xnb
 Content\Textures\spider_diffuse.xnb
 Content\Textures\spider_opacity.xnb
 Content\Textures\spider_UV.xnb
+Content\Models\ControlRoom.xnb
+Content\Textures\ControlRoom\TechnicalPannel_0.xnb
+Content\Textures\ControlRoom\Top doorDiffuseMap_0.xnb
+Content\Textures\ControlRoom\DoorDiffuseMap_0.xnb
+Content\Textures\ControlRoom\Doors & Windows.Glazed Curtain W_0.xnb
+Content\Textures\ControlRoom\YellowwindowDiffuseMap_0.xnb
+Content\Textures\ControlRoom\FloorplaneDiffMap_0.xnb
+Content\Textures\ControlRoom\Koffie_0.xnb
+Content\Textures\ControlRoom\Image1_0.xnb
+Content\Textures\ControlRoom\tablebbuttons_0.xnb
 Content\Sound\Music\LOD.wma

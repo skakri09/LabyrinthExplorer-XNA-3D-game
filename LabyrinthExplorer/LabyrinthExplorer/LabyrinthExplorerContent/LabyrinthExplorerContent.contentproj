@@ -40,6 +40,11 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
+    <Compile Include="Models\ControlRoom.FBX">
+      <Name>ControlRoom</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <Compile Include="Models\LightStick.FBX">
       <Name>LightStick</Name>
       <Importer>FbxImporter</Importer>
@@ -99,11 +104,6 @@
       <Name>dude</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\ControlRoom.FBX">
-      <Name>ControlRoom</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
     </Compile>
     <None Include="Textures\dungeon_walls_1.jpg">
       <Name>dungeon_walls_1</Name>
