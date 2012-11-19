@@ -173,6 +173,9 @@ namespace LabyrinthExplorer
                 if (camera.RotationSpeed <= 0.0f)
                     camera.RotationSpeed = 0.01f;
             }
+            if (input.IsKeyDownOnce(Keys.C))
+                camera.PerformPlayerCollision = !camera.PerformPlayerCollision;
+
             if (input.IsKeyDown(Keys.LeftAlt) || input.IsKeyDown(Keys.RightAlt))
             {
                 if (input.IsKeyDownOnce(Keys.Enter))

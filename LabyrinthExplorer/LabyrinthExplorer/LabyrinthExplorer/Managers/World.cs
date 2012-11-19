@@ -11,7 +11,6 @@ namespace LabyrinthExplorer
 {
     public class World
     {
-      
         #region textures
         private Texture2D brickColorMap;
         private Texture2D brickNormalMap;
@@ -236,14 +235,14 @@ namespace LabyrinthExplorer
             walls.Add(new ZWallPosX(device, new Vector2(4000, 1900), new Vector2(4000, 400)));//3
             walls.Add(new ZWallPosX(device, new Vector2(3600, 400), new Vector2(3600, 0)));//4
 
-            walls.Add(new XWallPosZ(device, new Vector2(3700, 2400), new Vector2(4700, 2400)));//5
+            walls.Add(new XWallPosZ(device, new Vector2(3750, 2400), new Vector2(4700, 2400)));//5
             walls.Add(new XWallPosZ(device, new Vector2(4000, 1900), new Vector2(4700, 1900)));//6
             walls.Add(new XWallPosZ(device, new Vector2(3600, 400), new Vector2(4000, 400)));//7
             #endregion
 
             #region area 5
-            walls.Add(new XWallPosZ(device, new Vector2(500, 400), new Vector2(1400, 400)));//1
-            walls.Add(new XWallPosZ(device, new Vector2(1800, 400), new Vector2(3300, 400)));//2
+            walls.Add(new XWallPosZ(device, new Vector2(500, 400), new Vector2(1450, 400)));//1
+            walls.Add(new XWallPosZ(device, new Vector2(1800, 400), new Vector2(3350, 400)));//2
 
             walls.Add(new ZWallPosX(device, new Vector2(3300, 400), new Vector2(3300, 0)));//3
             walls.Add(new ZWallPosX(device, new Vector2(1800, 400), new Vector2(1800, 0)));//4

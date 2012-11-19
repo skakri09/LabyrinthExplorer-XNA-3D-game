@@ -111,6 +111,7 @@ namespace LabyrinthExplorer
         private Vector2 smoothedMouseMovement;
         private MouseState currentMouseState;
         private Dictionary<Actions, Keys> actionKeys;
+        private bool performPlayerCollisionTest = true;
         #endregion
 
         private InputManager input;
@@ -363,7 +364,12 @@ namespace LabyrinthExplorer
             base.Update(gameTime);
             UpdateInput();
             UpdateCamera(gameTime, (World)Game.Services.GetService(typeof(World)));
-            playerAABB.UpdateAABB(Position);
+            
+            if(performPlayerCollisionTest)
+            {
+                playerAABB.UpdateAABB(Position);
+            }
+           
         }
 
         /// <summary>
@@ -647,18 +653,16 @@ namespace LabyrinthExplorer
             GetMovementDirection(out direction);
 
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
-            
+            UpdatePosition(ref direction, elapsedTimeSec);
             
             foreach (SolidWall wall in world.Walls)
             {
                 Vector3 collision = PlayerAABB.CheckCollision(wall.Aabb);
-
                 if (collision != Vector3.Zero)
                 {
                     Position += collision;
                 }
             }
-            UpdatePosition(ref direction, elapsedTimeSec);
         }
 
         private void UpdateInput()
@@ -891,6 +895,12 @@ namespace LabyrinthExplorer
     #endregion
 
     #region Properties
+
+        public bool PerformPlayerCollision
+        {
+            get { return performPlayerCollisionTest; }
+            set { performPlayerCollisionTest = value; }
+        }
 
         public AABB PlayerAABB
         {
