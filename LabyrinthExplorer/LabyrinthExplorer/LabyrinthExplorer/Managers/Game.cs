@@ -245,8 +245,8 @@ namespace LabyrinthExplorer
             //if (camera.Position.Y > GameConstants.CAMERA_BOUNDS_MAX_Y)
             //    newPos.Y = GameConstants.CAMERA_BOUNDS_MAX_Y;
 
-            //if (camera.Position.Y < GameConstants.CAMERA_BOUNDS_MIN_Y)
-            //    newPos.Y = GameConstants.CAMERA_BOUNDS_MIN_Y;
+            if (camera.Position.Y < GameConstants.CAMERA_BOUNDS_MIN_Y)
+                newPos.Y = GameConstants.CAMERA_BOUNDS_MIN_Y;
 
             camera.Position = newPos;
 

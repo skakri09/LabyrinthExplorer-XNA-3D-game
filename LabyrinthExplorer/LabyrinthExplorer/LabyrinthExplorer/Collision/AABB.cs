@@ -11,6 +11,7 @@ namespace LabyrinthExplorer
         Vector3 minPoint, orgMinPoint;
         Vector3 maxPoint, orgMaxPoint;
         Camera owner;
+
         public AABB(Vector3 btmFrontLeft, Vector3 btmFrontRight,
             Vector3 btmBackRight, Vector3 btmBackLeft, float height)
         {
