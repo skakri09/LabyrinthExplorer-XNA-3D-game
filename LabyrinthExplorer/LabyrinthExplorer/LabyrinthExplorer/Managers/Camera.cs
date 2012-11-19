@@ -365,10 +365,7 @@ namespace LabyrinthExplorer
             UpdateInput();
             UpdateCamera(gameTime, (World)Game.Services.GetService(typeof(World)));
             
-            if(performPlayerCollisionTest)
-            {
-                playerAABB.UpdateAABB(Position);
-            }
+            playerAABB.UpdateAABB(Position);
         }
 
         /// <summary>
@@ -653,13 +650,16 @@ namespace LabyrinthExplorer
 
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
             UpdatePosition(ref direction, elapsedTimeSec);
-            
-            foreach (SolidWall wall in world.Walls)
+
+            if (performPlayerCollisionTest)
             {
-                Vector3 collision = PlayerAABB.CheckCollision(wall.Aabb);
-                if (collision != Vector3.Zero)
+                foreach (SolidWall wall in world.Walls)
                 {
-                    Position += collision;
+                    Vector3 collision = PlayerAABB.CheckCollision(wall.Aabb);
+                    if (collision != Vector3.Zero)
+                    {
+                        Position += collision;
+                    }
                 }
             }
         }

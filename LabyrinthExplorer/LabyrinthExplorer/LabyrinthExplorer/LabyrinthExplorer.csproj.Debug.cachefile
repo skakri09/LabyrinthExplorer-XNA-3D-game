@@ -22,7 +22,6 @@ Content\Textures\spider_01.xnb
 Content\Textures\spider_diffuse.xnb
 Content\Textures\spider_opacity.xnb
 Content\Textures\spider_UV.xnb
-Content\Models\ControlRoom.xnb
 Content\Textures\ControlRoom\TechnicalPannel_0.xnb
 Content\Textures\ControlRoom\Top doorDiffuseMap_0.xnb
 Content\Textures\ControlRoom\DoorDiffuseMap_0.xnb
@@ -32,4 +31,19 @@ Content\Textures\ControlRoom\FloorplaneDiffMap_0.xnb
 Content\Textures\ControlRoom\Koffie_0.xnb
 Content\Textures\ControlRoom\Image1_0.xnb
 Content\Textures\ControlRoom\tablebbuttons_0.xnb
+Content\Textures\WindTunnel\Aluminm5_0.xnb
+Content\Textures\WindTunnel\xw2-1hull_0.xnb
+Content\Textures\WindTunnel\Aluminmbl_0.xnb
+Content\Textures\WindTunnel\xw2-2hull_0.xnb
+Content\Textures\WindTunnel\bespinsideback_0.xnb
+Content\Models\WindTunnel.xnb
+Content\Models\ControlRoom.xnb
+Content\Textures\ControlRoom\lava04_0.xnb
+Content\Models\skybox.xnb
+Content\Textures\Skybox\sky_front5_0.xnb
+Content\Textures\Skybox\sky_right1_0.xnb
+Content\Textures\Skybox\sky_back6_0.xnb
+Content\Textures\Skybox\sky_left2_0.xnb
+Content\Textures\Skybox\sky_bottom4_0.xnb
+Content\Textures\Skybox\sky_top3_0.xnb
 Content\Sound\Music\LOD.wma

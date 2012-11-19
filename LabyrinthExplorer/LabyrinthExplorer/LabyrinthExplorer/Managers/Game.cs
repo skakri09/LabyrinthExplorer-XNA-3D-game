@@ -21,7 +21,7 @@ namespace LabyrinthExplorer
     {
         InputManager input;
 
-#region startup
+        #region startup
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private SpriteFont spriteFont;
@@ -40,7 +40,7 @@ namespace LabyrinthExplorer
 
         private AudioManager soundMan;
         Enemy spider;
-#endregion  
+        #endregion  
 
         public Game()
         {
@@ -262,9 +262,9 @@ namespace LabyrinthExplorer
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //We dont update the game if the game window is not active/in focus
-            if (!this.IsActive)
-                return;
+            //if(!GameConstants.UpdateWhenTabbed)
+                if (!this.IsActive)
+                    return;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
@@ -334,10 +334,11 @@ namespace LabyrinthExplorer
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (!this.IsActive)
-                return;
+            if(!GameConstants.UpdateWhenTabbed)
+                if (!this.IsActive)
+                    return;
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
@@ -345,6 +346,7 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
 
+            //Must draw world first, as the skybox is part of it, and skybox has to be drawn first
             world.Draw(GraphicsDevice);
 
             //Draw the weapon.

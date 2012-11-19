@@ -78,6 +78,7 @@
     <Compile Include="AI\States\Patrolling.cs" />
     <Compile Include="AI\States\PatrolX.cs" />
     <Compile Include="AI\States\PatrolZ.cs" />
+    <Compile Include="Environment\Skybox.cs" />
     <Compile Include="Utility\AssetLoader.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
@@ -98,7 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Program.cs" />
     <Compile Include="Managers\Game.cs" />
-    <Compile Include="Utility\Skybox.cs" />
     <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="Managers\World.cs" />
   </ItemGroup>
