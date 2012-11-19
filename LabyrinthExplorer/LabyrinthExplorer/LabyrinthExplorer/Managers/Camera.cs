@@ -369,7 +369,6 @@ namespace LabyrinthExplorer
             {
                 playerAABB.UpdateAABB(Position);
             }
-           
         }
 
         /// <summary>

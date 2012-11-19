@@ -14,7 +14,7 @@ namespace LabyrinthExplorer
         public static float rotationSpeed = 30.0f;
         public static float moveSpeed = 300.0f;
 
-        public static bool verticalSyncOn = false;
+        public static bool verticalSyncOn = true;
 
         public static bool mouseVisible = false;
 
