@@ -76,7 +76,7 @@ namespace LabyrinthExplorer
                 foreach (SkinnedEffect effect in mesh.Effects)
                 {
                     effect.SetBoneTransforms(bones);
-                    effect.World =Matrix.Identity
+                    effect.World = Matrix.Identity
                         * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
                         * Matrix.CreateRotationZ(MathHelper.ToRadians(rotation.Z))
@@ -89,8 +89,12 @@ namespace LabyrinthExplorer
 
                     effect.SpecularColor = new Vector3(0.25f);
                     effect.SpecularPower = 16;
+                    effect.AmbientLightColor = new Vector3(0.01f, 0.01f, 0.01f);
+                    effect.DiffuseColor = new Vector3(0.2f, 0.2f, 0.2f);
+                    effect.FogEnabled = true;
+                    effect.FogStart = 50;
+                    effect.FogEnd = 1000;
                 }
-
                 mesh.Draw();
             }
 

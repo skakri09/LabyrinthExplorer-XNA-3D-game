@@ -75,6 +75,7 @@
     <Compile Include="AI\AIState.cs" />
     <Compile Include="AI\AiStateMachine.cs" />
     <Compile Include="AI\EnemyConstState.cs" />
+    <Compile Include="AI\States\Patrolling.cs" />
     <Compile Include="AI\States\PatrolX.cs" />
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Utility\AssetLoader.cs" />

@@ -16,9 +16,38 @@ namespace LabyrinthExplorer
         public NormalMappedWall(GraphicsDevice graphicsDevice,
             Vector3 startPos, Vector3 endPos, Vector3 innVec, float height = GameConstants.WALL_HEIGHT)
         {
-            GenerateWall(startPos, endPos, innVec, height, graphicsDevice);
+             GenerateWall(startPos, endPos, innVec, height, graphicsDevice);
         }
 
+        public NormalMappedWall(GraphicsDevice graphicsDevice, Vector3 corner1, Vector3 corner2,
+                    Vector3 corner3, Vector3 corner4, Vector3 normal)
+        {
+            Vector3[] wallCorners = new Vector3[4];
+            wallCorners[0] = corner1;//near left
+            wallCorners[1] = corner2;//near  right
+            wallCorners[2] = corner3;//far right
+            wallCorners[3] = corner4;//far left
+            float size = Vector3.Distance(corner1, corner3);
+            size /= 100;
+            Vector2[] wallTexCoords =
+            {
+                new Vector2(0.0f, 0.0f),                            // top left corner
+                new Vector2(GameConstants.FLOOR_TILE_FACTOR_NORMAL*size, 0.0f),               // top right corner
+                new Vector2(GameConstants.FLOOR_TILE_FACTOR_NORMAL*size, GameConstants.FLOOR_TILE_FACTOR_NORMAL*size),  // bottom right corner
+                new Vector2(0.0f, GameConstants.FLOOR_TILE_FACTOR_NORMAL*size)                // bottom left corner
+            };
+
+            int offset = 0;
+            vertices = new NormalMappedVertex[6];
+            vertices[offset++] = new NormalMappedVertex(wallCorners[3], wallTexCoords[0], Vector3.Up, Vector4.Zero);//btm left
+            vertices[offset++] = new NormalMappedVertex(wallCorners[2], wallTexCoords[1], Vector3.Up, Vector4.Zero);//btm rigth
+            vertices[offset++] = new NormalMappedVertex(wallCorners[1], wallTexCoords[2], Vector3.Up, Vector4.Zero);//top right
+            vertices[offset++] = new NormalMappedVertex(wallCorners[1], wallTexCoords[2], Vector3.Up, Vector4.Zero);//top right
+            vertices[offset++] = new NormalMappedVertex(wallCorners[0], wallTexCoords[3], Vector3.Up, Vector4.Zero);//top left
+            vertices[offset++] = new NormalMappedVertex(wallCorners[3], wallTexCoords[0], Vector3.Up, Vector4.Zero);//btm left
+
+            CalcTangent(graphicsDevice);
+        }
         /// <summary>
         /// Generates a wall from the starting position, using the innVector
         /// as the normal of the surface and doing the wall perpendicularly 
@@ -31,11 +60,7 @@ namespace LabyrinthExplorer
         private void GenerateWall(Vector3 startPos, Vector3 endPos, Vector3 innVec, 
             float height, GraphicsDevice graphicsDevice)
         {
-            Vector3[] wallCorners = new Vector3[4];
-            wallCorners[0] = startPos; //Starting point, bottom left corner when facing wall
-            wallCorners[1] = endPos; //Bottom right corner when facing wall
-            wallCorners[2] = new Vector3(endPos.X, height, endPos.Z);//top right
-            wallCorners[3] = new Vector3(startPos.X, height, startPos.Z);//top left
+           
             float length = Vector3.Distance(startPos, endPos);
             length /= 100;
             Vector2[] wallTexCoords =
@@ -48,6 +73,12 @@ namespace LabyrinthExplorer
 
             int offset = 0;
             vertices = new NormalMappedVertex[6];
+
+            Vector3[] wallCorners = new Vector3[4];
+            wallCorners[0] = startPos; //Starting point, bottom left corner when facing wall
+            wallCorners[1] = endPos; //Bottom right corner when facing wall
+            wallCorners[2] = new Vector3(endPos.X, height, endPos.Z);//top right
+            wallCorners[3] = new Vector3(startPos.X, height, startPos.Z);//top left
             vertices[offset++] = new NormalMappedVertex(wallCorners[0], wallTexCoords[0], innVec, Vector4.Zero);//btm left
             vertices[offset++] = new NormalMappedVertex(wallCorners[1], wallTexCoords[1], innVec, Vector4.Zero);//btm rigth
             vertices[offset++] = new NormalMappedVertex(wallCorners[2], wallTexCoords[2], innVec, Vector4.Zero);//top right
@@ -55,6 +86,12 @@ namespace LabyrinthExplorer
             vertices[offset++] = new NormalMappedVertex(wallCorners[3], wallTexCoords[3], innVec, Vector4.Zero);//top left
             vertices[offset++] = new NormalMappedVertex(wallCorners[0], wallTexCoords[0], innVec, Vector4.Zero);//btm left
 
+            CalcTangent(graphicsDevice);
+        }
+
+        
+        private void CalcTangent(GraphicsDevice graphicsDevice)
+        {
             Vector4 tangent;
             for (int i = 0; i < vertices.Length; i += 3)
             {
@@ -73,8 +110,8 @@ namespace LabyrinthExplorer
                 vertices[i + 2].Tangent = tangent;
             }
 
-            vertexBuffer = new VertexBuffer(graphicsDevice, typeof(NormalMappedVertex), 
-                vertices.Length,BufferUsage.WriteOnly);
+            vertexBuffer = new VertexBuffer(graphicsDevice, typeof(NormalMappedVertex),
+                vertices.Length, BufferUsage.WriteOnly);
             vertexBuffer.SetData(vertices);
         }
 

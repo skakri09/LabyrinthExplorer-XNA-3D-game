@@ -147,6 +147,7 @@ namespace LabyrinthExplorer
             otherTarget = curTemp;
             currentTarget = otherTemp;
         }
+
         private enum Direction
         {
             POSITIVE_Z,
