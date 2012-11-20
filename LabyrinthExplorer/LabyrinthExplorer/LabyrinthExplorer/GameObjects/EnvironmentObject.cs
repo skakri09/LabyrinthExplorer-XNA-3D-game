@@ -20,7 +20,14 @@ namespace LabyrinthExplorer
         private Model model;
 
         
-
+        /// <summary>
+        /// Creates a static environment object.
+        /// </summary>
+        /// <param name="modelPath">full path of model inside the Model folder </param>
+        /// <param name="content"></param>
+        /// <param name="position"></param>
+        /// <param name="rotation"></param>
+        /// <param name="scale"></param>
         public EnvironmentObject(string modelPath, ContentManager content,
             Vector3 position, Vector3 rotation, float scale)
         {
@@ -37,7 +44,7 @@ namespace LabyrinthExplorer
         }
 
 
-        void Draw(Camera camera)
+        public void Draw(Camera camera)
         {
             foreach (ModelMesh mesh in model.Meshes)
             {
