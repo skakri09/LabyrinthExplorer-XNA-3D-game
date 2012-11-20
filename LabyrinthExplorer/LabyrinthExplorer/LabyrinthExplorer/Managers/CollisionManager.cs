@@ -17,6 +17,11 @@ namespace LabyrinthExplorer
                 Collidables.Add(collidable);   
         }
 
+        public static List<AABB> GetCollidables()
+        {
+            return Collidables;
+        }
+
         public static Vector3 CheckCollision(AABB you)
         {
             Vector3 returnValue = Vector3.Zero;

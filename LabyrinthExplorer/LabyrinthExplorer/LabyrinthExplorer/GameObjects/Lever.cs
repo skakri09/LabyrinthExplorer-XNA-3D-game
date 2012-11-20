@@ -2,50 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
-    public class Chest : EnvironmentObject, IInteractableObject
+    public class Lever : EnvironmentObject, IInteractableObject
     {
-        private bool isClosed;
+        private bool isUsed;
 
         private Model closedModel;
-        private Model openModel;
-        
-        public Chest(ContentManager content,
+        private Model usedModel;
+
+        public Lever(ContentManager content,
                      Vector3 position, Vector3 rotation,
                     float scale, Vector3 openFromDirection,
-                    bool isClosed = true)
-            : base(@"Models\Environment\ChestClosed", 
+                    bool isUsed = false)
+            : base(@"Models\Environment\Lever",
                 content, position, rotation, scale)
         {
-            this.isClosed = isClosed;
+            this.isUsed = isUsed;
             closedModel = base.GetModel();
-            openModel = content.Load<Model>(@"Models\Environment\ChestOpen");
-            CreateOpeningAABB(openFromDirection);
+            usedModel = content.Load<Model>(@"Models\Environment\LeverUsed");
+            CreateUseAABB(openFromDirection);
             Interactables.AddInteractable(this);
         }
 
-        private void CreateOpeningAABB(Vector3 openingDirection)
+        private void CreateUseAABB(Vector3 useDirection)
         {
             Vector3 minPoint, maxPoint;
             float outVal = 100; //distance from middle of chest and in the direction of aabb
             float sideVal = 100;//distance from middle of chest and out in both sideways directions
 
-            if(openingDirection == Vector3.Left)
+            if (useDirection == Vector3.Left)
             {
                 minPoint = new Vector3(Position.X - outVal, 0, Position.Z - sideVal);
                 maxPoint = new Vector3(Position.X, GameConstants.WALL_HEIGHT, Position.Z + sideVal);
             }
-            else if (openingDirection == Vector3.Right)
+            else if (useDirection == Vector3.Right)
             {
                 minPoint = new Vector3(Position.X, 0, Position.Z - sideVal);
                 maxPoint = new Vector3(Position.X + outVal, GameConstants.WALL_HEIGHT, Position.Z + sideVal);
             }
-            else if (openingDirection == Vector3.Forward)
+            else if (useDirection == Vector3.Up)
             {
                 minPoint = new Vector3(Position.X - sideVal, 0, Position.Z);
                 maxPoint = new Vector3(Position.X + sideVal, GameConstants.WALL_HEIGHT, Position.Z + outVal);
@@ -60,19 +60,13 @@ namespace LabyrinthExplorer
 
         public void Use()
         {
-            if (isClosed)
+            if (!isUsed)
             {
-                Game.SoundManager.PlaySound("ChestOpen");
-                base.SetModel(openModel);
-                isClosed = false;
-            }
-            else
-            {
-                Game.SoundManager.PlaySound("ChestClose");
-                base.SetModel(closedModel);
-                isClosed = true;
+                Game.SoundManager.PlaySound("LeverUsed");
+                base.SetModel(usedModel);
+                isUsed = true;
             }
         }
-    
+
     }
 }

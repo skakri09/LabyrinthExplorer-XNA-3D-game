@@ -143,65 +143,104 @@ namespace LabyrinthExplorer
             #endregion
 
             #region area 1
-            walls.Add(new ZWallPosX(device, new Vector2(4200, 4600), new Vector2(4200, 4200)));//1
-            walls.Add(new ZWallPosX(device, new Vector2(2600, 4600), new Vector2(2600, 3900)));//2
-            walls.Add(new ZWallPosX(device, new Vector2(2000, 4000), new Vector2(2000, 3500)));//3
-            walls.Add(new ZWallPosX(device, new Vector2(3200, 4200), new Vector2(3200, 3500)));//4
+            //walls.Add(new ZWallPosX(device, new Vector2(4200, 4600), new Vector2(4200, 4200)));//1
+            //walls.Add(new ZWallPosX(device, new Vector2(2600, 4600), new Vector2(2600, 3900)));//2
+            //walls.Add(new ZWallPosX(device, new Vector2(2000, 4000), new Vector2(2000, 3500)));//3
+            //walls.Add(new ZWallPosX(device, new Vector2(3200, 4200), new Vector2(3200, 3500)));//4
+            ZPosWall(4200, 4600, 4200, 4200);//1
+            ZPosWall(2600, 4600, 2600, 3900);//2
+            ZPosWall(2000, 4000, 2000, 3500);//3
+            ZPosWall(3200, 4200, 3200, 3500);//4
 
+            //walls.Add(new XWallPosZ(device, new Vector2(1500, 4300), new Vector2(2600, 4300)));//5
+            //walls.Add(new XWallPosZ(device, new Vector2(2050, 3500), new Vector2(3200, 3500)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(2600, 4600), new Vector2(4200, 4600)));//7
+            //walls.Add(new XWallPosZ(device, new Vector2(3200, 4200), new Vector2(4200, 4200)));//8
+            XPosWal(1500, 4300, 2600, 4300);//5
+            XPosWal(2050, 3500, 3200, 3500);//6
+            XPosWal(2600, 4600, 4200, 4600);//7
+            XPosWal(3200, 4200, 4200, 4200);//8
 
-            walls.Add(new XWallPosZ(device, new Vector2(1500, 4300), new Vector2(2600, 4300)));//5
-            walls.Add(new XWallPosZ(device, new Vector2(2050, 3500), new Vector2(3200, 3500)));//6
-            walls.Add(new XWallPosZ(device, new Vector2(2600, 4600), new Vector2(4200, 4600)));//7
-            walls.Add(new XWallPosZ(device, new Vector2(3200, 4200), new Vector2(4200, 4200)));//8
-
-            walls.Add(new ZWallPosX(device, new Vector2(1500, 4300), new Vector2(1500, 3800)));//9
-            walls.Add(new ZWallPosX(device, new Vector2(3700, 4200), new Vector2(3700, 3500)));//10
+            ZPosWall(1500, 4300, 1500, 3800);//9
+            ZPosWall(3700, 4200, 3700, 3500);//10
+            //walls.Add(new ZWallPosX(device, new Vector2(1500, 4300), new Vector2(1500, 3800)));//9
+            //walls.Add(new ZWallPosX(device, new Vector2(3700, 4200), new Vector2(3700, 3500)));//10
             #endregion
 
             #region area 2
-            walls.Add(new XWallPosZ(device, new Vector2(0, 4100), new Vector2(1500, 4100)));//1
-            walls.Add(new XWallPosZ(device, new Vector2(400, 2850), new Vector2(1000, 2850)));//2
+            //walls.Add(new XWallPosZ(device, new Vector2(0, 4100), new Vector2(1500, 4100)));//1
+            //walls.Add(new XWallPosZ(device, new Vector2(400, 2850), new Vector2(1000, 2850)));//2
+            XPosWal(0, 4100, 1500, 4100);//1
+            XPosWal(400, 2850, 1000, 2850);//2
 
-            walls.Add(new ZWallPosX(device, new Vector2(1000, 3800), new Vector2(1000, 2850)));//3
+            ZPosWall(1000, 3800, 1000, 2850);//3
+            //walls.Add(new ZWallPosX(device, new Vector2(1000, 3800), new Vector2(1000, 2850)));//3
             #endregion
 
             #region area 3
-            walls.Add(new XWallPosZ(device, new Vector2(800, 2400), new Vector2(1600, 2400)));//1
-            walls.Add(new XWallPosZ(device, new Vector2(2000, 2700), new Vector2(3050, 2700)));//2
-            walls.Add(new XWallPosZ(device, new Vector2(2000, 1800), new Vector2(3000, 1800)));//3
-            walls.Add(new XWallPosZ(device, new Vector2(1400, 1150), new Vector2(2650, 1150)));//4
-            walls.Add(new XWallPosZ(device, new Vector2(1000, 2000), new Vector2(1450, 2000)));//5
-            walls.Add(new XWallPosZ(device, new Vector2(1000, 750), new Vector2(3000, 750)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(800, 2400), new Vector2(1600, 2400)));//1
+            //walls.Add(new XWallPosZ(device, new Vector2(2000, 2700), new Vector2(3050, 2700)));//2
+            //walls.Add(new XWallPosZ(device, new Vector2(2000, 1800), new Vector2(3000, 1800)));//3
+            //walls.Add(new XWallPosZ(device, new Vector2(1400, 1150), new Vector2(2650, 1150)));//4
+            //walls.Add(new XWallPosZ(device, new Vector2(1000, 2000), new Vector2(1450, 2000)));//5
+            //walls.Add(new XWallPosZ(device, new Vector2(1000, 750), new Vector2(3000, 750)));//6
+            XPosWal(800, 2400, 1600, 2400);//1
+            XPosWal(2000, 2700, 3050, 2700);//2
+            XPosWal(2000, 1800, 3000, 1800);//3
+            XPosWal(1400, 1150, 2650, 1150);//4
+            XPosWal(1000, 2000, 1450, 2000);//5
+            XPosWal(1000, 750, 3000, 750);//6
 
-            walls.Add(new ZWallPosX(device, new Vector2(2000, 2700), new Vector2(2000, 1850)));//7
-            walls.Add(new ZWallPosX(device, new Vector2(3000, 2700), new Vector2(3000, 2050)));//8
-            walls.Add(new ZWallPosX(device, new Vector2(2650, 2300), new Vector2(2650, 1150)));//9
-            walls.Add(new ZWallPosX(device, new Vector2(1400, 2000), new Vector2(1400, 1200)));//10
-            walls.Add(new ZWallPosX(device, new Vector2(1000, 2000), new Vector2(1000, 800)));//11
-            walls.Add(new ZWallPosX(device, new Vector2(3000, 1400), new Vector2(3000, 750)));//12
+            //walls.Add(new ZWallPosX(device, new Vector2(2000, 2700), new Vector2(2000, 1850)));//7
+            //walls.Add(new ZWallPosX(device, new Vector2(3000, 2700), new Vector2(3000, 2050)));//8
+            //walls.Add(new ZWallPosX(device, new Vector2(2650, 2300), new Vector2(2650, 1150)));//9
+
+            //walls.Add(new ZWallPosX(device, new Vector2(1400, 2000), new Vector2(1400, 1200)));//10
+            //walls.Add(new ZWallPosX(device, new Vector2(1000, 2000), new Vector2(1000, 800)));//11
+            //walls.Add(new ZWallPosX(device, new Vector2(3000, 1400), new Vector2(3000, 750)));//12
+            ZPosWall(2000, 2700, 2000, 1850);//7
+            ZPosWall(3000, 2700, 3000, 2050);//8
+            ZPosWall(2650, 2300, 2650, 1150);//9
+            ZPosWall(1400, 2000, 1400, 1200);//10
+            ZPosWall(1000, 2000, 1000, 800);//11
+            ZPosWall(3000, 1400, 3000, 750);//12
+
+
             #endregion
 
             #region area 4
-            walls.Add(new ZWallPosX(device, new Vector2(4700, 3500), new Vector2(4700, 1900)));//1
-            walls.Add(new ZWallPosX(device, new Vector2(3700, 3100), new Vector2(3700, 750)));//2
-            walls.Add(new ZWallPosX(device, new Vector2(4000, 1900), new Vector2(4000, 400)));//3
-            walls.Add(new ZWallPosX(device, new Vector2(3600, 400), new Vector2(3600, 0)));//4
+            //walls.Add(new ZWallPosX(device, new Vector2(4700, 3500), new Vector2(4700, 1900)));//1
+            //walls.Add(new ZWallPosX(device, new Vector2(3700, 3100), new Vector2(3700, 750)));//2
+            //walls.Add(new ZWallPosX(device, new Vector2(4000, 1900), new Vector2(4000, 400)));//3
+            //walls.Add(new ZWallPosX(device, new Vector2(3600, 400), new Vector2(3600, 0)));//4
+            ZPosWall(4700, 3500, 4700, 1900);//1
+            ZPosWall(3700, 3100, 3700, 750);//2
+            ZPosWall(4000, 1900, 4000, 400);//3
+            ZPosWall(3600, 400, 3600, 0);//4
 
-            walls.Add(new XWallPosZ(device, new Vector2(3750, 2400), new Vector2(4700, 2400)));//5
-            walls.Add(new XWallPosZ(device, new Vector2(4000, 1900), new Vector2(4700, 1900)));//6
-            walls.Add(new XWallPosZ(device, new Vector2(3600, 400), new Vector2(4000, 400)));//7
+            //walls.Add(new XWallPosZ(device, new Vector2(3750, 2400), new Vector2(4700, 2400)));//5
+            //walls.Add(new XWallPosZ(device, new Vector2(4000, 1900), new Vector2(4700, 1900)));//6
+            //walls.Add(new XWallPosZ(device, new Vector2(3600, 400), new Vector2(4000, 400)));//7
+            XPosWal(3750, 2400, 4700, 2400);//5
+            XPosWal(4000, 1900, 4700, 1900);//6
+            XPosWal(3600, 400, 4000, 400);//7
             #endregion
 
             #region area 5
-            walls.Add(new XWallPosZ(device, new Vector2(500, 400), new Vector2(1450, 400)));//1
-            walls.Add(new XWallPosZ(device, new Vector2(1800, 400), new Vector2(3350, 400)));//2
+            //walls.Add(new XWallPosZ(device, new Vector2(500, 400), new Vector2(1450, 400)));//1
+            //walls.Add(new XWallPosZ(device, new Vector2(1800, 400), new Vector2(3350, 400)));//2
+            XPosWal(500, 400, 1450, 400);//1
+            XPosWal(1800, 400, 3350, 400);//2
 
-            walls.Add(new ZWallPosX(device, new Vector2(3300, 400), new Vector2(3300, 0)));//3
-            walls.Add(new ZWallPosX(device, new Vector2(1800, 400), new Vector2(1800, 0)));//4
-            walls.Add(new ZWallPosX(device, new Vector2(500, 400), new Vector2(500, 0)));//5
-            walls.Add(new ZWallPosX(device, new Vector2(1400, 400), new Vector2(1400, 0)));//6
+            //walls.Add(new ZWallPosX(device, new Vector2(3300, 400), new Vector2(3300, 0)));//3
+            //walls.Add(new ZWallPosX(device, new Vector2(1800, 400), new Vector2(1800, 0)));//4
+            //walls.Add(new ZWallPosX(device, new Vector2(500, 400), new Vector2(500, 0)));//5
+            //walls.Add(new ZWallPosX(device, new Vector2(1400, 400), new Vector2(1400, 0)));//6
+            ZPosWall(3300, 400, 3300, 0);//3
+            ZPosWall(1800, 400, 1800, 0);//4
+            ZPosWall(500, 400, 500, 0);//5
+            ZPosWall(1400, 400, 1400, 0);//6
             #endregion
-
         }
 
         private void GenerateCeiling()
@@ -228,7 +267,8 @@ namespace LabyrinthExplorer
         private void GenerateEnvironment()
         {
             environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150), 
-                    new Vector3(0, 0, 0), 50, Vector3.Left));
+                    new Vector3(0, -90, 0), 50, Vector3.Left));
+            environment.Add(new Lever(contentMan, new Vector3(2250, 0, 1875), Vector3.Zero, 50, Vector3.Forward));
         }
 
         #region Ease of creation functions

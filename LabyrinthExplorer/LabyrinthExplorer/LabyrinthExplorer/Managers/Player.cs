@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace LabyrinthExplorer
 {
@@ -22,15 +23,34 @@ namespace LabyrinthExplorer
 
         public Player(Game game, Vector3 position)
         {
-            this.game = game;
+             this.game = game;
 
             camera = new Camera(game);
             game.Components.Add(camera);
             InitializeLightStick(game.Content);
             SetCameraProperties();
             EnableColorMap = true;
+            PerformPlayerCollision = true;
+            playerAABB = new AABB(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING);
+        }
 
-            playerAABB = new AABB(camera.Position, GameConstants.CAM_BOUNDS_PADDING);
+        public void HandlePlayerInput(InputManager input)
+        {
+            if (input.IsKeyDownOnce(Keys.C))
+                PerformPlayerCollision = !PerformPlayerCollision;
+
+            if (input.IsKeyDownOnce(Keys.E))
+            {
+                List<AABB> interactables = Interactables.GetInteractablesInRange(playerAABB);
+                foreach (AABB aabb in interactables)
+                {
+                    if (aabb is IInteractableObject)
+                    {
+                        IInteractableObject obj = (IInteractableObject)aabb;
+                        obj.Use();
+                    }
+                }
+            }
         }
 
         public void Update(float deltaTime)
@@ -76,6 +96,7 @@ namespace LabyrinthExplorer
 
             if (PerformPlayerCollision)
             {
+                
                 foreach (AABB aabb in world.EnvironmentCollidables())
                 {
                     Vector3 collision = PlayerAABB.CheckCollision(aabb);
@@ -85,7 +106,6 @@ namespace LabyrinthExplorer
                     }
                 }
             }
-
             camera.Position = newPos;
         }
 
@@ -96,6 +116,7 @@ namespace LabyrinthExplorer
             lightStickWorldMatrix = Matrix.Identity;
 
         }
+        
         private void SetCameraProperties()
         {
             camera.EyeHeightStanding = GameConstants.CAMERA_PLAYER_EYE_HEIGHT;

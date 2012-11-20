@@ -79,9 +79,13 @@
     <Compile Include="AI\States\PatrolX.cs" />
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Collision\IAABB.cs" />
+    <Compile Include="GameObjects\IInteractableObject.cs" />
     <Compile Include="Environment\Skybox.cs" />
     <Compile Include="GameObjects\Chest.cs" />
+    <Compile Include="GameObjects\Door.cs" />
     <Compile Include="GameObjects\EnvironmentObject.cs" />
+    <Compile Include="GameObjects\Gate.cs" />
+    <Compile Include="GameObjects\Lever.cs" />
     <Compile Include="Levels\IGameLevel.cs" />
     <Compile Include="Levels\Level1Content.cs" />
     <Compile Include="Managers\CollisionManager.cs" />

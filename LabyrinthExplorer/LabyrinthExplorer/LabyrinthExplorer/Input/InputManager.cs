@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace LabyrinthExplorer
 {
-    class InputManager : IInputService
+    public class InputManager : IInputService
     {
         private KeyboardState keyState;
         private KeyboardState prevKeyState;

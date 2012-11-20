@@ -127,9 +127,6 @@ namespace LabyrinthExplorer
                 if (player.Cam.RotationSpeed <= 0.0f)
                     player.Cam.RotationSpeed = 0.01f;
             }
-            if (input.IsKeyDownOnce(Keys.C))
-                player.PerformPlayerCollision = !player.PerformPlayerCollision;
-
             if (input.IsKeyDown(Keys.LeftAlt) || input.IsKeyDown(Keys.RightAlt))
             {
                 if (input.IsKeyDownOnce(Keys.Enter))
@@ -143,10 +140,8 @@ namespace LabyrinthExplorer
             {
                 GameConstants.RenderOnScreenText = !GameConstants.RenderOnScreenText;
             }
-            if (input.IsKeyDownOnce(Keys.E))
-            {
-                //"use"
-            }
+
+            player.HandlePlayerInput(input);
         }
         
         private void IncrementFrameCounter()

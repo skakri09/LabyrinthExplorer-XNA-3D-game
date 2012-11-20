@@ -94,6 +94,7 @@ namespace LabyrinthExplorer
             LoadSong("LOD", "Music");
             LoadSound("ChestClose", "");
             LoadSound("ChestOpen", "");
+            LoadSound("LeverUsed", "");
         }
 
         /// <summary>

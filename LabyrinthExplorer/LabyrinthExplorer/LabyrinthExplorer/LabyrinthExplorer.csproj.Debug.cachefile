@@ -88,6 +88,7 @@ Content\Models\Environment\Gate.xnb
 Content\Models\Environment\Gate\brokengatewood06.alpha_0.xnb
 Content\Sound\Effects\ChestClose.xnb
 Content\Sound\Effects\ChestOpen.xnb
+Content\Models\Environment\LeverUsed.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Ambient\mysteryZone.wma
 Content\Sound\Effects\GateDoorOpening.wma
