@@ -653,9 +653,9 @@ namespace LabyrinthExplorer
 
             if (performPlayerCollisionTest)
             {
-                foreach (SolidWall wall in world.Walls)
+                foreach (AABB aabb in world.EnvironmentCollidables())
                 {
-                    Vector3 collision = PlayerAABB.CheckCollision(wall.Aabb);
+                    Vector3 collision = PlayerAABB.CheckCollision(aabb);
                     if (collision != Vector3.Zero)
                     {
                         Position += collision;

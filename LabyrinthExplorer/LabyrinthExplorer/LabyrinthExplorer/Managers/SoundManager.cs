@@ -91,7 +91,7 @@ namespace LabyrinthExplorer
 
         public void LoadContent()
         {
-            LoadSong("LOD");
+            LoadSong("Music/LOD");
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace LabyrinthExplorer
                 throw new InvalidOperationException(string.Format("Song '{0}' has already been loaded", songName));
             }
 
-            //_songs.Add(songName, _content.Load<Song>(songContentpath+songName));
+            _songs.Add(songName, _content.Load<Song>(songContentpath+songName));
            
         }
 

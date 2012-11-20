@@ -39,7 +39,7 @@ namespace LabyrinthExplorer
         World world;
 
         private AudioManager soundMan;
-        Enemy spider;
+        //Enemy spider;
         #endregion  
 
         public Game()
@@ -130,8 +130,8 @@ namespace LabyrinthExplorer
             weapon = Content.Load<Model>(@"Models\LightStick");
             soundMan.LoadContent();
             //soundMan.PlaySong("LOD",true);
-            spider = new Enemy("dude");
-            spider.LoadContent(Content);
+           // spider = new Enemy("dude");
+           // spider.LoadContent(Content);
         }
 
         /// <summary>
@@ -180,6 +180,10 @@ namespace LabyrinthExplorer
             {
                 if (input.IsKeyDownOnce(Keys.Enter))
                     ToggleFullScreen();
+            }
+            if (input.IsKeyDownOnce(Keys.F))
+            {
+                world.DrawSkybox = !world.DrawSkybox;
             }
         }
         
@@ -273,8 +277,8 @@ namespace LabyrinthExplorer
             HandleInput();
             PerformCameraCollisionDetection();
             UpdateWeapon();
-            spider.Update(gameTime.ElapsedGameTime, deltaTime);
-            world.Update(deltaTime);
+            //spider.Update(gameTime.ElapsedGameTime, deltaTime);
+            world.Update(gameTime);
             UpdateFrameRate(gameTime);
         }
         
@@ -334,10 +338,13 @@ namespace LabyrinthExplorer
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if(!GameConstants.UpdateWhenTabbed)
+            if (!GameConstants.UpdateWhenTabbed)
+            {
                 if (!this.IsActive)
+                {
                     return;
-
+                }
+            }
             GraphicsDevice.Clear(Color.Black);
 
             GraphicsDevice.BlendState = BlendState.Opaque;
@@ -363,7 +370,7 @@ namespace LabyrinthExplorer
 
                 m.Draw();
             }
-            spider.Draw(camera);
+            //spider.Draw(camera);
             DrawText();
 
             base.Draw(gameTime);

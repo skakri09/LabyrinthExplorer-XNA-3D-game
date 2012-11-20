@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LabyrinthExplorer.EasyWalls
+namespace LabyrinthExplorer
 {
 
     //Creates a wall along the x axis. The startPos must have the lowest X value.

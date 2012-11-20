@@ -150,6 +150,26 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Models\Environment\ChestClosed.fbx">
+      <Name>ChestClosed</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Environment\ChestOpen.fbx">
+      <Name>ChestOpen</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Environment\DoorClosed.fbx">
+      <Name>DoorClosed</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Environment\Gate.fbx">
+      <Name>Gate</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <None Include="Textures\dungeon_walls_1.jpg">
       <Name>dungeon_walls_1</Name>
       <Importer>TextureImporter</Importer>
