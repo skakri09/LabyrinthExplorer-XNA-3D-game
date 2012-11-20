@@ -32,7 +32,7 @@ namespace LabyrinthExplorer
 
             DrawSkybox = true;
 
-            currentLevel = new Level1Content();
+            currentLevel = new Level1Content(camera);
         }
 
         public void Update(GameTime gameTime)

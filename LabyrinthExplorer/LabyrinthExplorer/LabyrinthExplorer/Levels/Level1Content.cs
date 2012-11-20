@@ -27,31 +27,47 @@ namespace LabyrinthExplorer
         private Texture2D woodNormalMap;
         private Texture2D woodHeightMap;
 
-        public Level1Content()
+        private ContentManager contentMan;
+        private GraphicsDevice device;
+
+        private Camera camera;
+        public Level1Content(Camera camera)
         {
+            this.camera = camera;
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();
             enemies = new List<Enemy>();
             environment = new List<EnvironmentObject>();
             environmentCollidables = new List<AABB>();
-
         }
 
         public void LoadContent(GraphicsDevice device, ContentManager contentMan)
         {
-            LoadMaps(contentMan);
-            CreateWalls(device);
-            CreateCeiling(device);
-            CreateFloor(device);
-            CreateEnemies(contentMan);
+            this.device = device;
+            this.contentMan = contentMan;
+
+            LoadMaps();
+            GenerateWalls();
+            GenerateCeiling();
+            GenerateFloors();
+            GenerateEnemies();
+            GenerateEnvironment();
+
+            //ctrlRoom = contentMan.Load<Model>(@"Models\ControlRoom");
+            //ironMaiden = contentMan.Load<Model>(@"Models\Environment\DoorClosed");
         }
 
         public void Update(GameTime gameTime, Camera camera)
         {
+            float deltaTime = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (Enemy enemy in enemies)
             {
-                enemy.Update(gameTime.ElapsedGameTime, (float)gameTime.ElapsedGameTime.TotalSeconds);
+                enemy.Update(gameTime.ElapsedGameTime, deltaTime);
+            }
+            foreach(EnvironmentObject obj in environment)
+            {
+                obj.Update(deltaTime);
             }
         }
 
@@ -80,6 +96,10 @@ namespace LabyrinthExplorer
                 floor.Draw(graphicsDevice, effect, "colorMapTexture",
                             "normalMapTexture", "heightMapTexture",
                             stoneColorMap, stoneNormalMap, stoneHeightMap);
+            }
+            foreach (EnvironmentObject obj in environment)
+            {
+                obj.Draw(camera);
             }
 
             //Matrix[] transforms = new Matrix[ctrlRoom.Bones.Count];
@@ -127,7 +147,7 @@ namespace LabyrinthExplorer
             //}
         }
 
-        private void LoadMaps(ContentManager contentMan)
+        private void LoadMaps()
         {
             brickColorMap = contentMan.Load<Texture2D>(@"Textures\brick_color_map");
             brickNormalMap = contentMan.Load<Texture2D>(@"Textures\brick_normal_map");
@@ -142,7 +162,7 @@ namespace LabyrinthExplorer
             woodHeightMap = contentMan.Load<Texture2D>(@"Textures\wood_height_map");
         }
         
-        private void CreateWalls(GraphicsDevice device)
+        private void GenerateWalls()
         {
             //XWallNegZ = grows out on negative Z
             //XWallPosZ = grows out on positive Z
@@ -233,7 +253,7 @@ namespace LabyrinthExplorer
 
         }
 
-        private void CreateCeiling(GraphicsDevice device)
+        private void GenerateCeiling()
         {
             ceilings.Add(new NormalMappedCeiling(device,
                 new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000), 
@@ -243,21 +263,42 @@ namespace LabyrinthExplorer
                 Vector3.Down));
         }
 
-        private void CreateFloor(GraphicsDevice device)
+        private void GenerateFloors()
+        {
+            CreateFloor(new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
+                        new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000));
+        }
+
+        private void GenerateEnemies()
+        {
+            
+        }
+
+        private void GenerateEnvironment()
+        {
+            environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150), 
+                    new Vector3(0, 0, 0), 50, Vector3.Left));
+        }
+
+        #region Ease of creation functions
+
+        private void CreateEnemy(string enemyName)
+        {
+            Enemy newEnemy = new Enemy(enemyName);
+            newEnemy.LoadContent(contentMan);
+            enemies.Add(newEnemy);
+            //possibly add AABB?
+        }
+
+        private void CreateFloor(Vector3 frontLeft, Vector3 frontRight, 
+                                 Vector3 backRight, Vector3 backLeft)
         {
             floors.Add(new NormalMappedFloor(device,
-            new Vector3(-5000, 0, 5000), 
-            new Vector3(5000, 0, 5000),
-            new Vector3(5000, 0, -5000), 
-            new Vector3(-5000, 0, -5000), 
+            frontLeft, frontRight, backRight, backLeft,
             Vector3.Up));
         }
 
-        private void CreateEnemies(ContentManager contentMan)
-        {
-            //ctrlRoom = contentMan.Load<Model>(@"Models\ControlRoom");
-            //ironMaiden = contentMan.Load<Model>(@"Models\Environment\DoorClosed");
-        }
+        #endregion
 
         public List<AABB> EnvironmentCollidables()
         {

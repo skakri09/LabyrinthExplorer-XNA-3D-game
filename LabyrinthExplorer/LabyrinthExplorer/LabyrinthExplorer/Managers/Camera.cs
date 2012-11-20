@@ -178,7 +178,7 @@ namespace LabyrinthExplorer
             float aspect = (float)clientBounds.Width / (float)clientBounds.Height;
             Perspective(fovx, aspect, znear, zfar);
 
-            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING, this);
+            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING);
             Position = GameConstants.PLAYER_START_POS*GameConstants.MAP_SCALE;
         }
 

@@ -10,20 +10,37 @@ namespace LabyrinthExplorer
     {
         Vector3 minPoint, orgMinPoint;
         Vector3 maxPoint, orgMaxPoint;
-        Camera owner;
 
         public AABB(Vector3 btmFrontLeft, Vector3 btmFrontRight,
             Vector3 btmBackRight, Vector3 btmBackLeft, float height)
         {
             orgMinPoint = minPoint = btmBackLeft;
             orgMaxPoint = maxPoint = new Vector3(btmFrontRight.X, height, btmFrontRight.Z);
+            CollisionManager.AddCollidable(this);
         }
 
-        public AABB(Vector3 position, float padding, Camera owner)
+        public AABB(Vector3 position, float padding)
         {
             orgMinPoint = minPoint = new Vector3(position.X - padding, position.Y - padding, position.Z - padding);
             orgMaxPoint = maxPoint = new Vector3(position.X + padding, position.Y + padding, position.Z + padding);
-            this.owner = owner;
+            CollisionManager.AddCollidable(this);
+        }
+
+        public AABB(Vector3 _minPoint, Vector3 _maxPoint)
+        {
+            SetAABB(_minPoint, _maxPoint);
+        }
+
+        //Empty ctor for setting aabb manually, used by environment objects
+        public AABB()
+        {
+        }
+
+        protected void SetAABB(Vector3 _minPoint, Vector3 _maxPoint)
+        {
+            orgMinPoint = minPoint = _minPoint;
+            orgMaxPoint = maxPoint = _maxPoint;
+            CollisionManager.AddCollidable(this);
         }
 
         public void UpdateAABB(Vector3 displacement)
@@ -45,6 +62,11 @@ namespace LabyrinthExplorer
             if (minPoint.Y > otherAABB.MaxPoint.Y) return Vector3.Zero;
 
             return minimumTranslation(otherAABB);
+        }
+
+        public void DrawAABB()
+        {
+
         }
 
         /// <summary>

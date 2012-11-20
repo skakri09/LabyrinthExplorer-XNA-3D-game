@@ -38,8 +38,8 @@ namespace LabyrinthExplorer
 
         World world;
 
-        private AudioManager soundMan;
-        //Enemy spider;
+        public static AudioManager SoundManager;
+
         #endregion  
 
         public Game()
@@ -62,7 +62,7 @@ namespace LabyrinthExplorer
 
             IsFixedTimeStep = GameConstants.verticalSyncOn;
             
-            soundMan = new AudioManager(this);  
+            SoundManager = new AudioManager(this);  
                                                      
         }
 
@@ -128,10 +128,7 @@ namespace LabyrinthExplorer
             spriteFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
             
             weapon = Content.Load<Model>(@"Models\LightStick");
-            soundMan.LoadContent();
-            //soundMan.PlaySong("LOD",true);
-           // spider = new Enemy("dude");
-           // spider.LoadContent(Content);
+            SoundManager.LoadContent();
         }
 
         /// <summary>
@@ -184,6 +181,10 @@ namespace LabyrinthExplorer
             if (input.IsKeyDownOnce(Keys.F))
             {
                 world.DrawSkybox = !world.DrawSkybox;
+            }
+            if (input.IsKeyDownOnce(Keys.G))
+            {
+                GameConstants.RenderOnScreenText = !GameConstants.RenderOnScreenText;
             }
         }
         
@@ -277,7 +278,6 @@ namespace LabyrinthExplorer
             HandleInput();
             PerformCameraCollisionDetection();
             UpdateWeapon();
-            //spider.Update(gameTime.ElapsedGameTime, deltaTime);
             world.Update(gameTime);
             UpdateFrameRate(gameTime);
         }
@@ -370,8 +370,9 @@ namespace LabyrinthExplorer
 
                 m.Draw();
             }
-            //spider.Draw(camera);
-            DrawText();
+
+            if(GameConstants.RenderOnScreenText)
+                DrawText();
 
             base.Draw(gameTime);
             IncrementFrameCounter();

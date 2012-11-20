@@ -91,21 +91,23 @@ namespace LabyrinthExplorer
 
         public void LoadContent()
         {
-            LoadSong("Music/LOD");
+            LoadSong("LOD", "Music");
+            LoadSound("ChestClose", "");
+            LoadSound("ChestOpen", "");
         }
 
         /// <summary>
         /// Loads a Song into the AudioManager.
         /// </summary>
         /// <param name="songName">Name of the song to load</param>
-        public void LoadSong(string songName)
+        public void LoadSong(string songName, string subDirectory)
         {
             if (_songs.ContainsKey(songName))
             {
                 throw new InvalidOperationException(string.Format("Song '{0}' has already been loaded", songName));
             }
 
-            _songs.Add(songName, _content.Load<Song>(songContentpath+songName));
+            _songs.Add(songName, _content.Load<Song>(songContentpath + subDirectory + "/" + songName));
            
         }
 
@@ -114,14 +116,14 @@ namespace LabyrinthExplorer
         /// </summary>
         /// <param name="soundName">Name of the sound to load</param>
         /// <param name="soundPath">Path to the song asset file</param>
-        public void LoadSound(string soundName)
+        public void LoadSound(string soundName, string subDirectory)
         {
             if (_sounds.ContainsKey(soundName))
             {
                 throw new InvalidOperationException(string.Format("Sound '{0}' has already been loaded", soundName));
             }
 
-            _sounds.Add(soundName, _content.Load<SoundEffect>(sfxContentPath+soundName));
+            _sounds.Add(soundName, _content.Load<SoundEffect>(sfxContentPath + subDirectory + "/" + soundName));
         }
 
         /// <summary>

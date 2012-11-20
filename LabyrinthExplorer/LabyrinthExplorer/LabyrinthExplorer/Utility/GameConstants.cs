@@ -22,6 +22,8 @@ namespace LabyrinthExplorer
 
         public static bool UpdateWhenTabbed = true;
 
+        public static bool RenderOnScreenText = true;
+
         #region light
         public static Color GlobalAmbientGame = new Color(new Vector4(0.1f, 0.1f, 0.1f, 0.01f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));

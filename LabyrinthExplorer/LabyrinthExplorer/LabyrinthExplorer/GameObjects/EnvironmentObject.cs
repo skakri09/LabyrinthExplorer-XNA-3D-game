@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LabyrinthExplorer
 {
-    public class EnvironmentObject
+    public class EnvironmentObject : AABB
     {
         private Vector3 position;
         private Vector3 rotation;
@@ -43,6 +43,10 @@ namespace LabyrinthExplorer
             model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
+        //Override if update functionality is required
+        public virtual void Update(float deltaTime)
+        {
+        }
 
         public void Draw(Camera camera)
         {
@@ -65,6 +69,24 @@ namespace LabyrinthExplorer
                 }
                 mesh.Draw();
             }
+        }
+
+        protected void SetModel(Model newModel)
+        {
+            model = newModel;
+            transformation = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transformation);
+        }
+
+        protected Model GetModel()
+        {
+            return model;
+        }
+
+        protected Vector3 Position
+        {
+            get { return position; }
+            set { position = value; }
         }
     }
 }
