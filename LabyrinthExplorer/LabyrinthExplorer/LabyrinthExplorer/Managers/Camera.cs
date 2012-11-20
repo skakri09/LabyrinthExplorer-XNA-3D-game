@@ -111,12 +111,9 @@ namespace LabyrinthExplorer
         private Vector2 smoothedMouseMovement;
         private MouseState currentMouseState;
         private Dictionary<Actions, Keys> actionKeys;
-        private bool performPlayerCollisionTest = true;
         #endregion
 
         private InputManager input;
-
-        private AABB playerAABB;
 
     #region Public Methods
 
@@ -178,7 +175,6 @@ namespace LabyrinthExplorer
             float aspect = (float)clientBounds.Width / (float)clientBounds.Height;
             Perspective(fovx, aspect, znear, zfar);
 
-            playerAABB = new AABB(Position, GameConstants.CAM_BOUNDS_PADDING);
             Position = GameConstants.PLAYER_START_POS*GameConstants.MAP_SCALE;
         }
 
@@ -363,9 +359,7 @@ namespace LabyrinthExplorer
         {
             base.Update(gameTime);
             UpdateInput();
-            UpdateCamera(gameTime, (World)Game.Services.GetService(typeof(World)));
-            
-            playerAABB.UpdateAABB(Position);
+            UpdateCamera(gameTime);
         }
 
         /// <summary>
@@ -636,7 +630,7 @@ namespace LabyrinthExplorer
             Rotate(headingDegrees, pitchDegrees);
         }
 
-        private void UpdateCamera(GameTime gameTime, World world)
+        private void UpdateCamera(GameTime gameTime)
         {
             float elapsedTimeSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector3 direction = new Vector3();
@@ -650,18 +644,6 @@ namespace LabyrinthExplorer
 
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
             UpdatePosition(ref direction, elapsedTimeSec);
-
-            if (performPlayerCollisionTest)
-            {
-                foreach (AABB aabb in world.EnvironmentCollidables())
-                {
-                    Vector3 collision = PlayerAABB.CheckCollision(aabb);
-                    if (collision != Vector3.Zero)
-                    {
-                        Position += collision;
-                    }
-                }
-            }
         }
 
         private void UpdateInput()
@@ -895,16 +877,7 @@ namespace LabyrinthExplorer
 
     #region Properties
 
-        public bool PerformPlayerCollision
-        {
-            get { return performPlayerCollisionTest; }
-            set { performPlayerCollisionTest = value; }
-        }
 
-        public AABB PlayerAABB
-        {
-            get { return playerAABB; }
-        }
 
         public Vector3 Acceleration
         {

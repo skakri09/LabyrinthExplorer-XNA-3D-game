@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
@@ -27,14 +28,6 @@ namespace LabyrinthExplorer
                 }
             }
             return returnValue;
-        }
-
-        public static void DrawCollidables()
-        {
-            foreach (AABB aabb in Collidables)
-            {
-                aabb.DrawAABB();
-            }
         }
     }
 }

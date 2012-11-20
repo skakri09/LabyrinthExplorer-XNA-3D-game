@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
@@ -62,11 +63,6 @@ namespace LabyrinthExplorer
             if (minPoint.Y > otherAABB.MaxPoint.Y) return Vector3.Zero;
 
             return minimumTranslation(otherAABB);
-        }
-
-        public void DrawAABB()
-        {
-
         }
 
         /// <summary>

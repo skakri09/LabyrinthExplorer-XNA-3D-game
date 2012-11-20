@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace LabyrinthExplorer.Managers
+namespace LabyrinthExplorer
 {
     public static class Interactables
     {
-        public static List<AABB> interactables;
+        public static List<AABB> interactables = new List<AABB>();
 
         public static void AddInteractable(AABB interactable)
         {

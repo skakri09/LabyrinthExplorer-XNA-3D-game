@@ -31,6 +31,7 @@ namespace LabyrinthExplorer
         private GraphicsDevice device;
 
         private Camera camera;
+
         public Level1Content(Camera camera)
         {
             this.camera = camera;
@@ -53,9 +54,6 @@ namespace LabyrinthExplorer
             GenerateFloors();
             GenerateEnemies();
             GenerateEnvironment();
-
-            //ctrlRoom = contentMan.Load<Model>(@"Models\ControlRoom");
-            //ironMaiden = contentMan.Load<Model>(@"Models\Environment\DoorClosed");
         }
 
         public void Update(GameTime gameTime, Camera camera)
@@ -101,50 +99,6 @@ namespace LabyrinthExplorer
             {
                 obj.Draw(camera);
             }
-
-            //Matrix[] transforms = new Matrix[ctrlRoom.Bones.Count];
-            //ctrlRoom.CopyAbsoluteBoneTransformsTo(transforms);
-            //foreach (ModelMesh mesh in ctrlRoom.Meshes)
-            //{
-            //    foreach (BasicEffect effect in mesh.Effects)
-            //    {
-            //        effect.EnableDefaultLighting();
-
-            //        effect.World = Matrix.Identity
-            //            * transforms[mesh.ParentBone.Index]
-            //            //* Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))
-            //            //* Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
-            //            //* Matrix.CreateRotationZ(MathHelper.ToRadians(rotation.Z))
-            //            * Matrix.CreateScale(1)
-            //            * Matrix.CreateTranslation(new Vector3(-5355, 30, 0));
-            //        effect.View = camera.ViewMatrix;
-            //        effect.Projection = camera.ProjectionMatrix;
-
-
-            //    }
-            //    mesh.Draw();
-            //}
-            //Matrix[] transformsi = new Matrix[ironMaiden.Bones.Count];
-            //ironMaiden.CopyAbsoluteBoneTransformsTo(transformsi);
-
-            //foreach (ModelMesh mesh in ironMaiden.Meshes)
-            //{
-            //    foreach (BasicEffect effect in mesh.Effects)
-            //    {
-            //        effect.EnableDefaultLighting();
-
-            //        effect.World = Matrix.Identity
-            //            * transformsi[mesh.ParentBone.Index]
-            //            * Matrix.CreateRotationY(MathHelper.ToRadians(180))
-            //            * Matrix.CreateScale(75)
-            //            * Matrix.CreateTranslation(GameConstants.PLAYER_START_POS);
-            //        effect.View = camera.ViewMatrix;
-            //        effect.Projection = camera.ProjectionMatrix;
-
-
-            //    }
-            //    mesh.Draw();
-            //}
         }
 
         private void LoadMaps()
@@ -164,6 +118,7 @@ namespace LabyrinthExplorer
         
         private void GenerateWalls()
         {
+            #region howToUseWalls
             //XWallNegZ = grows out on negative Z
             //XWallPosZ = grows out on positive Z
             //ZWallNegX = grows out on negative X
@@ -171,24 +126,20 @@ namespace LabyrinthExplorer
 
             //Z Walls - ZWallPosX
             //X Walls - XWallNegZAl
+            #endregion
 
             #region outer wall
             //+Z outer wall
-            walls.Add(new SolidWall(device,
-                new Vector2(0, 5050), new Vector2(5000, 5050),
-                new Vector2(5000, 5000), new Vector2(0, 5000), GameConstants.WALL_HEIGHT));
+            XPosWal(0, 5000, 5000, 5000);
+
             //-Z outer wall
-            walls.Add(new SolidWall(device,
-                 new Vector2(0, 0), new Vector2(5000, 0),
-                 new Vector2(5000, -50), new Vector2(0, -50), GameConstants.WALL_HEIGHT));
+            XPosWal(0, 0, 5000, 0);
+           
             //+X outer wall
-            walls.Add(new SolidWall(device,
-                new Vector2(5000, 5000), new Vector2(5050, 5000),
-                new Vector2(5050, -0), new Vector2(5000, 0), GameConstants.WALL_HEIGHT));
+            ZPosWall(5000, 5000, 5000, 0);
+
             //-X outer wall
-            walls.Add(new SolidWall(device,
-                 new Vector2(-50, 5000), new Vector2(0, 5000),
-                 new Vector2(0, 0), new Vector2(-50, 0), GameConstants.WALL_HEIGHT));
+            ZPosWall(-50, 5000, -50, 0);
             #endregion
 
             #region area 1
@@ -281,6 +232,28 @@ namespace LabyrinthExplorer
         }
 
         #region Ease of creation functions
+
+
+        private void ZPosWall(float startX, float startZ, float endX, float endZ, float width = 50)
+        {
+            ZPosWall(new Vector2(startX, startZ), new Vector2(endX, endZ), width);
+        }
+        private void ZPosWall(Vector2 startPos, Vector2 endPos, float width = 50)
+        {
+            ZWallPosX newWall = new ZWallPosX(device, startPos, endPos, width);
+            walls.Add(newWall);
+            environmentCollidables.Add(newWall.Aabb);
+        }
+        private void XPosWal(float startX, float startZ, float endX, float endZ, float width = 50)
+        {
+            XPosWal(new Vector2(startX, startZ), new Vector2(endX, endZ), width);
+        }
+        private void XPosWal(Vector2 startPos, Vector2 endPos, float width = 50)
+        {
+            XWallPosZ newWall = new XWallPosZ(device, startPos, endPos, width);
+            walls.Add(newWall);
+            environmentCollidables.Add(newWall.Aabb);
+        }
 
         private void CreateEnemy(string enemyName)
         {

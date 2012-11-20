@@ -86,6 +86,7 @@
     <Compile Include="Levels\Level1Content.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />
+    <Compile Include="Managers\Player.cs" />
     <Compile Include="Utility\AssetLoader.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
