@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
@@ -14,10 +15,10 @@ namespace LabyrinthExplorer
         private Vector3 closedPosition;
         private Vector3 openingVelocity;
         private Vector3 closingVelocity;
-        bool autoClose;
-        float closeAfter;
-        float gateBeenOpenFor;
-
+        private bool autoClose;
+        private float closeAfter;
+        private float gateBeenOpenFor;
+        
         public Gate(ContentManager content, Vector3 position,
                     Vector3 rotation, float scale, float closeAfterSeconds = 0, bool isClosed = true)
             :base(@"Models\Environment\Gate", content, position, rotation, scale)
@@ -35,6 +36,10 @@ namespace LabyrinthExplorer
                 autoClose = true;
                 closeAfter = closeAfterSeconds;
             }
+            emitter = new AudioEmitter();
+            emitter.Position = base.Position;
+            //emitter.Up = Vector3.Up;
+            //emitter.Forward = Vector3.Right;
         }
 
         public override void Update(float deltaTime)
@@ -85,14 +90,18 @@ namespace LabyrinthExplorer
             }
         }
 
+        public void Use()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
         private void OpenGate()
         {
-            Game.SoundManager.PlaySound("GateDoorOpening");
+            Game.SoundManager.PlaySound("GateDoorOpening", this);
             gateState = GateState.OPENING;
         }
         private void CloseGate()
         {
-            Game.SoundManager.PlaySound("GateDoorClosing");
+            Game.SoundManager.PlaySound("GateDoorClosing", this);
             gateState = GateState.CLOSING;
         }
 

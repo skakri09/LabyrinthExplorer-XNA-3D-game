@@ -5,10 +5,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class EnvironmentObject : AABB, IEnvironmentObject
+    public class EnvironmentObject : AABB, IEnvironmentObject, I3DSound
     {
         private Vector3 position;
         private Vector3 rotation;
@@ -16,7 +17,7 @@ namespace LabyrinthExplorer
 
         private Matrix[] transformation;
         private Matrix matrixTranslation;
-
+        protected AudioEmitter emitter;
         private Model model;
         
         /// <summary>
@@ -38,9 +39,15 @@ namespace LabyrinthExplorer
             model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
-        //Override if update functionality is required
         public virtual void Update(float deltaTime)
         {
+            if(emitter != null)
+                emitter.Position = position;
+        }
+
+        public AudioEmitter GetAudioEmitter()
+        {
+            return emitter;
         }
 
         public void Draw(Camera camera)

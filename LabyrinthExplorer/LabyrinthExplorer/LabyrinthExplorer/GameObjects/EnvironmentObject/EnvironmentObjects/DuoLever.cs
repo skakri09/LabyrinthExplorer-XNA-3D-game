@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
@@ -87,14 +88,14 @@ namespace LabyrinthExplorer
                 {
                     lever1Used = true;
                     lever1UsedDuration = 0.0f;
-                    Game.SoundManager.PlaySound("Clock", timesToPlay);
+                    Game.SoundManager.PlaySound("Clock", null, timesToPlay);
                     lever1.Use(null);
                 }
                 if (interactingParty.CheckCollision(lever2) != Vector3.Zero)
                 {
                     lever2Used = true;
                     lever2UsedDuration = 0.0f;
-                    Game.SoundManager.PlaySound("Clock", timesToPlay);
+                    Game.SoundManager.PlaySound("Clock", null, timesToPlay);
                     lever2.Use(null);
                 }
 

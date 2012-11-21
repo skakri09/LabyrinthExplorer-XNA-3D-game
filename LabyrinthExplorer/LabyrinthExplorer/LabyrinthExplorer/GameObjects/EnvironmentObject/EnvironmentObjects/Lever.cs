@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
@@ -30,6 +31,8 @@ namespace LabyrinthExplorer
             CreateUseAABB(openFromDirection, Position, 100, 100);
             this.onUseObject = LeverUseObject;
             Interactables.AddInteractable(this);
+            emitter = new AudioEmitter();
+            emitter.Position = position;
         }
 
         //Ctor without onUse object, used by duoLever objects
@@ -44,13 +47,15 @@ namespace LabyrinthExplorer
             closedModel = base.GetModel();
             usedModel = content.Load<Model>(@"Models\Environment\LeverUsed");
             CreateUseAABB(openFromDirection, Position, 100, 100);
+            emitter = new AudioEmitter();
+            emitter.Position = position;
         }
 
         public void Use(AABB interactingParty)
         {
             if (!isUsed)
             {
-                Game.SoundManager.PlaySound("LeverUsed");
+                Game.SoundManager.PlaySound("LeverUsed", this);
                 base.SetModel(usedModel);
                 if (onUseObject != null && interactingParty != null)
                 {
@@ -65,7 +70,7 @@ namespace LabyrinthExplorer
         {
             if (isUsed)
             {
-                Game.SoundManager.PlaySound("LeverUsed");
+                Game.SoundManager.PlaySound("LeverUsed", this);
                 base.SetModel(closedModel);
                 isUsed = false;
             }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
@@ -21,6 +22,8 @@ namespace LabyrinthExplorer
 
         private Game game;
 
+        public static AudioListener playerListener;
+
         public Player(Game game, Vector3 position)
         {
              this.game = game;
@@ -32,6 +35,10 @@ namespace LabyrinthExplorer
             EnableColorMap = true;
             PerformPlayerCollision = true;
             playerAABB = new AABB(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING);
+            playerListener = new AudioListener();
+            playerListener.Position = camera.Position;
+            playerListener.Forward = camera.ViewDirection;
+            playerListener.Up = Vector3.Up;
         }
 
         public void HandlePlayerInput(InputManager input)
@@ -59,6 +66,10 @@ namespace LabyrinthExplorer
 
             playerAABB.UpdateAABB(camera.Position);
 
+            playerListener.Position = camera.Position;
+            playerListener.Forward = camera.ViewDirection;
+            playerListener.Up = Vector3.Up;
+           
             lightStick.CopyAbsoluteBoneTransformsTo(lightStickTransforms);
 
             lightStickWorldMatrix = camera.WeaponWorldMatrix(GameConstants.CANDLE_X_OFFSET,

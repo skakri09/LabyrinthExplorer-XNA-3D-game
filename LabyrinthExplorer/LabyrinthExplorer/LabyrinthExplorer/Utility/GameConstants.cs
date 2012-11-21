@@ -24,6 +24,8 @@ namespace LabyrinthExplorer
 
         public static bool RenderOnScreenText = true;
 
+        public static float Audio3DFDivisionFactor = 500;
+
         public static Vector3 MapMinBounds = new Vector3(0, 0, 0);
         public static Vector3 MapMaxBounds = new Vector3(5000, WALL_HEIGHT, 5000);
 

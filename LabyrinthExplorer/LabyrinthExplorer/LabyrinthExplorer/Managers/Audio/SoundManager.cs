@@ -27,6 +27,7 @@ namespace LabyrinthExplorer
     {
         public SoundEffectInstance instance;
         public string keyName;
+        public I3DSound owner;
     }
 
     public class AudioManager : GameComponent
@@ -290,9 +291,9 @@ namespace LabyrinthExplorer
         /// Plays the sound of the given name.
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
-        public void PlaySound(string soundName, int loopAmnt = 0)
+        public void PlaySound(string soundName, I3DSound owner = null, int loopAmnt = 0)
         {
-            PlaySound(soundName, 1.0f, 0.0f, 0.0f, loopAmnt);
+            PlaySound(soundName, 1.0f, 0.0f, 0.0f, owner, loopAmnt);
         }
 
         /// <summary>
@@ -300,9 +301,9 @@ namespace LabyrinthExplorer
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
-        public void PlaySound(string soundName, float volume, int loopAmnt = 0)
+        public void PlaySound(string soundName, float volume, I3DSound owner = null, int loopAmnt = 0)
         {
-            PlaySound(soundName, volume, 0.0f, 0.0f, loopAmnt);
+            PlaySound(soundName, volume, 0.0f, 0.0f, owner, loopAmnt);
         }
 
         /// <summary>
@@ -312,7 +313,7 @@ namespace LabyrinthExplorer
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
         /// <param name="pitch">Pitch, -1.0f (down one octave) to 1.0f (up one octave)</param>
         /// <param name="pan">Pan, -1.0f (full left) to 1.0f (full right)</param>
-        public void PlaySound(string soundName, float volume, float pitch, float pan, int loopAmnt = 0)
+        public void PlaySound(string soundName, float volume, float pitch, float pan, I3DSound owner = null, int loopAmnt = 0)
         {
             SoundEffect sound;
 
@@ -323,13 +324,21 @@ namespace LabyrinthExplorer
 
             int index = GetAvailableSoundIndex();
             _playingSounds[index].keyName = soundName;
+            _playingSounds[index].owner = owner;
             if (index != -1)
             {
                 _playingSounds[index].instance = sound.CreateInstance();
                 _playingSounds[index].instance.Volume = volume;
                 _playingSounds[index].instance.Pitch = pitch;
                 _playingSounds[index].instance.Pan = pan;
+                if (owner != null && owner.GetAudioEmitter() != null)
+                {
+                    _playingSounds[index].instance.Apply3D(NormalizedListener(Player.playerListener),
+                        NormalizedEmitter(owner.GetAudioEmitter()));
+                }
+
                 _playingSounds[index].instance.Play();
+               
                 if (loopAmnt > 0)
                 {
                     loopingEffects.Add(_playingSounds[index].instance, new SoundLoopInfo(loopAmnt));
@@ -389,6 +398,12 @@ namespace LabyrinthExplorer
                         _playingSounds[i].instance.Dispose();
                         _playingSounds[i].instance = null;
                     }
+                }
+                else if (_playingSounds[i].owner != null && _playingSounds[i].owner.GetAudioEmitter() != null
+                    && _playingSounds[i].instance != null && _playingSounds[i].instance.State == SoundState.Playing )
+                {
+                    _playingSounds[i].instance.Apply3D(NormalizedListener(Player.playerListener),
+                        NormalizedEmitter(_playingSounds[i].owner.GetAudioEmitter()));
                 }
             }
 
@@ -451,6 +466,24 @@ namespace LabyrinthExplorer
             }
 
             base.OnEnabledChanged(sender, args);
+        }
+
+
+        private AudioListener NormalizedListener(AudioListener originalListener)
+        {
+            AudioListener listener = originalListener;
+            Vector3 position = originalListener.Position;
+            position /= GameConstants.Audio3DFDivisionFactor;
+            listener.Position = position;
+            return listener;
+        }
+        private AudioEmitter NormalizedEmitter(AudioEmitter originalEmitter)
+        {
+            AudioEmitter emitter = originalEmitter;
+            Vector3 position = originalEmitter.Position;
+            position /= GameConstants.Audio3DFDivisionFactor;
+            emitter.Position = position;
+            return emitter;
         }
 
         // Acquires an open sound slot.

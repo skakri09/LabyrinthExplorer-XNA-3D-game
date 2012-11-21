@@ -90,6 +90,7 @@
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Lever.cs" />
     <Compile Include="Levels\IGameLevel.cs" />
     <Compile Include="Levels\Level1Content.cs" />
+    <Compile Include="Managers\Audio\I3DSound.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />
     <Compile Include="Managers\Player.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Program.cs" />
     <Compile Include="Managers\Game.cs" />
-    <Compile Include="Managers\SoundManager.cs" />
+    <Compile Include="Managers\Audio\SoundManager.cs" />
     <Compile Include="Managers\World.cs" />
   </ItemGroup>
   <ItemGroup>
