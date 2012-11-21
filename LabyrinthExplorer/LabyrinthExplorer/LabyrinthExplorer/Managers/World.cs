@@ -52,6 +52,7 @@ namespace LabyrinthExplorer
                 WallsEffect.CurrentTechnique = WallsEffect.Techniques["ParallaxNormalMappingPointLighting"];
             else
                 WallsEffect.CurrentTechnique = WallsEffect.Techniques["NormalMappingPointLighting"];
+            PlayerLight.Direction = camera.ViewDirection;
 
             WallsEffect.Parameters["worldMatrix"].SetValue(Matrix.Identity);
             WallsEffect.Parameters["worldInverseTransposeMatrix"].SetValue(Matrix.Identity);
@@ -93,8 +94,9 @@ namespace LabyrinthExplorer
             globalAmbient = GameConstants.CurrentAmbientLight;
             
             currentLevel.LoadContent(device, contentMan);
-            Game.SoundManager.PlaySong("horror");
-            Game.SoundManager.PlaySound("spiderAmbient");
+           // Game.SoundManager.PlaySong("LOD");
+            Game.SoundManager.PlaySound("spiderAmbient", 0.7f, null, -1);
+
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
@@ -109,7 +111,7 @@ namespace LabyrinthExplorer
         {
             PlayerLight.Type = LightType.DirectionalLight;
             PlayerLight.Direction = camera.ViewDirection;
-            PlayerLight.Position = new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
+            PlayerLight.Position = GameConstants.PLAYER_START_POS;// new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
             PlayerLight.Ambient = GameConstants.ambient;
             PlayerLight.Diffuse = GameConstants.diffuse;
             PlayerLight.Specular = GameConstants.specular;
@@ -122,10 +124,10 @@ namespace LabyrinthExplorer
         private void GenerateMaterials()
         {
             material.Ambient = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            material.Diffuse = new Color(new Vector4(0.8f, 0.8f, 0.8f, 1.0f));
-            material.Emissive = Color.Black;
-            material.Specular = Color.White;
-            material.Shininess = 0.0f;
+            material.Diffuse = new Color(new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
+            material.Emissive = Color.Yellow;
+            material.Specular = Color.LightYellow;
+            material.Shininess = 0.3f;
         }
 
         public List<AABB> EnvironmentCollidables()

@@ -36,13 +36,13 @@ namespace LabyrinthExplorer
         {
             if (isClosed)
             {
-                Game.SoundManager.PlaySound("ChestOpen", 1.0f, this);
+                Game.SoundManager.PlaySound("ChestOpen");
                 base.SetModel(openModel);
                 isClosed = false;
             }
             else
             {
-                Game.SoundManager.PlaySound("ChestClose", this);
+                Game.SoundManager.PlaySound("ChestClose");
                 base.SetModel(closedModel);
                 isClosed = true;
             }

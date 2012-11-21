@@ -35,9 +35,11 @@ namespace LabyrinthExplorer
         World world;
 
         //Player object, holds the player, the camera etc
-        private Player player;
+        public static Player player;
 
         public static AudioManager SoundManager;
+
+        //public static Vector3 PlayerPosition { get{return }
         #endregion  
 
         public Game()
@@ -101,7 +103,10 @@ namespace LabyrinthExplorer
         private void HandleInput()
         {
             if (input.IsKeyDown(Keys.Escape))
+            {
+                SoundManager.StopAllSounds();
                 this.Exit();
+            }
 
             if (input.IsKeyDownOnce(Keys.H))
                 displayHelp = !displayHelp;

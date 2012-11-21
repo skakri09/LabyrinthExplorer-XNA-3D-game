@@ -10,25 +10,36 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class Player
+    public class Player : AABB
     {
         private Matrix[] lightStickTransforms;
         private Matrix lightStickWorldMatrix;
         private Model lightStick;
 
-        private Camera camera;
+        private static Camera camera;
 
-        private AABB playerAABB;
+        //private AABB playerAABB;
 
-        private Game game;
+        public Game game;
 
-        public static AudioListener playerListener;
-
+        private static AudioListener playerListener;
+        public static AudioListener PlayerListener
+        {
+            get
+            {
+                AudioListener newListener = new AudioListener();
+                newListener.Position = camera.Position;
+                newListener.Up = Vector3.Up;
+                newListener.Forward = camera.ViewDirection;
+                return newListener;
+            }
+        }
         private float walkSpeedSteps = 0.45f;
         private float runSpeedSteps = 0.35f;
         private float stepsTimer = 0.0f;
 
         public Player(Game game, Vector3 position)
+            : base(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING)
         {
              this.game = game;
 
@@ -38,7 +49,7 @@ namespace LabyrinthExplorer
             SetCameraProperties();
             EnableColorMap = true;
             PerformPlayerCollision = true;
-            playerAABB = new AABB(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING);
+          //  playerAABB = new AABB(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING);
             playerListener = new AudioListener();
             playerListener.Position = camera.Position;
             playerListener.Forward = camera.ViewDirection;
@@ -52,19 +63,15 @@ namespace LabyrinthExplorer
 
             if (input.IsKeyDownOnce(Keys.E))
             {
-                List<AABB> interactables = Interactables.GetInteractablesInRange(playerAABB);
+                List<AABB> interactables = Interactables.GetInteractablesInRange(this);
                 foreach (AABB aabb in interactables)
                 {
                     if (aabb is IInteractableObject)
                     {
                         IInteractableObject obj = (IInteractableObject)aabb;
-                        obj.Use(playerAABB);
+                        obj.Use(this);
                     }
                 }
-            }
-            if (input.IsKeyDownOnce(Keys.B))
-            {
-                Game.SoundManager.PlaySound("footsteps", null, 10);
             }
         }
 
@@ -72,8 +79,8 @@ namespace LabyrinthExplorer
         {
             HandleCollision();
             HandleFootseps(deltaTime);
-            playerAABB.UpdateAABB(camera.Position);
-
+            //playerAABB.UpdateAABB(camera.Position);
+            UpdateAABB(camera.Position);
             playerListener.Position = camera.Position;
             playerListener.Forward = camera.ViewDirection;
             playerListener.Up = Vector3.Up;
@@ -165,7 +172,7 @@ namespace LabyrinthExplorer
             {
                 if (stepsTimer >= runSpeedSteps)
                 {
-                    Game.SoundManager.PlaySound("footsteps", 0.5f);
+                    Game.SoundManager.PlaySound("footsteps", 0.9f);
                     stepsTimer -= runSpeedSteps;
                 }
             }
@@ -173,7 +180,7 @@ namespace LabyrinthExplorer
             {
                 if (stepsTimer >= walkSpeedSteps)
                 {
-                    Game.SoundManager.PlaySound("footsteps", 0.5f);
+                    Game.SoundManager.PlaySound("footsteps", 0.9f);
                     stepsTimer -= walkSpeedSteps;
                 }
             }
@@ -188,7 +195,7 @@ namespace LabyrinthExplorer
 
         public AABB PlayerAABB
         {
-            get { return playerAABB; }
+            get { return this; }
         }
 
         public bool PerformPlayerCollision { get; set; }

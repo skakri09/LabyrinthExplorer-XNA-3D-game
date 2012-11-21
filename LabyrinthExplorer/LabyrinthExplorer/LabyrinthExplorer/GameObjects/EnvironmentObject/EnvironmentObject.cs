@@ -19,7 +19,9 @@ namespace LabyrinthExplorer
         private Matrix matrixTranslation;
         protected AudioEmitter emitter;
         private Model model;
-        
+
+        protected float FogEnd = GameConstants.Radius;
+
         /// <summary>
         /// Creates a static environment object.
         /// </summary>
@@ -47,18 +49,25 @@ namespace LabyrinthExplorer
 
         public AudioEmitter GetAudioEmitter()
         {
-            return emitter;
+            AudioEmitter newEmitter = new AudioEmitter();
+            newEmitter.Position = position;
+            return newEmitter;
         }
 
-        public void Draw(Camera camera)
+        public void Draw(Camera camera, Effect effect)
         {
             foreach (ModelMesh mesh in model.Meshes)
             {
-                foreach (BasicEffect effect in mesh.Effects)
+                foreach (BasicEffect _effect in mesh.Effects)
                 {
-                    effect.EnableDefaultLighting();
-
-                    effect.World = Matrix.Identity
+                    _effect.EnableDefaultLighting();
+                    //effect.PreferPerPixelLighting = true;
+                    _effect.DiffuseColor = new Vector3(0.3f);
+                    _effect.AmbientLightColor = new Vector3(0.3f);
+                    _effect.FogEnabled = true;
+                    _effect.FogStart = 0.0f;
+                    _effect.FogEnd = FogEnd;
+                    _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.X))
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
@@ -66,8 +75,8 @@ namespace LabyrinthExplorer
                         * Matrix.CreateScale(modelScale)
                         * Matrix.CreateTranslation(position);
 
-                    effect.View = camera.ViewMatrix;
-                    effect.Projection = camera.ProjectionMatrix;
+                    _effect.View = camera.ViewMatrix;
+                    _effect.Projection = camera.ProjectionMatrix;
                 }
                 mesh.Draw();
             }

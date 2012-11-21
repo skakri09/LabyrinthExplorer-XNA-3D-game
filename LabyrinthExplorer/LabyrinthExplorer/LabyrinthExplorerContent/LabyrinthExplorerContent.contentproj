@@ -65,11 +65,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="Sound\Music\Ambient\caveCold.wav">
-      <Name>caveCold</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="Sound\Music\Ambient\space.wav">
       <Name>space</Name>
       <Importer>WavImporter</Importer>
@@ -195,6 +190,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Models\Key.FBX">
+      <Name>Key</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <None Include="Textures\dungeon_walls_1.jpg">
       <Name>dungeon_walls_1</Name>
       <Importer>TextureImporter</Importer>
@@ -235,13 +235,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\Music\Music\naxxramaswalking3.mp3">
-      <Name>naxxramaswalking3</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sound\Effects\footsteps.wav">
       <Name>footsteps</Name>
       <Importer>WavImporter</Importer>
@@ -265,13 +258,6 @@
       <Name>SpiderAttack</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Music\nightdesert01.mp3">
-      <Name>nightdesert01</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -329,8 +315,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\scaryDay.wav">
-      <Name>scaryDay</Name>
+    <Compile Include="Sound\Effects\Loot.wav">
+      <Name>Loot</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Music\Music\ScaryMusic.mp3">
+      <Name>ScaryMusic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Effects\Portal1.wav">
+      <Name>Portal1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Effects\PortalUse.wav">
+      <Name>PortalUse</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

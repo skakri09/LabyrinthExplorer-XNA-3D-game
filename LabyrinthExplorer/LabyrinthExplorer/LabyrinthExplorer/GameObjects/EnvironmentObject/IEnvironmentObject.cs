@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
@@ -9,7 +10,7 @@ namespace LabyrinthExplorer
     {
         void Update(float deltaTime);
 
-        void Draw(Camera camera);
+        void Draw(Camera camera, Effect effect);
 
     }
 }

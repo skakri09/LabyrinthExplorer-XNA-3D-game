@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
@@ -74,10 +75,10 @@ namespace LabyrinthExplorer
             }
         }
 
-        public void Draw(Camera camera)
+        public void Draw(Camera camera, Effect effect)
         {
-            lever1.Draw(camera);
-            lever2.Draw(camera);
+            lever1.Draw(camera, effect);
+            lever2.Draw(camera, effect);
         }
 
         public void Use(AABB interactingParty)

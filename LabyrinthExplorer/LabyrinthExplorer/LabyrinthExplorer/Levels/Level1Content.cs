@@ -97,7 +97,11 @@ namespace LabyrinthExplorer
             }
             foreach (IEnvironmentObject obj in environment)
             {
-                obj.Draw(camera);
+                obj.Draw(camera, effect);
+            }
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Draw(camera);
             }
         }
 
@@ -219,7 +223,7 @@ namespace LabyrinthExplorer
 
         private void GenerateEnemies()
         {
-            
+            CreateEnemy("dude");
         }
 
         private void GenInteractiveEnvironment()
@@ -230,7 +234,13 @@ namespace LabyrinthExplorer
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
 
             CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(90, 0, 0), 100, Vector3.Forward,
-                           new Vector3(1500, 0, 1100), new Vector3(180, 0, 0), 100, Vector3.Backward, gate);            
+                           new Vector3(1500, 0, 1100), new Vector3(180, 0, 0), 100, Vector3.Backward, gate); 
+           
+            Portal portal = new Portal(contentMan,new Vector3(1175, 0, 1800), 
+                                new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
+                                GameConstants.PLAYER_START_POS) ;
+            environment.Add(portal);
+            Interactables.AddInteractable(portal);
         }
 
         #region Ease of creation functions
@@ -276,10 +286,10 @@ namespace LabyrinthExplorer
 
         private void CreateEnemy(string enemyName)
         {
-            Enemy newEnemy = new Enemy(enemyName);
-            newEnemy.LoadContent(contentMan);
-            enemies.Add(newEnemy);
-            //possibly add AABB?
+            //Enemy newEnemy = new Enemy(enemyName);
+            //newEnemy.LoadContent(contentMan);
+            //enemies.Add(newEnemy);
+            ////possibly add AABB?
         }
 
         private void CreateFloor(Vector3 frontLeft, Vector3 frontRight, 

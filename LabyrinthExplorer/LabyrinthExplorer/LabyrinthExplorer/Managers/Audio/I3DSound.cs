@@ -10,4 +10,9 @@ namespace LabyrinthExplorer
     {
         AudioEmitter GetAudioEmitter();
     }
+
+    public interface I3DSoundCustDivFact : I3DSound
+    {
+        float GetCustomDivisionFactor();
+    }
 }

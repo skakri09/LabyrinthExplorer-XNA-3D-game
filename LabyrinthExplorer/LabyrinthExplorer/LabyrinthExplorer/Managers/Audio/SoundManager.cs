@@ -119,14 +119,16 @@ namespace LabyrinthExplorer
             LoadEffect("GateDoorClosing", "");
             LoadEffect("Clock", "");
             LoadEffect("footsteps", "");
-           
+            LoadEffect("Loot", "");
+            LoadEffect("PortalUse", "");
+            LoadEffect("Portal1", "");
+
             LoadAmbient("spiderAmbient", "");
             LoadAmbient("space", "");
-            LoadAmbient("caveCold", "");
-            LoadAmbient("scaryDay", "");
 
             LoadSong("horror", "");
             LoadSong("LOD", "");
+            LoadSong("ScaryMusic", "");
         }
 
         /// <summary>
@@ -350,9 +352,11 @@ namespace LabyrinthExplorer
                 _playingSounds[index].instance.Volume = volume;
                 _playingSounds[index].instance.Pitch = pitch;
                 _playingSounds[index].instance.Pan = pan;
+                if(loopAmnt == -1)
+                    _playingSounds[index].instance.IsLooped = true;
                 if (owner != null && owner.GetAudioEmitter() != null)
                 {
-                    _playingSounds[index].instance.Apply3D(NormalizedListener(Player.playerListener),
+                    _playingSounds[index].instance.Apply3D(NormalizedListener(Player.PlayerListener),
                         NormalizedEmitter(owner.GetAudioEmitter()));
                 }
 
@@ -362,7 +366,7 @@ namespace LabyrinthExplorer
                 {
                     loopingEffects.Add(_playingSounds[index].instance, new SoundLoopInfo(loopAmnt));
                 }
-
+                
                 if (!Enabled)
                 {
                     _playingSounds[index].instance.Pause();
@@ -421,8 +425,18 @@ namespace LabyrinthExplorer
                 else if (_playingSounds[i].owner != null && _playingSounds[i].owner.GetAudioEmitter() != null
                     && _playingSounds[i].instance != null && _playingSounds[i].instance.State == SoundState.Playing )
                 {
-                    _playingSounds[i].instance.Apply3D(NormalizedListener(Player.playerListener),
+                    if (_playingSounds[i].owner is I3DSoundCustDivFact)
+                    {
+                        I3DSoundCustDivFact owner = (I3DSoundCustDivFact)_playingSounds[i].owner;
+                        _playingSounds[i].instance.Apply3D(NormalizedListener(Player.PlayerListener, owner.GetCustomDivisionFactor()),
+                        NormalizedEmitter(_playingSounds[i].owner.GetAudioEmitter(), owner.GetCustomDivisionFactor()));
+                    }
+                    else
+                    {
+                        _playingSounds[i].instance.Apply3D(NormalizedListener(Player.PlayerListener),
                         NormalizedEmitter(_playingSounds[i].owner.GetAudioEmitter()));
+                    }
+                    
                 }
             }
 
@@ -488,19 +502,29 @@ namespace LabyrinthExplorer
         }
 
 
-        private AudioListener NormalizedListener(AudioListener originalListener)
+        private AudioListener NormalizedListener(AudioListener originalListener, float customDivisionFactor=0)
         {
             AudioListener listener = originalListener;
             Vector3 position = originalListener.Position;
-            position /= GameConstants.Audio3DFDivisionFactor;
+            
+            if (customDivisionFactor == 0)
+                position /= GameConstants.Audio3DFDivisionFactor;
+            else
+                position /= customDivisionFactor;
+
             listener.Position = position;
             return listener;
         }
-        private AudioEmitter NormalizedEmitter(AudioEmitter originalEmitter)
+        private AudioEmitter NormalizedEmitter(AudioEmitter originalEmitter, float customDivisionFactor = 0)
         {
             AudioEmitter emitter = originalEmitter;
             Vector3 position = originalEmitter.Position;
-            position /= GameConstants.Audio3DFDivisionFactor;
+            
+            if (customDivisionFactor == 0)
+                position /= GameConstants.Audio3DFDivisionFactor;
+            else
+                position /= customDivisionFactor;
+
             emitter.Position = position;
             return emitter;
         }

@@ -79,7 +79,9 @@
     <Compile Include="AI\States\PatrolX.cs" />
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Collision\IAABB.cs" />
+    <Compile Include="GameObjects\Enemies\Spider.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\DuoLever.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Portal.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IEnvironmentObject.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IInteractableObject.cs" />
     <Compile Include="Environment\Skybox.cs" />
@@ -97,7 +99,7 @@
     <Compile Include="Utility\AssetLoader.cs" />
     <Compile Include="Managers\Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
-    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="Environment\EasyWalls.cs" />
     <Compile Include="Environment\NormalMappedCeiling.cs" />
     <Compile Include="Environment\NormalMappedFloor.cs" />

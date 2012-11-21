@@ -90,10 +90,6 @@ namespace LabyrinthExplorer
             }
         }
 
-        public void Use()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
         private void OpenGate()
         {
             Game.SoundManager.PlaySound("GateDoorOpening", this);
