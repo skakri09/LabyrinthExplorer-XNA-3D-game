@@ -230,12 +230,7 @@ namespace LabyrinthExplorer
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
 
             CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(90, 0, 0), 100, Vector3.Forward,
-                           new Vector3(1500, 0, 1100), new Vector3(180, 0, 0), 100, Vector3.Right, gate);
-
-            environment.Add(new Lever(contentMan, new Vector3(2250, 0, 1875), 
-                    new Vector3(90, 0, 0), 100, Vector3.Forward));
-
-            
+                           new Vector3(1500, 0, 1100), new Vector3(180, 0, 0), 100, Vector3.Right, gate);            
         }
 
         #region Ease of creation functions

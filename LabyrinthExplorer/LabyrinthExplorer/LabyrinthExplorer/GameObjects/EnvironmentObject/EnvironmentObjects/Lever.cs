@@ -52,7 +52,11 @@ namespace LabyrinthExplorer
             {
                 Game.SoundManager.PlaySound("LeverUsed");
                 base.SetModel(usedModel);
-                onUseObject.Use(interactingParty);
+                if (onUseObject != null && interactingParty != null)
+                {
+                    onUseObject.Use(interactingParty);
+                }
+                
                 isUsed = true;
             }
         }

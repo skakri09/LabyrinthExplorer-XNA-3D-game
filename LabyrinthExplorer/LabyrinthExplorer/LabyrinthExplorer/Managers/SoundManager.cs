@@ -25,8 +25,8 @@ namespace LabyrinthExplorer
 
     public struct PlayingSound
     {
-        SoundEffectInstance instance;
-        string keyName;
+        public SoundEffectInstance instance;
+        public string keyName;
     }
 
     public class AudioManager : GameComponent
@@ -43,7 +43,7 @@ namespace LabyrinthExplorer
 
         private Song _currentSong = null;
 
-        private SoundEffectInstance[] _playingSounds = new SoundEffectInstance[MaxSounds];
+        private PlayingSound[] _playingSounds = new PlayingSound[MaxSounds];
 
         private bool _isMusicPaused = false;
 
@@ -242,23 +242,12 @@ namespace LabyrinthExplorer
         {
             for (int i = 0; i < _playingSounds.Length; ++i)
             {
-                if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Playing)
+                if (_playingSounds[i].instance != null 
+                    && _playingSounds[i].instance.State == SoundState.Playing
+                    && _playingSounds[i].keyName == soundName)
                 {
-                    SoundLoopInfo thisEffect;
-                    if (loopingEffects.TryGetValue(_playingSounds[i], out thisEffect))
-                    {
-                        if (thisEffect.timesPlayed < thisEffect.timesToPlay)
-                        {
-                            thisEffect.timesPlayed++;
-                            loopingEffects[_playingSounds[i]] = thisEffect;
-                            _playingSounds[i].Play();
-                        }
-                    }
-                    else
-                    {
-                        _playingSounds[i].Dispose();
-                        _playingSounds[i] = null;
-                    }
+                    _playingSounds[i].instance.Dispose();
+                    _playingSounds[i].instance = null;
                 }
             }
         }
@@ -333,22 +322,22 @@ namespace LabyrinthExplorer
             }
 
             int index = GetAvailableSoundIndex();
-           
+            _playingSounds[index].keyName = soundName;
             if (index != -1)
             {
-                _playingSounds[index] = sound.CreateInstance();
-                _playingSounds[index].Volume = volume;
-                _playingSounds[index].Pitch = pitch;
-                _playingSounds[index].Pan = pan;
-                _playingSounds[index].Play();
+                _playingSounds[index].instance = sound.CreateInstance();
+                _playingSounds[index].instance.Volume = volume;
+                _playingSounds[index].instance.Pitch = pitch;
+                _playingSounds[index].instance.Pan = pan;
+                _playingSounds[index].instance.Play();
                 if (loopAmnt > 0)
                 {
-                    loopingEffects.Add(_playingSounds[index], new SoundLoopInfo(loopAmnt));
+                    loopingEffects.Add(_playingSounds[index].instance, new SoundLoopInfo(loopAmnt));
                 }
 
                 if (!Enabled)
                 {
-                    _playingSounds[index].Pause();
+                    _playingSounds[index].instance.Pause();
                 }
             }
         }
@@ -360,11 +349,11 @@ namespace LabyrinthExplorer
         {
             for (int i = 0; i < _playingSounds.Length; ++i)
             {
-                if (_playingSounds[i] != null)
+                if (_playingSounds[i].instance != null)
                 {
-                    _playingSounds[i].Stop();
-                    _playingSounds[i].Dispose();
-                    _playingSounds[i] = null;
+                    _playingSounds[i].instance.Stop();
+                    _playingSounds[i].instance.Dispose();
+                    _playingSounds[i].instance = null;
                 }
             }
         }
@@ -377,28 +366,28 @@ namespace LabyrinthExplorer
         {
             for (int i = 0; i < _playingSounds.Length; ++i)
             {
-                if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Stopped)
+                if (_playingSounds[i].instance != null && _playingSounds[i].instance.State == SoundState.Stopped)
                 {
                    SoundLoopInfo thisEffect;
-                   if (loopingEffects.TryGetValue(_playingSounds[i], out thisEffect))
+                   if (loopingEffects.TryGetValue(_playingSounds[i].instance, out thisEffect))
                    {
                        if (thisEffect.timesPlayed < thisEffect.timesToPlay)
                        {
                            thisEffect.timesPlayed++;
-                           loopingEffects[_playingSounds[i]] = thisEffect;
-                           _playingSounds[i].Play();
+                           loopingEffects[_playingSounds[i].instance] = thisEffect;
+                           _playingSounds[i].instance.Play();
                        }
                        else
                        {
-                           loopingEffects.Remove(_playingSounds[i]);
-                           _playingSounds[i].Dispose();
-                           _playingSounds[i] = null;
+                           loopingEffects.Remove(_playingSounds[i].instance);
+                           _playingSounds[i].instance.Dispose();
+                           _playingSounds[i].instance = null;
                        }
                    }
                     else
                     {
-                        _playingSounds[i].Dispose();
-                        _playingSounds[i] = null;
+                        _playingSounds[i].instance.Dispose();
+                        _playingSounds[i].instance = null;
                     }
                 }
             }
@@ -437,9 +426,9 @@ namespace LabyrinthExplorer
             {
                 for (int i = 0; i < _playingSounds.Length; ++i)
                 {
-                    if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Paused)
+                    if (_playingSounds[i].instance != null && _playingSounds[i].instance.State == SoundState.Paused)
                     {
-                        _playingSounds[i].Resume();
+                        _playingSounds[i].instance.Resume();
                     }
                 }
 
@@ -452,9 +441,9 @@ namespace LabyrinthExplorer
             {
                 for (int i = 0; i < _playingSounds.Length; ++i)
                 {
-                    if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Playing)
+                    if (_playingSounds[i].instance != null && _playingSounds[i].instance.State == SoundState.Playing)
                     {
-                        _playingSounds[i].Pause();
+                        _playingSounds[i].instance.Pause();
                     }
                 }
 
@@ -469,7 +458,7 @@ namespace LabyrinthExplorer
         {
             for (int i = 0; i < _playingSounds.Length; ++i)
             {
-                if (_playingSounds[i] == null)
+                if (_playingSounds[i].instance == null)
                 {
                     return i;
                 }

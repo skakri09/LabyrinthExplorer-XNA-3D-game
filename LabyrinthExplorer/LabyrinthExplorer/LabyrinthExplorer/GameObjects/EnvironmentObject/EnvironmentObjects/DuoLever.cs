@@ -11,11 +11,12 @@ namespace LabyrinthExplorer
         Lever lever1;
         Lever lever2;
         IInteractableObject OnUseObject;
-
+        Gate gate;
         private bool lever1Used = false;
         private bool lever2Used = false;
+        private bool isOpen = false;
 
-        private const float useDuration = 20.0f;
+        private const float useDuration = 7.0f;
         private float lever1UsedDuration = 0.0f;
         private float lever2UsedDuration = 0.0f;
         private int timesToPlay = (int)Math.Floor(useDuration / 1.270);
@@ -30,23 +31,45 @@ namespace LabyrinthExplorer
             base.SetAABB(GameConstants.MapMinBounds, GameConstants.MapMaxBounds);
 
             Interactables.AddInteractable(this);
+            if (LeverUseObject is Gate)
+            {
+                gate = (Gate)LeverUseObject;
+            }
         }
 
         public void Update(float deltaTime)
         {
-            lever1.Update(deltaTime);
-            lever2.Update(deltaTime);
-            if (lever1Used)
+            if (!isOpen)
             {
-                lever1UsedDuration += deltaTime;
-                if (lever1UsedDuration >= useDuration)
-                    lever1Used = false;
+                if (lever1Used)
+                {
+                    lever1UsedDuration += deltaTime;
+                    if (lever1UsedDuration >= useDuration)
+                    {
+                        lever1Used = false;
+                        lever1.SetUnused();
+                    }
+                }
+                if (lever2Used)
+                {
+                    lever2UsedDuration += deltaTime;
+                    if (lever2UsedDuration >= useDuration)
+                    {
+                        lever2Used = false;
+                        lever2.SetUnused();
+                    }
+                }
+                lever1.Update(deltaTime);
+                lever2.Update(deltaTime);
             }
-            if (lever2Used)
+            else
             {
-                lever2UsedDuration += deltaTime;
-                if (lever2UsedDuration >= useDuration)
-                    lever2Used = false;
+                if (gate.gateState == GateState.CLOSED)
+                {
+                    lever1.SetUnused();
+                    lever2.SetUnused();
+                    isOpen = false;
+                }
             }
         }
 
@@ -58,23 +81,33 @@ namespace LabyrinthExplorer
 
         public void Use(AABB interactingParty)
         {
-            if (interactingParty.CheckCollision(lever1) != Vector3.Zero)
+            if (!isOpen)
             {
-                lever1Used = true;
-                lever1UsedDuration = 0.0f;
-                Game.SoundManager.PlaySound("Clock", timesToPlay);
-            }
-            if (interactingParty.CheckCollision(lever2) != Vector3.Zero)
-            {
-                lever2Used = true;
-                lever2UsedDuration = 0.0f;
-                Game.SoundManager.PlaySound("Clock", timesToPlay);
-            }
+                if (interactingParty.CheckCollision(lever1) != Vector3.Zero)
+                {
+                    lever1Used = true;
+                    lever1UsedDuration = 0.0f;
+                    Game.SoundManager.PlaySound("Clock", timesToPlay);
+                    lever1.Use(null);
+                }
+                if (interactingParty.CheckCollision(lever2) != Vector3.Zero)
+                {
+                    lever2Used = true;
+                    lever2UsedDuration = 0.0f;
+                    Game.SoundManager.PlaySound("Clock", timesToPlay);
+                    lever2.Use(null);
+                }
 
-            if (lever1Used && lever2Used)
-            {
-                OnUseObject.Use(interactingParty);
+                if (lever1Used && lever2Used)
+                {
+                    Game.SoundManager.StopSound("Clock");
+                    OnUseObject.Use(interactingParty);
+                    lever1Used = false;
+                    lever2Used = false;
+                    isOpen = true;
+                }
             }
+            
         }
 
     }
