@@ -24,6 +24,10 @@ namespace LabyrinthExplorer
 
         public static AudioListener playerListener;
 
+        private float walkSpeedSteps = 0.45f;
+        private float runSpeedSteps = 0.35f;
+        private float stepsTimer = 0.0f;
+
         public Player(Game game, Vector3 position)
         {
              this.game = game;
@@ -58,12 +62,16 @@ namespace LabyrinthExplorer
                     }
                 }
             }
+            if (input.IsKeyDownOnce(Keys.B))
+            {
+                Game.SoundManager.PlaySound("footsteps", null, 10);
+            }
         }
 
         public void Update(float deltaTime)
         {
             HandleCollision();
-
+            HandleFootseps(deltaTime);
             playerAABB.UpdateAABB(camera.Position);
 
             playerListener.Position = camera.Position;
@@ -149,6 +157,31 @@ namespace LabyrinthExplorer
                 GameConstants.CAMERA_ZNEAR, GameConstants.CAMERA_ZFAR);
         }
 
+        private void HandleFootseps(float deltaTime)
+        {
+            stepsTimer += deltaTime;
+
+            if (camera.FootMode == Camera.FootstepsMode.RUN)
+            {
+                if (stepsTimer >= runSpeedSteps)
+                {
+                    Game.SoundManager.PlaySound("footsteps", 0.5f);
+                    stepsTimer -= runSpeedSteps;
+                }
+            }
+            else if (camera.FootMode == Camera.FootstepsMode.WALK)
+            {
+                if (stepsTimer >= walkSpeedSteps)
+                {
+                    Game.SoundManager.PlaySound("footsteps", 0.5f);
+                    stepsTimer -= walkSpeedSteps;
+                }
+            }
+            else
+            {
+                stepsTimer = 0;
+            }
+        }
 
         public Camera Cam { get { return camera; } }
         public bool EnableColorMap { get; set; }

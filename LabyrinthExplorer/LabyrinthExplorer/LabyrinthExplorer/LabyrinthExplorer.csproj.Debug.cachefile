@@ -63,8 +63,6 @@ Content\Models\Environment\SpiderStatue\jlo_azjnub_bronzetrim01_0.xnb
 Content\Models\Environment\TableLow\jlo_icec_engineosouls_0.xnb
 Content\Models\Environment\TableLow\icecrown_chest.alpha_0.xnb
 Content\Sound\Music\Music\LOD.xnb
-Content\Sound\Music\Ambient\mysteryZone.xnb
-Content\Sound\Music\Ambient\SciFi.xnb
 Content\Sound\Music\Music\naxxramaswalking3.xnb
 Content\Sound\Music\Ambient\caveCold.xnb
 Content\Sound\Effects\footsteps.xnb
@@ -73,9 +71,6 @@ Content\Sound\Effects\SpiderCurry2.xnb
 Content\Sound\Effects\SpiderAttack.xnb
 Content\Sound\Effects\LeverUsed.xnb
 Content\Sound\Effects\SpiderSteps.xnb
-Content\Sound\Music\Ambient\forestscaryday.xnb
-Content\Sound\Music\Ambient\SpiderWing.xnb
-Content\Sound\Music\Ambient\PlagueWing.xnb
 Content\Sound\Music\Music\nightdesert01.xnb
 Content\Sound\Music\Music\horror.xnb
 Content\Models\Environment\ChestClosed.xnb
@@ -91,11 +86,10 @@ Content\Models\Environment\LeverUsed.xnb
 Content\Sound\Effects\GateDoorOpening.xnb
 Content\Sound\Effects\Clock.xnb
 Content\Sound\Effects\GateDoorClosing.xnb
+Content\Sound\Music\Ambient\spiderAmbient.xnb
+Content\Sound\Music\Ambient\space.xnb
+Content\Sound\Music\Ambient\scaryDay.xnb
 Content\Sound\Music\Music\LOD.wma
-Content\Sound\Music\Ambient\mysteryZone.wma
-Content\Sound\Music\Ambient\SciFi.wma
 Content\Sound\Music\Music\naxxramaswalking3.wma
-Content\Sound\Music\Ambient\SpiderWing.wma
-Content\Sound\Music\Ambient\PlagueWing.wma
 Content\Sound\Music\Music\nightdesert01.wma
 Content\Sound\Music\Music\horror.wma

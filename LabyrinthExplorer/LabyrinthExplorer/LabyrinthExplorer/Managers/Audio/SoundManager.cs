@@ -111,13 +111,22 @@ namespace LabyrinthExplorer
 
         public void LoadContent()
         {
-            LoadSong("LOD", "Music");
-            LoadSound("ChestClose", "");
-            LoadSound("ChestOpen", "");
-            LoadSound("LeverUsed", "");
-            LoadSound("GateDoorOpening", "");
-            LoadSound("GateDoorClosing", "");
-            LoadSound("Clock", "");
+            
+            LoadEffect("ChestClose", "");
+            LoadEffect("ChestOpen", "");
+            LoadEffect("LeverUsed", "");
+            LoadEffect("GateDoorOpening", "");
+            LoadEffect("GateDoorClosing", "");
+            LoadEffect("Clock", "");
+            LoadEffect("footsteps", "");
+           
+            LoadAmbient("spiderAmbient", "");
+            LoadAmbient("space", "");
+            LoadAmbient("caveCold", "");
+            LoadAmbient("scaryDay", "");
+
+            LoadSong("horror", "");
+            LoadSong("LOD", "");
         }
 
         /// <summary>
@@ -131,7 +140,7 @@ namespace LabyrinthExplorer
                 throw new InvalidOperationException(string.Format("Song '{0}' has already been loaded", songName));
             }
 
-            _songs.Add(songName, _content.Load<Song>(songContentpath + subDirectory + "/" + songName));
+            _songs.Add(songName, _content.Load<Song>(songContentpath + "/Music/" + subDirectory + "/" + songName));
            
         }
 
@@ -140,7 +149,7 @@ namespace LabyrinthExplorer
         /// </summary>
         /// <param name="soundName">Name of the sound to load</param>
         /// <param name="soundPath">Path to the song asset file</param>
-        public void LoadSound(string soundName, string subDirectory)
+        public void LoadEffect(string soundName, string subDirectory)
         {
             if (_sounds.ContainsKey(soundName))
             {
@@ -150,6 +159,16 @@ namespace LabyrinthExplorer
             _sounds.Add(soundName, _content.Load<SoundEffect>(sfxContentPath + subDirectory + "/" + soundName));
         }
 
+        public void LoadAmbient(string soundName, string subDirectory)
+        {
+             if (_sounds.ContainsKey(soundName))
+            {
+                throw new InvalidOperationException(string.Format("Sound '{0}' has already been loaded", soundName));
+            }
+
+            _sounds.Add(soundName, _content.Load<SoundEffect>(songContentpath + "/ambient/" +subDirectory+ "/" + soundName));
+        }
+        
         /// <summary>
         /// Unloads all loaded songs and sounds.
         /// </summary>

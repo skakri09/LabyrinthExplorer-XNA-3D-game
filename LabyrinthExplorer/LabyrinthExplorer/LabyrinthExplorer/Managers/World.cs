@@ -22,6 +22,7 @@ namespace LabyrinthExplorer
         private IGameLevel currentLevel;
 
         Skybox skybox;
+        EnvironmentObject planet;
 
         private bool enableParallax;
 
@@ -42,6 +43,7 @@ namespace LabyrinthExplorer
             UpdateEffect();
 
             currentLevel.Update(gameTime, camera);
+            
         }
 
         public void UpdateEffect()
@@ -90,7 +92,9 @@ namespace LabyrinthExplorer
 
             globalAmbient = GameConstants.CurrentAmbientLight;
             
-            currentLevel.LoadContent(device, contentMan);  
+            currentLevel.LoadContent(device, contentMan);
+            Game.SoundManager.PlaySong("horror");
+            Game.SoundManager.PlaySound("spiderAmbient");
         }
 
         public void Draw(GraphicsDevice graphicsDevice)

@@ -53,6 +53,25 @@ namespace LabyrinthExplorer
             Jumping
         };
 
+        public enum FootstepsMode
+        {
+            STILL,
+            WALK,
+            RUN
+        }
+
+        public FootstepsMode FootMode
+        {
+            get;
+            set;
+        }
+
+        public bool Running
+        {
+            get;
+            set;
+        }
+
         #region lots of shit
         public const float DEFAULT_FOVX = 90.0f;
         public const float DEFAULT_ZNEAR = 0.1f;
@@ -360,6 +379,29 @@ namespace LabyrinthExplorer
             base.Update(gameTime);
             UpdateInput();
             UpdateCamera(gameTime);
+
+            if (forwardsPressed || backwardsPressed || strafeRightPressed || strafeLeftPressed)
+            {
+                if ((forwardsPressed && !backwardsPressed) || (backwardsPressed && !forwardsPressed))
+                {
+                    if (Running)
+                        FootMode = FootstepsMode.RUN;
+                    else
+                        FootMode = FootstepsMode.WALK; 
+                }
+                else if ((strafeRightPressed && !strafeLeftPressed) || (strafeLeftPressed && !strafeRightPressed))
+                {
+                     if(Running)
+                      FootMode = FootstepsMode.RUN;
+                  else
+                      FootMode = FootstepsMode.WALK; 
+                }
+                else
+                    FootMode = FootstepsMode.STILL;
+            }
+            else
+                FootMode = FootstepsMode.STILL;
+
         }
 
         /// <summary>
@@ -636,10 +678,15 @@ namespace LabyrinthExplorer
             Vector3 direction = new Vector3();
 
             if (input.IsKeyDown(actionKeys[Actions.Run]))
+            {
                 velocity = velocityRunning;
+                Running = true;
+            }
             else
+            {
+                Running = false;
                 velocity = velocityWalking;
-
+            }
             GetMovementDirection(out direction);
 
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);

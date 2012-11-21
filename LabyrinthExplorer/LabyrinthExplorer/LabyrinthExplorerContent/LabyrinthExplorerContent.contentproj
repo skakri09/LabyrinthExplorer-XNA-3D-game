@@ -65,6 +65,26 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="Sound\Music\Ambient\caveCold.wav">
+      <Name>caveCold</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Music\Ambient\space.wav">
+      <Name>space</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Music\Ambient\spiderAmbient.wav">
+      <Name>spiderAmbient</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Music\Music\LOD.mp3">
+      <Name>LOD</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
     <Compile Include="Textures\brick_color_map.dds">
       <Name>brick_color_map</Name>
       <Importer>TextureImporter</Importer>
@@ -192,13 +212,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\caveCold.wav">
-      <Name>caveCold</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\SkinnedModelPipeline\SkinnedModelPipeline.csproj">
       <Project>{B0741CC7-BD3E-4144-9FEE-DE265C1B43AA}</Project>
       <Name>SkinnedModelPipeline</Name>
@@ -219,27 +232,6 @@
       <Name>spider_UV</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Music\LOD.mp3">
-      <Name>LOD</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\mysteryZone.mp3">
-      <Name>mysteryZone</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\SciFi.mp3">
-      <Name>SciFi</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -276,20 +268,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\SpiderWing.mp3">
-      <Name>SpiderWing</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\PlagueWing.mp3">
-      <Name>PlagueWing</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sound\Music\Music\nightdesert01.mp3">
       <Name>nightdesert01</Name>
       <Importer>Mp3Importer</Importer>
@@ -313,13 +291,6 @@
   <ItemGroup>
     <Compile Include="Sound\Effects\SpiderSteps.wav">
       <Name>SpiderSteps</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Music\Ambient\forestscaryday.wav">
-      <Name>forestscaryday</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
@@ -353,6 +324,13 @@
   <ItemGroup>
     <Compile Include="Sound\Effects\GateDoorClosing.wav">
       <Name>GateDoorClosing</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Music\Ambient\scaryDay.wav">
+      <Name>scaryDay</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
