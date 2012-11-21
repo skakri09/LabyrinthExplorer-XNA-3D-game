@@ -12,9 +12,26 @@ using Microsoft.Xna.Framework.Media;
 
 namespace LabyrinthExplorer
 {
+    public struct SoundLoopInfo
+    {
+        public SoundLoopInfo(int timesToPlay)
+        {
+            this.timesToPlay = timesToPlay;
+            timesPlayed = 1;
+        }
+        public int timesPlayed;
+        public int timesToPlay;
+    }
+
+    public struct PlayingSound
+    {
+        SoundEffectInstance instance;
+        string keyName;
+    }
 
     public class AudioManager : GameComponent
     {
+        
         #region Private fields
         private ContentManager _content;
         private string sfxContentPath = @"Sound\Effects\";
@@ -22,8 +39,10 @@ namespace LabyrinthExplorer
 
         private Dictionary<string, Song> _songs = new Dictionary<string, Song>();
         private Dictionary<string, SoundEffect> _sounds = new Dictionary<string, SoundEffect>();
+        private Dictionary<SoundEffectInstance, SoundLoopInfo> loopingEffects = new Dictionary<SoundEffectInstance, SoundLoopInfo>();
 
         private Song _currentSong = null;
+
         private SoundEffectInstance[] _playingSounds = new SoundEffectInstance[MaxSounds];
 
         private bool _isMusicPaused = false;
@@ -96,6 +115,8 @@ namespace LabyrinthExplorer
             LoadSound("ChestOpen", "");
             LoadSound("LeverUsed", "");
             LoadSound("GateDoorOpening", "");
+            LoadSound("GateDoorClosing", "");
+            LoadSound("Clock", "");
         }
 
         /// <summary>
@@ -217,6 +238,31 @@ namespace LabyrinthExplorer
             }
         }
 
+        public void StopSound(string soundName)
+        {
+            for (int i = 0; i < _playingSounds.Length; ++i)
+            {
+                if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Playing)
+                {
+                    SoundLoopInfo thisEffect;
+                    if (loopingEffects.TryGetValue(_playingSounds[i], out thisEffect))
+                    {
+                        if (thisEffect.timesPlayed < thisEffect.timesToPlay)
+                        {
+                            thisEffect.timesPlayed++;
+                            loopingEffects[_playingSounds[i]] = thisEffect;
+                            _playingSounds[i].Play();
+                        }
+                    }
+                    else
+                    {
+                        _playingSounds[i].Dispose();
+                        _playingSounds[i] = null;
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Smoothly transition between two volumes.
         /// </summary>
@@ -255,9 +301,9 @@ namespace LabyrinthExplorer
         /// Plays the sound of the given name.
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
-        public void PlaySound(string soundName)
+        public void PlaySound(string soundName, int loopAmnt = 0)
         {
-            PlaySound(soundName, 1.0f, 0.0f, 0.0f);
+            PlaySound(soundName, 1.0f, 0.0f, 0.0f, loopAmnt);
         }
 
         /// <summary>
@@ -265,9 +311,9 @@ namespace LabyrinthExplorer
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
-        public void PlaySound(string soundName, float volume)
+        public void PlaySound(string soundName, float volume, int loopAmnt = 0)
         {
-            PlaySound(soundName, volume, 0.0f, 0.0f);
+            PlaySound(soundName, volume, 0.0f, 0.0f, loopAmnt);
         }
 
         /// <summary>
@@ -277,7 +323,7 @@ namespace LabyrinthExplorer
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
         /// <param name="pitch">Pitch, -1.0f (down one octave) to 1.0f (up one octave)</param>
         /// <param name="pan">Pan, -1.0f (full left) to 1.0f (full right)</param>
-        public void PlaySound(string soundName, float volume, float pitch, float pan)
+        public void PlaySound(string soundName, float volume, float pitch, float pan, int loopAmnt = 0)
         {
             SoundEffect sound;
 
@@ -287,7 +333,7 @@ namespace LabyrinthExplorer
             }
 
             int index = GetAvailableSoundIndex();
-
+           
             if (index != -1)
             {
                 _playingSounds[index] = sound.CreateInstance();
@@ -295,6 +341,10 @@ namespace LabyrinthExplorer
                 _playingSounds[index].Pitch = pitch;
                 _playingSounds[index].Pan = pan;
                 _playingSounds[index].Play();
+                if (loopAmnt > 0)
+                {
+                    loopingEffects.Add(_playingSounds[index], new SoundLoopInfo(loopAmnt));
+                }
 
                 if (!Enabled)
                 {
@@ -329,8 +379,27 @@ namespace LabyrinthExplorer
             {
                 if (_playingSounds[i] != null && _playingSounds[i].State == SoundState.Stopped)
                 {
-                    _playingSounds[i].Dispose();
-                    _playingSounds[i] = null;
+                   SoundLoopInfo thisEffect;
+                   if (loopingEffects.TryGetValue(_playingSounds[i], out thisEffect))
+                   {
+                       if (thisEffect.timesPlayed < thisEffect.timesToPlay)
+                       {
+                           thisEffect.timesPlayed++;
+                           loopingEffects[_playingSounds[i]] = thisEffect;
+                           _playingSounds[i].Play();
+                       }
+                       else
+                       {
+                           loopingEffects.Remove(_playingSounds[i]);
+                           _playingSounds[i].Dispose();
+                           _playingSounds[i] = null;
+                       }
+                   }
+                    else
+                    {
+                        _playingSounds[i].Dispose();
+                        _playingSounds[i] = null;
+                    }
                 }
             }
 

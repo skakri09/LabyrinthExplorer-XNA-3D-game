@@ -7,6 +7,6 @@ namespace LabyrinthExplorer
 {
     public interface IInteractableObject
     {
-        void Use();
+        void Use(AABB interactingParty);
     }
 }

@@ -89,6 +89,8 @@ Content\Sound\Effects\ChestClose.xnb
 Content\Sound\Effects\ChestOpen.xnb
 Content\Models\Environment\LeverUsed.xnb
 Content\Sound\Effects\GateDoorOpening.xnb
+Content\Sound\Effects\Clock.xnb
+Content\Sound\Effects\GateDoorClosing.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Ambient\mysteryZone.wma
 Content\Sound\Music\Ambient\SciFi.wma

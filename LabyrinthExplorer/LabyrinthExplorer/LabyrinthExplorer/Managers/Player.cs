@@ -47,7 +47,7 @@ namespace LabyrinthExplorer
                     if (aabb is IInteractableObject)
                     {
                         IInteractableObject obj = (IInteractableObject)aabb;
-                        obj.Use();
+                        obj.Use(playerAABB);
                     }
                 }
             }

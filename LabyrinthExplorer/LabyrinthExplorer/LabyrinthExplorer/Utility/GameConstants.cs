@@ -24,6 +24,9 @@ namespace LabyrinthExplorer
 
         public static bool RenderOnScreenText = true;
 
+        public static Vector3 MapMinBounds = new Vector3(0, 0, 0);
+        public static Vector3 MapMaxBounds = new Vector3(5000, WALL_HEIGHT, 5000);
+
         #region light
         public static Color GlobalAmbientGame = new Color(new Vector4(0.1f, 0.1f, 0.1f, 0.01f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));

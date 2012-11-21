@@ -46,13 +46,13 @@ namespace LabyrinthExplorer
             CreateUseAABB(openFromDirection, Position, 100, 100);
         }
 
-        public void Use()
+        public void Use(AABB interactingParty)
         {
             if (!isUsed)
             {
                 Game.SoundManager.PlaySound("LeverUsed");
                 base.SetModel(usedModel);
-                onUseObject.Use();
+                onUseObject.Use(interactingParty);
                 isUsed = true;
             }
         }

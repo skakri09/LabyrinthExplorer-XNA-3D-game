@@ -7,27 +7,40 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LabyrinthExplorer
 {
+    public enum GateState { CLOSED, CLOSING, OPEN, OPENING };
     public class Gate : EnvironmentObject, IInteractableObject
     {
-        private bool closed;
         private Vector3 openedPosition;
+        private Vector3 closedPosition;
         private Vector3 openingVelocity;
+        private Vector3 closingVelocity;
+        bool autoClose;
+        float closeAfter;
+        float gateBeenOpenFor;
 
         public Gate(ContentManager content, Vector3 position,
-                    Vector3 rotation, float scale, bool isClosed = true)
+                    Vector3 rotation, float scale, float closeAfterSeconds = 0, bool isClosed = true)
             :base(@"Models\Environment\Gate", content, position, rotation, scale)
         {
-            this.closed = isClosed;
-            openedPosition = base.Position;
+            gateState = GateState.CLOSED;
+            openedPosition = closedPosition = base.Position;
             openedPosition.Y += GameConstants.WALL_HEIGHT;
+
             openingVelocity = new Vector3(0, 100, 0);
+            closingVelocity = new Vector3(0, -100, 0);
+
             CreateCollision(Position, rotation, scale);
+            if (closeAfterSeconds > 0)
+            {
+                autoClose = true;
+                closeAfter = closeAfterSeconds;
+            }
         }
 
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
-            if (!closed)
+            if (gateState == GateState.OPENING)
             {
                 if (base.Position.Y < openedPosition.Y)
                 {
@@ -35,19 +48,52 @@ namespace LabyrinthExplorer
                     CreateCollision(base.Position, base.Rotation, base.Scale);
                 }
                 else
-                    closed = false;
+                {
+                    gateState = GateState.OPEN;
+                    gateBeenOpenFor = 0.0f;
+                }
+            }
+            else if (gateState == GateState.CLOSING)
+            {
+                if (base.Position.Y > closedPosition.Y)
+                {
+                    base.Position += (closingVelocity * deltaTime);
+                    CreateCollision(base.Position, base.Rotation, base.Scale);
+                }
+                else
+                    gateState = GateState.CLOSED;
+            }
+            else if (gateState == GateState.OPEN)
+            {
+                gateBeenOpenFor += deltaTime;
+                if(gateBeenOpenFor >= closeAfter)
+                {
+                    CloseGate();
+                }
             }
         }
-        
-        public void Use()
+
+        public void Use(AABB interactingParty)
         {
-            OpenGate();
+            if (gateState == GateState.OPEN)
+            {
+                CloseGate();
+            }
+            else if (gateState == GateState.CLOSED)
+            {
+                OpenGate();
+            }
         }
 
         private void OpenGate()
         {
             Game.SoundManager.PlaySound("GateDoorOpening");
-            closed = false;
+            gateState = GateState.OPENING;
+        }
+        private void CloseGate()
+        {
+            Game.SoundManager.PlaySound("GateDoorClosing");
+            gateState = GateState.CLOSING;
         }
 
         private void CreateCollision(Vector3 position, Vector3 rotation, float scale)
@@ -63,7 +109,8 @@ namespace LabyrinthExplorer
             min += position;
             max += position;
             SetAABB(min, max);
-        }    
-    
+        }
+
+        public GateState gateState { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace LabyrinthExplorer
             Interactables.AddInteractable(this);
         }
 
-        public void Use()
+        public void Use(AABB interactingParty)
         {
             if (isClosed)
             {

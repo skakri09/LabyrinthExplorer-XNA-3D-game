@@ -57,7 +57,8 @@ namespace LabyrinthExplorer
 
             IsFixedTimeStep = GameConstants.verticalSyncOn;
             
-            SoundManager = new AudioManager(this);  
+            SoundManager = new AudioManager(this);
+            Components.Add(SoundManager);
                                                      
         }
 
