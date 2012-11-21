@@ -5,8 +5,11 @@ using System.Text;
 
 namespace LabyrinthExplorer
 {
-    class Gate
+    public interface IEnvironmentObject
     {
+        void Update(float deltaTime);
+
+        void Draw(Camera camera);
 
     }
 }

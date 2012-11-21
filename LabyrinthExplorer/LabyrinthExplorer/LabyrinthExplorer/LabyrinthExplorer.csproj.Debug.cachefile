@@ -64,7 +64,6 @@ Content\Models\Environment\TableLow\jlo_icec_engineosouls_0.xnb
 Content\Models\Environment\TableLow\icecrown_chest.alpha_0.xnb
 Content\Sound\Music\Music\LOD.xnb
 Content\Sound\Music\Ambient\mysteryZone.xnb
-Content\Sound\Effects\GateDoorOpening.xnb
 Content\Sound\Music\Ambient\SciFi.xnb
 Content\Sound\Music\Music\naxxramaswalking3.xnb
 Content\Sound\Music\Ambient\caveCold.xnb
@@ -89,9 +88,9 @@ Content\Models\Environment\Gate\brokengatewood06.alpha_0.xnb
 Content\Sound\Effects\ChestClose.xnb
 Content\Sound\Effects\ChestOpen.xnb
 Content\Models\Environment\LeverUsed.xnb
+Content\Sound\Effects\GateDoorOpening.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Ambient\mysteryZone.wma
-Content\Sound\Effects\GateDoorOpening.wma
 Content\Sound\Music\Ambient\SciFi.wma
 Content\Sound\Music\Music\naxxramaswalking3.wma
 Content\Sound\Music\Ambient\SpiderWing.wma

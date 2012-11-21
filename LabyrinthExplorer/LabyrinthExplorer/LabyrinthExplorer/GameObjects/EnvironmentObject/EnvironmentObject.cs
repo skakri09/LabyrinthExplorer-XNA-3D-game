@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LabyrinthExplorer
 {
-    public class EnvironmentObject : AABB
+    public class EnvironmentObject : AABB, IEnvironmentObject
     {
         private Vector3 position;
         private Vector3 rotation;
@@ -18,16 +18,11 @@ namespace LabyrinthExplorer
         private Matrix matrixTranslation;
 
         private Model model;
-
         
         /// <summary>
         /// Creates a static environment object.
         /// </summary>
         /// <param name="modelPath">full path of model inside the Model folder </param>
-        /// <param name="content"></param>
-        /// <param name="position"></param>
-        /// <param name="rotation"></param>
-        /// <param name="scale"></param>
         public EnvironmentObject(string modelPath, ContentManager content,
             Vector3 position, Vector3 rotation, float scale)
         {
@@ -87,6 +82,18 @@ namespace LabyrinthExplorer
         {
             get { return position; }
             set { position = value; }
+        }
+
+        protected Vector3 Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+
+        protected float Scale
+        {
+            get { return modelScale; }
+            set { modelScale = value; }
         }
     }
 }

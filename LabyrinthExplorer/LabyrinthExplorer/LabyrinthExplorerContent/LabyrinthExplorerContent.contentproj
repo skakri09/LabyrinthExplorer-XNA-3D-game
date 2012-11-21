@@ -236,13 +236,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sound\Effects\GateDoorOpening.mp3">
-      <Name>GateDoorOpening</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sound\Music\Ambient\SciFi.mp3">
       <Name>SciFi</Name>
       <Importer>Mp3Importer</Importer>
@@ -339,6 +332,13 @@
     </Compile>
     <Compile Include="Sound\Effects\ChestOpen.wav">
       <Name>ChestOpen</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Effects\GateDoorOpening.wav">
+      <Name>GateDoorOpening</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

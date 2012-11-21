@@ -14,7 +14,25 @@ namespace LabyrinthExplorer
 
         private Model closedModel;
         private Model usedModel;
+        private IInteractableObject onUseObject;
 
+        public Lever(ContentManager content,
+                     Vector3 position, Vector3 rotation,
+                    float scale, Vector3 openFromDirection,
+                     IInteractableObject LeverUseObject,
+                    bool isUsed = false)
+            : base(@"Models\Environment\Lever",
+                content, position, rotation, scale)
+        {
+            this.isUsed = isUsed;
+            closedModel = base.GetModel();
+            usedModel = content.Load<Model>(@"Models\Environment\LeverUsed");
+            CreateUseAABB(openFromDirection, Position, 100, 100);
+            this.onUseObject = LeverUseObject;
+            Interactables.AddInteractable(this);
+        }
+
+        //Ctor without onUse object, used by duoLever objects
         public Lever(ContentManager content,
                      Vector3 position, Vector3 rotation,
                     float scale, Vector3 openFromDirection,
@@ -26,8 +44,6 @@ namespace LabyrinthExplorer
             closedModel = base.GetModel();
             usedModel = content.Load<Model>(@"Models\Environment\LeverUsed");
             CreateUseAABB(openFromDirection, Position, 100, 100);
-            
-            Interactables.AddInteractable(this);
         }
 
         public void Use()
@@ -36,9 +52,19 @@ namespace LabyrinthExplorer
             {
                 Game.SoundManager.PlaySound("LeverUsed");
                 base.SetModel(usedModel);
+                onUseObject.Use();
                 isUsed = true;
             }
         }
 
+        public void SetUnused()
+        {
+            if (isUsed)
+            {
+                Game.SoundManager.PlaySound("LeverUsed");
+                base.SetModel(closedModel);
+                isUsed = false;
+            }
+        }
     }
 }
