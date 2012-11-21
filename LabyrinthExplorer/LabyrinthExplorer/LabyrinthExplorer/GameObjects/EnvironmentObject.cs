@@ -58,9 +58,9 @@ namespace LabyrinthExplorer
 
                     effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
-                        * Matrix.CreateRotationY(rotation.X)
-                        * Matrix.CreateRotationY(rotation.Y)
-                        * Matrix.CreateRotationY(rotation.Z)
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.X))
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
+                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Z))
                         * Matrix.CreateScale(modelScale)
                         * Matrix.CreateTranslation(position);
 

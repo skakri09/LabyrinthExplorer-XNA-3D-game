@@ -37,6 +37,34 @@ namespace LabyrinthExplorer
         {
         }
 
+        public void CreateUseAABB(Vector3 useDirection, Vector3 position, float outDist, float sideDist)
+        {
+            Vector3 minPoint, maxPoint;
+
+            if (useDirection == Vector3.Left)
+            {
+                minPoint = new Vector3(position.X - outDist, 0, position.Z - sideDist);
+                maxPoint = new Vector3(position.X, GameConstants.WALL_HEIGHT, position.Z + sideDist);
+            }
+            else if (useDirection == Vector3.Right)
+            {
+                minPoint = new Vector3(position.X, 0, position.Z - sideDist);
+                maxPoint = new Vector3(position.X + outDist, GameConstants.WALL_HEIGHT, position.Z + sideDist);
+            }
+            else if (useDirection == Vector3.Forward)
+            {
+                minPoint = new Vector3(position.X - sideDist, 0, position.Z);
+                maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + outDist);
+            }
+            else //Down
+            {
+                minPoint = new Vector3(position.X - sideDist, 0, position.Z - outDist);
+                maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + 0);
+            }
+
+            SetAABB(minPoint, maxPoint);
+        }
+
         protected void SetAABB(Vector3 _minPoint, Vector3 _maxPoint)
         {
             orgMinPoint = minPoint = _minPoint;

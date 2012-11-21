@@ -268,11 +268,11 @@ namespace LabyrinthExplorer
         {
             environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150), 
                     new Vector3(0, -90, 0), 50, Vector3.Left));
-            environment.Add(new Lever(contentMan, new Vector3(2250, 0, 1875), Vector3.Zero, 50, Vector3.Forward));
+            environment.Add(new Lever(contentMan, new Vector3(2250, 0, 1875), 
+                    new Vector3(90, 0, 0), 100, Vector3.Forward));
         }
 
         #region Ease of creation functions
-
 
         private void ZPosWall(float startX, float startZ, float endX, float endZ, float width = 50)
         {
