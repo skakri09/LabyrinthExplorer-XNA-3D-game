@@ -61,7 +61,6 @@ namespace LabyrinthExplorer
             
             SoundManager = new AudioManager(this);
             Components.Add(SoundManager);
-                                                     
         }
 
         protected override void Initialize()

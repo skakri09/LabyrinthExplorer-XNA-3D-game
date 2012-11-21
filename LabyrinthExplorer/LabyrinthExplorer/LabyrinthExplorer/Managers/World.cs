@@ -22,7 +22,6 @@ namespace LabyrinthExplorer
         private IGameLevel currentLevel;
 
         Skybox skybox;
-        EnvironmentObject planet;
 
         private bool enableParallax;
 

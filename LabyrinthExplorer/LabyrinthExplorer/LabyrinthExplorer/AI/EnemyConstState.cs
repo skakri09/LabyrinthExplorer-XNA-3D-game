@@ -13,7 +13,7 @@ namespace LabyrinthExplorer
         private float actionCooldown;
         private float actionCooldownTimer = 0.0f;
 
-        public EnemyConstState(float playerDistanceToPerformAction = 800.0f, float actionCooldown = 10.0f)
+        public EnemyConstState(float playerDistanceToPerformAction = 800.0f, float actionCooldown = 15.0f)
         {
             this.playerDistToPerformAction = playerDistanceToPerformAction;
             this.actionCooldown = actionCooldown;
@@ -31,7 +31,7 @@ namespace LabyrinthExplorer
             {
                 if (Vector3.Distance(Game.player.Cam.Position, owner.Position) <= playerDistToPerformAction)
                 {
-                     actionCooldown = 0.0f;
+                    actionCooldownTimer = 0.0f;
                      owner.PerformBaseAction();
                 }
             }

@@ -15,7 +15,6 @@ namespace LabyrinthExplorer
         private Vector3 closedPosition;
         private Vector3 openingVelocity;
         private Vector3 closingVelocity;
-        private bool autoClose;
         private float closeAfter;
         private float gateBeenOpenFor;
         
@@ -33,13 +32,10 @@ namespace LabyrinthExplorer
             CreateCollision(Position, rotation, scale);
             if (closeAfterSeconds > 0)
             {
-                autoClose = true;
                 closeAfter = closeAfterSeconds;
             }
             emitter = new AudioEmitter();
             emitter.Position = base.Position;
-            //emitter.Up = Vector3.Up;
-            //emitter.Forward = Vector3.Right;
         }
 
         public override void Update(float deltaTime)

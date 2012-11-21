@@ -61,7 +61,7 @@ namespace LabyrinthExplorer
             float deltaTime = (float) gameTime.ElapsedGameTime.TotalSeconds;
             foreach (Enemy enemy in enemies)
             {
-                enemy.Update(gameTime.ElapsedGameTime, deltaTime);
+                enemy.Update(deltaTime);
             }
             foreach(IEnvironmentObject obj in environment)
             {
@@ -223,7 +223,9 @@ namespace LabyrinthExplorer
 
         private void GenerateEnemies()
         {
-            CreateEnemy("dude");
+            enemies.Add(new Spider(new Vector3(3350, GameConstants.WALL_HEIGHT - 50, 3450), 
+                new Vector3(3350, GameConstants.WALL_HEIGHT - 50, 500),
+                "Environment/SmallSpiderBlack", 15, contentMan));
         }
 
         private void GenInteractiveEnvironment()
@@ -282,14 +284,6 @@ namespace LabyrinthExplorer
             XWallPosZ newWall = new XWallPosZ(device, startPos, endPos, width);
             walls.Add(newWall);
             environmentCollidables.Add(newWall.Aabb);
-        }
-
-        private void CreateEnemy(string enemyName)
-        {
-            //Enemy newEnemy = new Enemy(enemyName);
-            //newEnemy.LoadContent(contentMan);
-            //enemies.Add(newEnemy);
-            ////possibly add AABB?
         }
 
         private void CreateFloor(Vector3 frontLeft, Vector3 frontRight, 

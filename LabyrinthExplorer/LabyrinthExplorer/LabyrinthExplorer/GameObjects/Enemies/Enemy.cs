@@ -5,10 +5,11 @@ using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class Enemy
+    public class Enemy : I3DSound
     {
         private Matrix[] transformation;
 
@@ -17,16 +18,17 @@ namespace LabyrinthExplorer
         private Vector3 velocity;
         private Vector3 position;
         private Vector3 rotation;
-        private float modelScale = 6.0f;
+        private float modelScale = 1.0f;
 
         protected float FogEnd = 1000;
         Model model;
-        protected AiStateMachine aiStateMachine;
+        protected  AiStateMachine aiStateMachine;
 
         public Enemy(string modelName, ContentManager content, float scale)
         {
             this.modelName = modelName;
             LoadContent(content);
+            modelScale = scale;
         }
 
         public void LoadContent(ContentManager content)
@@ -36,7 +38,7 @@ namespace LabyrinthExplorer
             model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
-        public void Update(TimeSpan time, float deltaTime)
+        public virtual void Update(float deltaTime)
         {
             if (aiStateMachine != null)
             {
@@ -82,11 +84,17 @@ namespace LabyrinthExplorer
             model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
-        public void PerformBaseAction()
+        public virtual void PerformBaseAction()
         {
 
         }
 
+        public AudioEmitter GetAudioEmitter()
+        {
+            AudioEmitter newEmitter = new AudioEmitter();
+            newEmitter.Position = position;
+            return newEmitter;
+        }
         public Vector3 Position
         {
             get { return position; }

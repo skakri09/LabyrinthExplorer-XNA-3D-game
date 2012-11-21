@@ -122,10 +122,13 @@ namespace LabyrinthExplorer
             LoadEffect("Loot", "");
             LoadEffect("PortalUse", "");
             LoadEffect("Portal1", "");
+            LoadEffect("SpiderCurry2", "");
+            LoadEffect("SpiderCurry1", "");
+            LoadEffect("SpiderSteps", "");
 
             LoadAmbient("spiderAmbient", "");
             LoadAmbient("space", "");
-
+            
             LoadSong("horror", "");
             LoadSong("LOD", "");
             LoadSong("ScaryMusic", "");
