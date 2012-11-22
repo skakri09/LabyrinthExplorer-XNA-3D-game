@@ -277,7 +277,18 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
 
-            //Must draw world first, as the skybox is part of it, and skybox has to be drawn first
+            DepthStencilState dss = new DepthStencilState();
+            dss.DepthBufferEnable = false;
+            GraphicsDevice.DepthStencilState = dss;
+
+            player.Draw(GraphicsDevice);
+            //world.DrawTheSkybox(GraphicsDevice);
+            
+            dss = new DepthStencilState();
+            dss.DepthBufferEnable = true;
+            GraphicsDevice.DepthStencilState = dss;
+            
+
             world.Draw(GraphicsDevice);
 
             if(GameConstants.RenderOnScreenText)

@@ -56,16 +56,21 @@ namespace LabyrinthExplorer
                 minPoint = new Vector3(position.X - sideDist, 0, position.Z);
                 maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + outDist);
             }
-            else //Down
+            else if(useDirection == Vector3.Backward)
             {
                 minPoint = new Vector3(position.X - sideDist, 0, position.Z - outDist);
                 maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + 0);
+            }
+            else
+            {
+                minPoint = new Vector3(position.X - outDist, position.Y, position.Z-outDist);
+                maxPoint = new Vector3(position.X + outDist, position.Y + GameConstants.WALL_HEIGHT, position.Z + outDist);
             }
 
             SetAABB(minPoint, maxPoint);
         }
 
-        protected void SetAABB(Vector3 _minPoint, Vector3 _maxPoint)
+        public void SetAABB(Vector3 _minPoint, Vector3 _maxPoint)
         {
             orgMinPoint = minPoint = _minPoint;
             orgMaxPoint = maxPoint = _maxPoint;

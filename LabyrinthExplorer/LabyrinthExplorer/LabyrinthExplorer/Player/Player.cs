@@ -16,9 +16,9 @@ namespace LabyrinthExplorer
         private Matrix lightStickWorldMatrix;
         private Model lightStick;
 
-        private static Camera camera;
+        public static Inventory inventory;
 
-        //private AABB playerAABB;
+        private static Camera camera;
 
         public Game game;
 
@@ -49,11 +49,11 @@ namespace LabyrinthExplorer
             SetCameraProperties();
             EnableColorMap = true;
             PerformPlayerCollision = true;
-          //  playerAABB = new AABB(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING);
             playerListener = new AudioListener();
             playerListener.Position = camera.Position;
             playerListener.Forward = camera.ViewDirection;
             playerListener.Up = Vector3.Up;
+            inventory = new Inventory();
         }
 
         public void HandlePlayerInput(InputManager input)
@@ -79,7 +79,6 @@ namespace LabyrinthExplorer
         {
             HandleCollision();
             HandleFootseps(deltaTime);
-            //playerAABB.UpdateAABB(camera.Position);
             UpdateAABB(camera.Position);
             playerListener.Position = camera.Position;
             playerListener.Forward = camera.ViewDirection;
@@ -89,10 +88,13 @@ namespace LabyrinthExplorer
 
             lightStickWorldMatrix = camera.WeaponWorldMatrix(GameConstants.CANDLE_X_OFFSET,
                 GameConstants.CANDLE_Y_OFFSET, GameConstants.CANDLE_Z_OFFSET, GameConstants.CANDLE_SCALE);
+            inv.Update(deltaTime);
         }
 
         public void Draw(GraphicsDevice device)
         {
+            inv.DrawInventory(device, camera);
+
             //Drawing the lightstick
             foreach (ModelMesh m in lightStick.Meshes)
             {
@@ -191,6 +193,8 @@ namespace LabyrinthExplorer
         }
 
         public Camera Cam { get { return camera; } }
+        public Inventory inv { get { return inventory; } }
+
         public bool EnableColorMap { get; set; }
 
         public AABB PlayerAABB

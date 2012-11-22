@@ -125,6 +125,15 @@ namespace LabyrinthExplorer
             LoadEffect("SpiderCurry2", "");
             LoadEffect("SpiderCurry1", "");
             LoadEffect("SpiderSteps", "");
+            LoadEffect("GemPickup", "");
+            LoadEffect("RedAura", "");
+            LoadEffect("BlueAura", "");
+            LoadEffect("YellowAura", "");
+            LoadEffect("GemPuzzleOpen", "");
+            LoadEffect("DoorOpen", "");
+            LoadEffect("RedGemEntered", "");
+            LoadEffect("YellowGemEntered", "");
+            LoadEffect("BlueGemEntered", "");
 
             LoadAmbient("spiderAmbient", "");
             LoadAmbient("space", "");

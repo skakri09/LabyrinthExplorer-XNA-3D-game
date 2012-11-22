@@ -154,6 +154,7 @@ namespace LabyrinthExplorer
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
+
                 graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, 2);
             }
         }
@@ -164,13 +165,13 @@ namespace LabyrinthExplorer
                          Texture2D wallNormalMap, Texture2D wallHeightMap)
         {
             // Draw the scene geometry. 
-
             graphicsDevice.SetVertexBuffer(vertexBuffer);
 
             // Draw the walls.               
             effect.Parameters[colorMapParamName].SetValue(wallColorMap);
             effect.Parameters[normalMapParamName].SetValue(wallNormalMap);
             effect.Parameters[heightMapParamName].SetValue(wallHeightMap);
+          
 
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
@@ -178,6 +179,5 @@ namespace LabyrinthExplorer
                 graphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, 2);
             }
         }
-
     }
 }

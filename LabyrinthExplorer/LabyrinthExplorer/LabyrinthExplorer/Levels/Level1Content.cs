@@ -76,6 +76,14 @@ namespace LabyrinthExplorer
             //  brickColorMap,      brickNormalMap,     brickHeightMap,
             //  stoneColorMap,      stoneNormalMap,     stoneHeightMap,
             //  woodColorMap,       woodNormalMap,      woodHeightMap
+            foreach (IEnvironmentObject obj in environment)
+            {
+                obj.Draw(camera, effect);
+            }
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Draw(camera);
+            }
 
             foreach (SolidWall wall in walls)
             {
@@ -94,14 +102,6 @@ namespace LabyrinthExplorer
                 floor.Draw(graphicsDevice, effect, "colorMapTexture",
                             "normalMapTexture", "heightMapTexture",
                             stoneColorMap, stoneNormalMap, stoneHeightMap);
-            }
-            foreach (IEnvironmentObject obj in environment)
-            {
-                obj.Draw(camera, effect);
-            }
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.Draw(camera);
             }
         }
 
@@ -159,9 +159,11 @@ namespace LabyrinthExplorer
 
             ZPosWall(1500, 4300, 1500, 3800);//9
             ZPosWall(3700, 4200, 3700, 3500);//10
+            
             #endregion
 
             #region area 2
+            XPosWal(0, 4100, 1500, 4100);//1
             XPosWal(400, 2850, 1000, 2850);//2
 
             ZPosWall(1000, 3800, 1000, 2850);//3
@@ -181,6 +183,8 @@ namespace LabyrinthExplorer
             ZPosWall(1650, 2000, 1650, 1200);//10
             ZPosWall(750, 2000, 750, 800);//11
             ZPosWall(3000, 1400, 3000, 750);//12
+
+            XPosWal(2000, 2175, 2400, 2175, 125);
             #endregion
 
             #region area 4
@@ -243,6 +247,11 @@ namespace LabyrinthExplorer
                                 GameConstants.PLAYER_START_POS) ;
             environment.Add(portal);
             Interactables.AddInteractable(portal);
+
+            environment.Add(new Gem("GemBlue", contentMan, new Vector3(500, 100, 4500), 50));
+
+            environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
+                new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables));
         }
 
         #region Ease of creation functions

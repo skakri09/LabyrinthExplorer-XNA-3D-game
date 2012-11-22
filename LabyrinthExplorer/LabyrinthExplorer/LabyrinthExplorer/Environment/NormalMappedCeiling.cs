@@ -111,7 +111,6 @@ namespace LabyrinthExplorer
                          Texture2D NormalMap, Texture2D HeightMap)
         {
             graphicsDevice.SetVertexBuffer(vertexBuffer);
-
             effect.Parameters[colorMapParamName].SetValue(ColorMap);
             effect.Parameters[normalMapParamName].SetValue(NormalMap);
             effect.Parameters[heightMapParamName].SetValue(HeightMap);

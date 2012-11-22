@@ -21,11 +21,6 @@ namespace LabyrinthExplorer
 
         public void Draw(Camera camera, GraphicsDevice device)
         {
-
-            DepthStencilState dss = new DepthStencilState();
-            dss.DepthBufferEnable = false;
-            device.DepthStencilState = dss;
-
             foreach (ModelMesh mesh in skyboxModel.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
@@ -42,10 +37,6 @@ namespace LabyrinthExplorer
                 }
                 mesh.Draw();
             }
-
-            dss = new DepthStencilState();
-            dss.DepthBufferEnable = true;
-            device.DepthStencilState = dss;
         }
     }
 }

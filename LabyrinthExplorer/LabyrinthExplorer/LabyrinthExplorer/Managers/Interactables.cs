@@ -22,6 +22,11 @@ namespace LabyrinthExplorer
             return (you.CheckCollision(target) != Vector3.Zero);
         }
 
+        public static void RemoveInteractable(AABB interactableToRemove)
+        {
+            interactables.Remove(interactableToRemove);
+        }
+
         public static List<AABB> GetInteractablesInRange(AABB you)
         {
             List<AABB> retList = new List<AABB>();

@@ -81,6 +81,7 @@
     <Compile Include="Collision\IAABB.cs" />
     <Compile Include="GameObjects\Enemies\Spider.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\DuoLever.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Gem.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Portal.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IEnvironmentObject.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IInteractableObject.cs" />
@@ -95,9 +96,12 @@
     <Compile Include="Managers\Audio\I3DSound.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />
-    <Compile Include="Managers\Player.cs" />
+    <Compile Include="Player\IInventoryItem.cs" />
+    <Compile Include="Player\Inventory.cs" />
+    <Compile Include="Player\InventoryItem.cs" />
+    <Compile Include="Player\Player.cs" />
     <Compile Include="Utility\AssetLoader.cs" />
-    <Compile Include="Managers\Camera.cs" />
+    <Compile Include="Player\Camera.cs" />
     <Compile Include="Collision\AABB.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="Environment\EasyWalls.cs" />
@@ -162,7 +166,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

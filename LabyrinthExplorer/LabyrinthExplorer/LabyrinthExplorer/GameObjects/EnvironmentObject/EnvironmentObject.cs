@@ -11,14 +11,14 @@ namespace LabyrinthExplorer
 {
     public class EnvironmentObject : AABB, IEnvironmentObject, I3DSound
     {
-        private Vector3 position;
-        private Vector3 rotation;
-        private float modelScale;
+        protected Vector3 position;
+        protected Vector3 rotation;
+        protected float modelScale;
 
-        private Matrix[] transformation;
-        private Matrix matrixTranslation;
+        protected Matrix[] transformation;
+        protected Matrix matrixTranslation;
         protected AudioEmitter emitter;
-        private Model model;
+        protected Model model;
 
         protected float FogEnd = GameConstants.Radius;
 
@@ -54,19 +54,19 @@ namespace LabyrinthExplorer
             return newEmitter;
         }
 
-        public void Draw(Camera camera, Effect effect)
+        public virtual void Draw(Camera camera, Effect effect)
         {
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect _effect in mesh.Effects)
                 {
                     _effect.EnableDefaultLighting();
-                    //effect.PreferPerPixelLighting = true;
-                    _effect.DiffuseColor = new Vector3(0.3f);
-                    _effect.AmbientLightColor = new Vector3(0.3f);
+                    _effect.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
                     _effect.FogEnabled = true;
-                    _effect.FogStart = 0.0f;
-                    _effect.FogEnd = FogEnd;
+                    _effect.FogStart = 50.0f;
+                    _effect.FogEnd = 800;
                     _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.X))

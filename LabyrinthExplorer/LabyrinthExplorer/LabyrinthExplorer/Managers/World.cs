@@ -11,9 +11,9 @@ namespace LabyrinthExplorer
 {
     public class World
     {
-        private Effect WallsEffect;
+        public static Effect WallsEffect;
 
-        private Light PlayerLight;
+        public static Light PlayerLight;
         private Material material;
         private Color globalAmbient;
         private Vector2 scaleBias;
@@ -47,10 +47,13 @@ namespace LabyrinthExplorer
 
         public void UpdateEffect()
         {
+            
             if (enableParallax)
                 WallsEffect.CurrentTechnique = WallsEffect.Techniques["ParallaxNormalMappingPointLighting"];
             else
                 WallsEffect.CurrentTechnique = WallsEffect.Techniques["NormalMappingPointLighting"];
+
+
             PlayerLight.Direction = camera.ViewDirection;
 
             WallsEffect.Parameters["worldMatrix"].SetValue(Matrix.Identity);
@@ -81,7 +84,7 @@ namespace LabyrinthExplorer
         {
             WallsEffect = contentMan.Load<Effect>(@"Effects\parallax_normal_mapping");
             WallsEffect.CurrentTechnique = WallsEffect.Techniques["ParallaxNormalMappingPointLighting"];
-            
+
             scaleBias = new Vector2(0.04f, -0.03f);
             
             skybox = new Skybox(contentMan);
@@ -100,10 +103,13 @@ namespace LabyrinthExplorer
 
         public void Draw(GraphicsDevice graphicsDevice)
         {
-            if(DrawSkybox)
-                skybox.Draw(camera, graphicsDevice);
-
             currentLevel.Draw(graphicsDevice, WallsEffect);
+        }
+
+        public void DrawTheSkybox(GraphicsDevice graphicsDevice)
+        {
+            if (DrawSkybox)
+                skybox.Draw(camera, graphicsDevice);
         }
 
         private void GenPlayerLight()
