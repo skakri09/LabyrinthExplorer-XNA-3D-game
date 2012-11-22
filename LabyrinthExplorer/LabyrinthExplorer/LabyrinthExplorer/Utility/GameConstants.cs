@@ -32,7 +32,7 @@ namespace LabyrinthExplorer
         #region light
         public static Color GlobalAmbientGame = new Color(new Vector4(0.05f, 0.05f, 0.05f, 0.01f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
-        public static Color CurrentAmbientLight = GlobalAmbientGame;
+        public static Color CurrentAmbientLight = GlobalAmbientDebug;
 
         public static Color ambient = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
         public static Color diffuse = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -45,7 +45,7 @@ namespace LabyrinthExplorer
         #region Camera
         public const float CAMERA_FOVX = 90.0f;
         public const float CAMERA_ZNEAR = 1.0f;
-        public const float CAMERA_ZFAR = 15000*MAP_SCALE; ///Reduce when done !
+        public const float CAMERA_ZFAR = 5000*MAP_SCALE; ///Reduce when done !
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MIN_Y = 0.0f;

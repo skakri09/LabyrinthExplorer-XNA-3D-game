@@ -41,10 +41,11 @@ namespace LabyrinthExplorer
             enableParallax = true;
 
             DrawSkybox = true;
-
-            currentArea = new Area1Content(camera);
-            GameAreas.Add("area1", currentArea);
+           
+            GameAreas.Add("area1", new Area1Content(camera));
             GameAreas.Add("area2", new Area2Content(camera));
+            
+            ChangeArea("area2", GameConstants.PLAYER_START_POS);
         }
 
         public void ChangeArea(string targetArea, Vector3 playerTargetPos)
@@ -52,6 +53,7 @@ namespace LabyrinthExplorer
             if (GameAreas.ContainsKey(targetArea))
             {
                 currentArea = GameAreas[targetArea];
+                Game.player.Cam.Position = playerTargetPos;
             }
         }
 

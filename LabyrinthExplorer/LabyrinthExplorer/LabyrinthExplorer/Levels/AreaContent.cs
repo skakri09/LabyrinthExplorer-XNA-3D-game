@@ -71,12 +71,12 @@ namespace LabyrinthExplorer
                         "normalMapTexture", "heightMapTexture",
                         stoneColorMap, stoneNormalMap, stoneHeightMap);
             }
-            foreach (NormalMappedCeiling ceiling in ceilings)
-            {
-                ceiling.Draw(graphicsDevice, effect, "colorMapTexture",
-                        "normalMapTexture", "heightMapTexture",
-                        stoneColorMap, stoneNormalMap, stoneHeightMap);
-            }
+            //foreach (NormalMappedCeiling ceiling in ceilings)
+            //{
+            //    ceiling.Draw(graphicsDevice, effect, "colorMapTexture",
+            //            "normalMapTexture", "heightMapTexture",
+            //            stoneColorMap, stoneNormalMap, stoneHeightMap);
+            //}
             foreach (NormalMappedFloor floor in floors)
             {
                 floor.Draw(graphicsDevice, effect, "colorMapTexture",
@@ -115,6 +115,37 @@ namespace LabyrinthExplorer
             environment.Add(gate);
             environmentCollidables.Add(gate);
             return gate;
+        }
+
+        protected void SmarPosWall(float x1, float y1, float x2, float y2)
+        {
+            if (x1 == x2)
+            {
+                
+                if (y1 > y2)
+                {
+                    ZPosWall(x1, y1, x2, y2);
+                }
+                else
+                {
+                    ZPosWall(x2, y2, x1, y1);
+                }
+            }
+            else if (y1 == y2)
+            {
+                 if (x1 > x2)
+                 {
+                     XPosWal(x2, y2, x1, y1);
+                 }
+                 else
+                 {
+                     XPosWal(x1, y1, x2, y2);
+                 }
+            }
+            else
+            {
+                throw new Exception("Both X and Y vals are different from eachother");
+            }
         }
 
         protected void ZPosWall(float startX, float startZ, float endX, float endZ, float width = 50)
