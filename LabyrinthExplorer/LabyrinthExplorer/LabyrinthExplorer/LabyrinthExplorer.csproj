@@ -93,8 +93,10 @@
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObject.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Gate.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Lever.cs" />
-    <Compile Include="Levels\IGameLevel.cs" />
-    <Compile Include="Levels\Level1Content.cs" />
+    <Compile Include="Levels\Area2Content.cs" />
+    <Compile Include="Levels\AreaContent.cs" />
+    <Compile Include="Levels\IGameArea.cs" />
+    <Compile Include="Levels\Area1Content.cs" />
     <Compile Include="Managers\Audio\I3DSound.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />

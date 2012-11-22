@@ -46,7 +46,7 @@ namespace LabyrinthExplorer
                 Game.SoundManager.PlaySound("Loot");
                 Interactables.RemoveInteractable(this);
                 Game.player.inv.AddItem(new InventoryItem(this, "SecretDoorKey"));
-                World.currentLevel.RemoveEnvironmentItem(this);
+                World.currentArea.RemoveEnvironmentItem(this);
             }
         }
 
@@ -97,7 +97,7 @@ namespace LabyrinthExplorer
                 Game.SoundManager.PlaySound("Loot");
                 Interactables.RemoveInteractable(this);
                 Game.player.inv.AddItem(new InventoryItem(this, "SecretDoorKey"));
-                World.currentLevel.RemoveEnvironmentItem(this);
+                World.currentArea.RemoveEnvironmentItem(this);
             }
         }
     }

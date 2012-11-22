@@ -19,9 +19,19 @@ namespace LabyrinthExplorer
         private Vector2 scaleBias;
         private Camera camera;
 
-        public static IGameLevel currentLevel;
-
+        public static IGameArea currentArea;
+        private static Dictionary<string, IGameArea> GameAreas = new Dictionary<string, IGameArea>();
         Skybox skybox;
+
+        protected Texture2D brickColorMap;
+        protected Texture2D brickNormalMap;
+        protected Texture2D brickHeightMap;
+        protected Texture2D stoneColorMap;
+        protected Texture2D stoneNormalMap;
+        protected Texture2D stoneHeightMap;
+        protected Texture2D woodColorMap;
+        protected Texture2D woodNormalMap;
+        protected Texture2D woodHeightMap;
 
         private bool enableParallax;
 
@@ -32,7 +42,17 @@ namespace LabyrinthExplorer
 
             DrawSkybox = true;
 
-            currentLevel = new Level1Content(camera);
+            currentArea = new Area1Content(camera);
+            GameAreas.Add("area1", currentArea);
+            GameAreas.Add("area2", new Area2Content(camera));
+        }
+
+        public void ChangeArea(string targetArea, Vector3 playerTargetPos)
+        {
+            if (GameAreas.ContainsKey(targetArea))
+            {
+                currentArea = GameAreas[targetArea];
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -41,7 +61,7 @@ namespace LabyrinthExplorer
 
             UpdateEffect();
 
-            currentLevel.Update(gameTime, camera);
+            currentArea.Update(gameTime, camera);
             
         }
 
@@ -84,6 +104,7 @@ namespace LabyrinthExplorer
         {
             WallsEffect = contentMan.Load<Effect>(@"Effects\parallax_normal_mapping");
             WallsEffect.CurrentTechnique = WallsEffect.Techniques["ParallaxNormalMappingPointLighting"];
+            LoadMaps(contentMan);
 
             scaleBias = new Vector2(0.04f, -0.03f);
             
@@ -94,16 +115,20 @@ namespace LabyrinthExplorer
             GenerateMaterials();
 
             globalAmbient = GameConstants.CurrentAmbientLight;
-            
-            currentLevel.LoadContent(device, contentMan);
-           // Game.SoundManager.PlaySong("LOD");
+
+            foreach (IGameArea area in GameAreas.Values)
+            {
+                area.LoadContent(device, contentMan);
+            }
+
             Game.SoundManager.PlaySound("spiderAmbient", 0.7f, null, -1);
 
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
         {
-            currentLevel.Draw(graphicsDevice, WallsEffect);
+            currentArea.Draw(graphicsDevice, WallsEffect, brickColorMap, brickNormalMap, brickHeightMap,
+                stoneColorMap, stoneNormalMap, stoneHeightMap, woodColorMap, woodNormalMap, woodHeightMap);
         }
 
         public void DrawTheSkybox(GraphicsDevice graphicsDevice)
@@ -137,7 +162,7 @@ namespace LabyrinthExplorer
 
         public List<AABB> EnvironmentCollidables()
         {
-            return currentLevel.EnvironmentCollidables();
+            return currentArea.EnvironmentCollidables();
         }
 
         public bool EnableParallax
@@ -150,6 +175,21 @@ namespace LabyrinthExplorer
         {
             get;
             set;
+        }
+
+        protected virtual void LoadMaps(ContentManager contentMan)
+        {
+            brickColorMap = contentMan.Load<Texture2D>(@"Textures\brick_color_map");
+            brickNormalMap = contentMan.Load<Texture2D>(@"Textures\brick_normal_map");
+            brickHeightMap = contentMan.Load<Texture2D>(@"Textures\brick_height_map");
+
+            stoneColorMap = contentMan.Load<Texture2D>(@"Textures\stone_color_map");
+            stoneNormalMap = contentMan.Load<Texture2D>(@"Textures\stone_normal_map");
+            stoneHeightMap = contentMan.Load<Texture2D>(@"Textures\stone_height_map");
+
+            woodColorMap = contentMan.Load<Texture2D>(@"Textures\wood_color_map");
+            woodNormalMap = contentMan.Load<Texture2D>(@"Textures\wood_normal_map");
+            woodHeightMap = contentMan.Load<Texture2D>(@"Textures\wood_height_map");
         }
     }
 }

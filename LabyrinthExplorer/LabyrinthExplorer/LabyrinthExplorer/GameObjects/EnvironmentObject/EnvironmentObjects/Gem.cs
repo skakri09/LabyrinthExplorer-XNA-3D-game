@@ -158,7 +158,7 @@ namespace LabyrinthExplorer
                 Game.SoundManager.StopSound(effectName);
                 Interactables.RemoveInteractable(this);
                 Game.player.inv.AddItem(new InventoryItem(this, gemType));
-                World.currentLevel.RemoveEnvironmentItem(this);
+                World.currentArea.RemoveEnvironmentItem(this);
             }
         }
 
