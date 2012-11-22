@@ -60,6 +60,8 @@ namespace LabyrinthExplorer
             //X Walls - XWallNegZAl
             #endregion
 
+
+            #region "wall" of text :)
             SmarPosWall(50, 50, 50, 4950);
             SmarPosWall(50, 900, 850, 900);
             SmarPosWall(50, 50, 4950, 50);
@@ -136,7 +138,7 @@ namespace LabyrinthExplorer
             SmarPosWall(4700, 350, 4250, 350);
             SmarPosWall(4700, 950, 4700, 350);
             SmarPosWall(4950, 50, 4950, 4950);
-
+            #endregion
 
         }
 
@@ -163,7 +165,14 @@ namespace LabyrinthExplorer
 
         protected void GenInteractiveEnvironment()
         {
-           
+            environment.Add(new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
+                new Vector3(0, 180, 0), Vector3.Backward, 105));
+            environment.Add(new TurnablePilar(contentMan, new Vector3(2450, -100, 3200),
+               new Vector3(0, 0, 0), Vector3.Forward, 105));
+            environment.Add(new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
+               new Vector3(0, 270, 0), Vector3.Left, 105));
+            environment.Add(new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
+               new Vector3(0, 90, 0), Vector3.Right, 105));
         }
     }
 }

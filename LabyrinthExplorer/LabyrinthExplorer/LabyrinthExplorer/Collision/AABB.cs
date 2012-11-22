@@ -17,14 +17,14 @@ namespace LabyrinthExplorer
         {
             orgMinPoint = minPoint = btmBackLeft;
             orgMaxPoint = maxPoint = new Vector3(btmFrontRight.X, height, btmFrontRight.Z);
-            CollisionManager.AddCollidable(this);
+            //CollisionManager.AddCollidable(this);
         }
 
         public AABB(Vector3 position, float padding)
         {
             orgMinPoint = minPoint = new Vector3(position.X - padding, position.Y - padding, position.Z - padding);
             orgMaxPoint = maxPoint = new Vector3(position.X + padding, position.Y + padding, position.Z + padding);
-            CollisionManager.AddCollidable(this);
+            //CollisionManager.AddCollidable(this);
         }
 
         public AABB(Vector3 _minPoint, Vector3 _maxPoint)
@@ -74,7 +74,8 @@ namespace LabyrinthExplorer
         {
             orgMinPoint = minPoint = _minPoint;
             orgMaxPoint = maxPoint = _maxPoint;
-            CollisionManager.AddCollidable(this);
+            //World.currentArea.EnvironmentCollidables().Add(this);
+            //CollisionManager.AddCollidable(this);
         }
 
         public void UpdateAABB(Vector3 displacement)

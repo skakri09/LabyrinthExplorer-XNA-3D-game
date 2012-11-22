@@ -56,7 +56,7 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT = 150;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
 
         //public const float CAMERA_ACCELERATION_X = 800.0f;
         //public const float CAMERA_ACCELERATION_Y = 1000.0f;
@@ -66,8 +66,8 @@ namespace LabyrinthExplorer
         //public const float CAMERA_VELOCITY_Z = 350.0f;
 
         //public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
-        public static Vector3 PLAYER_START_POS = 
-            new Vector3(4100, CAMERA_PLAYER_EYE_HEIGHT, 4500);
+        public static Vector3 PLAYER_START_POS =
+            new Vector3(4100 * MAP_SCALE, CAMERA_PLAYER_EYE_HEIGHT, 4500 * MAP_SCALE);
         public const float CAMERA_ACCELERATION_X = 8000.0f;
         public const float CAMERA_ACCELERATION_Y = 5000.0f;
         public const float CAMERA_ACCELERATION_Z = 8000.0f;
@@ -75,7 +75,7 @@ namespace LabyrinthExplorer
         public const float CAMERA_VELOCITY_Y = 1000.0f;
         public const float CAMERA_VELOCITY_Z = 1000.0f;
 
-        public const float CAMERA_RUNNING_MULTIPLIER = 4.5f;
+        public const float CAMERA_RUNNING_MULTIPLIER = 1.5f;
         public const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.0f;
 
         public const float CANDLE_SCALE = 0.5f;
@@ -94,8 +94,6 @@ namespace LabyrinthExplorer
         public const float FLOOR_PLANE_SIZE = 2024.0f;
         public const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
         public const float WALL_HEIGHT = 500.0f;
-
-       
 
         public const float FLOOR_TILE_FACTOR_SMALL = 1.2f;
         public const float FLOOR_TILE_FACTOR_NORMAL = 0.4f;

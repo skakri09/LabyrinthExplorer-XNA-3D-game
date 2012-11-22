@@ -85,6 +85,7 @@
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Gem.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Key.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Portal.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\TurnablePilar.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IEnvironmentObject.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IInteractableObject.cs" />
     <Compile Include="Environment\Skybox.cs" />
