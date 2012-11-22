@@ -179,6 +179,11 @@ namespace LabyrinthExplorer
                new Vector3(0, 270, 0), Vector3.Left, 105));
             environment.Add(new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
                new Vector3(0, 90, 0), Vector3.Right, 105));
+
+            environment.Add(new Portal(contentMan, new Vector3(1175, 0, 1800),
+                                new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
+                                GameConstants.PLAYER_START_POS, "area1"));
+
         }
 
         public override void OnEnteringArea()

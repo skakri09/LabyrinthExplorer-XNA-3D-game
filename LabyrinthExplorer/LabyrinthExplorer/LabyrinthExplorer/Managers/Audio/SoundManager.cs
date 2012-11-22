@@ -21,6 +21,7 @@ namespace LabyrinthExplorer
         }
         public int timesPlayed;
         public int timesToPlay;
+        
     }
 
     public struct PlayingSound
@@ -28,6 +29,7 @@ namespace LabyrinthExplorer
         public SoundEffectInstance instance;
         public string keyName;
         public I3DSound owner;
+        public bool isStoppable;
     }
 
     public class AudioManager : GameComponent
@@ -332,9 +334,9 @@ namespace LabyrinthExplorer
         /// Plays the sound of the given name.
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
-        public void PlaySound(string soundName, I3DSound owner = null, int loopAmnt = 0)
+        public void PlaySound(string soundName, I3DSound owner = null, int loopAmnt = 0, bool isStoppable = true)
         {
-            PlaySound(soundName, 1.0f, 0.0f, 0.0f, owner, loopAmnt);
+            PlaySound(soundName, 1.0f, 0.0f, 0.0f, owner, loopAmnt, isStoppable);
         }
 
         /// <summary>
@@ -342,9 +344,9 @@ namespace LabyrinthExplorer
         /// </summary>
         /// <param name="soundName">Name of the sound</param>
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
-        public void PlaySound(string soundName, float volume, I3DSound owner = null, int loopAmnt = 0)
+        public void PlaySound(string soundName, float volume, I3DSound owner = null, int loopAmnt = 0, bool isStoppable = true)
         {
-            PlaySound(soundName, volume, 0.0f, 0.0f, owner, loopAmnt);
+            PlaySound(soundName, volume, 0.0f, 0.0f, owner, loopAmnt, isStoppable);
         }
 
         /// <summary>
@@ -354,7 +356,7 @@ namespace LabyrinthExplorer
         /// <param name="volume">Volume, 0.0f to 1.0f</param>
         /// <param name="pitch">Pitch, -1.0f (down one octave) to 1.0f (up one octave)</param>
         /// <param name="pan">Pan, -1.0f (full left) to 1.0f (full right)</param>
-        public void PlaySound(string soundName, float volume, float pitch, float pan, I3DSound owner = null, int loopAmnt = 0)
+        public void PlaySound(string soundName, float volume, float pitch, float pan, I3DSound owner = null, int loopAmnt = 0, bool isStoppable = true)
         {
             SoundEffect sound;
 
@@ -366,6 +368,7 @@ namespace LabyrinthExplorer
             int index = GetAvailableSoundIndex();
             _playingSounds[index].keyName = soundName;
             _playingSounds[index].owner = owner;
+            _playingSounds[index].isStoppable = isStoppable;
             if (index != -1)
             {
                 _playingSounds[index].instance = sound.CreateInstance();
@@ -401,7 +404,7 @@ namespace LabyrinthExplorer
         {
             for (int i = 0; i < _playingSounds.Length; ++i)
             {
-                if (_playingSounds[i].instance != null)
+                if (_playingSounds[i].instance != null && _playingSounds[i].isStoppable == true)
                 {
                     _playingSounds[i].instance.Stop();
                     _playingSounds[i].instance.Dispose();

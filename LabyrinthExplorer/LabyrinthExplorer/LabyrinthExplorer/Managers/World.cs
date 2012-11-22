@@ -48,7 +48,7 @@ namespace LabyrinthExplorer
             ChangeArea("area2", GameConstants.PLAYER_START_POS);
         }
 
-        public void ChangeArea(string targetArea, Vector3 playerTargetPos)
+        public static void ChangeArea(string targetArea, Vector3 playerTargetPos)
         {
             if (GameAreas.ContainsKey(targetArea))
             {

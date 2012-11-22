@@ -19,11 +19,13 @@ namespace LabyrinthExplorer
         private bool subbedForPorting = false;
 
         private Player player;
+        private string AreaToPortTo;
 
         private float distanceDivisionFactor = 300;
         public Portal(ContentManager content,
                      Vector3 position, Vector3 rotation,
-                    float scale, Vector3 UseFromDirection, Vector3 portToLocation)
+                    float scale, Vector3 UseFromDirection, Vector3 portToLocation, 
+                    string portToArea = null)
             : base(@"Models\Environment\Portal",
                 content, position, rotation, scale)
         {
@@ -31,13 +33,18 @@ namespace LabyrinthExplorer
             CreateUseAABB(UseFromDirection, position, 200, 200);
             emitter = new AudioEmitter();
             emitter.Position = base.Position;
-           
+
+            if (portToArea != null)
+                this.AreaToPortTo = portToArea;
+            else AreaToPortTo = null;
+
             base.FogEnd = 2000;
+            Interactables.AddInteractable(this);
         }
 
         public override void OnEnteringArea()
         {
-            Game.SoundManager.PlaySound("Portal1", this, -1);
+            Game.SoundManager.PlaySound("Portal1", this, -1, false);
         }
 
         public override void Update(float deltaTime)
@@ -51,7 +58,12 @@ namespace LabyrinthExplorer
                 if (cooldownTimer >= waitBeforePorting)
                 {
                     subbedForPorting = false;
-                    player.Cam.Position = PortToLocation;
+                    if(AreaToPortTo != null)
+                    {
+                        World.ChangeArea(AreaToPortTo, PortToLocation);
+                    }
+                    else
+                        player.Cam.Position = PortToLocation;
                 }
             }
         }
