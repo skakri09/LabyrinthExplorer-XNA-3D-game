@@ -88,7 +88,7 @@ namespace LabyrinthExplorer
 
             lightStickWorldMatrix = camera.WeaponWorldMatrix(GameConstants.CANDLE_X_OFFSET,
                 GameConstants.CANDLE_Y_OFFSET, GameConstants.CANDLE_Z_OFFSET, GameConstants.CANDLE_SCALE);
-            inv.Update(deltaTime);
+            inv.Update(deltaTime, camera);
         }
 
         public void Draw(GraphicsDevice device)
@@ -96,18 +96,21 @@ namespace LabyrinthExplorer
             inv.DrawInventory(device, camera);
 
             //Drawing the lightstick
-            foreach (ModelMesh m in lightStick.Meshes)
-            {
-                foreach (BasicEffect e in m.Effects)
-                {
-                    e.TextureEnabled = EnableColorMap;
-                    e.EnableDefaultLighting();
-                    e.World = lightStickTransforms[m.ParentBone.Index] * lightStickWorldMatrix;
-                    e.View = camera.ViewMatrix;
-                    e.Projection = camera.ProjectionMatrix;
-                }
-                m.Draw();
-            }
+            //foreach (ModelMesh m in lightStick.Meshes)
+            //{
+            //    foreach (BasicEffect e in m.Effects)
+            //    {
+            //        e.EnableDefaultLighting();
+            //        //e.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
+            //        //e.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
+            //        //e.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
+
+            //        e.World = lightStickTransforms[m.ParentBone.Index] * lightStickWorldMatrix;
+            //        e.View = camera.ViewMatrix;
+            //        e.Projection = camera.ProjectionMatrix;
+            //    }
+            //    m.Draw();
+            //}
         }
 
         private void HandleCollision()

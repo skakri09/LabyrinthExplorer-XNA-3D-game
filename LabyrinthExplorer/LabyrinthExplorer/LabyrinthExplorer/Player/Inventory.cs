@@ -9,16 +9,16 @@ namespace LabyrinthExplorer
 {
     public class Inventory
     {
-        private List<IInventoryItem> InventoryItems;
+        private Dictionary<IInventoryItem, Vector3> InventoryItems;
 
         public Inventory()
         {
-            InventoryItems = new List<IInventoryItem>();
+            InventoryItems = new Dictionary<IInventoryItem, Vector3>();
         }
 
         public void AddItem(IInventoryItem item)
         {
-            InventoryItems.Add(item);
+            InventoryItems.Add(item, GetScreenOffset());
         }
 
         public void RemoveItem(IInventoryItem item)
@@ -28,28 +28,37 @@ namespace LabyrinthExplorer
 
         public bool HaveItem(IInventoryItem item)
         {
-            return (InventoryItems.Contains(item));
+            return (InventoryItems.ContainsKey(item));
         }
 
-        public List<IInventoryItem> GetInventory()
+        public void Update(float deltaTime, Camera camera)
         {
-            return InventoryItems;
-        }
-
-        public void Update(float deltaTime)
-        {
-            foreach (IInventoryItem item in InventoryItems)
+            for (int i = 0; i < InventoryItems.Count; i++)
             {
-                item.Update(deltaTime, true);
+                InventoryItems.ElementAt(i).Key.Update(
+                    deltaTime, camera,
+                    InventoryItems.ElementAt(i).Value);
+
             }
         }
 
         public void DrawInventory(GraphicsDevice device, Camera cam)
         {
-            foreach (IInventoryItem item in InventoryItems)
+            for (int i = 0; i < InventoryItems.Count; i++)
             {
-                item.Draw(cam, Vector3.Zero);//need implementation
+                InventoryItems.ElementAt(i).Key.Draw(cam);
+
             }
+        }
+
+        private Vector3 GetScreenOffset()
+        {
+            return new Vector3(4.3f, (1.7f-((float)InventoryItems.Count/1.6f)), 8);
+        }
+
+        private void FreeScreenOffset()
+        {
+
         }
 
     }

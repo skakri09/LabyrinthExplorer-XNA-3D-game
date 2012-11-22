@@ -20,6 +20,9 @@ namespace LabyrinthExplorer
 
         bool isFirstUpdate = true;
 
+        private Matrix[] screenTransforms;
+        private Matrix screenWorldMatrix;
+
         public Gem(string gemModelName, ContentManager content,
             Vector3 position, float scale)
             :base(@"Models\Environment\"+gemModelName, content, position, Vector3.Zero, scale)
@@ -31,6 +34,8 @@ namespace LabyrinthExplorer
             originalModelPosition = position;
             GenLightColor(gemModelName);
             GenEffect(gemModelName);
+            screenTransforms = new Matrix[base.model.Bones.Count];
+            screenWorldMatrix = Matrix.Identity;
         }
 
         public override void Update(float deltaTime)
@@ -44,11 +49,16 @@ namespace LabyrinthExplorer
             base.Update(deltaTime);
 
             position.Y = originalModelPosition.Y + (float)(Math.Sin(sinWaveVar) * sinWaveMultiplier);
+            
+            base.model.CopyAbsoluteBoneTransformsTo(base.transformation);
         }
 
-        public void Update(float deltaTime, bool beMovin)
+        public void Update(float deltaTime, Camera camera, Vector3 screenOffset)
         {
-            throw new Exception("The method or operation is not implemented.");
+            base.model.CopyAbsoluteBoneTransformsTo(screenTransforms);
+
+            screenWorldMatrix = camera.WeaponWorldMatrix(screenOffset.X,
+                    screenOffset.Y, screenOffset.Z, GetInventoryScale());
         }
         
         public override void Draw(Camera camera, Microsoft.Xna.Framework.Graphics.Effect effect)
@@ -79,9 +89,26 @@ namespace LabyrinthExplorer
             }
         }
 
-        public void Draw(Camera camera, Vector3 screenOffset)
+        public void Draw(Camera camera)
         {
-            throw new Exception("The method or operation is not implemented.");
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                foreach (BasicEffect _effect in mesh.Effects)
+                {
+                    _effect.EnableDefaultLighting();
+                    _effect.DiffuseColor = color;
+                    _effect.AmbientLightColor = color;
+                    _effect.SpecularColor = color;
+                    _effect.World = screenTransforms[mesh.ParentBone.Index]
+                        * screenWorldMatrix;
+                    _effect.View = camera.ViewMatrix;
+                    _effect.Projection = camera.ProjectionMatrix;
+
+                    _effect.View = camera.ViewMatrix;
+                    _effect.Projection = camera.ProjectionMatrix;
+                }
+                mesh.Draw();
+            }
         }
         
         private void GenLightColor(string gemtype)
@@ -130,6 +157,7 @@ namespace LabyrinthExplorer
             Game.SoundManager.StopSound(effectName);
             Interactables.RemoveInteractable(this);
             Game.player.inv.AddItem(this);
+            World.currentLevel.RemoveEnvironmentItem(this);
         }
 
         public void Use()
@@ -138,7 +166,7 @@ namespace LabyrinthExplorer
         }
         public float GetInventoryScale()
         {
-            return 10;
+            return 0.4f;
         }
     }
 }

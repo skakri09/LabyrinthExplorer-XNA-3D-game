@@ -19,7 +19,7 @@ namespace LabyrinthExplorer
         private Vector2 scaleBias;
         private Camera camera;
 
-        private IGameLevel currentLevel;
+        public static IGameLevel currentLevel;
 
         Skybox skybox;
 

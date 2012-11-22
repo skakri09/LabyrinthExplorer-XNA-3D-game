@@ -98,7 +98,6 @@
     <Compile Include="Managers\Interactables.cs" />
     <Compile Include="Player\IInventoryItem.cs" />
     <Compile Include="Player\Inventory.cs" />
-    <Compile Include="Player\InventoryItem.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Utility\AssetLoader.cs" />
     <Compile Include="Player\Camera.cs" />

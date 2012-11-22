@@ -16,6 +16,8 @@ namespace LabyrinthExplorer
 
         void Draw(GraphicsDevice graphicsDevice, Effect effect);
 
+        void RemoveEnvironmentItem(IEnvironmentObject item);
+
         List<AABB> EnvironmentCollidables();
 
     }

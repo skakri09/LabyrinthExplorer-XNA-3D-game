@@ -249,6 +249,8 @@ namespace LabyrinthExplorer
             Interactables.AddInteractable(portal);
 
             environment.Add(new Gem("GemBlue", contentMan, new Vector3(500, 100, 4500), 50));
+            environment.Add(new Gem("GemRed", contentMan, new Vector3(600, 100, 4500), 50));
+            environment.Add(new Gem("GemYellow", contentMan, new Vector3(700, 100, 4500), 50));
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables));
@@ -308,6 +310,11 @@ namespace LabyrinthExplorer
         public List<AABB> EnvironmentCollidables()
         {
             return environmentCollidables; 
+        }
+
+        public void RemoveEnvironmentItem(IEnvironmentObject item)
+        {
+            environment.Remove(item);
         }
     }
 }

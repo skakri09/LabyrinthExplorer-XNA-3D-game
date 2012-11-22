@@ -11,8 +11,8 @@ namespace LabyrinthExplorer
     {
         float GetInventoryScale();//scale used to display item on screen
 
-        void Update(float deltaTime, bool beMovin);
+        void Update(float deltaTime, Camera camera, Vector3 screenOffset);
 
-        void Draw(Camera camera, Vector3 screenOffset);
+        void Draw(Camera camera);
     }
 }

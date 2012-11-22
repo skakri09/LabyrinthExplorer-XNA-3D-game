@@ -281,8 +281,8 @@ namespace LabyrinthExplorer
             dss.DepthBufferEnable = false;
             GraphicsDevice.DepthStencilState = dss;
 
-            player.Draw(GraphicsDevice);
-            //world.DrawTheSkybox(GraphicsDevice);
+           
+            world.DrawTheSkybox(GraphicsDevice);
             
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -293,7 +293,7 @@ namespace LabyrinthExplorer
 
             if(GameConstants.RenderOnScreenText)
                 DrawText();
-
+            player.Draw(GraphicsDevice);
             base.Draw(gameTime);
             IncrementFrameCounter();
         }
