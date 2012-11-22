@@ -77,7 +77,7 @@ namespace LabyrinthExplorer
             player = new Player(this, GameConstants.PLAYER_START_POS);
 
             // Initial position for text rendering.
-            fontPos = new Vector2(1.0f, 1.0f);
+            fontPos = new Vector2(5.0f, -20.0f);
 
             world = new World(player.Cam);
             world.LoadContent(GraphicsDevice, Content);
@@ -217,11 +217,10 @@ namespace LabyrinthExplorer
 
             if (displayHelp)
             {
-                buffer.AppendLine("Move mouse to free look");
+                buffer.AppendFormat("FPS: {0}\n", framesPerSecond);
                 buffer.AppendLine();
-                buffer.AppendLine("Press W and S to move forwards and backwards");
-                buffer.AppendLine("Press A and D to strafe left and right");
-                buffer.AppendLine("Press SPACE to jump");
+                buffer.AppendLine("Press WASD to move");
+                buffer.AppendLine("Press E to use/loot/inspect item or environment");
                 buffer.AppendLine("Press and hold LEFT CTRL to crouch");
                 buffer.AppendLine("Press and hold LEFT SHIFT to run");
                 buffer.AppendLine();
@@ -230,11 +229,6 @@ namespace LabyrinthExplorer
                 buffer.AppendLine("Press NUMPAD +/- to change camera rotation speed");
                 buffer.AppendLine("Press ALT + ENTER to toggle full screen");
                 buffer.AppendLine();
-                buffer.AppendLine("Press H to hide help");
-            }
-            else
-            {
-                buffer.AppendFormat("FPS: {0}\n", framesPerSecond);
                 buffer.AppendFormat("Technique: {0}\n",
                     (world.EnableParallax ? "Parallax normal mapping" : "Normal mapping"));
                 buffer.AppendFormat("Mouse smoothing: {0}\n\n",
@@ -253,11 +247,16 @@ namespace LabyrinthExplorer
                     player.Cam.CurrentVelocity.Z.ToString("f2"));
                 buffer.AppendFormat("  Rotation speed: {0}\n",
                     player.Cam.RotationSpeed.ToString("f2"));
+                
+                buffer.AppendLine("Press H to hide help");
+            }
+            else
+            {
                 buffer.Append("\nPress H to display help");
             }
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-            spriteBatch.DrawString(spriteFont, buffer.ToString(), fontPos, Color.Yellow);
+            spriteBatch.DrawString(spriteFont, buffer.ToString(), fontPos, Color.Beige);
             spriteBatch.End();
         }
 
