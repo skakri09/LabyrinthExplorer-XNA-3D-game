@@ -200,6 +200,7 @@ namespace LabyrinthExplorer
                 if (!this.IsActive)
                     return;
 
+            player.inv.HaveItemOfType("GemRed");
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
 

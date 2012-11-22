@@ -22,6 +22,7 @@ namespace LabyrinthExplorer
 
         private Matrix[] screenTransforms;
         private Matrix screenWorldMatrix;
+        string gemType;
 
         public Gem(string gemModelName, ContentManager content,
             Vector3 position, float scale)
@@ -36,6 +37,7 @@ namespace LabyrinthExplorer
             GenEffect(gemModelName);
             screenTransforms = new Matrix[base.model.Bones.Count];
             screenWorldMatrix = Matrix.Identity;
+            gemType = gemModelName;
         }
 
         public override void Update(float deltaTime)
@@ -156,7 +158,7 @@ namespace LabyrinthExplorer
             Game.SoundManager.PlaySound("GemPickup");
             Game.SoundManager.StopSound(effectName);
             Interactables.RemoveInteractable(this);
-            Game.player.inv.AddItem(this);
+            Game.player.inv.AddItem(new InventoryItem(this, gemType));
             World.currentLevel.RemoveEnvironmentItem(this);
         }
 
