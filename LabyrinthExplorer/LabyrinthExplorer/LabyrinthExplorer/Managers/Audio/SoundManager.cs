@@ -134,7 +134,15 @@ namespace LabyrinthExplorer
             LoadEffect("RedGemEntered", "");
             LoadEffect("YellowGemEntered", "");
             LoadEffect("BlueGemEntered", "");
+           
+            LoadEffect("ThereIsNoEscape", "");
+            LoadEffect("DeathIsClose", "");
+            LoadEffect("YouAreWeak", "");
+            LoadEffect("HopeIsAnIllusion", "");
+            LoadEffect("TheyAreComingForYou", "");
+            LoadEffect("GiveInToYourFear", "");
 
+            LoadAmbient("Area2Ambient", "");
             LoadAmbient("spiderAmbient", "");
             LoadAmbient("space", "");
             

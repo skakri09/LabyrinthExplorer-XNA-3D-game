@@ -10,17 +10,24 @@ namespace LabyrinthExplorer
     public class Spider : Enemy, I3DSoundCustDivFact
     {
         float time = 0;
+        string spiderSoundName;
+
         public Spider(Vector3 startPos, Vector3 endPos, string modelName, float scale, ContentManager content)
             :base(modelName, content, scale)
         {
             aiStateMachine = new AiStateMachine(this, new EnemyConstState(700, 15),
                 new PatrolZ(startPos, endPos));
-            Game.SoundManager.PlaySound("SpiderSteps", this, -1);
+            spiderSoundName = "SpiderSteps";
         }
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
             time += deltaTime;
+        }
+
+        public override void OnEnteringArea()
+        {
+            Game.SoundManager.PlaySound(spiderSoundName, this, -1);
         }
 
         public override void PerformBaseAction()

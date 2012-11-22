@@ -112,5 +112,9 @@ namespace LabyrinthExplorer
             
         }
 
+        public void OnEnteringArea()
+        {
+            //if anything
+        }
     }
 }

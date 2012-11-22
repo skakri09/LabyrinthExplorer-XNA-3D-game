@@ -99,6 +99,7 @@
     <Compile Include="Levels\IGameArea.cs" />
     <Compile Include="Levels\Area1Content.cs" />
     <Compile Include="Managers\Audio\I3DSound.cs" />
+    <Compile Include="Managers\Audio\RandWhisper.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />
     <Compile Include="Player\IInventoryItem.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Environment\Material.cs" />
     <Compile Include="Environment\NormalMappedRoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Levels\IOnEnteringArea.cs" />
     <Compile Include="Utility\Program.cs" />
     <Compile Include="Managers\Game.cs" />
     <Compile Include="Managers\Audio\SoundManager.cs" />

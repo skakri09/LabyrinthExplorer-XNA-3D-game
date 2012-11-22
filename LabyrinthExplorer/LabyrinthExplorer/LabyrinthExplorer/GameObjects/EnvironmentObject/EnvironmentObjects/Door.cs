@@ -50,6 +50,11 @@ namespace LabyrinthExplorer
 
         }
 
+        public override void OnEnteringArea()
+        {
+            
+        }
+
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);

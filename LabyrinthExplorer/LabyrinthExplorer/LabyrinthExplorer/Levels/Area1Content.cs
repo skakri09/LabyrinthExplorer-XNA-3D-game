@@ -183,6 +183,12 @@ namespace LabyrinthExplorer
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables));
         }
+
+        public override void OnEnteringArea()
+        {
+            base.OnEnteringArea();
+            Game.SoundManager.PlaySound("spiderAmbient", 0.7f, null, -1);
+        }
     }
 }
     

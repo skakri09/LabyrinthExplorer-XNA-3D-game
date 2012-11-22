@@ -34,6 +34,11 @@ namespace LabyrinthExplorer
             emitter = new AudioEmitter();
             emitter.Position = position;
         }
+        
+        public override void OnEnteringArea()
+        {
+           
+        }
 
         //Ctor without onUse object, used by duoLever objects
         public Lever(ContentManager content,

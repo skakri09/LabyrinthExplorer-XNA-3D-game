@@ -38,6 +38,10 @@ namespace LabyrinthExplorer
             emitter.Position = base.Position;
         }
 
+        public override void OnEnteringArea()
+        {
+        }
+
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);

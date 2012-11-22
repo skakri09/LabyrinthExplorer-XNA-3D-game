@@ -27,6 +27,11 @@ namespace LabyrinthExplorer
 
         }
 
+        public override void OnEnteringArea()
+        {
+            
+        }
+
         public Key(ContentManager content)
             : base(@"Models\Key", content)
         {

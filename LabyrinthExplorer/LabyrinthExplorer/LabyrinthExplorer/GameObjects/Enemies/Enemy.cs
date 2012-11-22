@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class Enemy : I3DSound
+    public abstract class Enemy : I3DSound, IOnEnteringArea
     {
         private Matrix[] transformation;
 
@@ -95,6 +95,9 @@ namespace LabyrinthExplorer
             newEmitter.Position = position;
             return newEmitter;
         }
+
+        public abstract void OnEnteringArea();
+
         public Vector3 Position
         {
             get { return position; }

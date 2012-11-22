@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class EnvironmentObject : AABB, IEnvironmentObject, I3DSound
+    public abstract class EnvironmentObject : AABB, IEnvironmentObject, I3DSound
     {
         protected Vector3 position;
         protected Vector3 rotation;
@@ -99,6 +99,8 @@ namespace LabyrinthExplorer
         {
             return model;
         }
+
+        public abstract void OnEnteringArea();
 
         protected Vector3 Position
         {

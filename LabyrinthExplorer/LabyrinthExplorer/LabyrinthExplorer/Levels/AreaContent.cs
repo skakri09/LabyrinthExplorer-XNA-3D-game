@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace LabyrinthExplorer
 {
-    public class AreaContent : IGameArea
+    public abstract class AreaContent : IGameArea
     {
         protected List<SolidWall> walls;
         protected List<NormalMappedCeiling> ceilings;
@@ -95,7 +95,17 @@ namespace LabyrinthExplorer
             return environmentCollidables;
         }
 
-       
+        public virtual void OnEnteringArea()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.OnEnteringArea();
+            }
+            foreach (IEnvironmentObject envrnmt in environment)
+            {
+                envrnmt.OnEnteringArea();
+            }
+        }
 
         #region Ease of creation functions
 
@@ -176,6 +186,8 @@ namespace LabyrinthExplorer
             frontLeft, frontRight, backRight, backLeft,
             Vector3.Up));
         }
+
+        
 
         #endregion
     }

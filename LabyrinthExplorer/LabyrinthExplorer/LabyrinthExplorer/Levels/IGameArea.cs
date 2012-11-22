@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace LabyrinthExplorer
 {
-    public interface IGameArea
+    public interface IGameArea : IOnEnteringArea
     {
         void LoadContent(GraphicsDevice device, ContentManager contentMan);
 

@@ -52,7 +52,9 @@ namespace LabyrinthExplorer
         {
             if (GameAreas.ContainsKey(targetArea))
             {
+                Game.SoundManager.StopAllSounds();
                 currentArea = GameAreas[targetArea];
+                currentArea.OnEnteringArea();
                 Game.player.Cam.Position = playerTargetPos;
             }
         }
@@ -122,9 +124,6 @@ namespace LabyrinthExplorer
             {
                 area.LoadContent(device, contentMan);
             }
-
-            Game.SoundManager.PlaySound("spiderAmbient", 0.7f, null, -1);
-
         }
 
         public void Draw(GraphicsDevice graphicsDevice)

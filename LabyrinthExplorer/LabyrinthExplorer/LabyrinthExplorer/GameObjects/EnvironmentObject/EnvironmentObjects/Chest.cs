@@ -34,6 +34,11 @@ namespace LabyrinthExplorer
             emitter.Position = position;
         }
 
+        public override void OnEnteringArea()
+        {
+           
+        }
+
         public Chest(ContentManager content,
              Vector3 position, Vector3 rotation,
             float scale, Vector3 openFromDirection,

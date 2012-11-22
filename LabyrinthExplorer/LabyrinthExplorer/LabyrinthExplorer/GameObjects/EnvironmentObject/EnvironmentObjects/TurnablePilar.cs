@@ -75,5 +75,10 @@ namespace LabyrinthExplorer
             SetAABB(min, max);
             World.currentArea.EnvironmentCollidables().Add(this);
         }
+
+        public override void OnEnteringArea()
+        {
+            ///start whatever sound we want
+        }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
-    public interface IEnvironmentObject
+    public interface IEnvironmentObject : IOnEnteringArea
     {
         void Update(float deltaTime);
 

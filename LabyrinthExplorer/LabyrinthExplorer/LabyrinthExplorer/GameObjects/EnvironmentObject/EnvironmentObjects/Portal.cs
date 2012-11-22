@@ -20,8 +20,6 @@ namespace LabyrinthExplorer
 
         private Player player;
 
-        private bool playingPortalSound = false;
-
         private float distanceDivisionFactor = 300;
         public Portal(ContentManager content,
                      Vector3 position, Vector3 rotation,
@@ -37,16 +35,17 @@ namespace LabyrinthExplorer
             base.FogEnd = 2000;
         }
 
+        public override void OnEnteringArea()
+        {
+            Game.SoundManager.PlaySound("Portal1", this, -1);
+        }
+
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
             cooldownTimer += deltaTime;
 
-            if (!playingPortalSound)
-            {
-                playingPortalSound = true;
-                Game.SoundManager.PlaySound("Portal1", this, -1);
-            }
+          
             if (subbedForPorting)
             {
                 if (cooldownTimer >= waitBeforePorting)

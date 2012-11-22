@@ -10,6 +10,7 @@ namespace LabyrinthExplorer
 {
     class Area2Content : AreaContent
     {
+        RandWhisper randomWhisper;
 
         public Area2Content(Camera camera)
             :base(camera)
@@ -32,11 +33,16 @@ namespace LabyrinthExplorer
             GenerateFloors();
             GenerateEnemies();
             GenInteractiveEnvironment();
+
+            randomWhisper = new RandWhisper(30.0f);
         }
 
         public override void Update(GameTime gameTime, Camera camera)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             base.Update(gameTime, camera);
+            randomWhisper.Update(deltaTime);
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, Effect effect,
@@ -173,6 +179,12 @@ namespace LabyrinthExplorer
                new Vector3(0, 270, 0), Vector3.Left, 105));
             environment.Add(new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
                new Vector3(0, 90, 0), Vector3.Right, 105));
+        }
+
+        public override void OnEnteringArea()
+        {
+            base.OnEnteringArea();
+            Game.SoundManager.PlaySound("Area2Ambient", 0.7f, null, -1);
         }
     }
 }

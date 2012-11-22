@@ -18,8 +18,6 @@ namespace LabyrinthExplorer
         private Vector3 color;
         private string effectName;
 
-        bool isFirstUpdate = true;
-
         private Matrix[] screenTransforms;
         private Matrix screenWorldMatrix;
         string gemType;
@@ -40,13 +38,14 @@ namespace LabyrinthExplorer
             gemType = gemModelName;
         }
 
+        public override void OnEnteringArea()
+        {
+            Game.SoundManager.PlaySound(effectName, this, -1);
+        }
+
         public override void Update(float deltaTime)
         {
-            if (isFirstUpdate)
-            {
-                Game.SoundManager.PlaySound(effectName, this, -1);
-                isFirstUpdate = false;
-            }
+            
             sinWaveVar += (double) deltaTime;
             base.Update(deltaTime);
 
