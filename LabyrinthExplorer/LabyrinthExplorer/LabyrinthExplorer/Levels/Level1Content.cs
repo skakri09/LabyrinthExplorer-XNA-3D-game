@@ -184,7 +184,7 @@ namespace LabyrinthExplorer
             ZPosWall(750, 2000, 750, 800);//11
             ZPosWall(3000, 1400, 3000, 750);//12
 
-            XPosWal(2000, 2175, 2400, 2175, 125);
+            XPosWal(2050, 2175, 2400, 2175, 125);
             #endregion
 
             #region area 4
@@ -235,7 +235,8 @@ namespace LabyrinthExplorer
         private void GenInteractiveEnvironment()
         {
             environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150), 
-                    new Vector3(0, -90, 0), 50, Vector3.Left));
+                    new Vector3(0, -90, 0), 50, Vector3.Left, 
+                    new ChestItem[]{new Key(contentMan)}));
 
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
 

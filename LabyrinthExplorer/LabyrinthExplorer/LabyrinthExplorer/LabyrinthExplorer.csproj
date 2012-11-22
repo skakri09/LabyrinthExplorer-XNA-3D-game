@@ -80,8 +80,10 @@
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Collision\IAABB.cs" />
     <Compile Include="GameObjects\Enemies\Spider.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\ChestItem.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\DuoLever.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Gem.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Key.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Portal.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IEnvironmentObject.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IInteractableObject.cs" />

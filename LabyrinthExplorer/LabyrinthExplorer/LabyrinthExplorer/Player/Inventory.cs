@@ -33,6 +33,14 @@ namespace LabyrinthExplorer
             InventoryItems.Add(item, GetScreenOffset());
         }
 
+        public void AddItems(List<InventoryItem> items)
+        {
+            foreach (InventoryItem item in items)
+            {
+                InventoryItems.Add(item, GetScreenOffset());
+            }
+        }
+
         public void RemoveItem(InventoryItem item)
         {
             InventoryItems.Remove(item);

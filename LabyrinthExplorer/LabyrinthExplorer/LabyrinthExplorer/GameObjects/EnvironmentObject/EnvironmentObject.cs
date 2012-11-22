@@ -22,10 +22,6 @@ namespace LabyrinthExplorer
 
         protected float FogEnd = GameConstants.Radius;
 
-        /// <summary>
-        /// Creates a static environment object.
-        /// </summary>
-        /// <param name="modelPath">full path of model inside the Model folder </param>
         public EnvironmentObject(string modelPath, ContentManager content,
             Vector3 position, Vector3 rotation, float scale)
         {
@@ -41,10 +37,20 @@ namespace LabyrinthExplorer
             model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
+        //Ctor used for items like key which wont nescessarily be visible in the world
+        public EnvironmentObject(string modelPath, ContentManager content)
+        {
+            model = content.Load<Model>(modelPath);
+
+            transformation = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transformation);
+        }
         public virtual void Update(float deltaTime)
         {
             if(emitter != null)
                 emitter.Position = position;
+
+            model.CopyAbsoluteBoneTransformsTo(transformation);
         }
 
         public AudioEmitter GetAudioEmitter()

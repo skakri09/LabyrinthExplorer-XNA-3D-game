@@ -51,8 +51,6 @@ namespace LabyrinthExplorer
             base.Update(deltaTime);
 
             position.Y = originalModelPosition.Y + (float)(Math.Sin(sinWaveVar) * sinWaveMultiplier);
-            
-            base.model.CopyAbsoluteBoneTransformsTo(base.transformation);
         }
 
         public void Update(float deltaTime, Camera camera, Vector3 screenOffset)
@@ -154,12 +152,14 @@ namespace LabyrinthExplorer
 
         public void Use(AABB interactingParty)
         {
-            //put in player inventory
-            Game.SoundManager.PlaySound("GemPickup");
-            Game.SoundManager.StopSound(effectName);
-            Interactables.RemoveInteractable(this);
-            Game.player.inv.AddItem(new InventoryItem(this, gemType));
-            World.currentLevel.RemoveEnvironmentItem(this);
+            if (interactingParty is Player)
+            {
+                Game.SoundManager.PlaySound("GemPickup");
+                Game.SoundManager.StopSound(effectName);
+                Interactables.RemoveInteractable(this);
+                Game.player.inv.AddItem(new InventoryItem(this, gemType));
+                World.currentLevel.RemoveEnvironmentItem(this);
+            }
         }
 
         public void Use()
