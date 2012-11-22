@@ -64,7 +64,7 @@ namespace LabyrinthExplorer
                 if (interactingParty is Player)
                 {
                     Player player = (Player)interactingParty;
-                    //if(player.Inventory.contains("key"))
+                    if(player.inv.HaveItemOfType("SecretDoorKey"))
                     {
                         Game.SoundManager.PlaySound("DoorOpen", this);
                         openTimer = 0.0f;
