@@ -12,8 +12,6 @@ namespace LabyrinthExplorer
     
     public class TurnablePilar : EnvironmentObject, IInteractableObject
     {
-
-        //private Vector3 base.rotation;
         private Vector3 unlockRotation;
         private Vector3 thisInteractionTarget;
 
@@ -202,6 +200,10 @@ namespace LabyrinthExplorer
             rotating = true;
             rotationVelocity = rotateVelocity;
             thisInteractionTarget.Y += degreesToRotate;
+        }
+
+        public void UsedCallback()
+        {
         }
 
         public bool IsUnlocked

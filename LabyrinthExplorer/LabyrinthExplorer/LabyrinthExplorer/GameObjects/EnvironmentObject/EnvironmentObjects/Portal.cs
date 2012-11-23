@@ -86,5 +86,9 @@ namespace LabyrinthExplorer
         {
             return distanceDivisionFactor;
         }
+
+        public void UsedCallback()
+        {
+        }
     }
 }

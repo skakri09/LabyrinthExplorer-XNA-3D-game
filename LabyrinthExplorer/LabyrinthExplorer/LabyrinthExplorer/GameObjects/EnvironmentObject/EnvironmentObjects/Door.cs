@@ -59,7 +59,6 @@ namespace LabyrinthExplorer
 
         public override void OnEnteringArea()
         {
-            
         }
 
         public override void Update(float deltaTime)
@@ -128,6 +127,10 @@ namespace LabyrinthExplorer
             max += position;
 
             collisionAABB.SetAABB(min, max);
+        }
+
+        public void UsedCallback()
+        {
         }
     }
 }

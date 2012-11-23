@@ -56,6 +56,11 @@ namespace LabyrinthExplorer
             emitter.Position = position;
         }
 
+        public override void Update(float deltaTime)
+        {
+            base.Update(deltaTime);
+            //timer for puting lever bac kdown
+        }
         public void Use(AABB interactingParty)
         {
             if (!isUsed)
@@ -79,6 +84,11 @@ namespace LabyrinthExplorer
                 base.SetModel(closedModel);
                 isUsed = false;
             }
+        }
+
+        public void UsedCallback()
+        {
+            SetUnused();
         }
     }
 }

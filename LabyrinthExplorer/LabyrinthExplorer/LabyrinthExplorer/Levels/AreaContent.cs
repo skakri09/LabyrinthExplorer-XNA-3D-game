@@ -75,12 +75,12 @@ namespace LabyrinthExplorer
                         "normalMapTexture", "heightMapTexture",
                         stoneColorMap, stoneNormalMap, stoneHeightMap);
             }
-            //foreach (NormalMappedCeiling ceiling in ceilings)
-            //{
-            //    ceiling.Draw(graphicsDevice, effect, "colorMapTexture",
-            //            "normalMapTexture", "heightMapTexture",
-            //            stoneColorMap, stoneNormalMap, stoneHeightMap);
-            //}
+            foreach (NormalMappedCeiling ceiling in ceilings)
+            {
+                ceiling.Draw(graphicsDevice, effect, "colorMapTexture",
+                        "normalMapTexture", "heightMapTexture",
+                        stoneColorMap, stoneNormalMap, stoneHeightMap);
+            }
             foreach (NormalMappedFloor floor in floors)
             {
                 floor.Draw(graphicsDevice, effect, "colorMapTexture",

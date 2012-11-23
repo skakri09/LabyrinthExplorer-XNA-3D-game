@@ -167,11 +167,36 @@ namespace LabyrinthExplorer
 
         protected void GenerateCeiling()
         {
+            //top part
             ceilings.Add(new NormalMappedCeiling(device,
-                new Vector3(-5000, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(0, GameConstants.WALL_HEIGHT, 0),
+                new Vector3(0, GameConstants.WALL_HEIGHT, 2200),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 2200),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 0),
+                Vector3.Down));
+
+            //bottom part
+            ceilings.Add(new NormalMappedCeiling(device,
+                new Vector3(0, GameConstants.WALL_HEIGHT, 3350),
+                new Vector3(0, GameConstants.WALL_HEIGHT, 5000),
                 new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
-                new Vector3(5000, GameConstants.WALL_HEIGHT, -5000),
-                new Vector3(-5000, GameConstants.WALL_HEIGHT, -5000),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 3350),
+                Vector3.Down));
+
+            //left (closest to 0)
+            ceilings.Add(new NormalMappedCeiling(device,
+                new Vector3(0, GameConstants.WALL_HEIGHT, 2200),
+                new Vector3(0, GameConstants.WALL_HEIGHT, 3350),
+                new Vector3(1750, GameConstants.WALL_HEIGHT, 3350),
+                new Vector3(1750, GameConstants.WALL_HEIGHT, 2200),
+                Vector3.Down));
+
+            //right
+            ceilings.Add(new NormalMappedCeiling(device,
+                new Vector3(3100, GameConstants.WALL_HEIGHT, 2200),
+                new Vector3(3100, GameConstants.WALL_HEIGHT, 3350),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 3350),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 2200),
                 Vector3.Down));
         }
 

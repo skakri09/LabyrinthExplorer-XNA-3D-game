@@ -169,5 +169,9 @@ namespace LabyrinthExplorer
         {
             return 0.4f;
         }
+
+        public void UsedCallback()
+        {
+        }
     }
 }

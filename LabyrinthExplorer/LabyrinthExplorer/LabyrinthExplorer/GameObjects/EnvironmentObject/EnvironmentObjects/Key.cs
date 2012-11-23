@@ -138,5 +138,9 @@ namespace LabyrinthExplorer
             }
            
         }
+
+        public void UsedCallback()
+        {
+        }
     }
 }

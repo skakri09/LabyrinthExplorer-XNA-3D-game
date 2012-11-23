@@ -166,7 +166,7 @@ namespace LabyrinthExplorer
                     new IChestItem[] { new Key(contentMan, "blueGemRoomKey") }));
 
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
-
+            environment.Add(new Lever(contentMan, new Vector3(1250, 0, 1150), new Vector3(0, 90, 0), 100, Vector3.Forward, gate));
             CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(0, 90, 0), 100, Vector3.Forward,
                            new Vector3(1500, 0, 1100), new Vector3(0, 180, 0), 100, Vector3.Backward, gate);
 

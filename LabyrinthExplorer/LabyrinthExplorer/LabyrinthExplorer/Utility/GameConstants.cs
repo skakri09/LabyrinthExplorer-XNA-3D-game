@@ -33,7 +33,7 @@ namespace LabyrinthExplorer
         #region light
         public static Color GlobalAmbientGame = new Color(new Vector4(0.05f, 0.05f, 0.05f, 0.01f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
-        public static Color CurrentAmbientLight = GlobalAmbientDebug;
+        public static Color CurrentAmbientLight = GlobalAmbientGame;
 
         public static Color ambient = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
         public static Color diffuse = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -94,7 +94,7 @@ namespace LabyrinthExplorer
         public const float CEILING_TILE_FACTOR = 8.0f;
         public const float FLOOR_PLANE_SIZE = 2024.0f;
         public const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
-        public const float WALL_HEIGHT = 200.0f;
+        public const float WALL_HEIGHT = 500.0f;
 
         public const float FLOOR_TILE_FACTOR_SMALL = 1.2f;
         public const float FLOOR_TILE_FACTOR_NORMAL = 0.4f;

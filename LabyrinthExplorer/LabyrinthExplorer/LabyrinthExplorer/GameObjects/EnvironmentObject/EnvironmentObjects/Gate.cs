@@ -17,7 +17,9 @@ namespace LabyrinthExplorer
         private Vector3 closingVelocity;
         private float closeAfter;
         private float gateBeenOpenFor;
-        
+
+        private List<IInteractableObject> interactingParties;
+
         public Gate(ContentManager content, Vector3 position,
                     Vector3 rotation, float scale, float closeAfterSeconds = 0, bool isClosed = true)
             :base(@"Models\Environment\Gate", content, position, rotation, scale)
@@ -36,6 +38,7 @@ namespace LabyrinthExplorer
             }
             emitter = new AudioEmitter();
             emitter.Position = base.Position;
+            interactingParties = new List<IInteractableObject>();
         }
 
         public override void OnEnteringArea()
@@ -66,7 +69,12 @@ namespace LabyrinthExplorer
                     CreateCollision(base.Position, base.Rotation, base.Scale);
                 }
                 else
+                {
+                    foreach (IInteractableObject interactable in interactingParties)
+                        interactable.UsedCallback();
+
                     gateState = GateState.CLOSED;
+                }
             }
             else if (gateState == GateState.OPEN)
             {
@@ -83,10 +91,22 @@ namespace LabyrinthExplorer
             if (gateState == GateState.OPEN)
             {
                 CloseGate();
+                if (interactingParty is IInteractableObject)
+                {
+                    IInteractableObject obj = (IInteractableObject)interactingParty;
+                    if (interactingParties.Contains(obj))
+                        interactingParties.Add(obj);
+                }
             }
             else if (gateState == GateState.CLOSED)
             {
                 OpenGate();
+                if (interactingParty is IInteractableObject)
+                {
+                    IInteractableObject obj = (IInteractableObject)interactingParty;
+                    if (!interactingParties.Contains(obj))
+                        interactingParties.Add(obj);
+                }
             }
         }
 
@@ -95,6 +115,7 @@ namespace LabyrinthExplorer
             Game.SoundManager.PlaySound("GateDoorOpening", this);
             gateState = GateState.OPENING;
         }
+
         private void CloseGate()
         {
             Game.SoundManager.PlaySound("GateDoorClosing", this);
@@ -114,6 +135,11 @@ namespace LabyrinthExplorer
             min += position;
             max += position;
             SetAABB(min, max);
+        }
+
+        public void UsedCallback()
+        {
+
         }
 
         public GateState gateState { get; set; }

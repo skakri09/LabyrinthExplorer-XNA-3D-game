@@ -124,5 +124,11 @@ namespace LabyrinthExplorer
         {
             //if anything
         }
+
+        public void UsedCallback()
+        {
+            lever1.UsedCallback();
+            lever2.UsedCallback();
+        }
     }
 }

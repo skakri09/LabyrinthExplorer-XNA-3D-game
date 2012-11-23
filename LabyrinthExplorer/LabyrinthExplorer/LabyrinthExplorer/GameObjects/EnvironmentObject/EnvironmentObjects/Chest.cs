@@ -108,6 +108,10 @@ namespace LabyrinthExplorer
                 }
             }
             return null;
-        }    
+        }
+
+        public void UsedCallback()
+        {
+        }
     }
 }

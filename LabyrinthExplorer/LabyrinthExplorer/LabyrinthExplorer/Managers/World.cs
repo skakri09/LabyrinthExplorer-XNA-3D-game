@@ -124,7 +124,8 @@ namespace LabyrinthExplorer
                 currentArea = area;
                 area.LoadContent(device, contentMan);
             }
-            ChangeArea("area2", new Vector3(2500, 150, 2500));
+            ChangeArea("area2", new Vector3(400, 150, 650));
+            //ChangeArea("area1", new Vector3(3700, 150, 4300));
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
