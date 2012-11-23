@@ -170,19 +170,22 @@ namespace LabyrinthExplorer
         }
 
         protected void GenInteractiveEnvironment()
-        {
-            environment.Add(new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
-                new Vector3(0, 180, 0), Vector3.Backward, 105));
-            environment.Add(new TurnablePilar(contentMan, new Vector3(2450, -100, 3200),
-               new Vector3(0, 0, 0), Vector3.Forward, 105));
-            environment.Add(new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
-               new Vector3(0, 270, 0), Vector3.Left, 105));
-            environment.Add(new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
-               new Vector3(0, 90, 0), Vector3.Right, 105));
+        {   
+            CreateTurnablePilar(new Vector3(2425, -100, 2200),
+                new Vector3(0, 180, 0), Vector3.Backward, 105);
 
-            environment.Add(new Portal(contentMan, new Vector3(1175, 0, 1800),
-                                new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
-                                GameConstants.PLAYER_START_POS, "area1"));
+            CreateTurnablePilar(new Vector3(2450, -100, 3200),
+               new Vector3(0, 0, 0), Vector3.Forward, 105);
+
+            CreateTurnablePilar( new Vector3(1800, -100, 2750),
+               new Vector3(0, 270, 0), Vector3.Left, 105);
+
+            CreateTurnablePilar(new Vector3(3050, -100, 2750),
+                new Vector3(0, 90, 0), Vector3.Right, 105);
+
+            CreatePortal(new Vector3(1175, 0, 1800),
+        new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
+        new Vector3(1175, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 1800), "area1");
 
         }
 

@@ -44,7 +44,7 @@ namespace LabyrinthExplorer
 
         public override void OnEnteringArea()
         {
-            Game.SoundManager.PlaySound("Portal1", this, -1, false);
+            Game.SoundManager.PlaySound("Portal1", this, -1);
         }
 
         public override void Update(float deltaTime)
@@ -76,7 +76,7 @@ namespace LabyrinthExplorer
                     subbedForPorting = true;
                     cooldownTimer = 0.0f;
                     player = (Player)interactingParty;
-                    Game.SoundManager.PlaySound("PortalUse");
+                    Game.SoundManager.PlaySound("PortalUse", null, 0, false);
                 }
                 else
                     throw new Exception("interacting party (with portal) is not player");

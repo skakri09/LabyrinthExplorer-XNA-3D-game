@@ -52,6 +52,7 @@ namespace LabyrinthExplorer
                 mesh.Draw();
             }
         }
+        
         private void FindCurrentRotation(Vector3 degreesRotation)
         {
             if (degreesRotation.Y == 0)
@@ -73,7 +74,6 @@ namespace LabyrinthExplorer
             min += position;
             max += position;
             SetAABB(min, max);
-            World.currentArea.EnvironmentCollidables().Add(this);
         }
 
         public override void OnEnteringArea()

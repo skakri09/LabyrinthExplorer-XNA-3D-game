@@ -186,8 +186,23 @@ namespace LabyrinthExplorer
             frontLeft, frontRight, backRight, backLeft,
             Vector3.Up));
         }
+        protected void CreatePortal(Vector3 position, Vector3 rotation,  float scale,
+             Vector3 useFromDirection, Vector3 portToLocation, string portToArea = null)
+        {
+            Portal portal = new Portal(contentMan, position, rotation, scale, 
+                useFromDirection, portToLocation, portToArea);
+            environment.Add(portal);
+            Interactables.AddInteractable(portal);
+        }
 
-        
+        protected void CreateTurnablePilar(Vector3 position,
+                    Vector3 rotation, Vector3 unlockedRotation, float scale )
+        {
+            TurnablePilar pilar = new TurnablePilar(contentMan, 
+                position, rotation, unlockedRotation, scale);
+            environment.Add(pilar);
+            environmentCollidables.Add(pilar);
+        }
 
         #endregion
     }
