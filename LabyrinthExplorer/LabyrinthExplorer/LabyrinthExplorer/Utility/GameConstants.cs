@@ -44,7 +44,7 @@ namespace LabyrinthExplorer
         
         #region Camera
         public const float CAMERA_FOVX = 90.0f;
-        public const float CAMERA_ZNEAR = 1.0f;
+        public const float CAMERA_ZNEAR = 2.0f;
         public const float CAMERA_ZFAR = 5000*MAP_SCALE; ///Reduce when done !
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
@@ -56,7 +56,7 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =500;
 
         //public const float CAMERA_ACCELERATION_X = 800.0f;
         //public const float CAMERA_ACCELERATION_Y = 1000.0f;
@@ -93,7 +93,7 @@ namespace LabyrinthExplorer
         public const float CEILING_TILE_FACTOR = 8.0f;
         public const float FLOOR_PLANE_SIZE = 2024.0f;
         public const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
-        public const float WALL_HEIGHT = 500.0f;
+        public const float WALL_HEIGHT = 200.0f;
 
         public const float FLOOR_TILE_FACTOR_SMALL = 1.2f;
         public const float FLOOR_TILE_FACTOR_NORMAL = 0.4f;

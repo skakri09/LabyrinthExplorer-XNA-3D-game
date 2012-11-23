@@ -52,7 +52,6 @@ namespace LabyrinthExplorer
             base.Update(deltaTime);
             cooldownTimer += deltaTime;
 
-          
             if (subbedForPorting)
             {
                 if (cooldownTimer >= waitBeforePorting)

@@ -122,7 +122,7 @@ namespace LabyrinthExplorer
             {
                 area.LoadContent(device, contentMan);
             }
-            ChangeArea("area2", GameConstants.PLAYER_START_POS);
+            ChangeArea("area2", new Vector3(2500, 150, 2500));
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
