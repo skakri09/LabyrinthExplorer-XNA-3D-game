@@ -19,6 +19,13 @@ namespace LabyrinthExplorer
 
         private float rotationVelocity = 0.0f;
         private bool rotating = false;
+
+        private bool submerged = false;
+        private bool submerging = false;
+        private float submergedYPos = -550.0f;
+        private float submergeTimer = 0.0f;
+        private bool submergingStart = true;
+
         AABB interactingPartyForCallback;
 
         /// <summary>
@@ -67,10 +74,44 @@ namespace LabyrinthExplorer
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
+
+            if (!submerged && ! submerging)
+                UpdateRotation(deltaTime);
+            else if (submerging)
+                UpdateSubmergion(deltaTime);
+                
+            //else we are submerged and do nothing
+        }
+        private void UpdateSubmergion(float deltaTime)
+        {
+            submergeTimer += deltaTime;
+            if (submergeTimer >= 18.0f)//we start submerging after 18 seconds
+            {
+                if (submergingStart)
+                {
+                    submergingStart = false;
+                    Game.SoundManager.PlaySound("PillarRotate", this);
+                }
+                if (base.position.Y <= submergedYPos)
+                {
+                    submerged = true;
+                    submerging = false;
+                }
+                else
+                {
+                    base.position.Y += (-68 * deltaTime);
+                    base.rotation.Y += (100 * deltaTime);
+                    CreateCollision(base.position, unlockRotation, base.Scale);
+                }
+            }
+        }
+
+        private void UpdateRotation(float deltaTime)
+        {
             if (rotating)
             {
                 base.rotation.Y += rotationVelocity * deltaTime;
-                if(base.rotation.Y >= thisInteractionTarget.Y)
+                if (base.rotation.Y >= thisInteractionTarget.Y)
                 {
                     if (interactingPartyForCallback is Lever)
                     {
@@ -90,7 +131,7 @@ namespace LabyrinthExplorer
                 }
             }
         }
-
+        
         private Vector3 FindUnlockedDegreeRotation(Vector3 targetRotation)
         {
             if (targetRotation == Vector3.Forward)
@@ -135,11 +176,20 @@ namespace LabyrinthExplorer
 
         public void Use(AABB interactingParty)
         {
-            StartRotation(90, 15);
-            this.interactingPartyForCallback = interactingParty;
-            Game.SoundManager.PlaySound("PillarRotate", this);
-            //turn 90 degrees 
-            //play some sound
+            if (!submerged && !submerging)
+            {
+                StartRotation(90, 15);
+                this.interactingPartyForCallback = interactingParty;
+                Game.SoundManager.PlaySound("PillarRotate", this);
+            }
+        }
+
+        public void Submerge()
+        {
+            if (!submerging && !submerged)
+            {
+                submerging = true;
+            }
         }
 
         private void StartRotation(float degreesToRotate, float rotateVelocity)

@@ -17,6 +17,10 @@ namespace LabyrinthExplorer
         private TurnablePilar LeftPillar;
         private TurnablePilar RightPillar;
 
+        private List<TurnablePilar> Pillars;
+
+        private bool PillarsUnlocked = false;
+
         public Area2Content(Camera camera)
             :base(camera)
         {
@@ -48,6 +52,7 @@ namespace LabyrinthExplorer
 
             base.Update(gameTime, camera);
             randomWhisper.Update(deltaTime);
+            UpdatePillarsLock();
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, Effect effect,
@@ -222,8 +227,39 @@ namespace LabyrinthExplorer
             environmentCollidables.Add(RightPillar);
             environment.Add(new Lever(contentMan, new Vector3(4400, 0, 4000),
               new Vector3(0, 180, 0), 100, Vector3.Zero, RightPillar));
+
+            Pillars = new List<TurnablePilar>();
+            Pillars.Add(BottomPillar);
+            Pillars.Add(LeftPillar);
+            Pillars.Add(RightPillar);
+            Pillars.Add(TopPillar);
         }
-        
+
+        private void UpdatePillarsLock()
+        {
+            if (!PillarsUnlocked)
+            {
+                int unlockedPillars = 0;
+                foreach (TurnablePilar pillar in Pillars)
+                {
+                    if (pillar.IsUnlocked)
+                    {
+                        ++unlockedPillars;
+                    }
+                }
+                if (unlockedPillars == Pillars.Count)
+                {
+                    PillarsUnlocked = true;
+                    Game.SoundManager.PlaySound("GroundShaking", null, 4);
+                    foreach (TurnablePilar pillar in Pillars)
+                    {
+                        pillar.Submerge();
+                    }
+                }
+            }
+
+        }
+
         public override void OnEnteringArea()
         {
             base.OnEnteringArea();

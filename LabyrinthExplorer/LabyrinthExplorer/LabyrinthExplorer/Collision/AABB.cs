@@ -44,27 +44,27 @@ namespace LabyrinthExplorer
             if (useDirection == Vector3.Left)
             {
                 minPoint = new Vector3(position.X - outDist, 0, position.Z - sideDist);
-                maxPoint = new Vector3(position.X, GameConstants.WALL_HEIGHT, position.Z + sideDist);
+                maxPoint = new Vector3(position.X, GameConstants.InteractablesUseHeight, position.Z + sideDist);
             }
             else if (useDirection == Vector3.Right)
             {
                 minPoint = new Vector3(position.X, 0, position.Z - sideDist);
-                maxPoint = new Vector3(position.X + outDist, GameConstants.WALL_HEIGHT, position.Z + sideDist);
+                maxPoint = new Vector3(position.X + outDist, GameConstants.InteractablesUseHeight, position.Z + sideDist);
             }
             else if (useDirection == Vector3.Forward)
             {
                 minPoint = new Vector3(position.X - sideDist, 0, position.Z);
-                maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + outDist);
+                maxPoint = new Vector3(position.X + sideDist, GameConstants.InteractablesUseHeight, position.Z + outDist);
             }
             else if(useDirection == Vector3.Backward)
             {
                 minPoint = new Vector3(position.X - sideDist, 0, position.Z - outDist);
-                maxPoint = new Vector3(position.X + sideDist, GameConstants.WALL_HEIGHT, position.Z + 0);
+                maxPoint = new Vector3(position.X + sideDist, GameConstants.InteractablesUseHeight, position.Z + 0);
             }
             else
             {
                 minPoint = new Vector3(position.X - outDist, position.Y, position.Z-outDist);
-                maxPoint = new Vector3(position.X + outDist, position.Y + GameConstants.WALL_HEIGHT, position.Z + outDist);
+                maxPoint = new Vector3(position.X + outDist, position.Y + GameConstants.InteractablesUseHeight, position.Z + outDist);
             }
 
             SetAABB(minPoint, maxPoint);
