@@ -131,29 +131,29 @@ namespace LabyrinthExplorer
             return gate;
         }
 
-        protected void SmarPosWall(float x1, float y1, float x2, float y2)
+        protected void SmarPosWall(float x1, float y1, float x2, float y2, float width = 50)
         {
             if (x1 == x2)
             {
                 
                 if (y1 > y2)
                 {
-                    ZPosWall(x1, y1, x2, y2);
+                    ZPosWall(x1, y1, x2, y2, width);
                 }
                 else
                 {
-                    ZPosWall(x2, y2, x1, y1);
+                    ZPosWall(x2, y2, x1, y1, width);
                 }
             }
             else if (y1 == y2)
             {
                  if (x1 > x2)
                  {
-                     XPosWal(x2, y2, x1, y1);
+                     XPosWal(x2, y2, x1, y1, width);
                  }
                  else
                  {
-                     XPosWal(x1, y1, x2, y2);
+                     XPosWal(x1, y1, x2, y2, width);
                  }
             }
             else

@@ -133,22 +133,25 @@ namespace LabyrinthExplorer
             SmarPosWall(3650, 2900, 3650, 3550); 
             SmarPosWall(3650, 3800, 3650, 4300);
             SmarPosWall(3700, 2900, 4600, 2900); //Changed SmarPosWall(3650, 2900, 4600, 2900);
-            SmarPosWall(3850, 950, 4700, 950);
+           
             SmarPosWall(3900, 3300, 3900, 3100);
             SmarPosWall(3900, 3500, 3900, 4100);
-
             SmarPosWall(3900, 4100, 4100, 4100);
-
             SmarPosWall(3950, 3500, 4150, 3500);//move 50 right
             SmarPosWall(3950, 3650, 4250, 3650);//move 50 right
             SmarPosWall(3950, 3100, 4300, 3100);//move 50 right
-
             SmarPosWall(3900, 3300, 4300, 3300);
-
             SmarPosWall(4250, 350, 4250, 50);
-            SmarPosWall(4250, 1000, 4250, 1650);//moved 50 down
+
+            SmarPosWall(3850, 950, 4250, 950);//wall split in two for door
+            SmarPosWall(4500, 950, 4700, 950, 125);//^
+
+            SmarPosWall(3850, 1000, 3850, 1650);//added
+            SmarPosWall(3850, 1650, 4700, 1650);//locking room at bottom
+
+
             SmarPosWall(4250, 3350, 4250, 3650);//moved 50 down
-            SmarPosWall(4250, 1650, 4700, 1650);
+            
             SmarPosWall(4300, 4100, 4300, 3850);//move 50 down
             SmarPosWall(4300, 3300, 4600, 3300);
             SmarPosWall(4450, 3800, 4100, 3800);
@@ -156,7 +159,7 @@ namespace LabyrinthExplorer
             SmarPosWall(4600, 4100, 4300, 4100);
             SmarPosWall(4600, 4300, 4600, 2600);
             SmarPosWall(4700, 350, 4250, 350);
-            SmarPosWall(4700, 950, 4700, 350);
+            SmarPosWall(4700, 1700, 4700, 350);//extended to lock the redGemRoom
             SmarPosWall(4950, 50, 4950, 4950);
             #endregion
 
@@ -194,6 +197,10 @@ namespace LabyrinthExplorer
             environment.Add(new Chest(contentMan, new Vector3(4800, 0, 4850),
                     new Vector3(0, -90, 0), 50, Vector3.Left,
                     new ChestItem[] { new Key(contentMan, "redGemRoomKey") }));
+
+            environment.Add(new Door(contentMan, new Vector3(4375, 0, 1004), Vector3.Zero,
+               new Vector3(4675, 0, 1004), 90, Vector3.Forward, ref environmentCollidables,
+               "redGemRoomKey"));
         }
 
         private void CreatePillarsWithLever()
