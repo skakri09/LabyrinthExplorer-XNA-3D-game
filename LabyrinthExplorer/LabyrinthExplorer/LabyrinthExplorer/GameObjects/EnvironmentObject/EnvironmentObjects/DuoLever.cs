@@ -41,6 +41,8 @@ namespace LabyrinthExplorer
 
         public void Update(float deltaTime)
         {
+            lever1.Update(deltaTime);
+            lever2.Update(deltaTime);
             if (!isOpen)
             {
                 if (lever1Used)
@@ -61,8 +63,6 @@ namespace LabyrinthExplorer
                         lever2.SetUnused();
                     }
                 }
-                lever1.Update(deltaTime);
-                lever2.Update(deltaTime);
             }
             else
             {
@@ -85,21 +85,26 @@ namespace LabyrinthExplorer
         {
             if (!isOpen)
             {
-                if (interactingParty.CheckCollision(lever1) != Vector3.Zero)
+                if (!lever1Used)
                 {
-                    lever1Used = true;
-                    lever1UsedDuration = 0.0f;
-                    Game.SoundManager.PlaySound("Clock", null, timesToPlay);
-                    lever1.Use(null);
+                    if (interactingParty.CheckCollision(lever1) != Vector3.Zero)
+                    {
+                        lever1Used = true;
+                        lever1UsedDuration = 0.0f;
+                        Game.SoundManager.PlaySound("Clock", null, timesToPlay);
+                        lever1.Use(null);
+                    }
                 }
-                if (interactingParty.CheckCollision(lever2) != Vector3.Zero)
+                if (!lever2Used)
                 {
-                    lever2Used = true;
-                    lever2UsedDuration = 0.0f;
-                    Game.SoundManager.PlaySound("Clock", null, timesToPlay);
-                    lever2.Use(null);
+                    if (interactingParty.CheckCollision(lever2) != Vector3.Zero)
+                    {
+                        lever2Used = true;
+                        lever2UsedDuration = 0.0f;
+                        Game.SoundManager.PlaySound("Clock", null, timesToPlay);
+                        lever2.Use(null);
+                    }
                 }
-
                 if (lever1Used && lever2Used)
                 {
                     Game.SoundManager.StopSound("Clock");

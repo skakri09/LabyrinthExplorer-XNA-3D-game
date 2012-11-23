@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
@@ -12,8 +13,13 @@ namespace LabyrinthExplorer
     public class TurnablePilar : EnvironmentObject, IInteractableObject
     {
 
-        private Vector3 currentRotation;
+        //private Vector3 base.rotation;
         private Vector3 unlockRotation;
+        private Vector3 thisInteractionTarget;
+
+        private float rotationVelocity = 0.0f;
+        private bool rotating = false;
+        AABB interactingPartyForCallback;
 
         /// <summary>
         /// The unlockedRotation must be on format vector3.left/right/foward/backwards
@@ -23,8 +29,11 @@ namespace LabyrinthExplorer
             : base(@"Models\Environment\SpiderStatue", content, position, rotation, scale)
         {
             CreateCollision(position, rotation, scale);
-            currentRotation = rotation;
-            unlockedRotation = FindUnlockedDegreeRotation(unlockedRotation);
+            base.rotation = rotation;
+            unlockRotation = FindUnlockedDegreeRotation(unlockedRotation);
+            IsUnlocked = false;
+            thisInteractionTarget = base.rotation;
+            emitter = new AudioEmitter();
         }
 
         public override void Draw(Camera camera, Microsoft.Xna.Framework.Graphics.Effect effect)
@@ -58,26 +67,47 @@ namespace LabyrinthExplorer
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
-
+            if (rotating)
+            {
+                base.rotation.Y += rotationVelocity * deltaTime;
+                if(base.rotation.Y >= thisInteractionTarget.Y)
+                {
+                    if (interactingPartyForCallback is Lever)
+                    {
+                        Lever lever = (Lever)interactingPartyForCallback;
+                        lever.SetUnused();
+                    }
+                    rotating = false;
+                    //giving 20 degrees leeway in each direction for when its unlocked, as
+                    //the rotation wont be exact since we use floats
+                    if (base.rotation.Y >= (unlockRotation.Y - 20)
+                      && base.rotation.Y <= (unlockRotation.Y + 20))
+                    {
+                        IsUnlocked = true;
+                    }
+                    else
+                        IsUnlocked = false;
+                }
+            }
         }
 
         private Vector3 FindUnlockedDegreeRotation(Vector3 targetRotation)
         {
             if (targetRotation == Vector3.Forward)
             {
-                return new Vector3(0, 0, 0);
+                return new Vector3(0, 360, 0);//using 360 instead of 0 so we can easily use >= in update
             }
             else if (targetRotation == Vector3.Backward)
             {
-                return new Vector3(0, 0, 0);
+                return new Vector3(0, 180, 0);
             }
             else if (targetRotation == Vector3.Left)
             {
-                return new Vector3(0, 0, 0);
+                return new Vector3(0, 90, 0);
             }
             else if (targetRotation == Vector3.Right)
             {
-                return new Vector3(0, 0, 0);
+                return new Vector3(0, 270, 0);
             }
             else
                 throw new Exception("TargetRotation not correctly set, must be left/right/forward/backward");
@@ -105,8 +135,29 @@ namespace LabyrinthExplorer
 
         public void Use(AABB interactingParty)
         {
+            StartRotation(90, 10);
+            this.interactingPartyForCallback = interactingParty;
+            Game.SoundManager.PlaySound("PillarRotate", this);
             //turn 90 degrees 
             //play some sound
+        }
+
+        private void StartRotation(float degreesToRotate, float rotateVelocity)
+        {
+            if (base.rotation.Y >= 360)
+            {
+                base.rotation.Y -= 360;
+                thisInteractionTarget.Y = 0.0f;
+            }
+            rotating = true;
+            rotationVelocity = rotateVelocity;
+            thisInteractionTarget.Y += degreesToRotate;
+        }
+
+        public bool IsUnlocked
+        {
+            get;
+            private set;
         }
     }
 }

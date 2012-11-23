@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class Door : EnvironmentObject, I3DSound, IInteractableObject
+    public class Door : EnvironmentObject, IInteractableObject
     {
 
         public enum DoorState

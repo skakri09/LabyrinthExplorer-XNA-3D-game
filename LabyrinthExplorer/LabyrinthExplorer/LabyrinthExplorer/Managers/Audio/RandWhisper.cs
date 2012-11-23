@@ -58,6 +58,7 @@ namespace LabyrinthExplorer
 
         public AudioEmitter GetAudioEmitter()
         {
+            emitter.Position = simulatedPosiion;
             return emitter;
         }
 

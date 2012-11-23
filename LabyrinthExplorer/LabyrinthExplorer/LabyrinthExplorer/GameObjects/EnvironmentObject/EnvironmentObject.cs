@@ -55,9 +55,8 @@ namespace LabyrinthExplorer
 
         public AudioEmitter GetAudioEmitter()
         {
-            AudioEmitter newEmitter = new AudioEmitter();
-            newEmitter.Position = position;
-            return newEmitter;
+            emitter.Position = position;
+            return emitter;
         }
 
         public virtual void Draw(Camera camera, Effect effect)

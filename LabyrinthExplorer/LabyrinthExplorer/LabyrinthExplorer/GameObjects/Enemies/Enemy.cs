@@ -23,12 +23,15 @@ namespace LabyrinthExplorer
         protected float FogEnd = 1000;
         Model model;
         protected  AiStateMachine aiStateMachine;
-
+        AudioEmitter emitter;
         public Enemy(string modelName, ContentManager content, float scale)
         {
             this.modelName = modelName;
             LoadContent(content);
             modelScale = scale;
+            emitter = new AudioEmitter();
+
+            emitter.Position = position;
         }
 
         public void LoadContent(ContentManager content)
@@ -91,9 +94,8 @@ namespace LabyrinthExplorer
 
         public AudioEmitter GetAudioEmitter()
         {
-            AudioEmitter newEmitter = new AudioEmitter();
-            newEmitter.Position = position;
-            return newEmitter;
+            emitter.Position = position;
+            return emitter;
         }
 
         public abstract void OnEnteringArea();

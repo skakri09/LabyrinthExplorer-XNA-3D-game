@@ -16,10 +16,14 @@ namespace LabyrinthExplorer
         protected List<Enemy> enemies;
         protected List<IEnvironmentObject> environment;
         protected List<AABB> environmentCollidables;
-
+        protected List<AABB> interactables = new List<AABB>();
         protected ContentManager contentMan;
         protected GraphicsDevice device;
 
+        public List<AABB> Interactables
+        {
+            get { return interactables; }
+        }
         protected Camera camera;
 
         public AreaContent(Camera camera)
@@ -192,7 +196,8 @@ namespace LabyrinthExplorer
             Portal portal = new Portal(contentMan, position, rotation, scale, 
                 useFromDirection, portToLocation, portToArea);
             environment.Add(portal);
-            Interactables.AddInteractable(portal);
+            Interactables.Add(portal);
+            //Interactables.AddInteractable(portal);
         }
 
         protected void CreateTurnablePilar(Vector3 position,

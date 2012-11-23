@@ -19,8 +19,9 @@ namespace LabyrinthExplorer
         private Vector2 scaleBias;
         private Camera camera;
 
-        public static IGameArea currentArea;
-        private static Dictionary<string, IGameArea> GameAreas = new Dictionary<string, IGameArea>();
+        public static AreaContent currentArea;
+        private static Dictionary<string, AreaContent> GameAreas
+            = new Dictionary<string, AreaContent>();
         Skybox skybox;
 
         protected Texture2D brickColorMap;
@@ -118,8 +119,9 @@ namespace LabyrinthExplorer
 
             globalAmbient = GameConstants.CurrentAmbientLight;
 
-            foreach (IGameArea area in GameAreas.Values)
+            foreach (AreaContent area in GameAreas.Values)
             {
+                currentArea = area;
                 area.LoadContent(device, contentMan);
             }
             ChangeArea("area2", new Vector3(2500, 150, 2500));

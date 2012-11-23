@@ -136,7 +136,7 @@ namespace LabyrinthExplorer
             LoadEffect("RedGemEntered", "");
             LoadEffect("YellowGemEntered", "");
             LoadEffect("BlueGemEntered", "");
-           
+            LoadEffect("PillarRotate", "");
             LoadEffect("ThereIsNoEscape", "");
             LoadEffect("DeathIsClose", "");
             LoadEffect("YouAreWeak", "");

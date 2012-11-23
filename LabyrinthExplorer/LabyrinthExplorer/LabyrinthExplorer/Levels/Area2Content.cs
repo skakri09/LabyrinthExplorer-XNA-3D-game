@@ -192,7 +192,7 @@ namespace LabyrinthExplorer
         private void CreatePillarsWithLever()
         {
             TopPillar = new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
-                 new Vector3(0, 180, 0), Vector3.Backward, 105);
+                 new Vector3(0, 180, 0), Vector3.Forward, 105);
             environment.Add(TopPillar);
             environmentCollidables.Add(TopPillar);
             environment.Add(new Lever(contentMan, new Vector3(2400, 0, 1900),
@@ -200,7 +200,7 @@ namespace LabyrinthExplorer
             
             
             BottomPillar = new TurnablePilar(contentMan, new Vector3(2450, -100, 3275),
-               new Vector3(0, 0, 0), Vector3.Forward, 105);
+               new Vector3(0, 0, 0), Vector3.Backward, 105);
             environment.Add(BottomPillar);
             environmentCollidables.Add(BottomPillar);
 
