@@ -56,7 +56,7 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =500;
 
         //public const float CAMERA_ACCELERATION_X = 800.0f;
         //public const float CAMERA_ACCELERATION_Y = 1000.0f;

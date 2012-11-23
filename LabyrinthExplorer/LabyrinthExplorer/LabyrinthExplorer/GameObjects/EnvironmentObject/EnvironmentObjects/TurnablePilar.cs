@@ -135,7 +135,7 @@ namespace LabyrinthExplorer
 
         public void Use(AABB interactingParty)
         {
-            StartRotation(90, 10);
+            StartRotation(90, 15);
             this.interactingPartyForCallback = interactingParty;
             Game.SoundManager.PlaySound("PillarRotate", this);
             //turn 90 degrees 

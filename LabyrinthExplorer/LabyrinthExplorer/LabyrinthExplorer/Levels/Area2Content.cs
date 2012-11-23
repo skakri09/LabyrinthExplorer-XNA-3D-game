@@ -14,8 +14,8 @@ namespace LabyrinthExplorer
 
         private TurnablePilar TopPillar;
         private TurnablePilar BottomPillar;
-        private TurnablePilar RightPillar;
         private TurnablePilar LeftPillar;
+        private TurnablePilar RightPillar;
 
         public Area2Content(Camera camera)
             :base(camera)
@@ -191,6 +191,7 @@ namespace LabyrinthExplorer
 
         private void CreatePillarsWithLever()
         {
+            //pillar 3
             TopPillar = new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
                  new Vector3(0, 180, 0), Vector3.Forward, 105);
             environment.Add(TopPillar);
@@ -198,22 +199,29 @@ namespace LabyrinthExplorer
             environment.Add(new Lever(contentMan, new Vector3(2400, 0, 1900),
                 Vector3.Zero, 100, Vector3.Zero, TopPillar));
             
-            
+            //pillar 1
             BottomPillar = new TurnablePilar(contentMan, new Vector3(2450, -100, 3275),
                new Vector3(0, 0, 0), Vector3.Backward, 105);
             environment.Add(BottomPillar);
             environmentCollidables.Add(BottomPillar);
+            environment.Add(new Lever(contentMan, new Vector3(1100, 0, 4875),
+              Vector3.Zero, 100, Vector3.Zero, BottomPillar));
 
-            RightPillar = new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
+            //pillar 4
+            LeftPillar = new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
                new Vector3(0, 270, 0), Vector3.Left, 105);
-            environment.Add(RightPillar);
-            environmentCollidables.Add(RightPillar);
-
-            LeftPillar = new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
-                new Vector3(0, 90, 0), Vector3.Right, 105);
             environment.Add(LeftPillar);
             environmentCollidables.Add(LeftPillar);
+            environment.Add(new Lever(contentMan, new Vector3(1150, 0, 2000),
+              Vector3.Zero, 100, Vector3.Zero, LeftPillar));
 
+            //pillar 2
+            RightPillar = new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
+                new Vector3(0, 90, 0), Vector3.Right, 105);
+            environment.Add(RightPillar);
+            environmentCollidables.Add(RightPillar);
+            environment.Add(new Lever(contentMan, new Vector3(4400, 0, 4000),
+              new Vector3(0, 180, 0), 100, Vector3.Zero, RightPillar));
         }
         
         public override void OnEnteringArea()
