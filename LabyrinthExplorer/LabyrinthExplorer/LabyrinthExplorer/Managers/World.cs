@@ -45,6 +45,7 @@ namespace LabyrinthExplorer
            
             GameAreas.Add("area1", new Area1Content(camera));
             GameAreas.Add("area2", new Area2Content(camera));
+            GameAreas.Add("area3", new Area3Content(camera));
         }
 
         public static void ChangeArea(string targetArea, Vector3 playerTargetPos)
@@ -124,8 +125,10 @@ namespace LabyrinthExplorer
                 currentArea = area;
                 area.LoadContent(device, contentMan);
             }
-            ChangeArea("area2", new Vector3(400, 150, 650));
+            
             //ChangeArea("area1", new Vector3(3700, 150, 4300));
+            //ChangeArea("area2", new Vector3(400, 150, 650));
+            ChangeArea("area3", new Vector3(0, 150, 0));
         }
 
         public void Draw(GraphicsDevice graphicsDevice)

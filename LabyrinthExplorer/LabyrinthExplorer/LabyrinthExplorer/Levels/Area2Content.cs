@@ -202,8 +202,8 @@ namespace LabyrinthExplorer
 
         protected void GenerateFloors()
         {
-            CreateFloor(new Vector3(-5000, 0, 5000), new Vector3(5000, 0, 5000),
-                        new Vector3(5000, 0, -5000), new Vector3(-5000, 0, -5000));
+            CreateFloor(new Vector3(0, 0, 5000), new Vector3(5000, 0, 5000),
+                        new Vector3(5000, 0, -5000), new Vector3(0, 0, -5000));
         }
 
         protected void GenerateEnemies()
