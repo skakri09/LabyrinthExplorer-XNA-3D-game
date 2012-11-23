@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LabyrinthExplorer
 {
 
-    public class Key : EnvironmentObject, IInteractableObject, IInventoryItem, ChestItem
+    public class Key : EnvironmentObject, IInteractableObject, IInventoryItem, IChestItem
     {
         private Matrix[] screenTransforms;
         private Matrix screenWorldMatrix;

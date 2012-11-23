@@ -163,20 +163,20 @@ namespace LabyrinthExplorer
         {
             environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150),
                     new Vector3(0, -90, 0), 50, Vector3.Left,
-                    new ChestItem[] { new Key(contentMan, "blueGemRoomKey") }));
+                    new IChestItem[] { new Key(contentMan, "blueGemRoomKey") }));
 
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
 
-            CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(90, 0, 0), 100, Vector3.Forward,
-                           new Vector3(1500, 0, 1100), new Vector3(180, 0, 0), 100, Vector3.Backward, gate);
+            CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(0, 90, 0), 100, Vector3.Forward,
+                           new Vector3(1500, 0, 1100), new Vector3(0, 180, 0), 100, Vector3.Backward, gate);
 
             CreatePortal(new Vector3(1175, 0, 1800),
                     new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
                  new Vector3(450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 725), "area2");
 
             environment.Add(new Gem("GemBlue", contentMan, new Vector3(500, 100, 4500), 50));
-            environment.Add(new Gem("GemRed", contentMan, new Vector3(600, 100, 4500), 50));
-            environment.Add(new Gem("GemYellow", contentMan, new Vector3(700, 100, 4500), 50));
+            
+            //environment.Add(new Gem("GemYellow", contentMan, new Vector3(700, 100, 4500), 50));
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,

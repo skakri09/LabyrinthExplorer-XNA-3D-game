@@ -16,7 +16,7 @@ namespace LabyrinthExplorer
         private Model closedModel;
         private Model openModel;
 
-        public List<ChestItem> ChestInventory = new List<ChestItem>();
+        public List<IChestItem> ChestInventory = new List<IChestItem>();
 
         public Chest(ContentManager content,
                      Vector3 position, Vector3 rotation,
@@ -42,7 +42,7 @@ namespace LabyrinthExplorer
         public Chest(ContentManager content,
              Vector3 position, Vector3 rotation,
             float scale, Vector3 openFromDirection,
-            ChestItem[] chestItems,
+            IChestItem[] chestItems,
             bool isClosed = true)
             : base(@"Models\Environment\ChestClosed",
                 content, position, rotation, scale)
@@ -78,7 +78,7 @@ namespace LabyrinthExplorer
                     if (interactingParty is Player)
                     {
                         Player player = (Player)interactingParty;
-                        foreach(ChestItem item in ChestInventory)
+                        foreach(IChestItem item in ChestInventory)
                         {
                             item.OnChestOpen(interactingParty);
                         }
@@ -88,20 +88,20 @@ namespace LabyrinthExplorer
             }
         }
 
-        public bool ChestContains(ChestItem item)
+        public bool ChestContains(IChestItem item)
         {
             return ChestInventory.Contains(item);
         }
 
-        public ChestItem GetItemFromChest(ChestItem item)
+        public IChestItem GetItemFromChest(IChestItem item)
         {
             if (!isClosed)
             {
-                foreach (ChestItem i in ChestInventory)
+                foreach (IChestItem i in ChestInventory)
                 {
                     if (i == item)
                     {
-                        ChestItem retItem = i;
+                        IChestItem retItem = i;
                         ChestInventory.Remove(i);
                         return retItem;
                     }

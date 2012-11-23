@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LabyrinthExplorer
 {
-    public interface ChestItem
+    public interface IChestItem
     {
         void OnChestOpen(AABB chestOpener);
     }

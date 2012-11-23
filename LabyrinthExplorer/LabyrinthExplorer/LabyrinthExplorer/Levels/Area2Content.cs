@@ -143,8 +143,8 @@ namespace LabyrinthExplorer
             SmarPosWall(3900, 3300, 4300, 3300);
             SmarPosWall(4250, 350, 4250, 50);
 
-            SmarPosWall(3850, 950, 4250, 950);//wall split in two for door
-            SmarPosWall(4500, 950, 4700, 950, 125);//^
+            SmarPosWall(3850, 950, 4100, 950);//wall split in two for door
+            SmarPosWall(4350, 950, 4700, 950, 125);//^
 
             SmarPosWall(3850, 1000, 3850, 1650);//added
             SmarPosWall(3850, 1650, 4700, 1650);//locking room at bottom
@@ -196,11 +196,21 @@ namespace LabyrinthExplorer
 
             environment.Add(new Chest(contentMan, new Vector3(4800, 0, 4850),
                     new Vector3(0, -90, 0), 50, Vector3.Left,
-                    new ChestItem[] { new Key(contentMan, "redGemRoomKey") }));
+                    new IChestItem[] { new Key(contentMan, "redGemRoomKey") }));
 
-            environment.Add(new Door(contentMan, new Vector3(4375, 0, 1004), Vector3.Zero,
-               new Vector3(4675, 0, 1004), 90, Vector3.Forward, ref environmentCollidables,
+            environment.Add(new Door(contentMan, new Vector3(4225, 0, 1004), Vector3.Zero,
+               new Vector3(4525, 0, 1004), 90, Vector3.Backward, ref environmentCollidables,
                "redGemRoomKey"));
+
+            environment.Add(new Gem("GemRed", contentMan, new Vector3(4250, 100, 1350), 50));
+
+            CreatePortal(new Vector3(2450, 0, 2700),
+                   new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
+                new Vector3(450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 725), "area3");
+
+            SimpleStaticEnvironment hintText = new SimpleStaticEnvironment(@"Models\Area2TextHint", contentMan,
+                new Vector3(500, 100, 103), new Vector3(90, 0, 0), 1.0f);
+            environment.Add(hintText);
         }
 
         private void CreatePillarsWithLever()

@@ -74,9 +74,9 @@ namespace LabyrinthExplorer
                     _effect.FogEnd = 800;
                     _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
-                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.X))
+                        * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))
                         * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y))
-                        * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Z))
+                        * Matrix.CreateRotationZ(MathHelper.ToRadians(rotation.Z))
                         * Matrix.CreateScale(modelScale)
                         * Matrix.CreateTranslation(position);
 
