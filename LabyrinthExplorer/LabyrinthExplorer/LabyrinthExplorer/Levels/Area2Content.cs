@@ -191,7 +191,9 @@ namespace LabyrinthExplorer
                 new Vector3(0, 180, 0), 40.0f, Vector3.Forward,
                 new Vector3(1175, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 1800), "area1");
 
-
+            environment.Add(new Chest(contentMan, new Vector3(4800, 0, 4850),
+                    new Vector3(0, -90, 0), 50, Vector3.Left,
+                    new ChestItem[] { new Key(contentMan, "redGemRoomKey") }));
         }
 
         private void CreatePillarsWithLever()

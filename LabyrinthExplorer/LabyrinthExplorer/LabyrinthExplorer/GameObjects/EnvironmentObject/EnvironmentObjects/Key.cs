@@ -9,48 +9,57 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
+
     public class Key : EnvironmentObject, IInteractableObject, IInventoryItem, ChestItem
     {
         private Matrix[] screenTransforms;
         private Matrix screenWorldMatrix;
 
-        public Key(ContentManager content, Vector3 position, Vector3 rotation, float scale)
+        Vector3 ambColor;
+        Vector3 diffColor;
+        Vector3 specColor;
+
+        public string KeyID
+        {
+            get;
+            private set;
+        }
+
+        public Key(ContentManager content, Vector3 position, Vector3 rotation, float scale, string keyID)
             :base(@"Models\Key", content, position, rotation, scale)
         {
             CreateUseAABB(Vector3.Zero, position, 75, 0);
             Interactables.AddInteractable(this);
             emitter = new AudioEmitter();
             emitter.Position = position;
-
+            this.KeyID = keyID;
             screenTransforms = new Matrix[base.model.Bones.Count];
             screenWorldMatrix = Matrix.Identity;
+            GetKeyColor(keyID);
+        }
 
+        public Key(ContentManager content, string keyID)
+            : base(@"Models\Key", content)
+        {
+            emitter = new AudioEmitter();
+            emitter.Position = position;
+            this.KeyID = keyID;
+            screenTransforms = new Matrix[base.model.Bones.Count];
+            screenWorldMatrix = Matrix.Identity;
+            GetKeyColor(keyID);
         }
 
         public override void OnEnteringArea()
         {
             
         }
-
-        public Key(ContentManager content)
-            : base(@"Models\Key", content)
-        {
-            emitter = new AudioEmitter();
-            emitter.Position = position;
-
-            screenTransforms = new Matrix[base.model.Bones.Count];
-            screenWorldMatrix = Matrix.Identity;
-
-        }
-
-
         public void Use(AABB interactingParty)
         {
             if (interactingParty is Player)
             {
                 Game.SoundManager.PlaySound("Loot");
                 Interactables.RemoveInteractable(this);
-                Game.player.inv.AddItem(new InventoryItem(this, "SecretDoorKey"));
+                Game.player.inv.AddItem(new InventoryItem(this, KeyID));
                 World.currentArea.RemoveEnvironmentItem(this);
             }
         }
@@ -75,9 +84,9 @@ namespace LabyrinthExplorer
                 foreach (BasicEffect _effect in mesh.Effects)
                 {
                     _effect.EnableDefaultLighting();
-                    _effect.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.DiffuseColor = diffColor;// new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.AmbientLightColor = ambColor;// new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.SpecularColor = specColor;// new Vector3(0.8f, 0.8f, 0.8f);
                     _effect.World =
                     Matrix.CreateRotationZ(MathHelper.ToRadians(90f))
                     *Matrix.CreateRotationX(MathHelper.ToRadians(90f))
@@ -101,9 +110,33 @@ namespace LabyrinthExplorer
             {
                 Game.SoundManager.PlaySound("Loot");
                 Interactables.RemoveInteractable(this);
-                Game.player.inv.AddItem(new InventoryItem(this, "SecretDoorKey"));
+                Game.player.inv.AddItem(new InventoryItem(this, KeyID));
                 World.currentArea.RemoveEnvironmentItem(this);
             }
+        }
+
+        private void GetKeyColor(string keyID)
+        {
+            List<int> intVal = new List<int>();
+
+            foreach (Char c in KeyID)
+            {
+                intVal.Add((int)c);
+            }            
+            
+            if(intVal.Count < 3)
+            {
+                while (intVal.Count < 3)
+                    intVal.Add(intVal.ElementAt(0));
+            }
+
+            for(int i = 0; i < 3; i++)
+            {
+                diffColor = new Vector3(intVal.ElementAt(i), intVal.ElementAt(i + 1), intVal.ElementAt(i + 2));
+                diffColor.Normalize();
+                specColor = ambColor = diffColor;
+            }
+           
         }
     }
 }

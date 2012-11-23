@@ -30,7 +30,10 @@ namespace LabyrinthExplorer
             this.lever2 = lever2;
             this.OnUseObject = LeverUseObject;
 
-            base.SetAABB(GameConstants.MapMinBounds, GameConstants.MapMaxBounds);
+            base.SetAABB(GameConstants.MapMinBounds, 
+                new Vector3(GameConstants.MapMaxBounds.X, 
+                    GameConstants.InteractablesUseHeight, 
+                    GameConstants.MapMaxBounds.Z));
 
             Interactables.AddInteractable(this);
             if (LeverUseObject is Gate)

@@ -27,14 +27,21 @@ namespace LabyrinthExplorer
         Vector3 velocity;
         AABB collisionAABB;
         float openingDuration = 3.5f;
+        public string OpenedByKeyWithID
+        {
+            get;
+            private set;
+        }
         public Door(ContentManager content,
                      Vector3 position, Vector3 rotation,
                     Vector3 moveToPos,
                     float scale, Vector3 openFromDirection,
                     ref List<AABB> collisionList,
+                    string openedByKeyWithID,
                     DoorState state = DoorState.CLOSED, bool canToggle = false)
             :base(@"Models\Environment\SecretDoor", content, position, rotation, scale)
         {
+            this.OpenedByKeyWithID = openedByKeyWithID;
             this.doorState = state;
             CreateUseAABB(openFromDirection, position, 150, 150);//make more accurate when we see the scale of the door
             Interactables.AddInteractable(this);
@@ -69,7 +76,7 @@ namespace LabyrinthExplorer
                 if (interactingParty is Player)
                 {
                     Player player = (Player)interactingParty;
-                    if(player.inv.HaveItemOfType("SecretDoorKey"))
+                    if(player.inv.HaveItemOfType(OpenedByKeyWithID))
                     {
                         Game.SoundManager.PlaySound("DoorOpen", this);
                         openTimer = 0.0f;

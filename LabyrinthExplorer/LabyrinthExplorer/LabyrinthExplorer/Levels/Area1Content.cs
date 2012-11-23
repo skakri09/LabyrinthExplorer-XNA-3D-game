@@ -163,7 +163,7 @@ namespace LabyrinthExplorer
         {
             environment.Add(new Chest(contentMan, new Vector3(4600, 0, 2150),
                     new Vector3(0, -90, 0), 50, Vector3.Left,
-                    new ChestItem[] { new Key(contentMan) }));
+                    new ChestItem[] { new Key(contentMan, "blueGemRoomKey") }));
 
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
 
@@ -179,7 +179,8 @@ namespace LabyrinthExplorer
             environment.Add(new Gem("GemYellow", contentMan, new Vector3(700, 100, 4500), 50));
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
-                new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables));
+                new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,
+                "blueGemRoomKey"));
         }
 
         public override void OnEnteringArea()
