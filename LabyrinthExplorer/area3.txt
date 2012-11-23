@@ -1,25 +1,28 @@
-<svg width="5000" height="5000" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
- <g>
-  <title>Layer 1</title>
-  <line id="svg_90" y2="50" x2="5000" y1="50" x1="0" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_93" y2="4950" x2="50" y1="100" x1="50" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line id="svg_94" y2="4950" x2="4950" y1="4950" x1="50" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_95" y2="100" x2="4950" y1="4950" x1="4950" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_96" y2="2300" x2="2050" y1="100" x1="2050" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_98" y2="2300" x2="2950" y1="100" x1="2950" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_99" y2="4900" x2="2050" y1="2900" x1="2050" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_100" y2="4950" x2="2950" y1="2900" x1="2950" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_101" y2="4800" x2="3400" y1="2900" x1="3400" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_102" y2="4950" x2="3800" y1="3650" x1="3800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line id="svg_104" y2="4400" x2="4150" y1="2900" x1="4150" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_105" y2="4950" x2="4150" y1="4650" x1="4150" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line id="svg_106" y2="3801.387819" x2="4450" y1="2900" x1="4450" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_107" y2="4950" x2="4450" y1="4000" x1="4450" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line id="svg_108" y2="2900" x2="3800" y1="3400" x1="3800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_109" y2="4800" x2="4650" y1="3100" x1="4650" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_110" y2="2850" x2="4800" y1="2850" x1="3400" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line y="NaN" x="NaN" id="svg_111" y2="4400" x2="4800" y1="2900" x1="4800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
-  <line id="svg_112" y2="4950" x2="4800" y1="4600" x1="4800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
- </g>
-</svg>
+y2="50" x2="5000" y1="50" x1="0" 
+y2="4950" x2="50" y1="100" x1="50" 
+y2="4950" x2="4950" y1="4950" x1="50" 
+y2="100" x2="4950" y1="4950" x1="4950" 
+y2="2300" x2="2050" y1="100" x1="2050" 
+y2="2300" x2="2950" y1="100" x1="2950" 
+y2="4900" x2="2050" y1="2900" x1="2050"
+y2="4950" x2="2950" y1="2900" x1="2950"
+y2="4800" x2="3400" y1="250" x1="3400" 
+y2="4950" x2="3800" y1="3650" x1="3800" 
+y2="4400" x2="4150" y1="2900" x1="4150" 
+y2="4950" x2="4150" y1="4650" x1="4150" 
+y2="3650" x2="4450" y1="2900" x1="4450" 
+y2="4950" x2="4450" y1="4000" x1="4450" 
+y2="2900" x2="3800" y1="3400" x1="3800" 
+ y2="2850" x2="4800" y1="2850" x1="3450"
+y2="4400" x2="4800" y1="2900" x1="4800" 
+y2="4950" x2="4800" y1="4600" x1="4800" 
+y2="2550" x2="4050" y1="2550" x1="4950" 
+y2="1750" x2="3700" y1="2550" x1="3700" 
+y2="2250" x2="3750" y1="2250" x1="4700" 
+y2="1700" x2="4300" y1="2250" x1="4300" 
+y2="2000" x2="4600" y1="2000" x1="4950" 
+y2="1700" x2="4950" y1="1700" x1="4350" 
+y2="250" x2="3700" y1="1300" x1="3700" 
+y2="250" x2="3700" y1="250" x1="3450" 
+y2="400" x2="3700" y1="400" x1="3450" 
+y2="1300" x2="4450" y1="1300" x1="3750" 

@@ -80,6 +80,7 @@
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Collision\IAABB.cs" />
     <Compile Include="GameObjects\Enemies\Spider.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Pedistal.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\SimpleStaticEnvironment.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IChestItem.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\DuoLever.cs" />

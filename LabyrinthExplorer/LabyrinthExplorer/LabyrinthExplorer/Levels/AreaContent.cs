@@ -20,6 +20,11 @@ namespace LabyrinthExplorer
         protected ContentManager contentMan;
         protected GraphicsDevice device;
 
+        public void AddEnvironmentObjectToEnvironment(IEnvironmentObject obj)
+        {
+            environment.Add(obj);
+        }
+
         public List<AABB> Interactables
         {
             get { return interactables; }

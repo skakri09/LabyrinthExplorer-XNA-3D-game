@@ -59,11 +59,35 @@ namespace LabyrinthExplorer
             #endregion
 
 
-            #region "wall" of text :)
-
-            SmarPosWall(500, 0, 700, 0);
-            SmarPosWall(450, 0, 450, 200);
-
+            #region left half area
+            SmarPosWall(0, 50, 5000, 50);
+            SmarPosWall(50, 100, 50, 4950);
+            SmarPosWall(50, 4950, 4950, 4950);
+            SmarPosWall(4950, 4950, 4950, 100);
+            SmarPosWall(2050, 100, 2050, 2300);
+            SmarPosWall(2950, 100, 2950, 2300);
+            SmarPosWall(2050, 2900, 2050, 4900);
+            SmarPosWall(2950, 2900, 2950, 4950);
+            SmarPosWall(3400, 250, 3400, 4800);
+            SmarPosWall(3800, 3650, 3800, 4950);
+            SmarPosWall(4150, 2900, 4150, 4400);
+            SmarPosWall(4150, 4650, 4150, 4950);
+            SmarPosWall(4450, 2900, 4450, 3650);
+            SmarPosWall(4450, 4000, 4450, 4950);
+            SmarPosWall(3800, 3400, 3800, 2900);
+            SmarPosWall(3450, 2850, 4800, 2850);
+            SmarPosWall(4800, 2900, 4800, 4400);
+            SmarPosWall(4800, 4600, 4800, 4950);
+            SmarPosWall(4950, 2550, 4050, 2550);
+            SmarPosWall(3700, 2550, 3700, 1750);
+            SmarPosWall(4700, 2250, 3750, 2250);
+            SmarPosWall(4300, 2250, 4300, 1700);
+            SmarPosWall(4950, 2000, 4600, 2000);
+            SmarPosWall(4350, 1700, 4950, 1700);
+            SmarPosWall(3700, 1300, 3700, 250);
+            SmarPosWall(3450, 250, 3700, 250);
+            SmarPosWall(3450, 400, 3700, 400);
+            SmarPosWall(3750, 1300, 4450, 1300);
             #endregion
 
         }
@@ -86,7 +110,14 @@ namespace LabyrinthExplorer
 
         protected void GenInteractiveEnvironment()
         {
-   
+            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
+            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
+            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
+            
+            environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
+
+            CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
+                Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
         }
 
         public override void OnEnteringArea()

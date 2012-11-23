@@ -61,12 +61,9 @@ namespace LabyrinthExplorer
 
         public void Update(GameTime gameTime)
         {
-            PlayerLight.Position = camera.Position;
-
             UpdateEffect();
 
             currentArea.Update(gameTime, camera);
-            
         }
 
         public void UpdateEffect()
@@ -77,7 +74,7 @@ namespace LabyrinthExplorer
             else
                 WallsEffect.CurrentTechnique = WallsEffect.Techniques["NormalMappingPointLighting"];
 
-
+            PlayerLight.Position = camera.Position;
             PlayerLight.Direction = camera.ViewDirection;
 
             WallsEffect.Parameters["worldMatrix"].SetValue(Matrix.Identity);
@@ -128,7 +125,7 @@ namespace LabyrinthExplorer
             
             //ChangeArea("area1", new Vector3(3700, 150, 4300));
             //ChangeArea("area2", new Vector3(400, 150, 650));
-            ChangeArea("area3", new Vector3(0, 150, 0));
+            ChangeArea("area3", new Vector3(2500, 150, 150));
         }
 
         public void Draw(GraphicsDevice graphicsDevice)
@@ -147,7 +144,7 @@ namespace LabyrinthExplorer
         {
             PlayerLight.Type = LightType.DirectionalLight;
             PlayerLight.Direction = camera.ViewDirection;
-            PlayerLight.Position = GameConstants.PLAYER_START_POS;// new Vector3(0.0f, GameConstants.WALL_HEIGHT - (0.25f * GameConstants.WALL_HEIGHT), 0.0f);
+            PlayerLight.Position = GameConstants.PLAYER_START_POS;
             PlayerLight.Ambient = GameConstants.ambient;
             PlayerLight.Diffuse = GameConstants.diffuse;
             PlayerLight.Specular = GameConstants.specular;
@@ -192,6 +189,11 @@ namespace LabyrinthExplorer
             stoneColorMap = contentMan.Load<Texture2D>(@"Textures\stone_color_map");
             stoneNormalMap = contentMan.Load<Texture2D>(@"Textures\stone_normal_map");
             stoneHeightMap = contentMan.Load<Texture2D>(@"Textures\stone_height_map");
+
+            //stoneColorMap = contentMan.Load<Texture2D>(@"Textures\tile1a");
+            //stoneNormalMap = contentMan.Load<Texture2D>(@"Textures\tile1a_nm");
+            //stoneHeightMap = contentMan.Load<Texture2D>(@"Textures\stone_height_map");
+
 
             woodColorMap = contentMan.Load<Texture2D>(@"Textures\wood_color_map");
             woodNormalMap = contentMan.Load<Texture2D>(@"Textures\wood_normal_map");

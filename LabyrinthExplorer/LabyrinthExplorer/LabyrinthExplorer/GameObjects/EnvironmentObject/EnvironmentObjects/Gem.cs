@@ -125,6 +125,7 @@ namespace LabyrinthExplorer
                 effectName = "BlueAura";
             }
         }
+
         private void GenEffect(string gemtype)
         {
             if (gemtype == "GemRed")
@@ -144,6 +145,7 @@ namespace LabyrinthExplorer
                 color = new Vector3(1, 1, 1);
             }
         }
+
         public float GetCustomDivisionFactor()
         {
             return 800;
@@ -165,9 +167,15 @@ namespace LabyrinthExplorer
         {
             throw new Exception("The method or operation is not implemented.");
         }
+        
         public float GetInventoryScale()
         {
             return 0.4f;
+        }
+
+        public void AttatchToPedistal(Vector3 position)
+        {
+            base.position = position;
         }
 
         public void UsedCallback()

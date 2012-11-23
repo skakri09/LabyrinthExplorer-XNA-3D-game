@@ -71,7 +71,7 @@ namespace LabyrinthExplorer
                     _effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
                     _effect.FogEnabled = true;
                     _effect.FogStart = 50.0f;
-                    _effect.FogEnd = 800;
+                    _effect.FogEnd = FogEnd;
                     _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
                         * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))

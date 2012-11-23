@@ -1,6 +1,4 @@
 Content\Effects\parallax_normal_mapping.xnb
-Content\Effects\SkyEffect.xnb
-Content\Effects\shader2.xnb
 Content\Models\ControlRoom.xnb
 Content\Models\Environment\ironMaiden.xnb
 Content\Models\Environment\Lever.xnb
@@ -124,6 +122,13 @@ Content\Models\Environment\Door\mm_mnstry_wall_07_0.xnb
 Content\Sound\Effects\PillarRotate.xnb
 Content\Sound\Effects\GroundShaking.xnb
 Content\Models\Area2TextHint.xnb
+Content\Textures\gp.xnb
+Content\Textures\gp_nm.xnb
+Content\Textures\tile1a.xnb
+Content\Textures\tile1a_nm.xnb
+Content\Models\Environment\GemPedistal.xnb
+Content\Models\Environment\GemTextures\murderball_pedestal_0.xnb
+Content\Sound\Effects\PedistalSound.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Music\horror.wma
 Content\Sound\Music\Music\ScaryMusic.wma

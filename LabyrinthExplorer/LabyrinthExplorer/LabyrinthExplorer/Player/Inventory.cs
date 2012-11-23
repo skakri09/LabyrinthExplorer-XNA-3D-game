@@ -28,6 +28,20 @@ namespace LabyrinthExplorer
             InventoryItems = new Dictionary<InventoryItem, Vector3>();
         }
 
+        public IInventoryItem GetAndRemoveItem(string _identifier)
+        {
+            foreach (InventoryItem item in InventoryItems.Keys)
+            {
+                if (item.identifier == _identifier)
+                {
+                    IInventoryItem returnItem = item.item;
+                    InventoryItems.Remove(item);
+                    return returnItem;
+                }
+            }
+            return null;
+        }
+
         public void AddItem(InventoryItem item)
         {
             InventoryItems.Add(item, GetScreenOffset());
@@ -49,6 +63,19 @@ namespace LabyrinthExplorer
         public bool HaveItem(InventoryItem item)
         {
             return (InventoryItems.ContainsKey(item));
+        }
+        
+        public void RemoveItemsOfType(string _identifier)
+        {
+            List<int> itemsToRemove = new List<int>();
+            for (int i = 0; i < InventoryItems.Count; i++)
+            {
+                if (InventoryItems.ElementAt(i).Key.identifier == _identifier)
+                {
+                    itemsToRemove.Add(i);
+                    InventoryItems.Remove(InventoryItems.ElementAt(i).Key);
+                }
+            }
         }
 
         public void Update(float deltaTime, Camera camera)

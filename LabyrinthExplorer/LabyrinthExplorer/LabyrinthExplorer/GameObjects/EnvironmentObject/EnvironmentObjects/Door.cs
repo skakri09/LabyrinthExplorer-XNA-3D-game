@@ -43,7 +43,7 @@ namespace LabyrinthExplorer
         {
             this.OpenedByKeyWithID = openedByKeyWithID;
             this.doorState = state;
-            CreateUseAABB(openFromDirection, position, 150, 150);//make more accurate when we see the scale of the door
+            CreateUseAABB(openFromDirection, position, 150, 150);
             Interactables.AddInteractable(this);
             emitter = new AudioEmitter();
             emitter.Position = position;

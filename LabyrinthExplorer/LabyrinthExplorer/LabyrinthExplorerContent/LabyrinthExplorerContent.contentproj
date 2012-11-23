@@ -35,11 +35,6 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="Effects\SkyEffect.fx">
-      <Name>SkyEffect</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
     <Compile Include="Models\ControlRoom.FBX">
       <Name>ControlRoom</Name>
       <Importer>FbxImporter</Importer>
@@ -220,11 +215,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="Effects\shader2.fx">
-      <Name>shader2</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
     <Compile Include="Models\Environment\SecretDoor.fbx">
       <Name>SecretDoor</Name>
       <Importer>FbxImporter</Importer>
@@ -232,6 +222,11 @@
     </Compile>
     <Compile Include="Models\Area2TextHint.FBX">
       <Name>Area2TextHint</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Models\Environment\GemPedistal.fbx">
+      <Name>GemPedistal</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
@@ -247,6 +242,26 @@
     </Compile>
     <Compile Include="Textures\spider_01.tga">
       <Name>spider_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\gp.tga">
+      <Name>gp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\gp_nm.tga">
+      <Name>gp_nm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\tile1a.tga">
+      <Name>tile1a</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\tile1a_nm.tga">
+      <Name>tile1a_nm</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -482,6 +497,13 @@
   <ItemGroup>
     <Compile Include="Sound\Effects\GroundShaking.wav">
       <Name>GroundShaking</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Effects\PedistalSound.wav">
+      <Name>PedistalSound</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
