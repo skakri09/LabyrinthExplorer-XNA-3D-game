@@ -64,7 +64,7 @@ namespace LabyrinthExplorer
                 base.SetModel(usedModel);
                 if (onUseObject != null && interactingParty != null)
                 {
-                    onUseObject.Use(interactingParty);
+                    onUseObject.Use(this);
                 }
                 
                 isUsed = true;

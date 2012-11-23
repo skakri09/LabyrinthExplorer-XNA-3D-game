@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace LabyrinthExplorer
 {
     
-    public class TurnablePilar : EnvironmentObject
+    public class TurnablePilar : EnvironmentObject, IInteractableObject
     {
 
         private Vector3 currentRotation;
@@ -23,6 +23,8 @@ namespace LabyrinthExplorer
             : base(@"Models\Environment\SpiderStatue", content, position, rotation, scale)
         {
             CreateCollision(position, rotation, scale);
+            currentRotation = rotation;
+            unlockedRotation = FindUnlockedDegreeRotation(unlockedRotation);
         }
 
         public override void Draw(Camera camera, Microsoft.Xna.Framework.Graphics.Effect effect)
@@ -53,12 +55,32 @@ namespace LabyrinthExplorer
             }
         }
         
-        private void FindCurrentRotation(Vector3 degreesRotation)
+        public override void Update(float deltaTime)
         {
-            if (degreesRotation.Y == 0)
+            base.Update(deltaTime);
+
+        }
+
+        private Vector3 FindUnlockedDegreeRotation(Vector3 targetRotation)
+        {
+            if (targetRotation == Vector3.Forward)
             {
+                return new Vector3(0, 0, 0);
             }
-                
+            else if (targetRotation == Vector3.Backward)
+            {
+                return new Vector3(0, 0, 0);
+            }
+            else if (targetRotation == Vector3.Left)
+            {
+                return new Vector3(0, 0, 0);
+            }
+            else if (targetRotation == Vector3.Right)
+            {
+                return new Vector3(0, 0, 0);
+            }
+            else
+                throw new Exception("TargetRotation not correctly set, must be left/right/forward/backward");
         }
 
         private void CreateCollision(Vector3 position, Vector3 rotation, float scale)
@@ -79,6 +101,12 @@ namespace LabyrinthExplorer
         public override void OnEnteringArea()
         {
             ///start whatever sound we want
+        }
+
+        public void Use(AABB interactingParty)
+        {
+            //turn 90 degrees 
+            //play some sound
         }
     }
 }

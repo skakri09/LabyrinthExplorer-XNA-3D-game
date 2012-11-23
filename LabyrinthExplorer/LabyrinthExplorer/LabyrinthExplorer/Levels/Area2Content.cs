@@ -12,6 +12,11 @@ namespace LabyrinthExplorer
     {
         RandWhisper randomWhisper;
 
+        private TurnablePilar TopPillar;
+        private TurnablePilar BottomPillar;
+        private TurnablePilar RightPillar;
+        private TurnablePilar LeftPillar;
+
         public Area2Content(Camera camera)
             :base(camera)
         {
@@ -175,26 +180,42 @@ namespace LabyrinthExplorer
 
         protected void GenInteractiveEnvironment()
         {
-            CreateTurnablePilar(new Vector3(2425, -100, 2200),
-                new Vector3(0, 180, 0), Vector3.Backward, 105);
-
-            CreateTurnablePilar(new Vector3(2450, -100, 3275),
-               new Vector3(0, 0, 0), Vector3.Forward, 105);
-
-            CreateTurnablePilar( new Vector3(1800, -100, 2750),
-               new Vector3(0, 270, 0), Vector3.Left, 105);
-
-            CreateTurnablePilar(new Vector3(3050, -100, 2750),
-                new Vector3(0, 90, 0), Vector3.Right, 105);
-
+            CreatePillarsWithLever();
 
             CreatePortal(new Vector3(450, 0, 725),
                 new Vector3(0, 180, 0), 40.0f, Vector3.Forward,
                 new Vector3(1175, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 1800), "area1");
 
+
+        }
+
+        private void CreatePillarsWithLever()
+        {
+            TopPillar = new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
+                 new Vector3(0, 180, 0), Vector3.Backward, 105);
+            environment.Add(TopPillar);
+            environmentCollidables.Add(TopPillar);
+            environment.Add(new Lever(contentMan, new Vector3(2400, 0, 1900),
+                Vector3.Zero, 100, Vector3.Zero, TopPillar));
+            
+            
+            BottomPillar = new TurnablePilar(contentMan, new Vector3(2450, -100, 3275),
+               new Vector3(0, 0, 0), Vector3.Forward, 105);
+            environment.Add(BottomPillar);
+            environmentCollidables.Add(BottomPillar);
+
+            RightPillar = new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
+               new Vector3(0, 270, 0), Vector3.Left, 105);
+            environment.Add(RightPillar);
+            environmentCollidables.Add(RightPillar);
+
+            LeftPillar = new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
+                new Vector3(0, 90, 0), Vector3.Right, 105);
+            environment.Add(LeftPillar);
+            environmentCollidables.Add(LeftPillar);
+
         }
         
-
         public override void OnEnteringArea()
         {
             base.OnEnteringArea();
