@@ -41,8 +41,7 @@ namespace LabyrinthExplorer
         public Player(Game game, Vector3 position)
             : base(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING)
         {
-             this.game = game;
-
+            this.game = game;
             camera = new Camera(game);
             game.Components.Add(camera);
             InitializeLightStick(game.Content);
@@ -54,6 +53,7 @@ namespace LabyrinthExplorer
             playerListener.Forward = camera.ViewDirection;
             playerListener.Up = Vector3.Up;
             inventory = new Inventory();
+            PlayerAbleToMove = true;
         }
 
         public void HandlePlayerInput(InputManager input)
@@ -197,6 +197,13 @@ namespace LabyrinthExplorer
 
         public Camera Cam { get { return camera; } }
         public Inventory inv { get { return inventory; } }
+
+
+        public bool PlayerAbleToMove
+        {
+            get { return camera.CanMoveWithControlKeys; }
+            set { camera.CanMoveWithControlKeys = value; }
+        }
 
         public bool EnableColorMap { get; set; }
 

@@ -33,11 +33,12 @@ namespace LabyrinthExplorer
         private List<string> whispers;
 
         private Vector3 simulatedPosiion;
+        private Vector3 returnPosition;
         private AudioEmitter emitter;
         float positionTimer = 0;
         public RandWhisper(float frequencyOfWhisper)
         {
-            simulatedPosiion = new Vector3(0, -1000, 0);
+            simulatedPosiion = new Vector3(2500, -1000, 2500);
             emitter = new AudioEmitter();
             emitter.Position = simulatedPosiion;
             emitter.Up = Vector3.Up;
@@ -58,7 +59,7 @@ namespace LabyrinthExplorer
 
         public AudioEmitter GetAudioEmitter()
         {
-            emitter.Position = simulatedPosiion;
+            emitter.Position = returnPosition;
             return emitter;
         }
 
@@ -68,8 +69,8 @@ namespace LabyrinthExplorer
             positionTimer += deltaTime;
             simulatedPosiion = new Vector3((float)Math.Cos(positionTimer)
                 / 2, 0, (float)Math.Sin(positionTimer))*5000;    
-            emitter.Position = new Vector3(2500, 1000, 2500) + simulatedPosiion;
-           // Debug.WriteLine(emitter.Position);
+            
+            returnPosition = new Vector3(2500, -1000, 2500) + simulatedPosiion;
             if (whisperTimer >= whisperCooldown)
             {
                 whisperTimer = 0;

@@ -178,9 +178,9 @@ namespace LabyrinthExplorer
             CreateChestsAndDoors();
             CreateGatesAndLevers();
 
-            environment.Add(new Gem("GemYellow", contentMan, new Vector3(2500, 150, 3000), 50));
-            environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
-            environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemYellow", contentMan, new Vector3(500, 150, 2782), 50));
+            //environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
+            //environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");

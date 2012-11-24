@@ -387,21 +387,20 @@ namespace LabyrinthExplorer
                     if (Running)
                         FootMode = FootstepsMode.RUN;
                     else
-                        FootMode = FootstepsMode.WALK; 
+                        FootMode = FootstepsMode.WALK;
                 }
                 else if ((strafeRightPressed && !strafeLeftPressed) || (strafeLeftPressed && !strafeRightPressed))
                 {
-                     if(Running)
-                      FootMode = FootstepsMode.RUN;
-                  else
-                      FootMode = FootstepsMode.WALK; 
+                    if (Running)
+                        FootMode = FootstepsMode.RUN;
+                    else
+                        FootMode = FootstepsMode.WALK;
                 }
                 else
                     FootMode = FootstepsMode.STILL;
             }
             else
                 FootMode = FootstepsMode.STILL;
-
         }
 
         /// <summary>
@@ -677,18 +676,20 @@ namespace LabyrinthExplorer
             float elapsedTimeSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector3 direction = new Vector3();
 
-            if (input.IsKeyDown(actionKeys[Actions.Run]))
+            if (CanMoveWithControlKeys)
             {
-                velocity = velocityRunning;
-                Running = true;
+                if (input.IsKeyDown(actionKeys[Actions.Run]))
+                {
+                    velocity = velocityRunning;
+                    Running = true;
+                }
+                else
+                {
+                    Running = false;
+                    velocity = velocityWalking;
+                }
+                GetMovementDirection(out direction);
             }
-            else
-            {
-                Running = false;
-                velocity = velocityWalking;
-            }
-            GetMovementDirection(out direction);
-
             RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
             UpdatePosition(ref direction, elapsedTimeSec);
         }
@@ -924,7 +925,11 @@ namespace LabyrinthExplorer
 
     #region Properties
 
-
+        public bool CanMoveWithControlKeys
+        {
+            get;
+            set;
+        }
 
         public Vector3 Acceleration
         {
