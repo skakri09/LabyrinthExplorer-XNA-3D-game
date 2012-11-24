@@ -68,7 +68,7 @@ namespace LabyrinthExplorer
             SmarPosWall(2950, 100, 2950, 2300);
             SmarPosWall(2050, 2900, 2050, 4900);
             SmarPosWall(2950, 2900, 2950, 4950);
-            SmarPosWall(3400, 250, 3400, 4800);
+            
             SmarPosWall(3800, 3650, 3800, 4950);
             SmarPosWall(4150, 2900, 4150, 4400);
             SmarPosWall(4150, 4650, 4150, 4950);
@@ -84,9 +84,11 @@ namespace LabyrinthExplorer
             SmarPosWall(4300, 2250, 4300, 1700);
             SmarPosWall(4950, 2000, 4600, 2000);
             SmarPosWall(4350, 1700, 4950, 1700);
-            SmarPosWall(3700, 1300, 3700, 250);
-            SmarPosWall(3450, 250, 3700, 250);
-            SmarPosWall(3450, 400, 3700, 400);
+
+            SmarPosWall(3450, 450, 3700, 450);//moved 150 down
+            SmarPosWall(3400, 450, 3400, 4800);
+            SmarPosWall(3700, 450, 3700, 1300);
+            //SmarPosWall(3450, 400, 3700, 400);
             SmarPosWall(3750, 1300, 4450, 1300);
             #endregion
 
@@ -110,16 +112,28 @@ namespace LabyrinthExplorer
 
         protected void GenInteractiveEnvironment()
         {
-            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
-            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
-            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
+            CreatePedistals();
             
-            environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemYellow", contentMan, new Vector3(2500, 150, 3000), 50));
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
+            Gate gate = CreateGate(new Vector3(3450, 0, 282), new Vector3(0, 90, 0), 29, 3);
+            
+            environment.Add(new Lever(contentMan, new Vector3(3250, 0, 225), new Vector3(0, 90, 0), 100,
+                Vector3.Zero, gate));
+
+            environment.Add(new Lever(contentMan, new Vector3(3800, 0, 225), new Vector3(0, 180, 0), 100,
+                Vector3.Zero, gate));
         }
 
+        private void CreatePedistals()
+        {
+            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
+            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
+            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
+        }
+    
         public override void OnEnteringArea()
         {
             base.OnEnteringArea();

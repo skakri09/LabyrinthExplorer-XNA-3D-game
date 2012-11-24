@@ -91,22 +91,16 @@ namespace LabyrinthExplorer
             if (gateState == GateState.OPEN)
             {
                 CloseGate();
-                if (interactingParty is IInteractableObject)
-                {
-                    IInteractableObject obj = (IInteractableObject)interactingParty;
-                    if (interactingParties.Contains(obj))
-                        interactingParties.Add(obj);
-                }
             }
             else if (gateState == GateState.CLOSED)
             {
                 OpenGate();
-                if (interactingParty is IInteractableObject)
-                {
-                    IInteractableObject obj = (IInteractableObject)interactingParty;
-                    if (!interactingParties.Contains(obj))
-                        interactingParties.Add(obj);
-                }
+            }
+            if (interactingParty is IInteractableObject)
+            {
+                IInteractableObject obj = (IInteractableObject)interactingParty;
+                if (!interactingParties.Contains(obj))
+                    interactingParties.Add(obj);
             }
         }
 

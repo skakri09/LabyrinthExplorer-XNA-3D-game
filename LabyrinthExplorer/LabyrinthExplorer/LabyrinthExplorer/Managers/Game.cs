@@ -217,6 +217,7 @@ namespace LabyrinthExplorer
 
             if (displayHelp)
             {
+                buffer.AppendLine();
                 buffer.AppendFormat("FPS: {0}\n", framesPerSecond);
                 buffer.AppendLine();
                 buffer.AppendLine("Press WASD to move");
