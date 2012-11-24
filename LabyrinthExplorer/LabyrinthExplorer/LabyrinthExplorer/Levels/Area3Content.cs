@@ -58,7 +58,6 @@ namespace LabyrinthExplorer
             //X Walls - XWallNegZAl
             #endregion
 
-
             #region left half area
             SmarPosWall(0, 50, 5000, 50);
             SmarPosWall(50, 100, 50, 4950);
@@ -89,7 +88,6 @@ namespace LabyrinthExplorer
             SmarPosWall(3450, 450, 3700, 450);//moved 150 down
             SmarPosWall(3400, 450, 3400, 4800);
             SmarPosWall(3700, 450, 3700, 1300);
-            //SmarPosWall(3450, 400, 3700, 400);
             SmarPosWall(3750, 1300, 4450, 1300);
             #endregion
 
@@ -146,7 +144,21 @@ namespace LabyrinthExplorer
 
         protected void GenerateCeiling()
         {
+            //left half ceiling
+            ceilings.Add(new NormalMappedCeiling(device,
+                new Vector3(0, GameConstants.WALL_HEIGHT, 0),
+                new Vector3(0, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(2100, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(2100, GameConstants.WALL_HEIGHT, 0),
+                Vector3.Down));
 
+            //right half ceiling
+            ceilings.Add(new NormalMappedCeiling(device,
+                new Vector3(2950, GameConstants.WALL_HEIGHT, 0),
+                new Vector3(2950, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 5000),
+                new Vector3(5000, GameConstants.WALL_HEIGHT, 0),
+                Vector3.Down));
         }
 
         protected void GenerateFloors()
