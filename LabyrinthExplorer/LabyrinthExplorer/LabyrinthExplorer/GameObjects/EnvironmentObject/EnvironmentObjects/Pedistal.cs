@@ -71,6 +71,7 @@ namespace LabyrinthExplorer
                 mesh.Draw();
             }
         }
+        
         public void Use(AABB interactingParty)
         {
             if (interactingParty is Player)
@@ -84,11 +85,11 @@ namespace LabyrinthExplorer
                     }
                     else if (attatchedGem == "GemYellow")
                     {
-                        Game.SoundManager.PlaySound("RedGemEntered", this);
+                        Game.SoundManager.PlaySound("YellowGemEntered", this);
                     }
                     else if (attatchedGem == "GemBlue")
                     {
-                        Game.SoundManager.PlaySound("RedGemEntered", this);
+                        Game.SoundManager.PlaySound("BlueGemEntered", this);
                     }
                     Gem gem = (Gem)player.inv.GetAndRemoveItem(attatchedGem);
                     if (gem != null)
@@ -97,7 +98,7 @@ namespace LabyrinthExplorer
                         World.currentArea.AddEnvironmentObjectToEnvironment(gem);
                     }
                     else
-                        throw new Exception("Player did not have the gem hurpdurp");
+                        throw new Exception("Player did not have the gem after all hurpdurp");
                 }
             }
         }

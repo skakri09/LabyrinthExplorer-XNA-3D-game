@@ -64,11 +64,12 @@ namespace LabyrinthExplorer
             SmarPosWall(50, 100, 50, 4950);
             SmarPosWall(50, 4950, 4950, 4950);
             SmarPosWall(4950, 4950, 4950, 100);
-            SmarPosWall(2050, 100, 2050, 2300);
             SmarPosWall(2950, 100, 2950, 2300);
-            SmarPosWall(2050, 2900, 2050, 4900);
             SmarPosWall(2950, 2900, 2950, 4950);
-            
+
+            SmarPosWall(2050, 3000, 2050, 4900);
+            SmarPosWall(2050, 100, 2050, 2550);
+
             SmarPosWall(3800, 3650, 3800, 4950);
             SmarPosWall(4150, 2900, 4150, 4400);
             SmarPosWall(4150, 4650, 4150, 4950);
@@ -92,6 +93,55 @@ namespace LabyrinthExplorer
             SmarPosWall(3750, 1300, 4450, 1300);
             #endregion
 
+            #region supermaxroom
+            SmarPosWall(0, 2300, 1200, 2300);
+            SmarPosWall(1150, 2350, 1150, 2600);
+            SmarPosWall(1150, 2950, 1150, 3200);
+            SmarPosWall(1200, 3200, 0, 3200);
+            SmarPosWall(1200, 2550, 1800, 2550);
+            SmarPosWall(1200, 2950, 1800, 2950);
+
+            SmarPosWall(1200, 3200, 1800, 3200);
+            SmarPosWall(1200, 2300, 1800, 2300);
+            SmarPosWall(1750, 3000, 1750, 3200);
+            SmarPosWall(1750, 2350, 1750, 2550);
+
+            #endregion supermaxroom
+
+            #region bottom left half
+            SmarPosWall(1600, 3250, 1600, 3900);
+            SmarPosWall(1600, 4350, 1600, 5000);
+            SmarPosWall(1000, 3850, 400, 3850);
+            SmarPosWall(350, 4350, 350, 3450);
+            SmarPosWall(1200, 4100, 1200, 4700);
+            SmarPosWall(1200, 4100, 750, 4100);
+            SmarPosWall(400, 4300, 700, 4300);
+            SmarPosWall(700, 4100, 700, 4350);
+            SmarPosWall(1200, 4650, -50, 4650);
+            SmarPosWall(1600, 3650, 700, 3650);
+            SmarPosWall(400, 3450, 1350, 3450);
+            #endregion bottom left half
+
+            #region top left half
+            SmarPosWall(1800, 2300, 1800, 1750);
+            SmarPosWall(1800, 1450, 1800, 950);
+            SmarPosWall(1800, 650, 1800, 0);
+            SmarPosWall(1500, 0, 1500, 950);
+            SmarPosWall(1800, 1200, 1250, 1200);
+            SmarPosWall(1200, 1500, 1200, 900);
+            SmarPosWall(1200, 350, 1200, 650);
+            SmarPosWall(950, 1100, 950, 2300);
+            SmarPosWall(1200, 350, 700, 350);
+            SmarPosWall(1500, 1500, 1500, 2050);
+            SmarPosWall(1000, 1750, 1500, 1750);
+            SmarPosWall(1200, 2250, 1200, 2000);
+            SmarPosWall(650, 2000, 650, 2300);
+            SmarPosWall(650, 1600, 650, 350);
+            SmarPosWall(950, 800, 950, 400);
+            SmarPosWall(200, 0, 200, 1050);
+            SmarPosWall(250, 1000, 650, 1000);
+            SmarPosWall(650, 1300, 0, 1300);
+            #endregion top left half
         }
 
         protected void GenerateCeiling()
@@ -113,14 +163,44 @@ namespace LabyrinthExplorer
         protected void GenInteractiveEnvironment()
         {
             CreatePedistals();
-            
+            CreateChestsAndDoors();
+            CreateGatesAndLevers();
+
             environment.Add(new Gem("GemYellow", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
             
+
+
+           
+        }
+
+        private void CreatePedistals()
+        {
+            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
+            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
+            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
+        }
+
+        private void CreateChestsAndDoors()
+        {
+            environment.Add(new Door(contentMan, new Vector3(1925, 0, 3150), Vector3.Zero, new Vector3(1625, 0, 3150),
+               90, Vector3.Backward, ref environmentCollidables, "bottomAreaKey"));
+
+            environment.Add(new Door(contentMan, new Vector3(1925, 0, 2400), Vector3.Zero, new Vector3(1625, 0, 2400),
+               90, Vector3.Forward, ref environmentCollidables, "topAreaKey"));
+
+            environment.Add(new Chest(contentMan, new Vector3(3200, 0, 1400), new Vector3(0, 180, 0), 50, Vector3.Zero,
+                new IChestItem[] { new Key(contentMan, "bottomAreaKey") }));
+        }
+
+        private void CreateGatesAndLevers()
+        {
             Gate gate1 = CreateGate(new Vector3(3450, 0, 282), new Vector3(0, 90, 0), 29, 3);
-            
+
             environment.Add(new Lever(contentMan, new Vector3(3250, 0, 225), new Vector3(0, 90, 0), 100,
                 Vector3.Zero, gate1));
 
@@ -133,17 +213,10 @@ namespace LabyrinthExplorer
                 Vector3.Zero, gate2));
         }
 
-        private void CreatePedistals()
-        {
-            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
-            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
-            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
-        }
-    
         public override void OnEnteringArea()
         {
             base.OnEnteringArea();
-            Game.SoundManager.PlaySound("space", 0.7f, null, -1);
+            Game.SoundManager.PlaySong("space", true);
         }
     }
 }

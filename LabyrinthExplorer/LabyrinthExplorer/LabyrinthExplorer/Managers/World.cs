@@ -53,6 +53,7 @@ namespace LabyrinthExplorer
             if (GameAreas.ContainsKey(targetArea))
             {
                 Game.SoundManager.StopAllSounds();
+                Game.SoundManager.StopSong();
                 currentArea = GameAreas[targetArea];
                 currentArea.OnEnteringArea();
                 Game.player.Cam.Position = playerTargetPos;

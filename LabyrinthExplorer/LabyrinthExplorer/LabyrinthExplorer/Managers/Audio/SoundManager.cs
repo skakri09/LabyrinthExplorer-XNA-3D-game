@@ -148,11 +148,9 @@ namespace LabyrinthExplorer
 
             LoadAmbient("Area2Ambient", "");
             LoadAmbient("spiderAmbient", "");
-            LoadAmbient("space", "");
             
-            LoadSong("horror", "");
             LoadSong("LOD", "");
-            LoadSong("ScaryMusic", "");
+            LoadSong("space", "");
         }
 
         /// <summary>

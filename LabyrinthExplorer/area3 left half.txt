@@ -1,0 +1,50 @@
+<svg width="5000" height="5000" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <line id="svg_126" y2="2300" x2="1150" y1="2300" x1="0" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_127" y2="2600" x2="1150" y1="2350" x1="1150" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_128" y2="3200" x2="1150" y1="2950" x1="1150" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_129" y2="3200" x2="0" y1="3200" x1="1150" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_130" y2="2600" x2="1800" y1="2600" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_131" y2="2950" x2="1800" y1="2950" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1200" y1="3200" x2="1800" y2="3200" id="svg_132"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1200" y1="2300" x2="1800" y2="2300" id="svg_134"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1750" y1="3000" x2="1750" y2="3200" id="svg_136"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1750" y1="2350" x2="1750" y2="2600" id="svg_137"/>
+  <!-- room end -->
+  <line id="svg_139" y2="5000" x2="2050" y1="0" x1="2050" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <!--limit line -->
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1600" y1="3250" x2="1600" y2="3900" id="svg_140"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1600" y1="4350" x2="1600" y2="5000" id="svg_141"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1000" y1="3850" x2="400" y2="3850" id="svg_143"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="350" y1="4350" x2="350" y2="3450" id="svg_144"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1200" y1="4100" x2="1200" y2="4700" id="svg_145"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1200" y1="4100" x2="750" y2="4100" id="svg_146"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="400" y1="4300" x2="700" y2="4300" id="svg_147"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="700" y1="4100" x2="700" y2="4350" id="svg_148"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1200" y1="4650" x2="-50" y2="4650" id="svg_149"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="1600" y1="3650" x2="700" y2="3650" id="svg_150"/>
+  <line fill="none" stroke="#000000" stroke-width="5" stroke-linejoin="null" stroke-linecap="null" x1="400" y1="3450" x2="1350" y2="3450" id="svg_151"/>
+  <!--end bottom half-->
+  <line y="NaN" x="NaN" id="svg_152" y2="1750" x2="1800" y1="2300" x1="1800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_153" y2="950" x2="1800" y1="1450" x1="1800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_154" y2="0" x2="1800" y1="650" x1="1800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_155" y2="950" x2="1500" y1="0" x1="1500" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_156" y2="1200" x2="1250" y1="1200" x1="1800" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_157" y2="900" x2="1200" y1="1500" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_158" y2="650" x2="1200" y1="350" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_159" y2="2300" x2="950" y1="1100" x1="950" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_160" y2="350" x2="700" y1="350" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_161" y2="2050" x2="1500" y1="1500" x1="1500" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line id="svg_162" y2="1750" x2="1500" y1="1750" x1="1000" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_163" y2="2000" x2="1200" y1="2250" x1="1200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_164" y2="2300" x2="650" y1="2000" x1="650" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_165" y2="350" x2="650" y1="1600" x1="650" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_166" y2="400" x2="950" y1="800" x1="950" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_167" y2="1050" x2="200" y1="0" x1="200" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_168" y2="1000" x2="650" y1="1000" x1="250" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+  <line y="NaN" x="NaN" id="svg_169" y2="1300" x2="0" y1="1300" x1="650" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="none"/>
+<!--end top half-->
+ </g>
+</svg>

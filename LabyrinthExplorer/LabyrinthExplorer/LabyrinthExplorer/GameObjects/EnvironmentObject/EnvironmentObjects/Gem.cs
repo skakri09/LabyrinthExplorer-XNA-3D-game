@@ -173,9 +173,10 @@ namespace LabyrinthExplorer
             return 0.4f;
         }
 
-        public void AttatchToPedistal(Vector3 position)
+        public void AttatchToPedistal(Vector3 _position)
         {
-            base.position = position;
+            base.position = _position;
+            originalModelPosition = _position;
         }
 
         public void UsedCallback()
