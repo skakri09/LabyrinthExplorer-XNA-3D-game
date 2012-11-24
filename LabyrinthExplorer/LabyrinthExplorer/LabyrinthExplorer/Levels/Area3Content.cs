@@ -118,13 +118,19 @@ namespace LabyrinthExplorer
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
-            Gate gate = CreateGate(new Vector3(3450, 0, 282), new Vector3(0, 90, 0), 29, 3);
+            
+            Gate gate1 = CreateGate(new Vector3(3450, 0, 282), new Vector3(0, 90, 0), 29, 3);
             
             environment.Add(new Lever(contentMan, new Vector3(3250, 0, 225), new Vector3(0, 90, 0), 100,
-                Vector3.Zero, gate));
+                Vector3.Zero, gate1));
 
             environment.Add(new Lever(contentMan, new Vector3(3800, 0, 225), new Vector3(0, 180, 0), 100,
-                Vector3.Zero, gate));
+                Vector3.Zero, gate1));
+
+            Gate gate2 = CreateGate(new Vector3(3193, 0, 2260), Vector3.Zero, 31, 3);
+
+            environment.Add(new Lever(contentMan, new Vector3(3225, 0, 2110), new Vector3(0, 270, 0), 100,
+                Vector3.Zero, gate2));
         }
 
         private void CreatePedistals()
