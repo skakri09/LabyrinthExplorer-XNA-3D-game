@@ -123,7 +123,7 @@ namespace LabyrinthExplorer
             #endregion bottom left half
 
             #region top left half
-            SmarPosWall(1800, 2300, 1800, 1750);
+            SmarPosWall(1750, 2300, 1750, 1750);
             SmarPosWall(1800, 1450, 1800, 950);
             SmarPosWall(1800, 650, 1800, 0);
             SmarPosWall(1500, 0, 1500, 950);
@@ -134,7 +134,7 @@ namespace LabyrinthExplorer
             SmarPosWall(1200, 350, 700, 350);
             SmarPosWall(1500, 1500, 1500, 2050);
             SmarPosWall(1000, 1750, 1500, 1750);
-            SmarPosWall(1200, 2250, 1200, 2000);
+            SmarPosWall(1200, 2300, 1200, 2000);
             SmarPosWall(650, 2000, 650, 2300);
             SmarPosWall(650, 1600, 650, 350);
             SmarPosWall(950, 800, 950, 400);
@@ -173,8 +173,6 @@ namespace LabyrinthExplorer
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
             
-
-
            
         }
 
@@ -187,30 +185,60 @@ namespace LabyrinthExplorer
 
         private void CreateChestsAndDoors()
         {
+            //bottom door
             environment.Add(new Door(contentMan, new Vector3(1925, 0, 3150), Vector3.Zero, new Vector3(1625, 0, 3150),
                90, Vector3.Backward, ref environmentCollidables, "bottomAreaKey"));
-
-            environment.Add(new Door(contentMan, new Vector3(1925, 0, 2400), Vector3.Zero, new Vector3(1625, 0, 2400),
-               90, Vector3.Forward, ref environmentCollidables, "topAreaKey"));
-
+            //chest with key for bottom door
             environment.Add(new Chest(contentMan, new Vector3(3200, 0, 1400), new Vector3(0, 180, 0), 50, Vector3.Zero,
                 new IChestItem[] { new Key(contentMan, "bottomAreaKey") }));
+
+
+            //top door
+            environment.Add(new Door(contentMan, new Vector3(1925, 0, 2400), Vector3.Zero, new Vector3(1625, 0, 2400),
+               90, Vector3.Forward, ref environmentCollidables, "topAreaKey"));
+            //chest with key to top door
+            environment.Add(new Chest(contentMan, new Vector3(950, 0, 4250), Vector3.Zero, 50, Vector3.Forward,
+                new IChestItem[] { new Key(contentMan, "topAreaKey") }));
+
         }
 
         private void CreateGatesAndLevers()
         {
+            //right half gates and levers
+            //top gate
             Gate gate1 = CreateGate(new Vector3(3450, 0, 282), new Vector3(0, 90, 0), 29, 3);
 
             environment.Add(new Lever(contentMan, new Vector3(3250, 0, 225), new Vector3(0, 90, 0), 100,
                 Vector3.Zero, gate1));
 
-            environment.Add(new Lever(contentMan, new Vector3(3800, 0, 225), new Vector3(0, 180, 0), 100,
+            environment.Add(new Lever(contentMan, new Vector3(3650, 0, 275), new Vector3(0, 180, 0), 100,
                 Vector3.Zero, gate1));
 
+            //bottom gate
             Gate gate2 = CreateGate(new Vector3(3193, 0, 2260), Vector3.Zero, 31, 3);
 
             environment.Add(new Lever(contentMan, new Vector3(3225, 0, 2110), new Vector3(0, 270, 0), 100,
                 Vector3.Zero, gate2));
+
+
+            //supermax gates and levers
+            //outer supermax gate
+            Gate gate3 = CreateGate(new Vector3(1700, 0, 2782), new Vector3(0, 90, 0), 29, 45);
+            //getting-in lever
+            environment.Add(new Lever(contentMan, new Vector3(300, 0, 4800),
+                new Vector3(0, 180, 0), 100, Vector3.Right, gate3));
+            //getting-out lever
+            environment.Add(new Lever(contentMan, new Vector3(1550, 0, 2782),
+                new Vector3(0, 0, 0), 100, Vector3.Left, gate3));
+
+            //inner supermax gate
+            Gate gate4 = CreateGate(new Vector3(1200, 0, 2782), new Vector3(0, 90, 0), 29, 45);
+            //getting in lever
+            environment.Add(new Lever(contentMan, new Vector3(300, 0, 1850),
+                new Vector3(0, 180, 0), 100, Vector3.Right, gate4));
+            //getting out lever
+            environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
+                new Vector3(0, 0, 0), 100, Vector3.Left, gate4));
         }
 
         public override void OnEnteringArea()
