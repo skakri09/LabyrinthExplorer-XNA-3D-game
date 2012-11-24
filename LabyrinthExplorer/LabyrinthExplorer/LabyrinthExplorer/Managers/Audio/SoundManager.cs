@@ -145,6 +145,9 @@ namespace LabyrinthExplorer
             LoadEffect("TheyAreComingForYou", "");
             LoadEffect("GiveInToYourFear", "");
             LoadEffect("PedistalSound", "");
+            LoadEffect("GateOpening1", "");
+            LoadEffect("GateOpening2", "");
+            LoadEffect("GateOpening3", "");
 
             LoadAmbient("Area2Ambient", "");
             LoadAmbient("spiderAmbient", "");

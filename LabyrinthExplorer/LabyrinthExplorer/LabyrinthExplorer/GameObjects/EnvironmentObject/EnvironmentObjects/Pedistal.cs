@@ -16,6 +16,12 @@ namespace LabyrinthExplorer
         private Vector3 color;
         private bool haveSound;
 
+        public bool IsUnlocked
+        {
+            get;
+            private set;
+        }
+
         public Pedistal(ContentManager content,
                      Vector3 position, Vector3 rotation,
                     float scale,
@@ -32,6 +38,8 @@ namespace LabyrinthExplorer
             CreateUseAABB(Vector3.Zero, position, 150, 0);
             Interactables.AddInteractable(this);
             GenPilarColor(attatchedGem);
+
+            IsUnlocked = false;
         }
 
         public override void OnEnteringArea()
@@ -96,6 +104,7 @@ namespace LabyrinthExplorer
                     {
                         gem.AttatchToPedistal(new Vector3(position.X, 150, position.Z));
                         World.currentArea.AddEnvironmentObjectToEnvironment(gem);
+                        IsUnlocked = true;
                     }
                     else
                         throw new Exception("Player did not have the gem after all hurpdurp");

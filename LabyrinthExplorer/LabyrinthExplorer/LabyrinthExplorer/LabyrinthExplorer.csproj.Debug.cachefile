@@ -127,5 +127,16 @@ Content\Models\Environment\GemTextures\tolvir_triangle_light_red_0.xnb
 Content\Models\Environment\GemTextures\tolvir_triangle_light_yellow_0.xnb
 Content\Models\Environment\Door\mm_mnstry_wall_07_0.xnb
 Content\Models\Environment\GemTextures\murderball_pedestal_0.xnb
+Content\Models\Hangar\Hangar.xnb
+Content\Models\hallway.xnb
+Content\Models\Environment\FinalGatePillars.xnb
+Content\Models\Environment\FinalGate\wr_vtrim02_gold_0.xnb
+Content\Models\Environment\FinalGateRightHalf.xnb
+Content\Models\Environment\FinalGate\wr_vtrim03_stone_0.xnb
+Content\Models\Environment\FinalGate\wr_column_stacked_0.xnb
+Content\Models\Environment\FinalGateLeftHalf.xnb
+Content\Sound\Effects\GateOpening1.xnb
+Content\Sound\Effects\GateOpening2.xnb
+Content\Sound\Effects\GateOpening3.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Music\space.wma

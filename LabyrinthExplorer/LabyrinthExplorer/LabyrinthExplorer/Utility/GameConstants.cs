@@ -48,7 +48,7 @@ namespace LabyrinthExplorer
         #region Camera
         public const float CAMERA_FOVX = 90.0f;
         public const float CAMERA_ZNEAR = 2.0f;
-        public const float CAMERA_ZFAR = 5000*MAP_SCALE; ///Reduce when done !
+        public const float CAMERA_ZFAR = 10000*MAP_SCALE; ///Reduce when done !
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MIN_Y = 0.0f;
@@ -59,24 +59,24 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =500;
 
-        public const float CAMERA_ACCELERATION_X = 800.0f;
-        public const float CAMERA_ACCELERATION_Y = 1000.0f;
-        public const float CAMERA_ACCELERATION_Z = 800.0f;
-        public const float CAMERA_VELOCITY_X = 200.0f;
-        public const float CAMERA_VELOCITY_Y = 300.0f;
-        public const float CAMERA_VELOCITY_Z = 350.0f;
+        //public const float CAMERA_ACCELERATION_X = 800.0f;
+        //public const float CAMERA_ACCELERATION_Y = 1000.0f;
+        //public const float CAMERA_ACCELERATION_Z = 800.0f;
+        //public const float CAMERA_VELOCITY_X = 200.0f;
+        //public const float CAMERA_VELOCITY_Y = 300.0f;
+        //public const float CAMERA_VELOCITY_Z = 350.0f;
 
         //public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
         public static Vector3 PLAYER_START_POS =
             new Vector3(4100 * MAP_SCALE, CAMERA_PLAYER_EYE_HEIGHT, 4500 * MAP_SCALE);
-        //public const float CAMERA_ACCELERATION_X = 8000.0f;
-        //public const float CAMERA_ACCELERATION_Y = 5000.0f;
-        //public const float CAMERA_ACCELERATION_Z = 8000.0f;
-        //public const float CAMERA_VELOCITY_X = 1000.0f;
-        //public const float CAMERA_VELOCITY_Y = 1000.0f;
-        //public const float CAMERA_VELOCITY_Z = 1000.0f;
+        public const float CAMERA_ACCELERATION_X = 8000.0f;
+        public const float CAMERA_ACCELERATION_Y = 5000.0f;
+        public const float CAMERA_ACCELERATION_Z = 8000.0f;
+        public const float CAMERA_VELOCITY_X = 1000.0f;
+        public const float CAMERA_VELOCITY_Y = 1000.0f;
+        public const float CAMERA_VELOCITY_Z = 1000.0f;
 
         public const float CAMERA_RUNNING_MULTIPLIER = 1.5f;
         public const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.0f;

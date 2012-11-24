@@ -10,6 +10,12 @@ namespace LabyrinthExplorer
 {
     public class Area3Content : AreaContent
     {
+        private Pedistal redPedistal;
+        private Pedistal bluePedistal;
+        private Pedistal yellowPedistal;
+
+        private FinalGate finalGate;
+
         public Area3Content(Camera camera)
             :base(camera)
         {
@@ -36,6 +42,13 @@ namespace LabyrinthExplorer
         public override void Update(GameTime gameTime, Camera camera)
         {
             base.Update(gameTime, camera);
+            
+            if(redPedistal.IsUnlocked)
+                if(bluePedistal.IsUnlocked)
+                    if (yellowPedistal.IsUnlocked)
+                    {
+                        finalGate.Use(null);
+                    }
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, Effect effect, 
@@ -58,15 +71,19 @@ namespace LabyrinthExplorer
             //X Walls - XWallNegZAl
             #endregion
 
-            #region left half area
             SmarPosWall(0, 50, 5000, 50);
             SmarPosWall(50, 100, 50, 4950);
-            SmarPosWall(50, 4950, 4950, 4950);
             SmarPosWall(4950, 4950, 4950, 100);
+
+
+            SmarPosWall(50, 4950, 2150, 4950);
+            SmarPosWall(2850, 4950, 4950, 4950);
+            #region right half area
+          
             SmarPosWall(2950, 100, 2950, 2300);
             SmarPosWall(2950, 2900, 2950, 4950);
 
-            SmarPosWall(2050, 3000, 2050, 4900);
+            SmarPosWall(2050, 3000, 2050, 4950);
             SmarPosWall(2050, 100, 2050, 2550);
 
             SmarPosWall(3800, 3650, 3800, 4950);
@@ -178,21 +195,36 @@ namespace LabyrinthExplorer
             CreateChestsAndDoors();
             CreateGatesAndLevers();
 
+            finalGate = new FinalGate(contentMan, ref environmentCollidables,
+                new Vector3(2500, 0, 4950), Vector3.Zero, 20);
+            environment.Add(finalGate);
+
             environment.Add(new Gem("GemYellow", contentMan, new Vector3(500, 150, 2782), 50));
-            //environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
-            //environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
+            
+            environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
+            environment.Add(new Gem("GemYellow", contentMan, new Vector3(2500, 150, 3000), 50));
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
-            
+
+
+            environment.Add(new Hallway(contentMan,
+               new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
+
+
            
         }
 
         private void CreatePedistals()
         {
-            environment.Add(new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed"));
-            environment.Add(new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true));
-            environment.Add(new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow"));
+            redPedistal = new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed");
+            bluePedistal = new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true);
+            yellowPedistal = new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow");
+
+            environment.Add(redPedistal);
+            environment.Add(bluePedistal);
+            environment.Add(yellowPedistal);
         }
 
         private void CreateChestsAndDoors()

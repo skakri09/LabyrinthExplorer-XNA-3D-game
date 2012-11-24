@@ -233,7 +233,7 @@ namespace LabyrinthExplorer
                    new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
                 new Vector3(2500, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 250), "area3");
 
-            SimpleStaticEnvironment hintText = new SimpleStaticEnvironment(@"Models\Area2TextHint", contentMan,
+            TextHint hintText = new TextHint(@"Models\Area2TextHint", contentMan,
                 new Vector3(500, 100, 103), new Vector3(90, 0, 0), 1.0f);
             environment.Add(hintText);
         }
