@@ -45,11 +45,11 @@ namespace LabyrinthExplorer
 
     public class Hangar : EnvironmentObject
     {
-        HangarSound ww2 = new HangarSound("ww2", new Vector3(5183, 0, 21400), 0.5f, 200);
-        HangarSound alex = new HangarSound("alex", new Vector3(5350, 0, 10700), 1, 400);
-        HangarSound apollo11 = new HangarSound("apollo11", new Vector3(2445, 0, 21400), 1, 400);
-        HangarSound arena = new HangarSound("arena", new Vector3(7800, 0, 21400), 1, 500);
-        HangarSound egypt = new HangarSound("egypt", new Vector3(7800, 0, 10700), 1, 500);
+        HangarSound ww2 = new HangarSound("ww2", new Vector3(5183, 0, 21000), 0.5f, 400);
+        HangarSound alex = new HangarSound("alex", new Vector3(5350, 0, 11100), 1, 250);
+        HangarSound apollo11 = new HangarSound("apollo11", new Vector3(2445, 0, 21000), 1, 450);
+        HangarSound arena = new HangarSound("arena", new Vector3(7800, 0, 21000), 1, 500);
+        HangarSound egypt = new HangarSound("egypt", new Vector3(7800, 0, 11100), 1, 700);
 
         public Hangar(ContentManager content,
             Vector3 position, Vector3 rotation, float scale)

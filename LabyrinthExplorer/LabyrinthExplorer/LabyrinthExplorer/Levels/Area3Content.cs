@@ -63,7 +63,7 @@ namespace LabyrinthExplorer
             }
             if (Game.player.PlayerAABB.CheckCollision(StartArea4AABB) != Vector3.Zero)
             {
-                World.ChangeArea("area4", new Vector3(2500, 0, -10000));
+                World.ChangeArea("area4", new Vector3(2500, 150, -40000));
             }
         }
 

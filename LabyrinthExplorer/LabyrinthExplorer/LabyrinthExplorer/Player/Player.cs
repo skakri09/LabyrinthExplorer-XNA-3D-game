@@ -38,6 +38,12 @@ namespace LabyrinthExplorer
         private float runSpeedSteps = 0.35f;
         private float stepsTimer = 0.0f;
 
+        public bool MakeFootstepSound
+        {
+            set;
+            get;
+        }
+
         public Player(Game game, Vector3 position)
             : base(Vector3.Zero, GameConstants.CAM_BOUNDS_PADDING)
         {
@@ -54,6 +60,7 @@ namespace LabyrinthExplorer
             playerListener.Up = Vector3.Up;
             inventory = new Inventory();
             PlayerAbleToMove = true;
+            MakeFootstepSound = true;
         }
 
         public void HandlePlayerInput(InputManager input)
@@ -171,27 +178,30 @@ namespace LabyrinthExplorer
 
         private void HandleFootseps(float deltaTime)
         {
-            stepsTimer += deltaTime;
+            if (MakeFootstepSound)
+            {
+                stepsTimer += deltaTime;
 
-            if (camera.FootMode == Camera.FootstepsMode.RUN)
-            {
-                if (stepsTimer >= runSpeedSteps)
+                if (camera.FootMode == Camera.FootstepsMode.RUN)
                 {
-                    Game.SoundManager.PlaySound("footsteps", 0.9f);
-                    stepsTimer -= runSpeedSteps;
+                    if (stepsTimer >= runSpeedSteps)
+                    {
+                        Game.SoundManager.PlaySound("footsteps", 0.9f);
+                        stepsTimer -= runSpeedSteps;
+                    }
                 }
-            }
-            else if (camera.FootMode == Camera.FootstepsMode.WALK)
-            {
-                if (stepsTimer >= walkSpeedSteps)
+                else if (camera.FootMode == Camera.FootstepsMode.WALK)
                 {
-                    Game.SoundManager.PlaySound("footsteps", 0.9f);
-                    stepsTimer -= walkSpeedSteps;
+                    if (stepsTimer >= walkSpeedSteps)
+                    {
+                        Game.SoundManager.PlaySound("footsteps", 0.9f);
+                        stepsTimer -= walkSpeedSteps;
+                    }
                 }
-            }
-            else
-            {
-                stepsTimer = 0;
+                else
+                {
+                    stepsTimer = 0;
+                }
             }
         }
 

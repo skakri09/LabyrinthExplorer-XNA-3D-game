@@ -78,7 +78,7 @@ namespace LabyrinthExplorer
         public const float CAMERA_VELOCITY_Y = 1000.0f;
         public const float CAMERA_VELOCITY_Z = 1000.0f;
 
-        public const float CAMERA_RUNNING_MULTIPLIER = 4.0f;
+        public const float CAMERA_RUNNING_MULTIPLIER = 15.0f;
         public const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.0f;
 
         public const float CANDLE_SCALE = 0.5f;
