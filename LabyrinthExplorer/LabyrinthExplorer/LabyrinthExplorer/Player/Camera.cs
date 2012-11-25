@@ -132,6 +132,12 @@ namespace LabyrinthExplorer
         private Dictionary<Actions, Keys> actionKeys;
         #endregion
 
+        private bool isMapMode = false;
+        private Vector3 camPosPreMap;
+        private Vector3 ydirpremap;
+        float pitchDegPreMap;
+        float headingDegPreMap;
+
         private InputManager input;
 
     #region Public Methods
@@ -195,6 +201,36 @@ namespace LabyrinthExplorer
             Perspective(fovx, aspect, znear, zfar);
 
             Position = GameConstants.PLAYER_START_POS*GameConstants.MAP_SCALE;
+        }
+
+        public void ToggleMapMode()
+        {
+            if (!isMapMode)
+                isMapMode = true;
+            else isMapMode = false;
+
+            if (isMapMode)
+            {
+                CanMoveWithControlKeys = false;
+                camPosPreMap = Position;
+                headingDegPreMap = accumHeadingDegrees;//HeadingDegrees;//
+                pitchDegPreMap = accumPitchDegrees;//PitchDegrees;//
+                ydirpremap = yAxis;
+                //camPosPreMap = eye;
+                //camDirPreMap 
+            }
+            else
+            {
+                CanMoveWithControlKeys = true;
+                //Position = camPosPreMap;
+                //Rotate(0, 0);
+                Rotate(headingDegPreMap-accumHeadingDegrees, pitchDegPreMap-accumPitchDegrees);
+                //accumHeadingDegrees = headingDegPreMap;
+                //accumPitchDegrees = pitchDegPreMap;
+                //LookAt(new Vector3(0, 0, 0));
+                //LookAt(camPosPreMap, target, ydirpremap);
+                
+            }
         }
 
         public override void Initialize()

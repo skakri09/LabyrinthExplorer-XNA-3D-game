@@ -47,8 +47,8 @@ namespace LabyrinthExplorer
         
         #region Camera
         public const float CAMERA_FOVX = 90.0f;
-        public const float CAMERA_ZNEAR = 3.0f;
-        public const float CAMERA_ZFAR = 10000*MAP_SCALE; ///Reduce when done !
+        public static float CAMERA_ZNEAR = 3.0f;
+        public const float CAMERA_ZFAR = 12000*MAP_SCALE; ///Reduce when done !
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MIN_Y = 0.0f;

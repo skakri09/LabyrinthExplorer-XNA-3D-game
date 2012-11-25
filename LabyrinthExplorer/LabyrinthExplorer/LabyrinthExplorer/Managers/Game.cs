@@ -145,6 +145,10 @@ namespace LabyrinthExplorer
             {
                 GameConstants.RenderOnScreenText = !GameConstants.RenderOnScreenText;
             }
+            if (input.IsKeyDownOnce(Keys.Tab))
+            {
+                player.Cam.ToggleMapMode();
+            }
 
             player.HandlePlayerInput(input);
         }

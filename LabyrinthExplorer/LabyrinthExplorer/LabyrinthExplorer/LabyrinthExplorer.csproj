@@ -80,6 +80,7 @@
     <Compile Include="AI\States\PatrolZ.cs" />
     <Compile Include="Collision\IAABB.cs" />
     <Compile Include="GameObjects\Enemies\Spider.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\AssemblyLane.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\FinalGate.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Hangar.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Pedistal.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="GameObjects\EnvironmentObject\Testcenter.cs" />
     <Compile Include="Levels\Area2Content.cs" />
     <Compile Include="Levels\Area3Content.cs" />
+    <Compile Include="Levels\Area4Content.cs" />
     <Compile Include="Levels\AreaContent.cs" />
     <Compile Include="GameObjects\Compass.cs" />
     <Compile Include="Levels\IGameArea.cs" />

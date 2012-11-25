@@ -46,6 +46,7 @@ namespace LabyrinthExplorer
             GameAreas.Add("area1", new Area1Content(camera));
             GameAreas.Add("area2", new Area2Content(camera));
             GameAreas.Add("area3", new Area3Content(camera));
+            GameAreas.Add("area4", new Area4Content(camera));
         }
 
         public static void ChangeArea(string targetArea, Vector3 playerTargetPos)
