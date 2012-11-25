@@ -284,7 +284,11 @@ namespace LabyrinthExplorer
 
            
             world.DrawTheSkybox(GraphicsDevice);
-            
+
+            if(World.currentArea.TestCenters != null)
+                foreach (Testcenter center in World.currentArea.TestCenters)
+                    center.Draw(player.Cam, null);
+
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
             GraphicsDevice.DepthStencilState = dss;

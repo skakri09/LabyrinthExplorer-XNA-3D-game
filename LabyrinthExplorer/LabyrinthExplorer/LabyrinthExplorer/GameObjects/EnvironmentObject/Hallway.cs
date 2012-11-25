@@ -14,7 +14,7 @@ namespace LabyrinthExplorer
             Vector3 position, Vector3 rotation, float scale)
             : base(@"Models\Hallway", content, position, rotation, scale)
         {
-
+            FogEnd = 10000;
         }
 
         public override void OnEnteringArea()
@@ -32,9 +32,9 @@ namespace LabyrinthExplorer
                     //_effect.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
                     //_effect.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
                     //_effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    //_effect.FogEnabled = true;
-                    //_effect.FogStart = 50.0f;
-                    //_effect.FogEnd = FogEnd;
+                    _effect.FogEnabled = true;
+                    _effect.FogStart = 50.0f;
+                    _effect.FogEnd = FogEnd;
                     _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
                         * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))

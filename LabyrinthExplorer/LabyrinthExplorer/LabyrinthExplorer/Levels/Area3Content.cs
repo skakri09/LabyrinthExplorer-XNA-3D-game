@@ -13,8 +13,9 @@ namespace LabyrinthExplorer
         private Pedistal redPedistal;
         private Pedistal bluePedistal;
         private Pedistal yellowPedistal;
-
+        private Hangar hangar;
         private FinalGate finalGate;
+        bool pedistalsUnlocked = false;
 
         public Area3Content(Camera camera)
             :base(camera)
@@ -31,7 +32,7 @@ namespace LabyrinthExplorer
         public override void LoadContent(GraphicsDevice device, ContentManager contentMan)
         {
             base.LoadContent(device, contentMan);
-
+            CreateTestCenters();
             GenerateWalls();
             GenerateCeiling();
             GenerateFloors();
@@ -42,13 +43,24 @@ namespace LabyrinthExplorer
         public override void Update(GameTime gameTime, Camera camera)
         {
             base.Update(gameTime, camera);
+
+            foreach (Testcenter center in TestCenters)
+                center.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            if (!pedistalsUnlocked)
+            {
+                if (redPedistal.IsUnlocked)
+                    if (bluePedistal.IsUnlocked)
+                        if (yellowPedistal.IsUnlocked)
+                        {
+                            pedistalsUnlocked = true;
+                            finalGate.Use(null);
+                            environment.Add(hangar);
+                            hangar.OnEnteringArea();
+                            bluePedistal.StopSound();
+                        }
+            }
             
-            if(redPedistal.IsUnlocked)
-                if(bluePedistal.IsUnlocked)
-                    if (yellowPedistal.IsUnlocked)
-                    {
-                        finalGate.Use(null);
-                    }
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, Effect effect, 
@@ -212,7 +224,10 @@ namespace LabyrinthExplorer
             environment.Add(new Hallway(contentMan,
                new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
 
-            environment.Add(new Hangar(contentMan, new Vector3(3800, -30, 15550), new Vector3(0, 90, 0), 15.0f));
+
+            hangar = new Hangar(contentMan, new Vector3(3800, -30, 15550), new Vector3(0, 90, 0), 15.0f);
+            environment.Add(hangar);
+
 
             //right corridor collision
             environmentCollidables.Add(new AABB(new Vector2(2650, 4875), new Vector2(2950, 12500)));
@@ -239,6 +254,31 @@ namespace LabyrinthExplorer
             environment.Add(redPedistal);
             environment.Add(bluePedistal);
             environment.Add(yellowPedistal);
+        }
+
+        private void CreateTestCenters()
+        {
+            TestCenters = new List<IEnvironmentObject>();
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 0, 0),
+                new Vector3(0, -90, 0), 0.01f));
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 100, -1000),
+               new Vector3(0, -90, 0), 0.01f));
+
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 200, -200),
+               new Vector3(0, -90, 0), 0.01f));
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 300, 110),
+                new Vector3(0, -90, 0), 0.01f));
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 400, 200),
+               new Vector3(0, -90, 0), 0.01f));
+
+
+            TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 500, 300),
+               new Vector3(0, -90, 0), 0.01f));
         }
 
         private void CreateChestsAndDoors()

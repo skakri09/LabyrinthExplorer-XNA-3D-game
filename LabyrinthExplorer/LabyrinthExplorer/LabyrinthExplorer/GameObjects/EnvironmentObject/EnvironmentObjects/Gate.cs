@@ -118,6 +118,7 @@ namespace LabyrinthExplorer
 
         private void CreateCollision(Vector3 position, Vector3 rotation, float scale)
         {
+            base.color = new Vector3(0.2f, 0.2f, 0.2f);
             Matrix worldTransform = new Matrix();
             worldTransform = Matrix.CreateTranslation(Vector3.Zero)
             * Matrix.CreateRotationY(MathHelper.ToRadians(rotation.Y));

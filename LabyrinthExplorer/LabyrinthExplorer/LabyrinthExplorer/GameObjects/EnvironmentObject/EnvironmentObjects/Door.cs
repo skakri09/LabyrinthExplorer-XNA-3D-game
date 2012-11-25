@@ -41,6 +41,7 @@ namespace LabyrinthExplorer
                     DoorState state = DoorState.CLOSED, bool canToggle = false)
             :base(@"Models\Environment\SecretDoor", content, position, rotation, scale)
         {
+            base.color = new Vector3(0.2f, 0.2f, 0.2f);
             this.OpenedByKeyWithID = openedByKeyWithID;
             this.doorState = state;
             CreateUseAABB(openFromDirection, position, 150, 150);

@@ -15,6 +15,7 @@ namespace LabyrinthExplorer
         protected Vector3 rotation;
         protected float modelScale;
 
+        protected Vector3 color = new Vector3(0.4f, 0.4f, 0.4f);
         protected Matrix[] transformation;
         protected Matrix matrixTranslation;
         protected AudioEmitter emitter;
@@ -66,9 +67,9 @@ namespace LabyrinthExplorer
                 foreach (BasicEffect _effect in mesh.Effects)
                 {
                     _effect.EnableDefaultLighting();
-                    _effect.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.DiffuseColor = color;
+                    _effect.AmbientLightColor = color;
+                    _effect.SpecularColor = color;
                     _effect.FogEnabled = true;
                     _effect.FogStart = 50.0f;
                     _effect.FogEnd = FogEnd;

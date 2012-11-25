@@ -13,8 +13,8 @@ namespace LabyrinthExplorer
     {
 
         private string attatchedGem;
-        private Vector3 color;
-        private bool haveSound;
+        //private Vector3 color;
+        public bool haveSound;
 
         public bool IsUnlocked
         {
@@ -128,6 +128,11 @@ namespace LabyrinthExplorer
             }
         }
 
+        public void StopSound()
+        {
+            if(haveSound)
+                Game.SoundManager.StopSound("PedistalSound");
+        }
         public void UsedCallback()
         {
             

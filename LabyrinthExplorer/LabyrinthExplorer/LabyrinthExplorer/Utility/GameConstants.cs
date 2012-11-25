@@ -42,7 +42,7 @@ namespace LabyrinthExplorer
         public static float SpotInnerConeRadians = MathHelper.ToRadians(1000.01f);
         public static float SpotOuterConeRadians = MathHelper.ToRadians(1000.01f);
         //public static float Radius = 1000;
-        public static float Radius = 1000;
+        public static float Radius = 2000;
         #endregion
         
         #region Camera

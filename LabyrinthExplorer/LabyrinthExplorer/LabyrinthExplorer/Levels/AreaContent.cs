@@ -20,6 +20,8 @@ namespace LabyrinthExplorer
         protected ContentManager contentMan;
         protected GraphicsDevice device;
 
+        public List<IEnvironmentObject> TestCenters;
+
         public void AddEnvironmentObjectToEnvironment(IEnvironmentObject obj)
         {
             environment.Add(obj);

@@ -15,7 +15,7 @@ namespace LabyrinthExplorer
         private double sinWaveMultiplier = 5.0;
         private Vector3 originalModelPosition;
 
-        private Vector3 color;
+        //private Vector3 color;
         private string effectName;
 
         private Matrix[] screenTransforms;
