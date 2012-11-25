@@ -51,7 +51,7 @@ namespace LabyrinthExplorer
                     _effect.DirectionalLight0.Direction = camera.ViewDirection;
 
                     _effect.World =
-                    Matrix.CreateRotationZ(MathHelper.ToRadians(camera.HeadingDegrees))
+                    Matrix.CreateRotationZ(MathHelper.ToRadians(-camera.HeadingDegrees))
                     * Matrix.CreateRotationY(MathHelper.ToRadians(-20f))
                     * Matrix.CreateRotationX(MathHelper.ToRadians(55f))
                     * compTransf[mesh.ParentBone.Index]

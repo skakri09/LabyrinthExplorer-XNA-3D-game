@@ -150,6 +150,11 @@ namespace LabyrinthExplorer
             LoadEffect("GateOpening1", "");
             LoadEffect("GateOpening2", "");
             LoadEffect("GateOpening3", "");
+            LoadEffect("apollo11", "");
+            LoadEffect("alex", "");
+            LoadEffect("egypt", "");
+            LoadEffect("arena", "");
+            LoadEffect("ww2", "");
 
             LoadAmbient("Area2Ambient", "");
             LoadAmbient("spiderAmbient", "");
