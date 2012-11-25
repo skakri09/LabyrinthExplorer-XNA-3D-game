@@ -212,8 +212,22 @@ namespace LabyrinthExplorer
             environment.Add(new Hallway(contentMan,
                new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
 
+            environment.Add(new Hangar(contentMan, new Vector3(3800, -30, 15550), new Vector3(0, 90, 0), 15.0f));
 
-           
+            //right corridor collision
+            environmentCollidables.Add(new AABB(new Vector2(2650, 4875), new Vector2(2950, 12500)));
+            //left corridor collision
+            environmentCollidables.Add(new AABB(new Vector2(2000, 4875), new Vector2(2300, 12500)));
+            //right positive hangar collision
+            environmentCollidables.Add(new AABB(new Vector2(2700, 12000), new Vector2(10000, 12500)));
+            //left positive hangar collision
+            environmentCollidables.Add(new AABB(new Vector2(0, 12000), new Vector2(2300, 12500)));
+            //Back(left) of hangar collision
+            environmentCollidables.Add(new AABB(new Vector2(0, 12000), new Vector2(550, 21000)));
+            //negative z side hangar collision
+            environmentCollidables.Add(new AABB(new Vector2(0, 19700), new Vector2(10000, 21000)));
+            //hangar opening collision
+            environmentCollidables.Add(new AABB(new Vector2(9000, 10000), new Vector2(10000, 21000)));
         }
 
         private void CreatePedistals()

@@ -31,10 +31,10 @@ namespace LabyrinthExplorer
 
         public const float InteractablesUseHeight = 500.0f;
         #region light
-        public static Color GlobalAmbientGame = new Color(new Vector4(0.05f, 0.05f, 0.05f, 0.01f));
+        public static Color GlobalAmbientGame = new Color(new Vector4(0.1f, 0.1f, 0.1f, 0.1f));
         public static Color GlobalAmbientGame3 = new Color(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
-        public static Color CurrentAmbientLight = GlobalAmbientGame3;
+        public static Color CurrentAmbientLight = GlobalAmbientDebug;
 
         public static Color ambient = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
         public static Color diffuse = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -47,7 +47,7 @@ namespace LabyrinthExplorer
         
         #region Camera
         public const float CAMERA_FOVX = 90.0f;
-        public const float CAMERA_ZNEAR = 2.0f;
+        public const float CAMERA_ZNEAR = 3.0f;
         public const float CAMERA_ZFAR = 10000*MAP_SCALE; ///Reduce when done !
         public const float CAMERA_BOUNDS_MIN_X = -FLOOR_PLANE_SIZE / 2.0f + CAM_BOUNDS_PADDING;
         public const float CAMERA_BOUNDS_MAX_X = FLOOR_PLANE_SIZE / 2.0f - CAM_BOUNDS_PADDING;
@@ -59,13 +59,13 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT =500;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
 
         //public const float CAMERA_ACCELERATION_X = 800.0f;
         //public const float CAMERA_ACCELERATION_Y = 1000.0f;
         //public const float CAMERA_ACCELERATION_Z = 800.0f;
-        //public const float CAMERA_VELOCITY_X = 200.0f;
-        //public const float CAMERA_VELOCITY_Y = 300.0f;
+        //public const float CAMERA_VELOCITY_X = 250.0f;
+        //public const float CAMERA_VELOCITY_Y = 400.0f;
         //public const float CAMERA_VELOCITY_Z = 350.0f;
 
         //public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
@@ -78,7 +78,7 @@ namespace LabyrinthExplorer
         public const float CAMERA_VELOCITY_Y = 1000.0f;
         public const float CAMERA_VELOCITY_Z = 1000.0f;
 
-        public const float CAMERA_RUNNING_MULTIPLIER = 1.5f;
+        public const float CAMERA_RUNNING_MULTIPLIER = 4.0f;
         public const float CAMERA_RUNNING_JUMP_MULTIPLIER = 1.0f;
 
         public const float CANDLE_SCALE = 0.5f;

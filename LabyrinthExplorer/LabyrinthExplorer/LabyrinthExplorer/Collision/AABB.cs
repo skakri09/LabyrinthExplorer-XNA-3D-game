@@ -32,6 +32,12 @@ namespace LabyrinthExplorer
             SetAABB(_minPoint, _maxPoint);
         }
 
+        public AABB(Vector2 _minPoint, Vector2 _maxPoint)
+        {
+            SetAABB(new Vector3(_minPoint.X, 0, _minPoint.Y), 
+                new Vector3(_maxPoint.X, GameConstants.WALL_HEIGHT, _maxPoint.Y));
+        }
+
         //Empty ctor for setting aabb manually, used by environment objects
         public AABB()
         {

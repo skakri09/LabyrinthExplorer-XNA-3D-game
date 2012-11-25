@@ -81,6 +81,7 @@
     <Compile Include="Collision\IAABB.cs" />
     <Compile Include="GameObjects\Enemies\Spider.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\FinalGate.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Hangar.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Pedistal.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\TextHint.cs" />
     <Compile Include="GameObjects\EnvironmentObject\Hallway.cs" />
