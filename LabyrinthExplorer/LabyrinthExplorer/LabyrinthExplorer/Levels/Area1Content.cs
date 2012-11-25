@@ -176,11 +176,15 @@ namespace LabyrinthExplorer
 
             environment.Add(new Gem("GemBlue", contentMan, new Vector3(500, 100, 4500), 50));
             
-            //environment.Add(new Gem("GemYellow", contentMan, new Vector3(700, 100, 4500), 50));
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,
                 "blueGemRoomKey"));
+
+            //2750
+            environment.Add(new Chest(contentMan, new Vector3(3750, 0, 4300), 
+                new Vector3(0, 90, 0), 50, Vector3.Right,
+                new IChestItem[]{new Compass(contentMan)}));
         }
 
         public override void OnEnteringArea()

@@ -60,11 +60,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="Models\WindTunnel.FBX">
-      <Name>WindTunnel</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="Sound\Music\Ambient\spiderAmbient.wav">
       <Name>spiderAmbient</Name>
       <Importer>WavImporter</Importer>
@@ -250,38 +245,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <None Include="Textures\dungeon_walls_1.jpg">
-      <Name>dungeon_walls_1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </None>
+    <Compile Include="Models\CompassMiddle.FBX">
+      <Name>CompassMiddle</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
     <Compile Include="Textures\Skybox\SkyBoxTex.dds">
       <Name>SkyBoxTex</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\spider_01.tga">
-      <Name>spider_01</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\gp.tga">
-      <Name>gp</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\gp_nm.tga">
-      <Name>gp_nm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\tile1a.tga">
-      <Name>tile1a</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\tile1a_nm.tga">
-      <Name>tile1a_nm</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -291,23 +261,6 @@
       <Project>{B0741CC7-BD3E-4144-9FEE-DE265C1B43AA}</Project>
       <Name>SkinnedModelPipeline</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\spider_diffuse.bmp">
-      <Name>spider_diffuse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\spider_opacity.bmp">
-      <Name>spider_opacity</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\spider_UV.bmp">
-      <Name>spider_UV</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Sound\Effects\footsteps.wav">
@@ -324,13 +277,6 @@
     </Compile>
     <Compile Include="Sound\Effects\SpiderCurry2.wav">
       <Name>SpiderCurry2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Effects\SpiderAttack.wav">
-      <Name>SpiderAttack</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
@@ -534,6 +480,18 @@
     </Compile>
     <Compile Include="Sound\Effects\GateOpening3.wav">
       <Name>GateOpening3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sound\Effects\Portal2.wav">
+      <Name>Portal2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Sound\Effects\Portal3.wav">
+      <Name>Portal3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

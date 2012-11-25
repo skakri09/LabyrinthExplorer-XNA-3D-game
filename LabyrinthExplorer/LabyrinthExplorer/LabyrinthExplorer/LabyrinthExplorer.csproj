@@ -102,6 +102,7 @@
     <Compile Include="Levels\Area2Content.cs" />
     <Compile Include="Levels\Area3Content.cs" />
     <Compile Include="Levels\AreaContent.cs" />
+    <Compile Include="GameObjects\Compass.cs" />
     <Compile Include="Levels\IGameArea.cs" />
     <Compile Include="Levels\Area1Content.cs" />
     <Compile Include="Managers\Audio\I3DSound.cs" />

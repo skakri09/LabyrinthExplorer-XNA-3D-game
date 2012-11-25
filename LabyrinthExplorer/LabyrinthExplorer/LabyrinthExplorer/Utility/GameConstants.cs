@@ -34,7 +34,7 @@ namespace LabyrinthExplorer
         public static Color GlobalAmbientGame = new Color(new Vector4(0.1f, 0.1f, 0.1f, 0.1f));
         public static Color GlobalAmbientGame3 = new Color(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
-        public static Color CurrentAmbientLight = GlobalAmbientDebug;
+        public static Color CurrentAmbientLight = GlobalAmbientGame;
 
         public static Color ambient = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
         public static Color diffuse = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));

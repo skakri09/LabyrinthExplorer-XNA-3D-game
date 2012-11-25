@@ -124,6 +124,8 @@ namespace LabyrinthExplorer
             LoadEffect("Loot", "");
             LoadEffect("PortalUse", "");
             LoadEffect("Portal1", "");
+            LoadEffect("Portal2", "");
+            LoadEffect("Portal3", "");
             LoadEffect("SpiderCurry2", "");
             LoadEffect("SpiderCurry1", "");
             LoadEffect("SpiderSteps", "");

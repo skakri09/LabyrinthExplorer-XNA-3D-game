@@ -44,7 +44,12 @@ namespace LabyrinthExplorer
 
         public override void OnEnteringArea()
         {
-            Game.SoundManager.PlaySound("Portal1", this, -1);
+            if (AreaToPortTo == "area1")
+                Game.SoundManager.PlaySound("Portal1", this, -1);
+            else if (AreaToPortTo == "area2")
+                Game.SoundManager.PlaySound("Portal3", this, -1);
+            else if (AreaToPortTo == "area3")
+                Game.SoundManager.PlaySound("Portal3", this, -1);
         }
 
         public override void Update(float deltaTime)
@@ -66,6 +71,7 @@ namespace LabyrinthExplorer
                 }
             }
         }
+        
         public void Use(AABB interactingParty)
         {
             if (cooldownTimer > cooldown)

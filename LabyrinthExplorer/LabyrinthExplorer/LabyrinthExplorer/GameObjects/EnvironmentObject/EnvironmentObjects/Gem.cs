@@ -163,11 +163,6 @@ namespace LabyrinthExplorer
             }
         }
 
-        public void Use()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-        
         public float GetInventoryScale()
         {
             return 0.4f;
@@ -182,5 +177,6 @@ namespace LabyrinthExplorer
         public void UsedCallback()
         {
         }
+    
     }
 }

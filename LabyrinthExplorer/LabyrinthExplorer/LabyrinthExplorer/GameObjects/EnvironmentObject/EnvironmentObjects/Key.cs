@@ -96,9 +96,6 @@ namespace LabyrinthExplorer
                     
                     _effect.View = camera.ViewMatrix;
                     _effect.Projection = camera.ProjectionMatrix;
-
-                    _effect.View = camera.ViewMatrix;
-                    _effect.Projection = camera.ProjectionMatrix;
                 }
                 mesh.Draw();
             }

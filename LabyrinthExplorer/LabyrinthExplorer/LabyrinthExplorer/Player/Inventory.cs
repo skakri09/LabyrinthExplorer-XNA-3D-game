@@ -44,7 +44,10 @@ namespace LabyrinthExplorer
 
         public void AddItem(InventoryItem item)
         {
-            InventoryItems.Add(item, GetScreenOffset());
+            if(item.identifier == "compass")
+                InventoryItems.Add(item, GetScreenOffset(true));
+            else
+                InventoryItems.Add(item, GetScreenOffset());
         }
 
         public void AddItems(List<InventoryItem> items)
@@ -110,9 +113,12 @@ namespace LabyrinthExplorer
             }
         }
 
-        private Vector3 GetScreenOffset()
+        private Vector3 GetScreenOffset(bool isCompass = false)
         {
-            return new Vector3(4.3f, (1.7f-((float)InventoryItems.Count/1.6f)), 8);
+            if(isCompass)
+                return new Vector3(3.6f, -1.5f, 8);
+            else
+                return new Vector3(4.3f, (1.7f-((float)InventoryItems.Count/1.6f)), 8);
         }
 
         private void FreeScreenOffset()
