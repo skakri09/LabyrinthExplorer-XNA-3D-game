@@ -181,8 +181,7 @@ namespace LabyrinthExplorer
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,
                 "blueGemRoomKey"));
 
-            //2750
-            environment.Add(new Chest(contentMan, new Vector3(3750, 0, 4300), 
+            environment.Add(new Chest(contentMan, new Vector3(2750, 0, 4300), 
                 new Vector3(0, 90, 0), 50, Vector3.Right,
                 new IChestItem[]{new Compass(contentMan)}));
         }

@@ -140,6 +140,8 @@ namespace LabyrinthExplorer
 
         private InputManager input;
 
+        public bool CameraLocked { get; set; }
+
     #region Public Methods
 
         public Camera(Game game)
@@ -201,6 +203,30 @@ namespace LabyrinthExplorer
             Perspective(fovx, aspect, znear, zfar);
 
             Position = GameConstants.PLAYER_START_POS*GameConstants.MAP_SCALE;
+            CameraLocked = false;
+        }
+
+        public void ToggleAssemblyLaneMode()
+        {
+            CameraLocked = !CameraLocked;
+
+            if (CameraLocked)
+            {
+                //target = Vector3.Zero;
+                //targetYAxis = Vector3.UnitY;
+                //xAxis = Vector3.UnitX;
+                //yAxis = Vector3.UnitY;
+                //zAxis = -Vector3.UnitZ;
+                //viewDir = Vector3.Forward;
+                //accumHeadingDegrees = 0.0f;
+                //accumPitchDegrees = 0.0f;
+                //LookAt(Vector3.Right);
+            }
+            else
+            {
+
+            }
+            
         }
 
         public void ToggleMapMode()
@@ -712,7 +738,7 @@ namespace LabyrinthExplorer
             float elapsedTimeSec = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector3 direction = new Vector3();
 
-            if (CanMoveWithControlKeys)
+            if (CanMoveWithControlKeys && !CameraLocked)
             {
                 if (input.IsKeyDown(actionKeys[Actions.Run]))
                 {
@@ -726,7 +752,11 @@ namespace LabyrinthExplorer
                 }
                 GetMovementDirection(out direction);
             }
-            RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
+            if (!CameraLocked)
+            {
+                RotateSmoothly(smoothedMouseMovement.X, smoothedMouseMovement.Y);
+            }
+           
             UpdatePosition(ref direction, elapsedTimeSec);
         }
 
@@ -981,6 +1011,7 @@ namespace LabyrinthExplorer
         public Vector3 CurrentVelocity
         {
             get { return currentVelocity; }
+            set { currentVelocity = value; }
         }
 
         public bool EnableMouseSmoothing

@@ -35,8 +35,8 @@ namespace LabyrinthExplorer
 
         public override void OnEnteringArea()
         {
-           
         }
+
         public void UpdatePosition(Vector3 playerPos)
         {
             base.position = new Vector3(2500, -100, playerPos.Z - 10000);
@@ -87,17 +87,17 @@ namespace LabyrinthExplorer
         {
             lineEnd = new AssemblyLaneEnd(contentMan, new Vector3(2500, -300, -42000),
                 new Vector3(0, 90, 0), 15);
-
+            lineEnd.RenderEnds = true;
             AssemblyLanes.Add(lineEnd);
 
-            for (int i = -40000; i < 5000; i += 3000)
+            for (int i = -100000; i < 4000; i += 3000)
             {
                 AssemblyLanes.Add(new AssemblyLane(contentMan,
                 new Vector3(2500, 200, i), new Vector3(0, 90, 0), 12));
             }
 
             AssemblyLanes.Add(new AssemblyLane(contentMan,
-                new Vector3(2500, 200, 4750), new Vector3(0, 90, 0), 12));
+                new Vector3(2500, 225, 4650), new Vector3(0, 90, 0), 13));
 
             //environment.Add(new AssemblyLane(contentMan, 
             //    new Vector3(2500, 0, -10000), new Vector3(0, 90, 0), 10));
@@ -113,7 +113,6 @@ namespace LabyrinthExplorer
             //    new Vector3(2500, 0, -5000), new Vector3(0, 90, 0), 10));
             //environment.Add(new AssemblyLane(contentMan,
             //    new Vector3(2500, 0, -4000), new Vector3(0, 90, 0), 10));
-
         }
 
         public void Update(float deltaTime)
@@ -142,7 +141,7 @@ namespace LabyrinthExplorer
         public AssemblyLane(ContentManager content, Vector3 position, Vector3 rotation, float scale)
             : base(@"Models\AssemblyLane", content, position, rotation, scale)
         {
-            FogEnd = 2000;
+            FogEnd = 10000;
             emitter = new AudioEmitter();
             emitter.Position = position;
         }
@@ -168,6 +167,13 @@ namespace LabyrinthExplorer
                     _effect.FogEnabled = true;
                     _effect.FogStart = 1000.0f;
                     _effect.FogEnd = FogEnd;
+                    _effect.SpecularColor = new Vector3(0, 0, 0.1f);
+                    _effect.SpecularPower = 1000;
+                    _effect.LightingEnabled = true;
+                    _effect.DirectionalLight0.DiffuseColor = new Vector3(1, 1, 1);
+                    _effect.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
+                    _effect.DirectionalLight0.Direction = camera.ViewDirection;
+
                     _effect.World = Matrix.Identity
                         * transformation[mesh.ParentBone.Index]
                         * Matrix.CreateRotationX(MathHelper.ToRadians(rotation.X))

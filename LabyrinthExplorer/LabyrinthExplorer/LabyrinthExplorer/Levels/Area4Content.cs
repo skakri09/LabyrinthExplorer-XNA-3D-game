@@ -10,9 +10,10 @@ namespace LabyrinthExplorer
 {
     public class Area4Content : AreaContent
     {
+        float lineTimer = 0;
         float lineCounter = 0;
         AssemblyLane assemblyLane;
-
+        bool assemblyLaneDone = false;
         public Area4Content(Camera camera)
             :base(camera)
         {
@@ -39,7 +40,8 @@ namespace LabyrinthExplorer
         {
             base.Update(gameTime, camera);
 
-            HandleAssemblyLine();
+            if (!assemblyLaneDone)
+                HandleAssemblyLine((float)gameTime.ElapsedGameTime.TotalSeconds);
             
         }
 
@@ -56,12 +58,28 @@ namespace LabyrinthExplorer
             base.OnEnteringArea();
             Game.SoundManager.PlaySong("space", true);//find new crazy trippy tune
             Game.player.MakeFootstepSound = false;
+            Game.player.PlayerAbleToMove = false;
+            Game.player.Cam.ToggleAssemblyLaneMode();
+            //Game.player.Cam.CurrentVelocity = new Vector3(0, 0, 10000);
         }
 
-        private void HandleAssemblyLine()
+        private void HandleAssemblyLine(float deltaTime)
         {
+            lineTimer += deltaTime;
             if (lineCounter <= 2)
             {
+                float velocity = lineTimer*2 * 10000;
+                if (velocity >= 50000)
+                {
+                    velocity = 50000;
+                }
+                if (Game.player.Cam.PitchDegrees >= 90 || Game.player.Cam.PitchDegrees <= 0)
+                    Game.player.Cam.CurrentVelocity = new Vector3(0, 0, -velocity);
+                else
+                    Game.player.Cam.CurrentVelocity = new Vector3(0, 0, velocity);
+                //(50000 + (float)(Math.Sin(lineTimer) * 10000)
+                //Game.player.Cam.Move(0, 0, -50000 * deltaTime);
+                Game.player.Cam.Position = new Vector3(2500, 150, Game.player.Cam.Position.Z);
                 if (Game.player.Cam.Position.Z >= -3000)
                 {
                     Game.player.Cam.Position = new Vector3(Game.player.Cam.Position.X, 150, -80000);
@@ -69,12 +87,34 @@ namespace LabyrinthExplorer
                 }
             }
             else
+            {
+                Game.player.Cam.Position = new Vector3(2500, 150, Game.player.Cam.Position.Z);
+                if (Game.player.Cam.Position.Z >= 0)
+                {
+                    assemblyLaneDone = true;
+                    Game.player.MakeFootstepSound = true;
+                    Game.player.PlayerAbleToMove = true;
+                    Game.player.Cam.ToggleAssemblyLaneMode();
+                    Game.player.Cam.Position = new Vector3(2500, 150, 5500);
+                    Game.player.Cam.CurrentVelocity = new Vector3(0, 0, 0);
+                }
+            }
+            if (lineTimer >= 10.0f)
+            {
+                assemblyLaneDone = true;
                 Game.player.MakeFootstepSound = true;
+                Game.player.PlayerAbleToMove = true;
+                Game.player.Cam.ToggleAssemblyLaneMode();
+                Game.player.Cam.Position = new Vector3(2500, 150, 5500);
+                Game.player.Cam.CurrentVelocity = new Vector3(0, 0, 0);
+            }
         }
 
         private void CreateHangar()
         {
             environment.Add(new AssemblyLaneCollection(contentMan));
+            
+            environmentCollidables.Add(new AABB(new Vector2(0, 4900), new Vector2(5000, 5500)));
 
             environment.Add(new Hallway(contentMan,
                new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
