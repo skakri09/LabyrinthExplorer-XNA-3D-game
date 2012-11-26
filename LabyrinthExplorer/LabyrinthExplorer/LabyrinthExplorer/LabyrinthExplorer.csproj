@@ -112,6 +112,8 @@
     <Compile Include="Managers\Audio\RandWhisper.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\Interactables.cs" />
+    <Compile Include="Managers\Menu\Menu.cs" />
+    <Compile Include="Managers\Menu\MenuEntry.cs" />
     <Compile Include="Player\IInventoryItem.cs" />
     <Compile Include="Player\Inventory.cs" />
     <Compile Include="Player\Player.cs" />

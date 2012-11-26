@@ -14,17 +14,25 @@ using System.Text;
 
 namespace LabyrinthExplorer
 {
+    public enum GameStates { MainMenu, GAME, PAUSE }
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
     public class Game : Microsoft.Xna.Framework.Game
     {
+        public static GameStates currentGameState;
+        public static bool quitGame = false;
+
+        private Menu menu;
+
         InputManager input;
 
         #region startup
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private SpriteFont spriteFont;
+        private SpriteFont gameFont;
+        private SpriteFont menuFont;
         private Vector2 fontPos;
         private int frames;
         private int framesPerSecond;
@@ -61,6 +69,9 @@ namespace LabyrinthExplorer
             
             SoundManager = new AudioManager(this);
             Components.Add(SoundManager);
+            menu = new Menu();
+            menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
+            currentGameState = GameStates.MainMenu;
         }
 
         protected override void Initialize()
@@ -88,9 +99,9 @@ namespace LabyrinthExplorer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            spriteFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
-            
-            //weapon = Content.Load<Model>(@"Models\LightStick");
+            gameFont = Content.Load<SpriteFont>(@"Fonts\Chiller");
+            menuFont = Content.Load<SpriteFont>(@"Fonts\ChillerMenu");
+
             SoundManager.LoadContent();
         }
 
@@ -99,12 +110,12 @@ namespace LabyrinthExplorer
             // TODO: Unload any non ContentManager content here
         }
 
-        private void HandleInput()
+        private void HandleGameInput()
         {
             if (input.IsKeyDown(Keys.Escape))
             {
-                SoundManager.StopAllSounds();
-                this.Exit();
+                currentGameState = GameStates.PAUSE;
+                menu.EnterMenu(GameStates.GAME, GameStates.PAUSE);
             }
 
             if (input.IsKeyDownOnce(Keys.H))
@@ -201,20 +212,36 @@ namespace LabyrinthExplorer
         protected override void Update(GameTime gameTime)
         {
             //if(!GameConstants.UpdateWhenTabbed)
-                if (!this.IsActive)
-                    return;
-
-            player.inv.HaveItemOfType("GemRed");
+            if (!this.IsActive)
+                return;
+            if (quitGame)
+            {
+                SoundManager.StopAllSounds();
+                this.Exit();
+            }
+            
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            base.Update(gameTime);
-
             input.Update();
-            HandleInput();
-            player.Update(deltaTime);
-            world.Update(gameTime);
+            switch (currentGameState)
+            {
+                case GameStates.GAME:
+                    base.Update(gameTime);
+                    
+                    HandleGameInput();
+                    player.Update(deltaTime);
+                    world.Update(gameTime);
+                    break;
+                case GameStates.MainMenu:
+                    menu.UpdateMenu(input);
+                    break;
+                case GameStates.PAUSE:
+                    menu.UpdateMenu(input);
+                    break;
+            }
+
             UpdateFrameRate(gameTime);
         }
-        
+
         private void DrawText()
         {
             StringBuilder buffer = new StringBuilder();
@@ -252,7 +279,7 @@ namespace LabyrinthExplorer
                     player.Cam.CurrentVelocity.Z.ToString("f2"));
                 buffer.AppendFormat("  Rotation speed: {0}\n",
                     player.Cam.RotationSpeed.ToString("f2"));
-                
+
                 buffer.AppendLine("Press H to hide help");
             }
             else
@@ -261,19 +288,12 @@ namespace LabyrinthExplorer
             }
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-            spriteBatch.DrawString(spriteFont, buffer.ToString(), fontPos, Color.Beige);
+            spriteBatch.DrawString(gameFont, buffer.ToString(), fontPos, Color.Beige);
             spriteBatch.End();
         }
 
-        protected override void Draw(GameTime gameTime)
+        private void DrawGame(GameTime gameTime)
         {
-            if (!GameConstants.UpdateWhenTabbed)
-            {
-                if (!this.IsActive)
-                {
-                    return;
-                }
-            }
             GraphicsDevice.Clear(Color.Black);
 
             GraphicsDevice.BlendState = BlendState.Opaque;
@@ -286,23 +306,48 @@ namespace LabyrinthExplorer
             dss.DepthBufferEnable = false;
             GraphicsDevice.DepthStencilState = dss;
 
-           
+
             world.DrawTheSkybox(GraphicsDevice);
 
-            if(World.currentArea.TestCenters != null)
+            if (World.currentArea.TestCenters != null)
                 foreach (Testcenter center in World.currentArea.TestCenters)
                     center.Draw(player.Cam, null);
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
             GraphicsDevice.DepthStencilState = dss;
-            
+
 
             world.Draw(GraphicsDevice);
 
-            if(GameConstants.RenderOnScreenText)
+            if (GameConstants.RenderOnScreenText)
                 DrawText();
             player.Draw(GraphicsDevice);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            if (!GameConstants.UpdateWhenTabbed)
+            {
+                if (!this.IsActive)
+                {
+                    return;
+                }
+            }
+
+            switch (currentGameState)
+            {
+                case GameStates.GAME:
+                    DrawGame(gameTime);
+                    break;
+                case GameStates.MainMenu:
+                    menu.DrawMenu(spriteBatch, menuFont);
+                    break;
+                case GameStates.PAUSE:
+                    menu.DrawMenu(spriteBatch, menuFont);
+                    break;
+            }
+
             base.Draw(gameTime);
             IncrementFrameCounter();
         }
