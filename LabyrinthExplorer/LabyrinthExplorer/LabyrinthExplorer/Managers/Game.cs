@@ -69,15 +69,16 @@ namespace LabyrinthExplorer
             
             SoundManager = new AudioManager(this);
             Components.Add(SoundManager);
-            menu = new Menu();
-            menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
-            currentGameState = GameStates.GAME;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            
+
+            menu = new Menu(Content);
+            menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
+            currentGameState = GameStates.MainMenu;
+
              // Setup frame buffer.
             graphics.SynchronizeWithVerticalRetrace = false;
             graphics.PreferredBackBufferWidth = GameConstants.windowWidth;

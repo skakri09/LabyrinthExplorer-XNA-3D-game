@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace LabyrinthExplorer
 {
@@ -22,11 +23,14 @@ namespace LabyrinthExplorer
         private GameStates previousGameState;
         private GameStates menuType;
 
-        public Menu()
+        Texture2D menuScreen;
+        public Menu(ContentManager content)
         {
             CreateMenuKeys();
 
             CreateMenuEntries();
+
+            menuScreen = content.Load<Texture2D>(@"Textures\menuscreen");
         }
 
         private void CreateMenuEntries()
@@ -157,7 +161,7 @@ namespace LabyrinthExplorer
         public void DrawMenu(SpriteBatch spriteBatch, SpriteFont font)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
+            spriteBatch.Draw(menuScreen, Vector2.Zero, Color.White);
             if (menuType == GameStates.MainMenu)
             {
                 foreach (MenuEntry entry in MainMenuEntries.Keys)
@@ -174,7 +178,8 @@ namespace LabyrinthExplorer
             }
             else
                 throw new Exception("Menu type is not mainMenu or pause menu O.o");
-         
+
+            
             spriteBatch.End();
         }
    
@@ -188,13 +193,13 @@ namespace LabyrinthExplorer
             Vector2 retVec;
             if(menuType == GameStates.MainMenu)
             {
-                retVec.X = 100;
-                retVec.Y = MainMenuEntries.Count*100;
+                retVec.X = 400;
+                retVec.Y = MainMenuEntries.Count * 100 + 200;
             }
             else if(menuType == GameStates.PAUSE)
             {
-                retVec.X = 100;
-                retVec.Y = PauseMenuEntries.Count*100;
+                retVec.X = 400;
+                retVec.Y = PauseMenuEntries.Count * 100 + 200;
             }
             else
                 throw new Exception("Menu type is not mainmenu or pause o.O");

@@ -32,7 +32,7 @@ namespace LabyrinthExplorer
             if(isSelected)
                 spriteBatch.DrawString(font, entryText, entryPosition, Color.Red, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
             else
-                spriteBatch.DrawString(font, entryText, entryPosition, Color.Orange, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                spriteBatch.DrawString(font, entryText, entryPosition, Color.Orange, 0, Vector2.Zero, scale, SpriteEffects.None, 1);
         }
 
         public void OnEntrySelected()
@@ -41,7 +41,5 @@ namespace LabyrinthExplorer
         }
 
         public event EventHandler Selected;
-        //public event EventHandler OnEntrySelectedEvent;
-
     }
 }
