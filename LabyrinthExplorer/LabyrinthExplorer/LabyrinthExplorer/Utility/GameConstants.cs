@@ -34,7 +34,7 @@ namespace LabyrinthExplorer
         public static Color GlobalAmbientGame = new Color(new Vector4(0.1f, 0.1f, 0.1f, 0.1f));
         public static Color GlobalAmbientGame3 = new Color(new Vector4(1.0f, 1.0f, 1.0f, 1.0f));
         public static Color GlobalAmbientDebug = new Color(new Vector4(1.00f, 1.00f, 1.00f, 1.00f));
-        public static Color CurrentAmbientLight = GlobalAmbientGame;
+        public static Color CurrentAmbientLight = GlobalAmbientDebug;
 
         public static Color ambient = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
         public static Color diffuse = new Color(new Vector4(0.1f, 0.1f, 0.1f, 1.0f));
@@ -59,14 +59,14 @@ namespace LabyrinthExplorer
 
         #region Player
         public const float CAM_BOUNDS_PADDING = 30.0f;
-        public const float CAMERA_PLAYER_EYE_HEIGHT =150;
+        public const float CAMERA_PLAYER_EYE_HEIGHT =500;
 
-        public const float CAMERA_ACCELERATION_X = 800.0f;
+        public const float CAMERA_ACCELERATION_X = 1000.0f;
         public const float CAMERA_ACCELERATION_Y = 1000.0f;
-        public const float CAMERA_ACCELERATION_Z = 800.0f;
+        public const float CAMERA_ACCELERATION_Z = 1000.0f;
         public const float CAMERA_VELOCITY_X = 250.0f;
-        public const float CAMERA_VELOCITY_Y = 400.0f;
-        public const float CAMERA_VELOCITY_Z = 350.0f;
+        public const float CAMERA_VELOCITY_Y = 300.0f;
+        public const float CAMERA_VELOCITY_Z = 400.0f;
 
         //public static Vector3 PLAYER_START_POS = new Vector3(8000, 0, 8750);
         public static Vector3 PLAYER_START_POS =
@@ -96,7 +96,7 @@ namespace LabyrinthExplorer
         public const float CEILING_TILE_FACTOR = 8.0f;
         public const float FLOOR_PLANE_SIZE = 2024.0f;
         public const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
-        public const float WALL_HEIGHT = 500;
+        public const float WALL_HEIGHT = 200;
 
         public const float FLOOR_TILE_FACTOR_SMALL = 1.2f;
         public const float FLOOR_TILE_FACTOR_NORMAL = 0.4f;

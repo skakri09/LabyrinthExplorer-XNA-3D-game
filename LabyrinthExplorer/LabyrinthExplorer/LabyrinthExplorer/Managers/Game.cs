@@ -71,7 +71,7 @@ namespace LabyrinthExplorer
             Components.Add(SoundManager);
             menu = new Menu();
             menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
-            currentGameState = GameStates.MainMenu;
+            currentGameState = GameStates.GAME;
         }
 
         protected override void Initialize()

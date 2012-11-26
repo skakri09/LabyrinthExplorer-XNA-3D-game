@@ -123,11 +123,11 @@ namespace LabyrinthExplorer
 
         protected void CreateDuoLever(Vector3 pos1, Vector3 rot1, float scale1, Vector3 openDir1,
                                     Vector3 pos2, Vector3 rot2, float scale2, Vector3 openDir2,
-                                    IInteractableObject onUseObject)
+                                    IInteractableObject onUseObject, float useDuration)
         {
             Lever lever1 = new Lever(contentMan, pos1, rot1, scale1, openDir1);
             Lever lever2 = new Lever(contentMan, pos2, rot2, scale2, openDir2);
-            environment.Add(new DuoLever(lever1, lever2, onUseObject));
+            environment.Add(new DuoLever(lever1, lever2, onUseObject, useDuration));
         }
 
         protected Gate CreateGate(Vector3 position, Vector3 rotation,
@@ -139,7 +139,7 @@ namespace LabyrinthExplorer
             return gate;
         }
 
-        protected void SmarPosWall(float x1, float y1, float x2, float y2, float width = 50)
+        protected void SmartPosWall(float x1, float y1, float x2, float y2, float width = 50)
         {
             if (x1 == x2)
             {

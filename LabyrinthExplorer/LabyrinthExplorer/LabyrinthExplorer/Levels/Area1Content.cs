@@ -72,68 +72,92 @@ namespace LabyrinthExplorer
             //-X outer wall
             ZPosWall(-50, 5000, -50, 0);
             #endregion
+            if (World.currentDifficulity >= Difficulity.EASY)
+            {
+                #region area 1
+                ZPosWall(4200, 4600, 4200, 4200);//1
+                ZPosWall(2600, 4600, 2600, 3900);//2
+                ZPosWall(2000, 4000, 2000, 3500);//3
+                ZPosWall(3200, 4200, 3200, 3500);//4
 
-            #region area 1
-            ZPosWall(4200, 4600, 4200, 4200);//1
-            ZPosWall(2600, 4600, 2600, 3900);//2
-            ZPosWall(2000, 4000, 2000, 3500);//3
-            ZPosWall(3200, 4200, 3200, 3500);//4
+                XPosWal(1500, 4300, 2600, 4300);//5
+                XPosWal(2050, 3500, 3200, 3500);//6
+                XPosWal(2600, 4600, 4200, 4600);//7
+                XPosWal(3200, 4200, 4200, 4200);//8
 
-            XPosWal(1500, 4300, 2600, 4300);//5
-            XPosWal(2050, 3500, 3200, 3500);//6
-            XPosWal(2600, 4600, 4200, 4600);//7
-            XPosWal(3200, 4200, 4200, 4200);//8
+                ZPosWall(1500, 4300, 1500, 3800);//9
+                ZPosWall(3700, 4200, 3700, 3500);//10
 
-            ZPosWall(1500, 4300, 1500, 3800);//9
-            ZPosWall(3700, 4200, 3700, 3500);//10
 
-            #endregion
 
-            #region area 2
-            XPosWal(0, 4100, 1500, 4100);//1
-            XPosWal(400, 2850, 1000, 2850);//2
+                #endregion
 
-            ZPosWall(1000, 3800, 1000, 2850);//3
-            #endregion
+                #region area 2
+                XPosWal(0, 4100, 1500, 4100);//1
+                XPosWal(400, 2850, 1000, 2850);//2
 
-            #region area 3
-            XPosWal(800, 2400, 1600, 2400);//1
-            XPosWal(2000, 2700, 3050, 2700);//2
-            XPosWal(2000, 1800, 3000, 1800);//3
-            XPosWal(1400, 1150, 2650, 1150);//4
-            XPosWal(750, 2000, 1700, 2000);//5
-            XPosWal(750, 750, 3000, 750);//6
+                ZPosWall(1000, 3800, 1000, 2850);//3
+                #endregion
 
-            ZPosWall(2000, 2700, 2000, 1850);//7
-            ZPosWall(3000, 2700, 3000, 2050);//8
-            ZPosWall(2650, 2300, 2650, 1150);//9
-            ZPosWall(1650, 2000, 1650, 1200);//10
-            ZPosWall(750, 2000, 750, 800);//11
-            ZPosWall(3000, 1400, 3000, 750);//12
+                #region area 3
+                XPosWal(2000, 2700, 3050, 2700);//2
+                XPosWal(2000, 1800, 2650, 1800);//3
 
-            XPosWal(2050, 2175, 2400, 2175, 125);
-            #endregion
+                XPosWal(1400, 1150, 2650, 1150);//4
+                XPosWal(750, 2000, 1700, 2000);//5
+                XPosWal(750, 750, 3000, 750);//6
 
-            #region area 4
-            ZPosWall(4700, 3500, 4700, 1900);//1
-            ZPosWall(3700, 3100, 3700, 750);//2
-            ZPosWall(4000, 1900, 4000, 400);//3
-            ZPosWall(3600, 400, 3600, 0);//4
+                ZPosWall(2000, 2700, 2000, 1850);//7
+                ZPosWall(3000, 2700, 3000, 2050);//8
+                ZPosWall(2650, 2300, 2650, 1150);//9
+                ZPosWall(1650, 2000, 1650, 1200);//10
+                ZPosWall(750, 2000, 750, 800);//11
+                ZPosWall(3000, 1400, 3000, 750);//12
 
-            XPosWal(3750, 2400, 4700, 2400);//5
-            XPosWal(4000, 1900, 4700, 1900);//6
-            XPosWal(3600, 400, 4000, 400);//7
-            #endregion
+                XPosWal(2050, 2175, 2400, 2175, 125);
+                #endregion
 
-            #region area 5
-            XPosWal(500, 400, 1450, 400);//1
-            XPosWal(1800, 400, 3350, 400);//2
+                #region area 4
+                ZPosWall(4700, 3500, 4700, 1900);//1
+                ZPosWall(3700, 3100, 3700, 750);//2
+                ZPosWall(4000, 1900, 4000, 400);//3
+                ZPosWall(3600, 400, 3600, 0);//4
 
-            ZPosWall(3300, 400, 3300, 0);//3
-            ZPosWall(1800, 400, 1800, 0);//4
-            ZPosWall(500, 400, 500, 0);//5
-            ZPosWall(1400, 400, 1400, 0);//6
-            #endregion
+                XPosWal(3750, 2400, 4700, 2400);//5
+                XPosWal(4000, 1900, 4700, 1900);//6
+                XPosWal(3600, 400, 4000, 400);//7
+                #endregion
+
+                
+            }
+            
+            if (World.currentDifficulity == Difficulity.EASY)
+            {
+                SmartPosWall(4200, 4200, 5000, 4200);
+                SmartPosWall(4700, 3500, 5000, 3500);
+                SmartPosWall(0, 400, 5000, 400);//top lock
+            }
+
+            if (World.currentDifficulity >= Difficulity.MEDIUM)
+            {
+                #region area 5
+                XPosWal(500, 400, 1450, 400);//1
+                XPosWal(1800, 400, 3350, 400);//2
+
+                ZPosWall(3300, 400, 3300, 0);//3
+                ZPosWall(1800, 400, 1800, 0);//4
+                ZPosWall(500, 400, 500, 0);//5
+                ZPosWall(1400, 400, 1400, 0);//6
+                #endregion
+                
+                //region 3
+                XPosWal(800, 2400, 1600, 2400);//1
+                XPosWal(2700, 1800, 3000, 1800);//3
+            }
+            if (World.currentDifficulity >= Difficulity.HARD)
+            {
+                //nothing hard bout this map now is there
+            }
         }
 
         protected void GenerateCeiling()
@@ -168,13 +192,13 @@ namespace LabyrinthExplorer
             Gate gate = CreateGate(new Vector3(1375, 0, 982), new Vector3(0, 90, 0), 29, 3);
             environment.Add(new Lever(contentMan, new Vector3(1250, 0, 1150), new Vector3(0, 90, 0), 100, Vector3.Forward, gate));
             CreateDuoLever(new Vector3(2250, 0, 1875), new Vector3(0, 90, 0), 100, Vector3.Forward,
-                           new Vector3(1500, 0, 1100), new Vector3(0, 180, 0), 100, Vector3.Backward, gate);
+                           new Vector3(1500, 0, 1100), new Vector3(0, 180, 0), 100, Vector3.Backward, gate, 9.5f);
 
             CreatePortal(new Vector3(1175, 0, 1800),
                     new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
                  new Vector3(450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 725), "area2");
 
-            environment.Add(new Gem("GemBlue", contentMan, new Vector3(500, 100, 4500), 50));
+            environment.Add(new Gem("GemBlue", contentMan, new Vector3(750, 100, 3000), 50));
             
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,

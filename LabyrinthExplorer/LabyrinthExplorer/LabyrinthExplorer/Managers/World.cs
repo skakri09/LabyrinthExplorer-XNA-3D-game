@@ -9,9 +9,12 @@ using LabyrinthExplorer;
 
 namespace LabyrinthExplorer
 {
+    public enum Difficulity { EASY, MEDIUM, HARD }
+
     public class World
     {
         public static Effect WallsEffect;
+        public static Difficulity currentDifficulity = Difficulity.EASY;
 
         public static Light PlayerLight;
         private Material material;
@@ -124,11 +127,12 @@ namespace LabyrinthExplorer
                 currentArea = area;
                 area.LoadContent(device, contentMan);
             }
-            
+
+            ChangeArea("area2", new Vector3(2500, 150, 2500));
             //ChangeArea("area1", new Vector3(3750, 150, 4500));
             //ChangeArea("area2", new Vector3(400, 150, 650));
             //ChangeArea("area3", new Vector3(2500, 150, 8000));
-            ChangeArea("area3", new Vector3(2500, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 250));
+            //ChangeArea("area3", new Vector3(2500, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 250));
         }
 
         public void Draw(GraphicsDevice graphicsDevice)

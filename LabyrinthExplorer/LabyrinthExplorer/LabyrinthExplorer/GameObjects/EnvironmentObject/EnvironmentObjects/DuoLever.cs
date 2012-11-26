@@ -18,14 +18,16 @@ namespace LabyrinthExplorer
         private bool lever2Used = false;
         private bool isOpen = false;
 
-        private const float useDuration = 7.0f;
+        private float useDuration = 7.0f;
         private float lever1UsedDuration = 0.0f;
         private float lever2UsedDuration = 0.0f;
-        private int timesToPlay = (int)Math.Floor(useDuration / 1.270);
+        private int timesToPlay;
 
         public DuoLever(Lever lever1, Lever lever2,
-            IInteractableObject LeverUseObject)
+            IInteractableObject LeverUseObject, float useDuration)
         {
+            this.useDuration = useDuration;
+            timesToPlay = (int)Math.Floor(useDuration / 1.270);
             this.lever1 = lever1;
             this.lever2 = lever2;
             this.OnUseObject = LeverUseObject;

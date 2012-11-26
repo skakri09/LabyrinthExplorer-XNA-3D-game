@@ -87,91 +87,91 @@ namespace LabyrinthExplorer
             //X Walls - XWallNegZAl
             #endregion
 
-            SmarPosWall(0, 50, 5000, 50);
-            SmarPosWall(50, 100, 50, 4950);
-            SmarPosWall(4950, 4950, 4950, 100);
+            SmartPosWall(0, 50, 5000, 50);
+            SmartPosWall(50, 100, 50, 4950);
+            SmartPosWall(4950, 4950, 4950, 100);
 
 
-            SmarPosWall(50, 4950, 2150, 4950);
-            SmarPosWall(2850, 4950, 4950, 4950);
+            SmartPosWall(50, 4950, 2150, 4950);
+            SmartPosWall(2850, 4950, 4950, 4950);
             #region right half area
           
-            SmarPosWall(2950, 100, 2950, 2300);
-            SmarPosWall(2950, 2900, 2950, 4950);
+            SmartPosWall(2950, 100, 2950, 2300);
+            SmartPosWall(2950, 2900, 2950, 4950);
 
-            SmarPosWall(2050, 3000, 2050, 4950);
-            SmarPosWall(2050, 100, 2050, 2550);
+            SmartPosWall(2050, 3000, 2050, 4950);
+            SmartPosWall(2050, 100, 2050, 2550);
 
-            SmarPosWall(3800, 3650, 3800, 4950);
-            SmarPosWall(4150, 2900, 4150, 4400);
-            SmarPosWall(4150, 4650, 4150, 4950);
-            SmarPosWall(4450, 2900, 4450, 3650);
-            SmarPosWall(4450, 4000, 4450, 4950);
-            SmarPosWall(3800, 3400, 3800, 2900);
-            SmarPosWall(3450, 2850, 4800, 2850);
-            SmarPosWall(4800, 2900, 4800, 4400);
-            SmarPosWall(4800, 4600, 4800, 4950);
-            SmarPosWall(4950, 2550, 4050, 2550);
-            SmarPosWall(3700, 2550, 3700, 1750);
-            SmarPosWall(4700, 2250, 3750, 2250);
-            SmarPosWall(4300, 2250, 4300, 1700);
-            SmarPosWall(4950, 2000, 4600, 2000);
-            SmarPosWall(4350, 1700, 4950, 1700);
+            SmartPosWall(3800, 3650, 3800, 4950);
+            SmartPosWall(4150, 2900, 4150, 4400);
+            SmartPosWall(4150, 4650, 4150, 4950);
+            SmartPosWall(4450, 2900, 4450, 3650);
+            SmartPosWall(4450, 4000, 4450, 4950);
+            SmartPosWall(3800, 3400, 3800, 2900);
+            SmartPosWall(3450, 2850, 4800, 2850);
+            SmartPosWall(4800, 2900, 4800, 4400);
+            SmartPosWall(4800, 4600, 4800, 4950);
+            SmartPosWall(4950, 2550, 4050, 2550);
+            SmartPosWall(3700, 2550, 3700, 1750);
+            SmartPosWall(4700, 2250, 3750, 2250);
+            SmartPosWall(4300, 2250, 4300, 1700);
+            SmartPosWall(4950, 2000, 4600, 2000);
+            SmartPosWall(4350, 1700, 4950, 1700);
 
-            SmarPosWall(3450, 450, 3700, 450);//moved 150 down
-            SmarPosWall(3400, 450, 3400, 4800);
-            SmarPosWall(3700, 450, 3700, 1300);
-            SmarPosWall(3750, 1300, 4450, 1300);
+            SmartPosWall(3450, 450, 3700, 450);//moved 150 down
+            SmartPosWall(3400, 450, 3400, 4800);
+            SmartPosWall(3700, 450, 3700, 1300);
+            SmartPosWall(3750, 1300, 4450, 1300);
             #endregion
 
             #region supermaxroom
-            SmarPosWall(0, 2300, 1200, 2300);
-            SmarPosWall(1150, 2350, 1150, 2600);
-            SmarPosWall(1150, 2950, 1150, 3200);
-            SmarPosWall(1200, 3200, 0, 3200);
-            SmarPosWall(1200, 2550, 1800, 2550);
-            SmarPosWall(1200, 2950, 1800, 2950);
+            SmartPosWall(0, 2300, 1200, 2300);
+            SmartPosWall(1150, 2350, 1150, 2600);
+            SmartPosWall(1150, 2950, 1150, 3200);
+            SmartPosWall(1200, 3200, 0, 3200);
+            SmartPosWall(1200, 2550, 1800, 2550);
+            SmartPosWall(1200, 2950, 1800, 2950);
 
-            SmarPosWall(1200, 3200, 1800, 3200);
-            SmarPosWall(1200, 2300, 1800, 2300);
-            SmarPosWall(1750, 3000, 1750, 3200);
-            SmarPosWall(1750, 2350, 1750, 2550);
+            SmartPosWall(1200, 3200, 1800, 3200);
+            SmartPosWall(1200, 2300, 1800, 2300);
+            SmartPosWall(1750, 3000, 1750, 3200);
+            SmartPosWall(1750, 2350, 1750, 2550);
 
             #endregion supermaxroom
 
             #region bottom left half
-            SmarPosWall(1600, 3250, 1600, 3900);
-            SmarPosWall(1600, 4350, 1600, 5000);
-            SmarPosWall(1000, 3850, 400, 3850);
-            SmarPosWall(350, 4350, 350, 3450);
-            SmarPosWall(1200, 4100, 1200, 4700);
-            SmarPosWall(1200, 4100, 750, 4100);
-            SmarPosWall(400, 4300, 700, 4300);
-            SmarPosWall(700, 4100, 700, 4350);
-            SmarPosWall(1200, 4650, -50, 4650);
-            SmarPosWall(1600, 3650, 700, 3650);
-            SmarPosWall(400, 3450, 1350, 3450);
+            SmartPosWall(1600, 3250, 1600, 3900);
+            SmartPosWall(1600, 4350, 1600, 5000);
+            SmartPosWall(1000, 3850, 400, 3850);
+            SmartPosWall(350, 4350, 350, 3450);
+            SmartPosWall(1200, 4100, 1200, 4700);
+            SmartPosWall(1200, 4100, 750, 4100);
+            SmartPosWall(400, 4300, 700, 4300);
+            SmartPosWall(700, 4100, 700, 4350);
+            SmartPosWall(1200, 4650, -50, 4650);
+            SmartPosWall(1600, 3650, 700, 3650);
+            SmartPosWall(400, 3450, 1350, 3450);
             #endregion bottom left half
 
             #region top left half
-            SmarPosWall(1750, 2300, 1750, 1750);
-            SmarPosWall(1800, 1450, 1800, 950);
-            SmarPosWall(1800, 650, 1800, 0);
-            SmarPosWall(1500, 0, 1500, 950);
-            SmarPosWall(1800, 1200, 1250, 1200);
-            SmarPosWall(1200, 1500, 1200, 900);
-            SmarPosWall(1200, 350, 1200, 650);
-            SmarPosWall(950, 1100, 950, 2300);
-            SmarPosWall(1200, 350, 700, 350);
-            SmarPosWall(1500, 1500, 1500, 2050);
-            SmarPosWall(1000, 1750, 1500, 1750);
-            SmarPosWall(1200, 2300, 1200, 2000);
-            SmarPosWall(650, 2000, 650, 2300);
-            SmarPosWall(650, 1600, 650, 350);
-            SmarPosWall(950, 800, 950, 400);
-            SmarPosWall(200, 0, 200, 1050);
-            SmarPosWall(250, 1000, 650, 1000);
-            SmarPosWall(650, 1300, 0, 1300);
+            SmartPosWall(1750, 2300, 1750, 1750);
+            SmartPosWall(1800, 1450, 1800, 950);
+            SmartPosWall(1800, 650, 1800, 0);
+            SmartPosWall(1500, 0, 1500, 950);
+            SmartPosWall(1800, 1200, 1250, 1200);
+            SmartPosWall(1200, 1500, 1200, 900);
+            SmartPosWall(1200, 350, 1200, 650);
+            SmartPosWall(950, 1100, 950, 2300);
+            SmartPosWall(1200, 350, 700, 350);
+            SmartPosWall(1500, 1500, 1500, 2050);
+            SmartPosWall(1000, 1750, 1500, 1750);
+            SmartPosWall(1200, 2300, 1200, 2000);
+            SmartPosWall(650, 2000, 650, 2300);
+            SmartPosWall(650, 1600, 650, 350);
+            SmartPosWall(950, 800, 950, 400);
+            SmartPosWall(200, 0, 200, 1050);
+            SmartPosWall(250, 1000, 650, 1000);
+            SmartPosWall(650, 1300, 0, 1300);
             #endregion top left half
         }
 
