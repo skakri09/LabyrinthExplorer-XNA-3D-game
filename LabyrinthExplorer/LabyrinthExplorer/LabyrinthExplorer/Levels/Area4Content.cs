@@ -56,11 +56,11 @@ namespace LabyrinthExplorer
         public override void OnEnteringArea()
         {
             base.OnEnteringArea();
+            float a = Game.player.Cam.PitchDegrees;
             Game.SoundManager.PlaySong("space", true);//find new crazy trippy tune
             Game.player.MakeFootstepSound = false;
             Game.player.PlayerAbleToMove = false;
             Game.player.Cam.ToggleAssemblyLaneMode();
-            //Game.player.Cam.CurrentVelocity = new Vector3(0, 0, 10000);
         }
 
         private void HandleAssemblyLine(float deltaTime)
@@ -68,17 +68,16 @@ namespace LabyrinthExplorer
             lineTimer += deltaTime;
             if (lineCounter <= 2)
             {
-                float velocity = lineTimer*2 * 10000;
+                float velocity = lineTimer * 10000;
                 if (velocity >= 50000)
                 {
                     velocity = 50000;
                 }
-                if (Game.player.Cam.PitchDegrees >= 90 || Game.player.Cam.PitchDegrees <= 0)
+                if (Game.player.Cam.HeadingDegrees <= 90 && Game.player.Cam.HeadingDegrees >= -90)
                     Game.player.Cam.CurrentVelocity = new Vector3(0, 0, -velocity);
                 else
                     Game.player.Cam.CurrentVelocity = new Vector3(0, 0, velocity);
-                //(50000 + (float)(Math.Sin(lineTimer) * 10000)
-                //Game.player.Cam.Move(0, 0, -50000 * deltaTime);
+
                 Game.player.Cam.Position = new Vector3(2500, 150, Game.player.Cam.Position.Z);
                 if (Game.player.Cam.Position.Z >= -3000)
                 {

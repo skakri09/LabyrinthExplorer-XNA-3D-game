@@ -208,25 +208,7 @@ namespace LabyrinthExplorer
 
         public void ToggleAssemblyLaneMode()
         {
-            CameraLocked = !CameraLocked;
-
-            if (CameraLocked)
-            {
-                //target = Vector3.Zero;
-                //targetYAxis = Vector3.UnitY;
-                //xAxis = Vector3.UnitX;
-                //yAxis = Vector3.UnitY;
-                //zAxis = -Vector3.UnitZ;
-                //viewDir = Vector3.Forward;
-                //accumHeadingDegrees = 0.0f;
-                //accumPitchDegrees = 0.0f;
-                //LookAt(Vector3.Right);
-            }
-            else
-            {
-
-            }
-            
+            CameraLocked = !CameraLocked;            
         }
 
         public void ToggleMapMode()
