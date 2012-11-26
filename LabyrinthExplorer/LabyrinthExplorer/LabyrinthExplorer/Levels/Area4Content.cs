@@ -11,7 +11,7 @@ namespace LabyrinthExplorer
     public class Area4Content : AreaContent
     {
         float lineCounter = 0;
-        AssemblyLaneEnd lineEnd;
+        AssemblyLane assemblyLane;
 
         public Area4Content(Camera camera)
             :base(camera)
@@ -30,25 +30,17 @@ namespace LabyrinthExplorer
         {
             base.LoadContent(device, contentMan);
 
-            CreateTestCenters();
             CreateHangar();
-            CreateAssemblyLane();
+
+            //environment.Add(new AssemblyLane(contentMan, 
         }
 
         public override void Update(GameTime gameTime, Camera camera)
         {
             base.Update(gameTime, camera);
-            if (lineCounter <= 2)
-            {
-                if (Game.player.Cam.Position.Z >= -3000)
-                {
-                    Game.player.Cam.Position = new Vector3(Game.player.Cam.Position.X, 150, -35000);
-                    ++lineCounter;
-                    lineEnd.UpdatePosition(Game.player.Cam.Position);
-                }
-            }
-            else
-                Game.player.MakeFootstepSound = true;
+
+            HandleAssemblyLine();
+            
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, Effect effect, Texture2D brickColorMap, Texture2D brickNormalMap, Texture2D brickHeightMap, Texture2D stoneColorMap, Texture2D stoneNormalMap, Texture2D stoneHeightMap, Texture2D woodColorMap, Texture2D woodNormalMap, Texture2D woodHeightMap)
@@ -66,12 +58,32 @@ namespace LabyrinthExplorer
             Game.player.MakeFootstepSound = false;
         }
 
+        private void HandleAssemblyLine()
+        {
+            if (lineCounter <= 2)
+            {
+                if (Game.player.Cam.Position.Z >= -3000)
+                {
+                    Game.player.Cam.Position = new Vector3(Game.player.Cam.Position.X, 150, -80000);
+                    ++lineCounter;
+                }
+            }
+            else
+                Game.player.MakeFootstepSound = true;
+        }
+
         private void CreateHangar()
         {
+            environment.Add(new AssemblyLaneCollection(contentMan));
+
             environment.Add(new Hallway(contentMan,
                new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
 
+            environment.Add(new AssemblyLaneEnd(contentMan, new Vector3(2500, -200, 5500), new Vector3(0, 90, 0), 15, true));
+
             environment.Add(new Hangar(contentMan, new Vector3(3800, -30, 15550), new Vector3(0, 90, 0), 15.0f));
+
+            environment.Add(new AssemblyLaneEnd(contentMan, new Vector3(2500, -200, 5000), new Vector3(0, 90, 0), 20));
 
             //right corridor collision
             environmentCollidables.Add(new AABB(new Vector2(2650, 4875), new Vector2(2950, 12500)));
@@ -87,42 +99,6 @@ namespace LabyrinthExplorer
             environmentCollidables.Add(new AABB(new Vector2(0, 19700), new Vector2(10000, 21000)));
             //hangar opening collision
             environmentCollidables.Add(new AABB(new Vector2(9000, 10000), new Vector2(10000, 21000)));
-        }
-
-        private void CreateAssemblyLane()
-        {
-            lineEnd = new AssemblyLaneEnd(contentMan, new Vector3(2500, -300, -42000),
-                new Vector3(0, 90, 0), 15);
-            environment.Add(lineEnd);
-
-            for (int i = -40000; i < 5000; i += 3000)
-            {
-                environment.Add(new AssemblyLane(contentMan,
-                new Vector3(2500, 200, i), new Vector3(0, 90, 0), 12));
-            }
-            environment.Add(new AssemblyLane(contentMan,
-                new Vector3(2500, 200, 4750), new Vector3(0, 90, 0), 12));
-
-            environment.Add(new AssemblyLaneEnd(contentMan, new Vector3(2500, -200, 5000), new Vector3(0, 90, 0), 20));
-            //environment.Add(new AssemblyLane(contentMan, 
-            //    new Vector3(2500, 0, -10000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -9000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -8000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -7000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -6000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -5000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -4000), new Vector3(0, 90, 0), 10));
-
-        }
-
-        private void CreateTestCenters()
-        {
         }
 
     }

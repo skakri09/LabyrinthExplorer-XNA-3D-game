@@ -31,6 +31,7 @@ namespace LabyrinthExplorer
         {
             get { return interactables; }
         }
+
         protected Camera camera;
 
         public AreaContent(Camera camera)
