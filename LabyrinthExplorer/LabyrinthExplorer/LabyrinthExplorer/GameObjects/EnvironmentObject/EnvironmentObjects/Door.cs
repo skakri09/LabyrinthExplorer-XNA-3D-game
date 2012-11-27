@@ -78,6 +78,7 @@ namespace LabyrinthExplorer
                     Player player = (Player)interactingParty;
                     if(player.inv.HaveItemOfType(OpenedByKeyWithID))
                     {
+                        player.inv.RemoveItemsOfType(OpenedByKeyWithID);
                         Game.SoundManager.PlaySound("DoorOpen", this);
                         openTimer = 0.0f;
                         doorState = DoorState.OPENING;

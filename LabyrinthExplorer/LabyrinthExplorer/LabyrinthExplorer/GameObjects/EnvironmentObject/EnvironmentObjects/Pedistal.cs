@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LabyrinthExplorer
 {
-    public class Pedistal : EnvironmentObject, IInteractableObject
+    public class Pedistal : EnvironmentObject, IInteractableObject, I3DSoundCustDivFact
     {
 
         private string attatchedGem;
@@ -136,6 +136,11 @@ namespace LabyrinthExplorer
         public void UsedCallback()
         {
             
+        }
+
+        public float GetCustomDivisionFactor()
+        {
+            return 300;
         }
     }
 }
