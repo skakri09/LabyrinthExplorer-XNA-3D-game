@@ -32,8 +32,6 @@ namespace LabyrinthExplorer
             base.LoadContent(device, contentMan);
 
             CreateHangar();
-
-            //environment.Add(new AssemblyLane(contentMan, 
         }
 
         public override void Update(GameTime gameTime, Camera camera)

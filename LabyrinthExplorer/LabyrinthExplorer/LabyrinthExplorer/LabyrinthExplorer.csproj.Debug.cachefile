@@ -1,6 +1,5 @@
 Content\Effects\parallax_normal_mapping.xnb
 Content\Models\ControlRoom.xnb
-Content\Models\Environment\ironMaiden.xnb
 Content\Models\Environment\Lever.xnb
 Content\Models\hallway.xnb
 Content\Models\LightStick.xnb
@@ -9,7 +8,6 @@ Content\Models\Environment\CrusaderStatue.xnb
 Content\Models\Environment\Portal.xnb
 Content\Models\Environment\SmallSpiderBlack.xnb
 Content\Models\Environment\SpiderStatue.xnb
-Content\Models\Environment\TableLow.xnb
 Content\Models\Environment\ChestClosed.xnb
 Content\Models\Environment\ChestOpen.xnb
 Content\Models\Environment\Gate.xnb
@@ -68,8 +66,6 @@ Content\Sound\Effects\PedistalSound.xnb
 Content\Sound\Effects\GateOpening1.xnb
 Content\Sound\Effects\GateOpening2.xnb
 Content\Sound\Effects\GateOpening3.xnb
-Content\Sound\Effects\Portal2.xnb
-Content\Sound\Effects\Portal3.xnb
 Content\Sound\Effects\alex.xnb
 Content\Sound\Effects\apollo11.xnb
 Content\Sound\Effects\arena.xnb
@@ -99,7 +95,6 @@ Content\Textures\ControlRoom\Plateox2_0.xnb
 Content\Textures\ControlRoom\YellowwindowDiffuseMap_0.xnb
 Content\Textures\ControlRoom\Aluminm5_0.xnb
 Content\Textures\ControlRoom\TechnicalPannel_0.xnb
-Content\Models\Environment\IronMaiden\ironmaiden-1_0.xnb
 Content\Models\Environment\Lever\jlo_icec_trimrunes_0.xnb
 Content\Models\Environment\Lever\jlo_icec_spike01_0.xnb
 Content\Models\Environment\Lever\icecrown_skulls_0.xnb
@@ -116,8 +111,6 @@ Content\Models\Environment\Portal\ti_chamberportal_stairs_01_0.xnb
 Content\Models\Environment\SpiderSmallBlack\minespiderskinsteel_0.xnb
 Content\Models\Environment\SpiderStatue\azjol_statue_01_0.xnb
 Content\Models\Environment\SpiderStatue\jlo_azjnub_bronzetrim01_0.xnb
-Content\Models\Environment\TableLow\jlo_icec_engineosouls_0.xnb
-Content\Models\Environment\TableLow\icecrown_chest.alpha_0.xnb
 Content\Models\Environment\Chest\activechest01.alpha_0.xnb
 Content\Models\Environment\Gate\brokengatewood06.alpha_0.xnb
 Content\Models\keyB_tx_0.xnb

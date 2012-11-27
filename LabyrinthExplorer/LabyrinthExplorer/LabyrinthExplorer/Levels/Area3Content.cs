@@ -56,8 +56,10 @@ namespace LabyrinthExplorer
                         {
                             pedistalsUnlocked = true;
                             finalGate.Use(null);
-                            //environment.Add(hangar);
-                            //hangar.OnEnteringArea();
+                            environment.Add(new AssemblyLane(contentMan, new Vector3(2500, 0, 10100), new Vector3(0, 90, 0), 20));
+                            environment.Add(new AssemblyLane(contentMan, new Vector3(2500, 0, 13100), new Vector3(0, 90, 0), 20));
+                            environment.Add(new AssemblyLane(contentMan, new Vector3(2500, 0, 16100), new Vector3(0, 90, 0), 20));
+                            GameConstants.CAMERA_ZFAR = 30000;
                             bluePedistal.StopSound();
                         }
             }
@@ -216,37 +218,13 @@ namespace LabyrinthExplorer
             environment.Add(finalGate);
 
             environment.Add(new Gem("GemYellow", contentMan, new Vector3(500, 150, 2782), 50));
-            
+
             //environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
             //environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
             //environment.Add(new Gem("GemYellow", contentMan, new Vector3(2500, 150, 3000), 50));
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
-
-            environment.Add(new AssemblyLane(contentMan, new Vector3(2500, 0, 10100), new Vector3(0,90,0), 20));
-            //environment.Add(new Hallway(contentMan,
-            //   new Vector3(2500, -5, 8300), Vector3.Zero, 11.0f));
-
-
-            //hangar = new Hangar(contentMan, new Vector3(3800, -30, 15550), new Vector3(0, 90, 0), 15.0f);
-            ////environment.Add(hangar);
-
-
-            ////right corridor collision
-            //environmentCollidables.Add(new AABB(new Vector2(2650, 4875), new Vector2(2950, 12500)));
-            ////left corridor collision
-            //environmentCollidables.Add(new AABB(new Vector2(2000, 4875), new Vector2(2300, 12500)));
-            ////right positive hangar collision
-            //environmentCollidables.Add(new AABB(new Vector2(2700, 12000), new Vector2(10000, 12500)));
-            ////left positive hangar collision
-            //environmentCollidables.Add(new AABB(new Vector2(0, 12000), new Vector2(2300, 12500)));
-            ////Back(left) of hangar collision
-            //environmentCollidables.Add(new AABB(new Vector2(0, 12000), new Vector2(550, 21000)));
-            ////negative z side hangar collision
-            //environmentCollidables.Add(new AABB(new Vector2(0, 19700), new Vector2(10000, 21000)));
-            ////hangar opening collision
-            //environmentCollidables.Add(new AABB(new Vector2(9000, 10000), new Vector2(10000, 21000)));
         }
 
         private void CreatePedistals()

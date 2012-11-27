@@ -40,11 +40,6 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="Models\Environment\ironMaiden.FBX">
-      <Name>ironMaiden</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="Models\Environment\Lever.FBX">
       <Name>Lever</Name>
       <Importer>FbxImporter</Importer>
@@ -142,11 +137,6 @@
     </Compile>
     <Compile Include="Models\Environment\SpiderStatue.FBX">
       <Name>SpiderStatue</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\Environment\TableLow.FBX">
-      <Name>TableLow</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
@@ -469,18 +459,6 @@
     </Compile>
     <Compile Include="Sound\Effects\GateOpening3.wav">
       <Name>GateOpening3</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sound\Effects\Portal2.wav">
-      <Name>Portal2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-    <Compile Include="Sound\Effects\Portal3.wav">
-      <Name>Portal3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
