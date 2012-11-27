@@ -55,8 +55,8 @@ namespace LabyrinthExplorer
         {
             AddKey(MenuActions.BACK, Keys.Escape);
 
+            //AddKey(MenuActions.SELECT_ENTRY, Keys.Space);
             AddKey(MenuActions.SELECT_ENTRY, Keys.Enter);
-            AddKey(MenuActions.SELECT_ENTRY, Keys.Space);
 
             AddKey(MenuActions.NEXT_ENTRY, Keys.Down);
             AddKey(MenuActions.NEXT_ENTRY, Keys.S);
@@ -185,6 +185,7 @@ namespace LabyrinthExplorer
    
         private void AddKey(MenuActions action, Keys key)
         {
+            //MenuKeys.Add(action, key);
             MenuKeys[action] = key;
         }
 
@@ -222,10 +223,27 @@ namespace LabyrinthExplorer
         {
             Game.quitGame = true;
         }
+
         void BackToMainMenu(object sender, EventArgs e)
         {
             Game.currentGameState = GameStates.MainMenu;
         }
+
+        void StartDiffHard(object sender, EventArgs e)
+        {
+            Game.currentGameState = GameStates.MainMenu;
+        }
+
+        void StartDiffMedium(object sender, EventArgs e)
+        {
+            Game.currentGameState = GameStates.MainMenu;
+        }
+
+        void StartDiffEasy(object sender, EventArgs e)
+        {
+            Game.currentGameState = GameStates.MainMenu;
+        }
+
         #endregion menu events
 
     }
