@@ -238,13 +238,13 @@ namespace LabyrinthExplorer
 
             environment.Add(new Chest(contentMan, new Vector3(4800, 0, 4850),
                     new Vector3(0, -90, 0), 50, Vector3.Left,
-                    new IChestItem[] { new Key(contentMan, "redGemRoomKey") }));
+                    new IChestItem[] { new Key(contentMan, "yellowGemRoomKey") }));
 
             environment.Add(new Door(contentMan, new Vector3(4225, 0, 1004), Vector3.Zero,
                new Vector3(4525, 0, 1004), 90, Vector3.Backward, ref environmentCollidables,
-               "redGemRoomKey"));
+               "yellowGemRoomKey"));
 
-            environment.Add(new Gem("GemRed", contentMan, new Vector3(4250, 100, 1350), 50));
+            environment.Add(new Gem("GemYellow", contentMan, new Vector3(4250, 100, 1350), 50));
 
             CreatePortal(new Vector3(2450, 0, 2700),
                    new Vector3(0, 180, 0), 40.0f, Vector3.Backward,

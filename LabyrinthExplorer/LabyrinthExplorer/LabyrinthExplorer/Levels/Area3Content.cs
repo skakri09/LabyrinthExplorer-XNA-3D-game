@@ -13,7 +13,6 @@ namespace LabyrinthExplorer
         private Pedistal redPedistal;
         private Pedistal bluePedistal;
         private Pedistal yellowPedistal;
-        //private Hangar hangar;
         private FinalGate finalGate;
         bool pedistalsUnlocked = false;
 
@@ -64,6 +63,7 @@ namespace LabyrinthExplorer
             }
             if (Game.player.PlayerAABB.CheckCollision(StartArea4AABB) != Vector3.Zero)
             {
+                Game.player.inv.RemoveItemsOfType("compass");
                 World.ChangeArea("area4", new Vector3(2500, 150, -40000));
             }
         }
@@ -213,10 +213,8 @@ namespace LabyrinthExplorer
             CreateGatesAndLevers();
 
             finalGate = new FinalGate(contentMan, ref environmentCollidables,
-                new Vector3(2500, 0, 4950), Vector3.Zero, 20);
+                new Vector3(2525, 0, 4950), Vector3.Zero, 20);
             environment.Add(finalGate);
-
-            environment.Add(new Gem("GemYellow", contentMan, new Vector3(500, 150, 2782), 50));
 
             //environment.Add(new Gem("GemRed", contentMan, new Vector3(2500, 150, 3000), 50));
             //environment.Add(new Gem("GemBlue", contentMan, new Vector3(2500, 150, 3000), 50));
@@ -228,9 +226,10 @@ namespace LabyrinthExplorer
 
         private void CreatePedistals()
         {
-            redPedistal = new Pedistal(contentMan, new Vector3(2200, 0, 4700), Vector3.Zero, 75, "GemRed");
-            bluePedistal = new Pedistal(contentMan, new Vector3(2500, 0, 4700), Vector3.Zero, 75, "GemBlue", true);
-            yellowPedistal = new Pedistal(contentMan, new Vector3(2800, 0, 4700), Vector3.Zero, 75, "GemYellow");
+
+            redPedistal = new Pedistal(contentMan, new Vector3(350, 0, 2542), Vector3.Zero, 75, "GemRed");
+            bluePedistal = new Pedistal(contentMan, new Vector3(350, 0, 2775), Vector3.Zero, 75, "GemBlue", true);
+            yellowPedistal = new Pedistal(contentMan, new Vector3(350, 0, 3009), Vector3.Zero, 75, "GemYellow");
 
             environment.Add(redPedistal);
             environment.Add(bluePedistal);
@@ -355,24 +354,6 @@ namespace LabyrinthExplorer
             environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
                 new Vector3(0, 0, 0), 100, Vector3.Left, gate3));
 
-            ////supermax gates and levers
-            ////outer supermax gate
-            
-            ////getting-in lever
-            //environment.Add(new Lever(contentMan, new Vector3(300, 0, 4800),
-            //    new Vector3(0, 180, 0), 100, Vector3.Right, gate3));
-            ////getting-out lever
-            //environment.Add(new Lever(contentMan, new Vector3(1550, 0, 2782),
-            //    new Vector3(0, 0, 0), 100, Vector3.Left, gate3));
-
-            ////inner supermax gate
-            //Gate gate4 = CreateGate(new Vector3(1200, 0, 2782), new Vector3(0, 90, 0), 29, 45);
-            ////getting in lever
-            //environment.Add(new Lever(contentMan, new Vector3(300, 0, 1850),
-            //    new Vector3(0, 180, 0), 100, Vector3.Right, gate4));
-            ////getting out lever
-            //environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
-            //    new Vector3(0, 0, 0), 100, Vector3.Left, gate4));
         }
 
         public override void OnEnteringArea()

@@ -35,9 +35,18 @@ namespace LabyrinthExplorer
 
         private void CreateMenuEntries()
         {
-            MenuEntry playGameEntry = new MenuEntry("Play Game");
-            playGameEntry.Selected += NewGame;
-            MainMenuEntries[playGameEntry] = GetPosition(GameStates.MainMenu);
+           
+            MenuEntry playGameEasy = new MenuEntry("Easy");
+            playGameEasy.Selected += StartDiffEasy;
+            MainMenuEntries[playGameEasy] = GetPosition(GameStates.MainMenu);
+
+            MenuEntry playGameMedium = new MenuEntry("Medium");
+            playGameMedium.Selected += StartDiffMedium;
+            MainMenuEntries[playGameMedium] = GetPosition(GameStates.MainMenu);
+
+            MenuEntry playGameHard = new MenuEntry("Hard");
+            playGameHard.Selected += StartDiffHard;
+            MainMenuEntries[playGameHard] = GetPosition(GameStates.MainMenu);
 
             MenuEntry quitGameEntry = new MenuEntry("Quit Game");
             quitGameEntry.Selected += QuitGame;
@@ -74,6 +83,7 @@ namespace LabyrinthExplorer
 
             if (menuType == GameStates.MainMenu)
             {
+                Game.SoundManager.PlaySong("LOD", true);
                 foreach (MenuEntry entry in MainMenuEntries.Keys)
                 {
                     entry.SetUnselected();
@@ -119,7 +129,7 @@ namespace LabyrinthExplorer
                 if (menuType == GameStates.MainMenu)
                 {
                     if (currentSelectionIndex < 0)
-                        currentSelectionIndex = PauseMenuEntries.Count-1;
+                        currentSelectionIndex = MainMenuEntries.Count - 1;
                     MainMenuEntries.ElementAt(currentSelectionIndex).Key.SetSelected();
                     MainMenuEntries.ElementAt(prevSelectionIndex).Key.SetUnselected();
                 }
@@ -231,17 +241,23 @@ namespace LabyrinthExplorer
 
         void StartDiffHard(object sender, EventArgs e)
         {
-            Game.currentGameState = GameStates.MainMenu;
+            World.currentDifficulity = Difficulity.HARD;
+            Game.SoundManager.StopSong();
+            Game.currentGameState = GameStates.GAME;
         }
 
         void StartDiffMedium(object sender, EventArgs e)
         {
-            Game.currentGameState = GameStates.MainMenu;
+            World.currentDifficulity = Difficulity.MEDIUM;
+            Game.SoundManager.StopSong();
+            Game.currentGameState = GameStates.GAME;
         }
 
         void StartDiffEasy(object sender, EventArgs e)
         {
-            Game.currentGameState = GameStates.MainMenu;
+            World.currentDifficulity = Difficulity.EASY;
+            Game.SoundManager.StopSong();
+            Game.currentGameState = GameStates.GAME;
         }
 
         #endregion menu events

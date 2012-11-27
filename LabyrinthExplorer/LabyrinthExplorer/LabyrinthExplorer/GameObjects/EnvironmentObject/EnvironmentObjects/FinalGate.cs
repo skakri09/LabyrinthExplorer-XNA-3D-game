@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace LabyrinthExplorer
 {
-    public class FinalGate : EnvironmentObject, IInteractableObject
+    public class FinalGate : EnvironmentObject, IInteractableObject, I3DSoundCustDivFact
     {
         private GateDoor leftDoor;
         private GateDoor rightDoor;
@@ -44,11 +44,11 @@ namespace LabyrinthExplorer
         {
             leftDoor = new GateDoor(content, ref collisionList,
                 new Vector3(position.X, position.Y, position.Z), scale, @"Models\Environment\FinalGateLeftHalf",
-            new Vector3(position.X + 500, position.Y, position.Z));
+            new Vector3(position.X + 625, position.Y, position.Z));
 
             rightDoor = new GateDoor(content, ref collisionList,
                 new Vector3(position.X, position.Y, position.Z), scale, @"Models\Environment\FinalGateRightHalf",
-            new Vector3(position.X - 500, position.Y, position.Z));
+            new Vector3(position.X - 625, position.Y, position.Z));
         }
 
         public override void Update(float deltaTime)
@@ -58,17 +58,17 @@ namespace LabyrinthExplorer
             if (currentState == GateState.OPENING)
             {
                 openingTimer += deltaTime;
-                if (!havePlayedSound1)
+                if (!havePlayedSound1 )
                 {
                     havePlayedSound1 = true;
-                    Game.SoundManager.PlaySound("GateOpening1", this);
+                    Game.SoundManager.PlaySound("GateOpening1", this, 2);
                 }
-                else if (openingTimer >= 6.0f && !havePlayedSound2)
+                else if (openingTimer >= 12.0f && !havePlayedSound2)
                 {
                     havePlayedSound2 = true;
                     Game.SoundManager.PlaySound("GateOpening2", this);
                 }
-                else if (openingTimer >= 12 && !havePlayedSound3)
+                else if (openingTimer >= 18 && !havePlayedSound3)
                 {
                     havePlayedSound3 = true;
                     leftDoor.PlaySound();
@@ -110,10 +110,9 @@ namespace LabyrinthExplorer
 
         public void UsedCallback()
         {
-            throw new Exception("The method or operation is not implemented.");
         }
 
-        private class GateDoor : EnvironmentObject, IInteractableObject
+        private class GateDoor : EnvironmentObject, IInteractableObject, I3DSoundCustDivFact
         {
 
             private Vector3 moveToPos;
@@ -195,7 +194,17 @@ namespace LabyrinthExplorer
 
                 SetAABB(min, max);
             }
+
+            public float GetCustomDivisionFactor()
+            {
+                return 750;
+            }
         }
 
+
+        public float GetCustomDivisionFactor()
+        {
+            return 1000;
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace LabyrinthExplorer
 
         public Game()
         {
+            
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = GameConstants.windowWidth;
             graphics.PreferredBackBufferHeight = GameConstants.windowHeight;
@@ -76,9 +77,7 @@ namespace LabyrinthExplorer
             base.Initialize();
 
             menu = new Menu(Content);
-            menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
-            currentGameState = GameStates.MainMenu;
-
+           
              // Setup frame buffer.
             graphics.SynchronizeWithVerticalRetrace = false;
             graphics.PreferredBackBufferWidth = GameConstants.windowWidth;
@@ -94,6 +93,10 @@ namespace LabyrinthExplorer
             world = new World(player.Cam);
             world.LoadContent(GraphicsDevice, Content);
             Services.AddService(typeof(World), world);
+            ToggleFullScreen();
+            menu.EnterMenu(GameStates.MainMenu, GameStates.MainMenu);
+            currentGameState = GameStates.MainMenu;
+
         }
 
         protected override void LoadContent()
@@ -336,6 +339,8 @@ namespace LabyrinthExplorer
                 }
             }
 
+            
+
             switch (currentGameState)
             {
                 case GameStates.GAME:
@@ -350,6 +355,10 @@ namespace LabyrinthExplorer
             }
 
             base.Draw(gameTime);
+            if (transitioning)
+            {
+                spriteBatch.Draw()
+            }
             IncrementFrameCounter();
         }
     }

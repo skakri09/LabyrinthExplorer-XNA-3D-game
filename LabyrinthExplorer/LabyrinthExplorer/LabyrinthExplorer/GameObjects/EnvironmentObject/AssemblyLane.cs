@@ -98,21 +98,6 @@ namespace LabyrinthExplorer
 
             AssemblyLanes.Add(new AssemblyLane(contentMan,
                 new Vector3(2500, 225, 4650), new Vector3(0, 90, 0), 13));
-
-            //environment.Add(new AssemblyLane(contentMan, 
-            //    new Vector3(2500, 0, -10000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -9000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -8000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -7000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -6000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -5000), new Vector3(0, 90, 0), 10));
-            //environment.Add(new AssemblyLane(contentMan,
-            //    new Vector3(2500, 0, -4000), new Vector3(0, 90, 0), 10));
         }
 
         public void Update(float deltaTime)
@@ -131,7 +116,7 @@ namespace LabyrinthExplorer
 
         public void OnEnteringArea()
         {
-            Game.SoundManager.PlaySound("AssemblyEffect");
+            Game.SoundManager.PlaySound("AssemblyEffect", 0.5f);
         }
 
     }
