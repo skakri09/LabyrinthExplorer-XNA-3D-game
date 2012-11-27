@@ -107,7 +107,7 @@ namespace LabyrinthExplorer
 
             CreatePortal(new Vector3(1300, 0, 400),
                    new Vector3(0, 0, 0), 40.0f, Vector3.Zero,
-                new Vector3(1175, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 1800), "area1");
+                new Vector3(4000, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 4575), "area1");
 
             environment.Add(new Gem("GemBlue", contentMan, new Vector3(1450, 100, 2420), 50));
 
