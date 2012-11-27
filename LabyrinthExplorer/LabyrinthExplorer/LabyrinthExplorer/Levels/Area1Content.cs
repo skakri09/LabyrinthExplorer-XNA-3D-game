@@ -13,7 +13,6 @@ namespace LabyrinthExplorer
         public Area1Content(Camera camera)
             :base(camera)
         {
-            this.camera = camera;
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();
@@ -204,10 +203,6 @@ namespace LabyrinthExplorer
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,
                 "blueGemRoomKey"));
-
-            environment.Add(new Chest(contentMan, new Vector3(2750, 0, 4300), 
-                new Vector3(0, 90, 0), 50, Vector3.Right,
-                new IChestItem[]{new Compass(contentMan)}));
         }
 
         public override void OnEnteringArea()

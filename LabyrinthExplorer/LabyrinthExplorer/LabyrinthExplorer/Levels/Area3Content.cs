@@ -22,7 +22,6 @@ namespace LabyrinthExplorer
         public Area3Content(Camera camera)
             :base(camera)
         {
-            this.camera = camera;
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();
@@ -349,25 +348,31 @@ namespace LabyrinthExplorer
             environment.Add(new Lever(contentMan, new Vector3(3225, 0, 2110), new Vector3(0, 270, 0), 100,
                 Vector3.Zero, gate2));
 
-
-            //supermax gates and levers
-            //outer supermax gate
-            Gate gate3 = CreateGate(new Vector3(1700, 0, 2782), new Vector3(0, 90, 0), 29, 45);
-            //getting-in lever
-            environment.Add(new Lever(contentMan, new Vector3(300, 0, 4800),
-                new Vector3(0, 180, 0), 100, Vector3.Right, gate3));
-            //getting-out lever
-            environment.Add(new Lever(contentMan, new Vector3(1550, 0, 2782),
+            Gate gate3 = CreateGate(new Vector3(1500, 0, 2782), new Vector3(0, 90, 0), 29, 15);
+            CreateDuoLever(new Vector3(300, 0, 4800), new Vector3(0, 180, 0), 100, Vector3.Right,
+                        new Vector3(300, 0, 1850), new Vector3(0, 180, 0), 100, Vector3.Right,
+                        gate3, 40.0f);
+            environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
                 new Vector3(0, 0, 0), 100, Vector3.Left, gate3));
 
-            //inner supermax gate
-            Gate gate4 = CreateGate(new Vector3(1200, 0, 2782), new Vector3(0, 90, 0), 29, 45);
-            //getting in lever
-            environment.Add(new Lever(contentMan, new Vector3(300, 0, 1850),
-                new Vector3(0, 180, 0), 100, Vector3.Right, gate4));
-            //getting out lever
-            environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
-                new Vector3(0, 0, 0), 100, Vector3.Left, gate4));
+            ////supermax gates and levers
+            ////outer supermax gate
+            
+            ////getting-in lever
+            //environment.Add(new Lever(contentMan, new Vector3(300, 0, 4800),
+            //    new Vector3(0, 180, 0), 100, Vector3.Right, gate3));
+            ////getting-out lever
+            //environment.Add(new Lever(contentMan, new Vector3(1550, 0, 2782),
+            //    new Vector3(0, 0, 0), 100, Vector3.Left, gate3));
+
+            ////inner supermax gate
+            //Gate gate4 = CreateGate(new Vector3(1200, 0, 2782), new Vector3(0, 90, 0), 29, 45);
+            ////getting in lever
+            //environment.Add(new Lever(contentMan, new Vector3(300, 0, 1850),
+            //    new Vector3(0, 180, 0), 100, Vector3.Right, gate4));
+            ////getting out lever
+            //environment.Add(new Lever(contentMan, new Vector3(1050, 0, 2782),
+            //    new Vector3(0, 0, 0), 100, Vector3.Left, gate4));
         }
 
         public override void OnEnteringArea()

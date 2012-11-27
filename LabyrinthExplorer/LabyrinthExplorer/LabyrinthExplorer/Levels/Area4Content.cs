@@ -12,13 +12,10 @@ namespace LabyrinthExplorer
     {
         float lineTimer = 0;
         float lineCounter = 0;
-        AssemblyLane assemblyLane;
         bool assemblyLaneDone = false;
         public Area4Content(Camera camera)
             :base(camera)
         {
-            this.camera = camera;
-
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();

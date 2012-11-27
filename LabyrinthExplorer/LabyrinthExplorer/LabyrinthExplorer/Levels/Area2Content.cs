@@ -24,7 +24,6 @@ namespace LabyrinthExplorer
         public Area2Content(Camera camera)
             :base(camera)
         {
-            this.camera = camera;
             walls = new List<SolidWall>();
             ceilings = new List<NormalMappedCeiling>();
             floors = new List<NormalMappedFloor>();

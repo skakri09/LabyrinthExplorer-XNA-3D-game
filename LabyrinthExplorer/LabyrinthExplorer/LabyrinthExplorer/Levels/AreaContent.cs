@@ -36,7 +36,7 @@ namespace LabyrinthExplorer
 
         public AreaContent(Camera camera)
         {
-
+            this.camera = camera;
         }
 
         public virtual void LoadContent(GraphicsDevice device, ContentManager contentMan)

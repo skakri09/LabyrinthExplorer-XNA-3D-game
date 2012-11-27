@@ -101,6 +101,7 @@
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Gate.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Lever.cs" />
     <Compile Include="GameObjects\EnvironmentObject\Testcenter.cs" />
+    <Compile Include="Levels\Area0Content.cs" />
     <Compile Include="Levels\Area2Content.cs" />
     <Compile Include="Levels\Area3Content.cs" />
     <Compile Include="Levels\Area4Content.cs" />

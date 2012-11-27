@@ -87,7 +87,7 @@ namespace LabyrinthExplorer
             graphics.ApplyChanges();
 
             player = new Player(this, GameConstants.PLAYER_START_POS);
-
+            player.inv.AddItem(new InventoryItem(new Compass(Content), "compass"));
             // Initial position for text rendering.
             fontPos = new Vector2(5.0f, -20.0f);
 

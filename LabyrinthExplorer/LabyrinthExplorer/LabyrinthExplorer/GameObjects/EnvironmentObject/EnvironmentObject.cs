@@ -66,7 +66,6 @@ namespace LabyrinthExplorer
             {
                 foreach (BasicEffect _effect in mesh.Effects)
                 {
-                    _effect.EnableDefaultLighting();
                     _effect.DiffuseColor = color;
                     _effect.AmbientLightColor = color;
                     _effect.SpecularColor = color;
