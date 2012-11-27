@@ -131,7 +131,7 @@ namespace LabyrinthExplorer
 
         public void OnEnteringArea()
         {
-            
+            Game.SoundManager.PlaySound("AssemblyEffect");
         }
 
     }

@@ -96,7 +96,7 @@ namespace LabyrinthExplorer
         public const float CEILING_TILE_FACTOR = 8.0f;
         public const float FLOOR_PLANE_SIZE = 2024.0f;
         public const float FLOOR_CLIP_BOUNDS = FLOOR_PLANE_SIZE * 0.5f - 30.0f;
-        public const float WALL_HEIGHT = 200;
+        public const float WALL_HEIGHT = 500;
 
         public const float FLOOR_TILE_FACTOR_SMALL = 1.2f;
         public const float FLOOR_TILE_FACTOR_NORMAL = 0.4f;

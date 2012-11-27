@@ -155,6 +155,7 @@ namespace LabyrinthExplorer
             LoadEffect("egypt", "");
             LoadEffect("arena", "");
             LoadEffect("ww2", "");
+            LoadEffect("AssemblyEffect", "");
 
             LoadAmbient("Area2Ambient", "");
             LoadAmbient("spiderAmbient", "");
