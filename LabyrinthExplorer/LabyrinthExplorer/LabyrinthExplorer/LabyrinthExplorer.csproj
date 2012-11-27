@@ -148,10 +148,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SkinnedModel\SkinnedModel.csproj">
-      <Project>{2622C63F-E5B4-4FDB-8A03-3295DE2F85CF}</Project>
-      <Name>SkinnedModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LabyrinthExplorerContent\LabyrinthExplorerContent.contentproj">
       <Name>LabyrinthExplorerContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
