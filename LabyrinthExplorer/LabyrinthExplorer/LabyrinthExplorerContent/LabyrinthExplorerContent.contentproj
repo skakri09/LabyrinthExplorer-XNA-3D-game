@@ -35,11 +35,6 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="Models\ControlRoom.FBX">
-      <Name>ControlRoom</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
     <Compile Include="Models\Environment\Lever.FBX">
       <Name>Lever</Name>
       <Importer>FbxImporter</Importer>
@@ -47,11 +42,6 @@
     </Compile>
     <Compile Include="Models\hallway.FBX">
       <Name>hallway</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-    <Compile Include="Models\LightStick.FBX">
-      <Name>LightStick</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
