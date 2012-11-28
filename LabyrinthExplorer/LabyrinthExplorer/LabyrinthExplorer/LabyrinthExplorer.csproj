@@ -97,6 +97,7 @@
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\FinalGate.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Hangar.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Pedistal.cs" />
+    <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\Skeleton.cs" />
     <Compile Include="GameObjects\EnvironmentObject\EnvironmentObjects\TextHint.cs" />
     <Compile Include="GameObjects\EnvironmentObject\Hallway.cs" />
     <Compile Include="GameObjects\EnvironmentObject\IChestItem.cs" />

@@ -156,5 +156,14 @@ Content\Models\Environment\Skeletons\bonelight_0.xnb
 Content\Models\Environment\Skeletons\skull01light.alpha_0.xnb
 Content\Models\Environment\Skeletons\skeletalhandlight.alpha_0.xnb
 Content\Models\Text\Area2TextHint.xnb
+Content\Models\Text\1Day.xnb
+Content\Models\Text\2Days.xnb
+Content\Models\Text\3Days.xnb
+Content\Models\Text\4Days.xnb
+Content\Models\Text\5Days.xnb
+Content\Models\Text\GemHint1.xnb
+Content\Models\Text\TickTock.xnb
+Content\Models\Text\PersonalFrequency.xnb
+Content\Models\Text\TheVoices.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Music\space.wma

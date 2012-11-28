@@ -222,8 +222,52 @@ namespace LabyrinthExplorer
 
             CreatePortal(new Vector3(2500, 0, 250), Vector3.Zero, 40.0f,
                 Vector3.Forward, new Vector3(2450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 2700), "area2");
+
+            GenSkeletonAndDays();
         }
 
+        private void GenSkeletonAndDays()
+        {
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonSitting", contentMan,
+                    new Vector3(500, 0, 4275), new Vector3(0, 180, 0), 90));
+
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(450, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(470, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(490, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(510, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(530, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(550, 150, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(450, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(470, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(490, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(510, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(530, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(550, 130, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+
+            environment.Add(new TextHint(@"Models\Text\2Days", contentMan, new Vector3(510, 110, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(530, 110, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(550, 110, 4300),
+                new Vector3(90, 180, 0), 0.3f));
+
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonLaying", contentMan,
+                    new Vector3(400, 0, 890), new Vector3(0, 80, 0), 90));
+        }
+        
         private void CreatePedistals()
         {
 

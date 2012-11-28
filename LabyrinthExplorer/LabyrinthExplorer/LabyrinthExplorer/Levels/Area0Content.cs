@@ -115,6 +115,11 @@ namespace LabyrinthExplorer
             environment.Add(new Door(contentMan, new Vector3(1900, 0, 2475), new Vector3(0, 270, 0),
                 new Vector3(1900, 0, 2200), 90, Vector3.Right, ref environmentCollidables,
                 "blueGemRoomKey"));
+            environment.Add(new TextHint(@"Models\Text\GemHint1",contentMan, new Vector3(1325, 150, 2350),
+                new Vector3(90, 0, 0), 0.3f));
+
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonSitting", contentMan,
+                new Vector3(1200, 0, 2380), Vector3.Zero, 90));
         }
 
         public override void OnEnteringArea()

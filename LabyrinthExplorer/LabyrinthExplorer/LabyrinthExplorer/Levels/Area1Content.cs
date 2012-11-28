@@ -200,15 +200,29 @@ namespace LabyrinthExplorer
                  new Vector3(450, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 725), "area2");
 
             environment.Add(new Gem("GemRed", contentMan, new Vector3(2250, 100, 1900), 50));
-            
+            environment.Add(new TextHint(@"Models\Text\PersonalFrequency", contentMan, new Vector3(2250, 175, 1850),
+                new Vector3(90, 0, 0), 0.3f));
 
             environment.Add(new Door(contentMan, new Vector3(2525, 0, 2245), Vector3.Zero,
                 new Vector3(2225, 0, 2245), 90, Vector3.Forward, ref environmentCollidables,
                 "redGemRoomKey"));
 
+            environment.Add(new TextHint(@"Models\Text\TickTock", contentMan, new Vector3(3950, 150, 2450),
+                new Vector3(90, 0, 0), 0.4f));
+
             CreatePortal(new Vector3(4000, 0, 4575),
                   new Vector3(0, 270, 0), 40.0f, Vector3.Zero,
                new Vector3(1300, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 400), "area0");
+
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2650, 150, 4000),
+                new Vector3(90, 90, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2650, 150, 3980),
+                new Vector3(90, 90, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\3Days", contentMan, new Vector3(2650, 150, 3960),
+                new Vector3(90, 90, 0), 0.3f));
+
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonLaying", contentMan,
+                    new Vector3(4850, 0, 4100), new Vector3(0, 45, 0), 90));
         }
 
         public override void OnEnteringArea()

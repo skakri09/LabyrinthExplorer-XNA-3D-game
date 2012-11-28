@@ -129,9 +129,9 @@ namespace LabyrinthExplorer
                 area.LoadContent(device, contentMan);
             }
 
-            ChangeArea("area0", new Vector3(550, 150, 250));
+            //ChangeArea("area0", new Vector3(550, 150, 250));
             //ChangeArea("area2", new Vector3(2500, 150, 2500));
-            //ChangeArea("area1", new Vector3(3750, 150, 4500));
+            ChangeArea("area1", new Vector3(3750, 150, 4500));
             //ChangeArea("area2", new Vector3(400, 150, 650));
             //ChangeArea("area3", new Vector3(2500, 150, 8000));
             //ChangeArea("area3", new Vector3(2500, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 250));

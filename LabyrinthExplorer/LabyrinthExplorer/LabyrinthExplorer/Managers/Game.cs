@@ -305,7 +305,6 @@ namespace LabyrinthExplorer
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             GraphicsDevice.SamplerStates[2] = SamplerState.LinearWrap;
-
             DepthStencilState dss = new DepthStencilState();
             dss.DepthBufferEnable = false;
             GraphicsDevice.DepthStencilState = dss;
@@ -321,7 +320,7 @@ namespace LabyrinthExplorer
             dss.DepthBufferEnable = true;
             GraphicsDevice.DepthStencilState = dss;
 
-
+            //GraphicsDevice.BlendState = BlendState.Opaque;
             world.Draw(GraphicsDevice);
 
             if (GameConstants.RenderOnScreenText)

@@ -251,6 +251,35 @@ namespace LabyrinthExplorer
             TextHint hintText = new TextHint(@"Models\Text\Area2TextHint", contentMan,
                 new Vector3(500, 100, 103), new Vector3(90, 0, 0), 1.0f);
             environment.Add(hintText);
+
+            AddSkeletoAndDays();
+
+            environment.Add(new TextHint(@"Models\Text\TheVoices", contentMan, new Vector3(100, 100, 2800),
+               new Vector3(90, 90, 0), 0.3f));
+        }
+
+        private void AddSkeletoAndDays()
+        {
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonSitting", contentMan,
+               new Vector3(2500, 0, 4600), new Vector3(0, 180, 0), 90));
+
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2450, 150, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2470, 150, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2490, 150, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2510, 150, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\3Days", contentMan, new Vector3(2470, 130, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2490, 130, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+            environment.Add(new TextHint(@"Models\Text\5Days", contentMan, new Vector3(2510, 130, 4650),
+                new Vector3(90, 180, 0), 0.3f));
+
+            environment.Add(new Skeleton(@"Models\Environment\SkeletonChained", contentMan, new Vector3(4675, 0, 1800),
+                new Vector3(0, 270, 0), 90));
         }
 
         private void CreatePillarsWithLever()
