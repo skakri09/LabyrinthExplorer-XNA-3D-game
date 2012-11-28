@@ -24,6 +24,9 @@ namespace LabyrinthExplorer
         private GameStates menuType;
 
         Texture2D menuScreen;
+        private string useHeadphones = "Use headphones if you have some available!";
+        private string chooseEasy = "Unless you love ridiculously hard labyrinths, choose Easy";
+        
         public Menu(ContentManager content)
         {
             CreateMenuKeys();
@@ -172,6 +175,11 @@ namespace LabyrinthExplorer
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             spriteBatch.Draw(menuScreen, Vector2.Zero, Color.White);
+
+            spriteBatch.DrawString(font, chooseEasy, new Vector2(900, 300), Color.Tomato, 
+                MathHelper.ToRadians(-30), Vector2.Zero, 0.25f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, useHeadphones, new Vector2(900, 350), Color.Tomato, 
+                MathHelper.ToRadians(-30), Vector2.Zero, 0.25f, SpriteEffects.None, 0);
             if (menuType == GameStates.MainMenu)
             {
                 foreach (MenuEntry entry in MainMenuEntries.Keys)

@@ -145,8 +145,6 @@ namespace LabyrinthExplorer
                 #endregion
             }
 
-           
-
             if(World.currentDifficulity == Difficulity.EASY)
             {
                 SmartPosWall(4650, 2600, 5000, 2600);
@@ -250,7 +248,7 @@ namespace LabyrinthExplorer
                    new Vector3(0, 180, 0), 40.0f, Vector3.Backward,
                 new Vector3(2500, GameConstants.CAMERA_PLAYER_EYE_HEIGHT, 250), "area3");
 
-            TextHint hintText = new TextHint(@"Models\Area2TextHint", contentMan,
+            TextHint hintText = new TextHint(@"Models\Text\Area2TextHint", contentMan,
                 new Vector3(500, 100, 103), new Vector3(90, 0, 0), 1.0f);
             environment.Add(hintText);
         }
@@ -259,35 +257,35 @@ namespace LabyrinthExplorer
         {
             //pillar 3
             TopPillar = new TurnablePilar(contentMan, new Vector3(2425, -100, 2200),
-                 new Vector3(0, 180, 0), Vector3.Forward, 105);
+                 new Vector3(0, 180, 0), Vector3.Forward, 105, new Vector3(1, 0.2f, 0.2f));
             environment.Add(TopPillar);
             environmentCollidables.Add(TopPillar);
             environment.Add(new Lever(contentMan, new Vector3(2400, 0, 1900),
-                Vector3.Zero, 100, Vector3.Zero, TopPillar));
+                Vector3.Zero, 100, Vector3.Zero, TopPillar, new Vector3(1, 0.2f, 0.2f)));
             
             //pillar 1
             BottomPillar = new TurnablePilar(contentMan, new Vector3(2450, -100, 3275),
-               new Vector3(0, 0, 0), Vector3.Backward, 105);
+               new Vector3(0, 0, 0), Vector3.Backward, 105, new Vector3(1, 0.2f, 1.0f));
             environment.Add(BottomPillar);
             environmentCollidables.Add(BottomPillar);
             environment.Add(new Lever(contentMan, new Vector3(1100, 0, 4875),
-              Vector3.Zero, 100, Vector3.Zero, BottomPillar));
+              Vector3.Zero, 100, Vector3.Zero, BottomPillar, new Vector3(1, 0.2f, 1.0f)));
 
             //pillar 4
             LeftPillar = new TurnablePilar(contentMan, new Vector3(1800, -100, 2750),
-               new Vector3(0, 270, 0), Vector3.Left, 105);
+               new Vector3(0, 270, 0), Vector3.Left, 105, new Vector3(0.2f, 0.2f, 1.0f));
             environment.Add(LeftPillar);
             environmentCollidables.Add(LeftPillar);
             environment.Add(new Lever(contentMan, new Vector3(1150, 0, 2000),
-              Vector3.Zero, 100, Vector3.Zero, LeftPillar));
+              Vector3.Zero, 100, Vector3.Zero, LeftPillar, new Vector3(0.2f, 0.2f, 1.0f)));
 
             //pillar 2
             RightPillar = new TurnablePilar(contentMan, new Vector3(3050, -100, 2750),
-                new Vector3(0, 90, 0), Vector3.Right, 105);
+                new Vector3(0, 90, 0), Vector3.Right, 105, new Vector3(0.2f, 1.0f, 0.2f));
             environment.Add(RightPillar);
             environmentCollidables.Add(RightPillar);
             environment.Add(new Lever(contentMan, new Vector3(4400, 0, 4000),
-              new Vector3(0, 180, 0), 100, Vector3.Zero, RightPillar));
+              new Vector3(0, 180, 0), 100, Vector3.Zero, RightPillar, new Vector3(0.2f, 1.0f, 0.2f)));
 
             Pillars = new List<TurnablePilar>();
             Pillars.Add(BottomPillar);

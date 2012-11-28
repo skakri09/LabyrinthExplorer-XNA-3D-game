@@ -208,14 +208,7 @@ namespace LabyrinthExplorer
             //Interactables.AddInteractable(portal);
         }
 
-        protected void CreateTurnablePilar(Vector3 position,
-                    Vector3 rotation, Vector3 unlockedRotation, float scale )
-        {
-            TurnablePilar pilar = new TurnablePilar(contentMan, 
-                position, rotation, unlockedRotation, scale);
-            environment.Add(pilar);
-            environmentCollidables.Add(pilar);
-        }
+
 
         #endregion
     }

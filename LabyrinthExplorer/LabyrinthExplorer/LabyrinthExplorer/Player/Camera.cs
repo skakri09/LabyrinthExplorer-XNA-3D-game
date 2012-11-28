@@ -517,7 +517,6 @@ namespace LabyrinthExplorer
                     forwardsPressed = true;
                     currentVelocity.Z = 0.0f;
                 }
-
                 direction.Z += 1.0f;
             }
             else
@@ -532,7 +531,6 @@ namespace LabyrinthExplorer
                     backwardsPressed = true;
                     currentVelocity.Z = 0.0f;
                 }
-
                 direction.Z -= 1.0f;
             }
             else
@@ -547,7 +545,6 @@ namespace LabyrinthExplorer
                     strafeRightPressed = true;
                     currentVelocity.X = 0.0f;
                 }
-
                 direction.X += 1.0f;
             }
             else
@@ -562,7 +559,6 @@ namespace LabyrinthExplorer
                     strafeLeftPressed = true;
                     currentVelocity.X = 0.0f;
                 }
-
                 direction.X -= 1.0f;
             }
             else
@@ -583,12 +579,10 @@ namespace LabyrinthExplorer
                 case Posture.Crouching:
                     direction.Y -= 1.0f;
                     break;
-
                 case Posture.Rising:
                     // Finish rising before allowing another crouch.
                     direction.Y += 1.0f;
                     break;
-
                 default:
                     break;
                 }
@@ -602,11 +596,9 @@ namespace LabyrinthExplorer
                     direction.Y += 1.0f;
                     currentVelocity.Y = 0.0f;
                     break;
-
                 case Posture.Rising:
                     direction.Y += 1.0f;
                     break;
-
                 default:
                     break;
                 }
@@ -621,11 +613,9 @@ namespace LabyrinthExplorer
                     currentVelocity.Y = velocity.Y;
                     direction.Y += 1.0f;
                     break;
-
                 case Posture.Jumping:
                     direction.Y += 1.0f;
                     break;
-
                 default:
                     break;
                 }

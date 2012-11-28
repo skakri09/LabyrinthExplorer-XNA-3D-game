@@ -20,7 +20,6 @@ Content\Models\Environment\GemHoleBlue.xnb
 Content\Models\Environment\GemHoleRed.xnb
 Content\Models\Environment\GemHoleYellow.xnb
 Content\Models\Environment\SecretDoor.xnb
-Content\Models\Area2TextHint.xnb
 Content\Models\Environment\GemPedistal.xnb
 Content\Models\Hangar\Hangar.xnb
 Content\Models\Environment\FinalGatePillars.xnb
@@ -146,5 +145,16 @@ Content\Models\Hangar\Bay 94 Luces de Posicion copy_0.xnb
 Content\Models\Hangar\Z_big02 copy3_0.xnb
 Content\Models\Hangar\Hull4_0.xnb
 Content\Models\Hangar\LIGHTS_0.xnb
+Content\Models\Environment\SkeletonChained.xnb
+Content\Models\Environment\SkeletonLaying.xnb
+Content\Models\Environment\SkeletonSitting.xnb
+Content\Models\Environment\Skeletons\darkyellowbone_0.xnb
+Content\Models\Environment\Skeletons\ballandchain2.alpha_0.xnb
+Content\Models\Environment\Skeletons\darkyellowskull01.alpha_0.xnb
+Content\Models\Environment\Skeletons\darkyellowskeletalhand.alpha_0.xnb
+Content\Models\Environment\Skeletons\bonelight_0.xnb
+Content\Models\Environment\Skeletons\skull01light.alpha_0.xnb
+Content\Models\Environment\Skeletons\skeletalhandlight.alpha_0.xnb
+Content\Models\Text\Area2TextHint.xnb
 Content\Sound\Music\Music\LOD.wma
 Content\Sound\Music\Music\space.wma

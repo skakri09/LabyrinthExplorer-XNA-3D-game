@@ -34,7 +34,28 @@ namespace LabyrinthExplorer
             emitter = new AudioEmitter();
             emitter.Position = position;
         }
-        
+
+        //lever for custom color levers
+        public Lever(ContentManager content,
+                     Vector3 position, Vector3 rotation,
+                    float scale, Vector3 openFromDirection,
+                     IInteractableObject LeverUseObject,
+                    Vector3 color,
+                    bool isUsed = false)
+            : base(@"Models\Environment\Lever",
+                content, position, rotation, scale)
+        {
+            this.isUsed = isUsed;
+            base.color = color;
+            closedModel = base.GetModel();
+            usedModel = content.Load<Model>(@"Models\Environment\LeverUsed");
+            CreateUseAABB(openFromDirection, Position, 100, 100);
+            this.onUseObject = LeverUseObject;
+            Interactables.AddInteractable(this);
+            emitter = new AudioEmitter();
+            emitter.Position = position;
+        }
+
         public override void OnEnteringArea()
         {
            

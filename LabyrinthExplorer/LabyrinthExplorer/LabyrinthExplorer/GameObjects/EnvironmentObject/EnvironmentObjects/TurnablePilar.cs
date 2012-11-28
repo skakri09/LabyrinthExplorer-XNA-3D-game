@@ -30,7 +30,8 @@ namespace LabyrinthExplorer
         /// The unlockedRotation must be on format vector3.left/right/foward/backwards
         /// </summary>
         public TurnablePilar(ContentManager content, Vector3 position,
-                    Vector3 rotation, Vector3 unlockedRotation, float scale )
+                    Vector3 rotation, Vector3 unlockedRotation, float scale,
+                        Vector3 color)
             : base(@"Models\Environment\SpiderStatue", content, position, rotation, scale)
         {
             CreateCollision(position, rotation, scale);
@@ -39,6 +40,7 @@ namespace LabyrinthExplorer
             IsUnlocked = false;
             thisInteractionTarget = base.rotation;
             emitter = new AudioEmitter();
+            base.color = color;
         }
 
         public override void Draw(Camera camera, Microsoft.Xna.Framework.Graphics.Effect effect)
@@ -48,9 +50,9 @@ namespace LabyrinthExplorer
                 foreach (BasicEffect _effect in mesh.Effects)
                 {
                     _effect.EnableDefaultLighting();
-                    _effect.DiffuseColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.AmbientLightColor = new Vector3(0.8f, 0.8f, 0.8f);
-                    _effect.SpecularColor = new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.DiffuseColor = color;//new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.AmbientLightColor = color;//new Vector3(0.8f, 0.8f, 0.8f);
+                    _effect.SpecularColor = color;//new Vector3(0.8f, 0.8f, 0.8f);
                     _effect.FogEnabled = true;
                     _effect.FogStart = 50.0f;
                     _effect.FogEnd = 1500;
