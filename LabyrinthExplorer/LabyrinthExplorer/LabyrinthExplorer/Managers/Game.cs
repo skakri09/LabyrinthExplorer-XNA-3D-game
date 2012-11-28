@@ -313,9 +313,9 @@ namespace LabyrinthExplorer
 
             world.DrawTheSkybox(GraphicsDevice);
 
-            if (World.currentArea.TestCenters != null)
-                foreach (Testcenter center in World.currentArea.TestCenters)
-                    center.Draw(player.Cam, null);
+            //if (World.currentArea.TestCenters != null)
+            //    foreach (Testcenter center in World.currentArea.TestCenters)
+            //        center.Draw(player.Cam, null);
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -353,12 +353,12 @@ namespace LabyrinthExplorer
                     menu.DrawMenu(spriteBatch, menuFont);
                     break;
             }
-
+            //if (transitioning)
+            //{
+            //    spriteBatch.Draw()
+            //}
             base.Draw(gameTime);
-            if (transitioning)
-            {
-                spriteBatch.Draw()
-            }
+            
             IncrementFrameCounter();
         }
     }

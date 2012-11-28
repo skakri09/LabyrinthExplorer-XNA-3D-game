@@ -27,7 +27,6 @@ namespace LabyrinthExplorer
         public override void LoadContent(GraphicsDevice device, ContentManager contentMan)
         {
             base.LoadContent(device, contentMan);
-
             CreateHangar();
         }
 
@@ -135,5 +134,78 @@ namespace LabyrinthExplorer
             environmentCollidables.Add(new AABB(new Vector2(9000, 10000), new Vector2(10000, 21000)));
         }
 
+        private void CreateTestCenters()
+        {
+            TestCenters = new List<IEnvironmentObject>();
+
+            for (int i = -100; i < 100; i += 20)
+            {
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 80, i),
+                    new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 70, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 60, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 50, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 40, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 30, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 20, i),
+                    new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 10, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 0, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -10, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -20, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -30, i),
+                   new Vector3(0, -90, 0), 0.001f));
+
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 85, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 75, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 65, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 55, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 45, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 35, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 25, i),
+                    new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 15, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, 5, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -5, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -15, i),
+                   new Vector3(0, -90, 0), 0.001f));
+                TestCenters.Add(new Testcenter(contentMan, new Vector3(100, -25, i),
+                   new Vector3(0, -90, 0), 0.001f));
+            }
+            //TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 100, -1000),
+            //   new Vector3(0, -90, 0), 0.01f));
+
+
+            //TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 200, -200),
+            //   new Vector3(0, -90, 0), 0.01f));
+
+            //TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 300, 110),
+            //    new Vector3(0, -90, 0), 0.01f));
+
+            //TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 400, 200),
+            //   new Vector3(0, -90, 0), 0.01f));
+
+
+            //TestCenters.Add(new Testcenter(contentMan, new Vector3(800, 500, 300),
+            //   new Vector3(0, -90, 0), 0.01f));
+        }
     }
 }

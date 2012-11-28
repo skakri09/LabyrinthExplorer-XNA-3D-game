@@ -242,21 +242,24 @@ namespace LabyrinthExplorer
         void StartDiffHard(object sender, EventArgs e)
         {
             World.currentDifficulity = Difficulity.HARD;
-            Game.SoundManager.StopSong();
+            Game.SoundManager.FadeSong(0, new TimeSpan(1000));
+            //Game.SoundManager.StopSong();
             Game.currentGameState = GameStates.GAME;
         }
 
         void StartDiffMedium(object sender, EventArgs e)
         {
             World.currentDifficulity = Difficulity.MEDIUM;
-            Game.SoundManager.StopSong();
+            Game.SoundManager.FadeSong(0, new TimeSpan(1000));
+            //Game.SoundManager.StopSong();
             Game.currentGameState = GameStates.GAME;
         }
 
         void StartDiffEasy(object sender, EventArgs e)
         {
             World.currentDifficulity = Difficulity.EASY;
-            Game.SoundManager.StopSong();
+            Game.SoundManager.FadeSong(0, new TimeSpan(1000));
+           // Game.SoundManager.StopSong();
             Game.currentGameState = GameStates.GAME;
         }
 
